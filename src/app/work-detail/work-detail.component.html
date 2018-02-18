@@ -1,0 +1,25 @@
+<div *ngIf="work" id="main">
+  <h2> {{ work.title }} <small>({{ work.created | date:"y" }})</small> </h2>
+  <p> {{ work.description }} </p>
+
+
+  <div *ngIf="work.mediaUrl">
+    <iframe width="420" height="315" src="{{ work.mediaUrl }}" frameborder="0" allowfullscreen></iframe>
+  </div>
+    
+  <div *ngIf="work.buybtn">
+    <a class="btn btn-sm btn-dark" target="blank" href="{{work.buybtn}}">Buy This Book</a>
+  </div>
+
+  <div *ngIf="work.images" class="work-images col-md-8">
+    <div class="data" *ngFor="let image of work.images">
+      <img class="img-fluid" src="{{image}}"/>
+    </div>
+  </div>
+
+  <div *ngIf="work.buybtn" class="col-md-8">
+    <div class="alert alert-info">
+        <a class="btn btn-sm btn-dark" target="blank" href="{{work.buybtn}}">Purchase</a> this zine to read more.
+    </div>
+  </div>
+</div>

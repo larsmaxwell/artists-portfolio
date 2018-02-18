@@ -1,0 +1,13 @@
+.site-title {
+    font-size: 1.25em;
+}
+.navbar-brand {
+    padding: 15px 15px 0 0;
+}
+.navbar-collapse {
+    max-height: 450px;
+}
+.mobile-info {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
