@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 import { Work } from '../work';
 import { WorkService } from '../work.service';
@@ -14,22 +15,27 @@ import { WorksComponent } from '../works/works.component';
 })
 export class WorkDetailComponent {
   work: Work;
+  trustedUrl: SafeUrl;
   
   constructor(
     private route: ActivatedRoute,
     private workService: WorkService,
-    private location: Location
-  ) { }
+    private location: Location,
+    private sanitizer: DomSanitizer
+  ) {
+  }
 
   ngOnInit(): void {
     this.getWork();
-
   }
 
   getWork(): void {
     const permalink = this.route.snapshot.paramMap.get('permalink');
     this.workService.getByPermalink(permalink)
-      .subscribe(work => this.work = work[0]);
+      .subscribe(work => {
+        this.work = work[0];
+        this.trustedUrl = work[0].mediaUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(work[0].mediaUrl) : undefined;
+      } );
   }
 
 }
