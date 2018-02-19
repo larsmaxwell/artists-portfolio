@@ -9,7 +9,7 @@
     </div>
 </div>
 <footer class="text-center" ng-controller="copyController">
-    <p class="ng-binding">© {{ title }} {{ date | date: "y"}} </p>
+    <p>© {{ title }} {{ date | date: "y"}} </p>
     <ul class="items list-inline">
         <li class="list-inline-item">
             <a routerLink="/about">
@@ -27,5 +27,6 @@
             </a>
         </li>
     </ul>
+    <p class="small"><a href="https://angular.io/" target="blank">Built with Angular</a></p>
 </footer>
 
