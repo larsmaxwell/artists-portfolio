@@ -10,6 +10,7 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { WorksComponent } from './works/works.component';
@@ -39,6 +40,7 @@ import { HomeComponent } from './home/home.component';
     HttpClientModule,
     Angular2FontawesomeModule,
     OrderModule,
+    BrowserAnimationsModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

@@ -19,7 +19,7 @@
 
 <ul class="works video-works list-unstyled">
   <li><h5>Coding</h5></li>
-  <li *ngFor="let work of interactiveWorks">
+  <li *ngFor="let work of interactiveWorks | orderBy: reverse : true">
     <a routerLink="/works/{{work.permalink}}" (click)="refresh()">
       {{work.title}}
     </a>
