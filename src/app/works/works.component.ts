@@ -33,17 +33,17 @@ export class WorksComponent implements OnInit {
 
   getWorksZine(): void {
     this.workService.getWorksByType('zine')
-      .subscribe(zineWorks => this.zineWorks = zineWorks);
+      .subscribe(zineWorks => this.zineWorks = zineWorks.slice().reverse());
   }
 
   getWorksVideo(): void {
     this.workService.getWorksByType('video')
-      .subscribe(videoWorks => this.videoWorks = videoWorks);
+      .subscribe(videoWorks => this.videoWorks = videoWorks.slice().reverse());
   }
 
   getWorksInteractive(): void {
     this.workService.getWorksByType('interactive')
-      .subscribe(interactiveWorks => this.interactiveWorks = interactiveWorks);
+      .subscribe(interactiveWorks => this.interactiveWorks = interactiveWorks.slice().reverse());
   }
 
 }

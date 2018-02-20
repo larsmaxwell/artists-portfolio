@@ -49,7 +49,7 @@ import { HomeComponent } from './home/home.component';
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [WorkService, MessageService],
+  providers: [WorkService, MessageService, OrderModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
