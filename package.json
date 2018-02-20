@@ -38,6 +38,7 @@
     "font-awesome": "^4.7.0",
     "http": "0.0.0",
     "install": "^0.10.4",
+    "ngx-order-pipe": "^2.0.1",
     "path": "^0.12.7",
     "rxjs": "^5.5.6",
     "typescript": "~2.5.3",
