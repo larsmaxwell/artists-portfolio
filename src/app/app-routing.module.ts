@@ -8,13 +8,15 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
 import { AppComponent } from './app.component';
 import { WorksComponent } from './works/works.component';
 import { HomeComponent } from './home/home.component';
+import { WorkCategoryComponent } from './work-category/work-category.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'works', component: WorkDetailComponent },
   { path: 'about', component: AboutComponent },
   { path: 'works/:permalink', component: WorkDetailComponent },
-  { path: '**', component: WorkDetailComponent }
+  { path: 'works/category/:category', component: WorkCategoryComponent},
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

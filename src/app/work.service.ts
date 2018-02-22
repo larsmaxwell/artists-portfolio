@@ -24,7 +24,6 @@ export class WorkService {
 
   /** Get Work from the server */
   getWorks (): Observable<Work[]> {
-
     const options = { params: new HttpParams().set('archive', 'false') };
     return this.http.get<Work[]>(this.worksUrl, options)
       .pipe(
@@ -64,7 +63,7 @@ export class WorkService {
       );
   }
 
-  getByPermalink(permalink:string): Observable<Work[]> {
+  getWorkByPermalink(permalink:string): Observable<Work[]> {
     if (!permalink) {
       // if not search term, return empty hero array.
       return of([]);
@@ -85,15 +84,6 @@ export class WorkService {
     return this.http.get<Work>(url).pipe(
       tap(_ => this.log(`fetched work id=${id}`)),
       catchError(this.handleError<Work>(`getHero id=${id}`))
-    );
-  }
-
-  /** GET hero by permalink. Will 404 if id not found */
-  getWorkByPermalink(permalink: string): Observable<Work> {
-    const url = `${this.worksUrl}/${permalink}`;
-    return this.http.get<Work>(url).pipe(
-      tap(_ => this.log(`fetched work permalink=${permalink}`)),
-      catchError(this.handleError<Work>(`getHero permalink=${permalink}`))
     );
   }
 

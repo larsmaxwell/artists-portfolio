@@ -31,7 +31,7 @@ export class WorkDetailComponent {
 
   getWork(): void {
     const permalink = this.route.snapshot.paramMap.get('permalink');
-    this.workService.getByPermalink(permalink)
+    this.workService.getWorkByPermalink(permalink)
       .subscribe(work => {
         this.work = work[0];
         this.trustedUrl = work[0].mediaUrl ? this.sanitizer.bypassSecurityTrustResourceUrl(work[0].mediaUrl) : undefined;

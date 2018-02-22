@@ -88,9 +88,7 @@ export class InMemoryDataService implements InMemoryDbService {
           "assets/images/forest-of-us/cover2.jpg",
           "assets/images/forest-of-us/Pg1.png",
           "assets/images/forest-of-us/Pg2.png",
-          "assets/images/forest-of-us/Pg3.png",
-          "assets/images/forest-of-us/Pg4.png",
-          "assets/images/forest-of-us/Pg5.png"
+          "assets/images/forest-of-us/Pg3.png"
         ]
       },
       {

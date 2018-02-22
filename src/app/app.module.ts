@@ -21,6 +21,8 @@ import { MessageService } from './message.service';
 import { WorkService } from './work.service';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
+import { WorkCategoryComponent } from './work-category/work-category.component';
+import { ImgIndividualComponent } from './img-individual/img-individual.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { HomeComponent } from './home/home.component';
     DashboardComponent,
     AboutComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    WorkCategoryComponent,
+    ImgIndividualComponent
   ],
   imports: [
     BrowserModule,

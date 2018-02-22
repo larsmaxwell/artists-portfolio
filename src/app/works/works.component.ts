@@ -21,29 +21,19 @@ export class WorksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getWorksZine();
-    this.getWorksVideo();
-    this.getWorksInteractive();
+    this.getWorks()
+    // this.getWorksZine();
+    // this.getWorksVideo();
+    // this.getWorksInteractive();
+    console.log(window);
   }
 
   getWorks(): void {
     this.workService.getWorks()
-      .subscribe(works => this.works = works);
+      .subscribe(works => {
+        this.zineWorks = works.filter(works => works.type === "zine").slice().reverse(),
+        this.videoWorks = works.filter(works => works.type === "video").slice().reverse(),
+        this.interactiveWorks = works.filter(works => works.type === "interactive").slice().reverse()
+      });
   }
-
-  getWorksZine(): void {
-    this.workService.getWorksByType('zine')
-      .subscribe(zineWorks => this.zineWorks = zineWorks.slice().reverse());
-  }
-
-  getWorksVideo(): void {
-    this.workService.getWorksByType('video')
-      .subscribe(videoWorks => this.videoWorks = videoWorks.slice().reverse());
-  }
-
-  getWorksInteractive(): void {
-    this.workService.getWorksByType('interactive')
-      .subscribe(interactiveWorks => this.interactiveWorks = interactiveWorks.slice().reverse());
-  }
-
 }
