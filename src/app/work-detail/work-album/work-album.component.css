@@ -1,0 +1,10 @@
+.album-img:hover {
+    -webkit-box-shadow: 2px 5px 12px -2px rgba(105,149,156,1);
+    -moz-box-shadow: 2px 5px 12px -2px rgba(105,149,156,1);
+    box-shadow: 2px 5px 12px -2px rgba(105,149,156,1);
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+ }

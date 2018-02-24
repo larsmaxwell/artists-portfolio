@@ -1,8 +1,11 @@
+// Angular
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Subscription } from 'rxjs/Subscription';
 
+// App Specific
 import { Work } from '../work';
 import { WorkService } from '../work.service';
 import { WorksComponent } from '../works/works.component';
@@ -16,12 +19,14 @@ import { WorksComponent } from '../works/works.component';
 export class WorkDetailComponent {
   work: Work;
   trustedUrl: SafeUrl;
-  
+  albumId: number;
+  private _subscription: Subscription;
+
   constructor(
     private route: ActivatedRoute,
     private workService: WorkService,
     private location: Location,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
   ) {
   }
 

@@ -1,0 +1,26 @@
+
+
+<div class="img-zoom-component" *ngIf="featuredImg" [ngStyle]="{'height': desHeight+'px'}">
+    <div class="img-center-component stacked col-md-12">
+
+        <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
+            <div class="img-controls-prev img-controls-element" routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.prevId }}" (click)="showPrev(album.id, imgControls.prevId)">
+                <fa [name]="'caret-left'" size="2"></fa>
+            </div>
+            <div class="img-controls-next img-controls-element" routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
+                <fa [name]="'caret-right'" size="2"></fa>
+            </div>
+            <div class="img-controls-exit img-controls-element">
+                <a routerLink="/works/{{ imgControls.permalink }}/">
+                    <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
+                </a>
+            </div>
+        </div>
+        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px', 'left': desWidth/6+'px'}">
+            <a routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
+                <img src="{{ featuredImg.url }}">
+            </a>
+        </div>
+
+    </div>
+</div>

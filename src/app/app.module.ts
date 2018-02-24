@@ -22,8 +22,11 @@ import { WorkService } from './work.service';
 import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { WorkCategoryComponent } from './work-category/work-category.component';
-import { ImgIndividualComponent } from './img-individual/img-individual.component';
 
+import { LightboxModule } from 'angular2-lightbox';
+import { WorkAlbumComponent } from './work-detail/work-album/work-album.component';
+import { AlbumService } from './album.service';
+import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { ImgIndividualComponent } from './img-individual/img-individual.componen
     MenuComponent,
     HomeComponent,
     WorkCategoryComponent,
-    ImgIndividualComponent
+    WorkAlbumComponent,
+    ImgZoomComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +49,8 @@ import { ImgIndividualComponent } from './img-individual/img-individual.componen
     Angular2FontawesomeModule,
     OrderModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    LightboxModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -53,7 +59,7 @@ import { ImgIndividualComponent } from './img-individual/img-individual.componen
       InMemoryDataService, { dataEncapsulation: false }
     )
   ],
-  providers: [WorkService, MessageService, OrderModule],
+  providers: [WorkService, MessageService, OrderModule, LightboxModule, AlbumService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

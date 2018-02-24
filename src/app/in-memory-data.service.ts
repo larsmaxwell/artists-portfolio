@@ -223,7 +223,303 @@ export class InMemoryDataService implements InMemoryDbService {
         description: "Video and Poetry by me. <a href=\"https://www.youtube.com/watch?v=7zvhHbOR-gc\">Link.</a>"
       }
     ];
-    return {works};
+    const albums = [
+      {
+        id: 1,
+        title: "Comics Comics",
+        workId: 1,
+        images: [
+          {
+            id: "cc1",
+            url: "assets/images/comics-comics/cc1.jpg"
+          },
+          {
+            id: "cc2",
+            url: "assets/images/comics-comics/cc2.jpg"
+          },
+          {
+            id: "cc3",
+            url: "assets/images/comics-comics/cc3.jpg"
+          }
+        ]
+      },
+      {
+        id: 2,
+        title: "Corridors",
+        workId: 2,
+        images: [
+          {
+            id: "cor1",
+            url: "assets/images/corridors/corridors.png"
+          }
+        ]
+      },
+      {
+        id: 3,
+        title: "Dance Routine",
+        workId: 3,
+        images: [
+          {
+            id: "dr1",
+            url: "assets/images/dance-routine/dr1.png"
+          },
+          {
+            id: "dr2",
+            url: "assets/images/dance-routine/dr2.png"
+          },
+          {
+            id: "dr3",
+            url: "assets/images/dance-routine/dr3.png"
+          },
+          {
+            id: "dr4",
+            url: "assets/images/dance-routine/dr4.png"
+          }
+        ]
+      },
+      {
+        id: 4,
+        title: "Dark Planet",
+        workId: 4,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/dark-planet/cover.png"
+          },
+          {
+            id: 1,
+            url: "assets/images/dark-planet/p1.png"
+          },
+          {
+            id: 2,
+            url: "assets/images/dark-planet/p2.png"
+          },
+          {
+            id: 3,
+            url: "assets/images/dark-planet/p3.png"
+          },
+          {
+            id: 4,
+            url: "assets/images/dark-planet/p4.png"
+          }
+        ]
+      },
+      {
+        id: 5,
+        title: "Donut Miracle",
+        workId: 5,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/donut-miracle/dm1.png"
+          },
+          {
+            id: 1,
+            url: "assets/images/donut-miracle/dm2.png"
+          }
+        ]
+      },
+      {
+        id: 6,
+        title: "Forest of Us",
+        workId: 6,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/forest-of-us/cover2.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/forest-of-us/Pg1.png"
+          },
+          {
+            id: 2,
+            url: "assets/images/forest-of-us/Pg2.png"
+          },
+          {
+            id: 3,
+            url: "assets/images/forest-of-us/Pg3.png"
+          }
+        ]
+      },
+      {
+        id: 7,
+        title: "Frens Zine",
+        workId: 7,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/frens/cuteZine1.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/frens/cuteZine2.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/frens/cuteZine3.jpg"
+          },
+          {
+            id: 3,
+            url: "assets/images/frens/cuteZine6.jpg"
+          }
+        ]
+      },
+      {
+        id: 8,
+        title: "Nerve Kid II Deeip Rifts",
+        workId: 8,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/nerve-kid-ii-deeip-rifts/nk1.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/nerve-kid-ii-deeip-rifts/nk2.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/nerve-kid-ii-deeip-rifts/nk3.jpg"
+          }
+        ]
+      },
+      {
+        id: 9,
+        title: "Passing Thru",
+        workId: 9,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/passing/p1.png"
+          },
+          {
+            id: 1,
+            url: "assets/images/passing/p2.png"
+          },
+          {
+            id: 2,
+            url: "assets/images/passing/p3.png"
+          },
+          {
+            id: 3,
+            url: "assets/images/passing/p4.png"
+          }
+        ]
+      },
+      {
+        id: 10,
+        title: "Princess Simon",
+        workId: 10,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/princess-simon/princess-simon.png"
+          }
+        ]
+      },
+      {
+        id: 11,
+        title: "Sprite Vol 1",
+        workId: 11,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/sprite-1/sp1-1.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/sprite-1/sp1-2.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/sprite-1/sp1-3.jpg"
+          }
+        ]
+      },
+      {
+        id: 12,
+        title: "Sprite Vol 2",
+        workId: 12,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/sprite-2/3.cactus_cum.png"
+          },
+          {
+            id: 1,
+            url: "assets/images/sprite-2/4.slimyorgans.png"
+          },
+          {
+            id: 2,
+            url: "assets/images/sprite-2/5.personal-hatred.png"
+          },
+          {
+            id: 3,
+            url: "assets/images/sprite-2/6.polar-vortex.png"
+          }
+        ]
+      },
+      {
+        id: 13,
+        title: "Terry House Calls",
+        workId: 13,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/terry-house-calls/cover.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/terry-house-calls/1.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/terry-house-calls/2.jpg"
+          },
+          {
+            id: 3,
+            url: "assets/images/terry-house-calls/3.jpg"
+          }
+        ]
+      },
+      {
+        id: 14,
+        title: "The Rabid Prince",
+        workId: 14,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/the-rabid-prince/cover.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/the-rabid-prince/insideCover.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/the-rabid-prince/wp0.jpg"
+          },
+          {
+            id: 3,
+            url: "assets/images/the-rabid-prince/wp1.jpg"
+          },
+          {
+            id: 4,
+            url: "assets/images/the-rabid-prince/wp2.jpg"
+          },
+          {
+            id: 5,
+            url: "assets/images/the-rabid-prince/wp3.jpg"
+          },
+          {
+            id: 6,
+            url: "assets/images/the-rabid-prince/wp4.jpg"
+          }
+        ]
+      }
+    ];
+    return {works, albums};
   }
 
 }

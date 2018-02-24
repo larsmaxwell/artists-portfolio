@@ -9,10 +9,10 @@
   <div *ngIf="work.buybtn">
     <a class="btn btn-sm btn-dark" target="blank" href="{{work.buybtn}}">Buy This Book</a>
   </div>
-
-  <div *ngIf="work.images" class="work-images col-md-8">
-    <div class="data" *ngFor="let image of work.images">
-      <img class="img-fluid" src="{{image}}"/>
+  
+  <div class="row">
+    <div class="col-md-12">
+      <app-work-album [work]="work"></app-work-album>
     </div>
   </div>
 
