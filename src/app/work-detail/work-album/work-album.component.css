@@ -7,4 +7,9 @@
 a.disabled {
     pointer-events: none;
     cursor: default;
- }
+}
+
+#work-album-component {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}

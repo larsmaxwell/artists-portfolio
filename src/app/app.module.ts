@@ -27,6 +27,7 @@ import { LightboxModule } from 'angular2-lightbox';
 import { WorkAlbumComponent } from './work-detail/work-album/work-album.component';
 import { AlbumService } from './album.service';
 import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.com
     HomeComponent,
     WorkCategoryComponent,
     WorkAlbumComponent,
-    ImgZoomComponent
+    ImgZoomComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
