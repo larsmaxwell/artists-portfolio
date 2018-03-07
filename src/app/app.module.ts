@@ -27,7 +27,7 @@ import { LightboxModule } from 'angular2-lightbox';
 import { WorkAlbumComponent } from './work-detail/work-album/work-album.component';
 import { AlbumService } from './album.service';
 import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+import { GetByTypePipe } from './get-by-type.pipe';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     WorkCategoryComponent,
     WorkAlbumComponent,
     ImgZoomComponent,
-    ContactFormComponent
+    GetByTypePipe
   ],
   imports: [
     BrowserModule,

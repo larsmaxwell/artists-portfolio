@@ -1,8 +1,8 @@
 
 <ul class="works video-works list-unstyled">
   <li><h5>Zines</h5></li>
-  <li *ngFor="let work of zineWorks">
-    <a routerLink="/works/{{work.permalink}}" (click)="refresh()">
+  <li *ngFor="let work of (works | getByType: 'zine')">
+    <a *ngIf="work" routerLink="/works/{{work.permalink}}" (click)="refresh()">
       {{work.title}}
     </a>
   </li>
@@ -10,8 +10,8 @@
 
 <ul class="works video-works list-unstyled">
   <li><h5>Video</h5></li>
-  <li *ngFor="let work of videoWorks">
-    <a routerLink="/works/{{work.permalink}}" (click)="refresh()">
+  <li *ngFor="let work of (works | getByType: 'video')">
+    <a *ngIf="work" routerLink="/works/{{work.permalink}}" (click)="refresh()">
       {{work.title}}
     </a>
   </li>
@@ -19,7 +19,7 @@
 
 <ul class="works video-works list-unstyled">
   <li><h5>Coding</h5></li>
-  <li *ngFor="let work of interactiveWorks">
+  <li *ngFor="let work of (works | getByType: 'interactive')">
     <a routerLink="/works/{{work.permalink}}" (click)="refresh()">
       {{work.title}}
     </a>

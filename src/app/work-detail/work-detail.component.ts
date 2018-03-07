@@ -20,7 +20,6 @@ export class WorkDetailComponent {
   work: Work;
   trustedUrl: SafeUrl;
   albumId: number;
-  private _subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
