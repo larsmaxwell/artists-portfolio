@@ -30,11 +30,11 @@ export class WorkDetailComponent {
   }
 
   ngOnInit(): void {
-    this.getWork();
+    const permalink = this.route.snapshot.paramMap.get('permalink');
+    this.getWork(permalink);
   }
 
-  getWork(): void {
-    const permalink = this.route.snapshot.paramMap.get('permalink');
+  getWork(permalink: string): void {
     this.workService.getWorkByPermalink(permalink)
       .subscribe(work => {
         this.work = work[0];

@@ -1,4 +1,4 @@
-<div class="row" id="work-album-component">
+<div class="row" id="work-album-component" *ngIf="album?.images">
   <div class="data col-md-4" *ngFor="let image of album.images">
       <a routerLink="/works/{{ work.permalink }}/album/{{album.id}}/{{ image.id }}" [class.disabled]="!isValidLink()">
         <img src="{{image.url}}" class="img-fluid album-img">

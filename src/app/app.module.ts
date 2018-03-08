@@ -58,10 +58,17 @@ import { GetByTypePipe } from './get-by-type.pipe';
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
+      InMemoryDataService, 
+      { dataEncapsulation: false }
     )
   ],
-  providers: [WorkService, MessageService, OrderModule, LightboxModule, AlbumService],
+  providers: [
+    WorkService,
+    MessageService,
+    OrderModule,
+    LightboxModule,
+    AlbumService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

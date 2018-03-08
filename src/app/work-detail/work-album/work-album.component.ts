@@ -30,6 +30,9 @@ export class WorkAlbumComponent implements OnInit {
     if (window.innerWidth < 525) {
       return false;
     }
+    if (this.work.type !== 'zine') {
+      return false;
+    }
     return true;
   }
 
