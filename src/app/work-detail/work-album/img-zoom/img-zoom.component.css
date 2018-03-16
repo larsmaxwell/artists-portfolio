@@ -63,7 +63,7 @@
 .img-controls-prev:focus, .img-controls-next:focus {
     outline: none;
 }
-
+    
 .img-controls-prev fa {
     left: 0;
     top: 50%;

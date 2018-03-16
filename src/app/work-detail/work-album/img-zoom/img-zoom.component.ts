@@ -60,8 +60,10 @@ export class ImgZoomComponent implements OnInit {
             permalink: currPermalink
         };
       });
+  }
 
-      
+  calculateWidth() {
+    console.log(this);
   }
 
   showNext(id, imgId) {

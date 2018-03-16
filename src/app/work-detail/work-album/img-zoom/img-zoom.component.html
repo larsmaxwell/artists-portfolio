@@ -16,7 +16,7 @@
                 </a>
             </div>
         </div>
-        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px', 'left': desWidth/6+'px'}">
+        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px'}">
             <a routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
                 <img src="{{ featuredImg.url }}">
             </a>
