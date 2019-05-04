@@ -508,6 +508,14 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 3,
             url: "assets/images/terry-house-calls/3.jpg"
+          },
+          {
+            id: 4,
+            url: "assets/images/terry-house-calls/thcCoverPhoto.jpg"
+          },
+          {
+            id: 5,
+            url: "assets/images/terry-house-calls/thcPhoto.jpg"
           }
         ]
       },
@@ -518,7 +526,7 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/the-rabid-prince/cover.jpg"
+            url: "assets/images/the-rabid-prince/RpPhoto.jpg"
           },
           {
             id: 1,
@@ -543,6 +551,10 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 6,
             url: "assets/images/the-rabid-prince/wp4.jpg"
+          },
+          {
+            id: 7,
+            url: "assets/images/the-rabid-prince/RpPhoto1.jpg"
           }
         ]
       },
@@ -614,6 +626,18 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 15,
             url: "assets/images/ufime/Ufime15.jpg"
+          },
+          {
+            id: 16,
+            url: "assets/images/ufime/UfimeCoverPhoto.jpg"
+          },
+          {
+            id: 17,
+            url: "assets/images/ufime/UfimeInsideBooklet0.jpg"
+          },
+          {
+            id: 18,
+            url: "assets/images/ufime/UfimeInsideBooklet1.jpg"
           }
         ]
       }
