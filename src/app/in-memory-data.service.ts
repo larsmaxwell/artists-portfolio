@@ -221,6 +221,34 @@ export class InMemoryDataService implements InMemoryDbService {
         archive: false,
         mediaUrl: "https://www.youtube.com/embed/7zvhHbOR-gc",
         description: "Video and Poetry by me. <a href=\"https://www.youtube.com/watch?v=7zvhHbOR-gc\">Link.</a>"
+      },
+      {
+        id: 16,
+        title: "Ufime",
+        permalink: "ufime",
+        type: "zine",
+        created: "2019-04-01T00:00:00Z",
+        archive: false,
+        description: "Alma and Jo are in love as they face the worst of the sea in a fantasy post climate event future. The two together experience separate realities of the world. One of these realities is filled with horror, but the other is safe. In order to find an item that was abandoned, they venture to the area of the city that was covered in water and overtaken by strange beings.",
+        buybtn: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=97WEHPKSQYEY2",
+        images: [
+          "assets/images/ufime/UfimeCovr.jpg",
+          "assets/images/ufime/Ufime1.jpg",
+          "assets/images/ufime/Ufime2.jpg",
+          "assets/images/ufime/Ufime3.jpg",
+          "assets/images/ufime/Ufime4.jpg",
+          "assets/images/ufime/Ufime5.jpg",
+          "assets/images/ufime/Ufime6.jpg",
+          "assets/images/ufime/Ufime7.jpg",
+          "assets/images/ufime/Ufime8.jpg",
+          "assets/images/ufime/Ufime9.jpg",
+          "assets/images/ufime/Ufime10.jpg",
+          "assets/images/ufime/Ufime11.jpg",
+          "assets/images/ufime/Ufime12.jpg", 
+          "assets/images/ufime/Ufime13.jpg",
+          "assets/images/ufime/Ufime14.jpg",
+          "assets/images/ufime/Ufime15.jpg"
+        ]
       }
     ];
     const albums = [
@@ -515,6 +543,77 @@ export class InMemoryDataService implements InMemoryDbService {
           {
             id: 6,
             url: "assets/images/the-rabid-prince/wp4.jpg"
+          }
+        ]
+      },
+      {
+        id: 16,
+        title: "Ufime",
+        workId: 16,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/ufime/UfimeCovr.jpg"
+          },
+          {
+            id: 1,
+            url: "assets/images/ufime/Ufime1.jpg"
+          },
+          {
+            id: 2,
+            url: "assets/images/ufime/Ufime2.jpg"
+          },
+          {
+            id: 3,
+            url: "assets/images/ufime/Ufime3.jpg"
+          },
+          {
+            id: 4,
+            url: "assets/images/ufime/Ufime4.jpg"
+          },
+          {
+            id: 5,
+            url: "assets/images/ufime/Ufime5.jpg"
+          },
+          {
+            id: 6,
+            url: "assets/images/ufime/Ufime6.jpg"
+          },
+          {
+            id: 7,
+            url: "assets/images/ufime/Ufime7.jpg"
+          },
+          {
+            id: 8,
+            url: "assets/images/ufime/Ufime8.jpg"
+          },
+          {
+            id: 9,
+            url: "assets/images/ufime/Ufime9.jpg"
+          },
+          {
+            id: 10,
+            url: "assets/images/ufime/Ufime10.jpg"
+          },
+          {
+            id: 11,
+            url: "assets/images/ufime/Ufime11.jpg"
+          },
+          {
+            id: 12,
+            url: "assets/images/ufime/Ufime12.jpg"
+          },
+          {
+            id: 13,
+            url: "assets/images/ufime/Ufime13.jpg"
+          },
+          {
+            id: 14,
+            url: "assets/images/ufime/Ufime14.jpg"
+          },
+          {
+            id: 15,
+            url: "assets/images/ufime/Ufime15.jpg"
           }
         ]
       }

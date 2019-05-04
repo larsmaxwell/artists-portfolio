@@ -2,7 +2,7 @@
   <div class="data col-md-4" *ngFor="let image of album.images">
       <a routerLink="/works/{{ work.permalink }}/album/{{album.id}}/{{ image.id }}" [class.disabled]="!isValidLink()">
         <img src="{{image.url}}" class="img-fluid album-img">
-      </a>  
+      </a>
     </div>
 </div>
 

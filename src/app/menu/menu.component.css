@@ -4,10 +4,17 @@
 .navbar-brand {
     padding: 15px 15px 0 0;
 }
+.navbar-toggler {
+    margin-top: .5em;
+}
 .navbar-collapse {
     max-height: 450px;
 }
 .mobile-info {
     padding: 10px 0;
     border-bottom: 1px solid #eee;
+}
+.navbar-header {
+    border-bottom: 1px solid #2600a7;
+    margin-bottom: 10px;
 }

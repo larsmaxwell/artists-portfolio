@@ -10,10 +10,10 @@ body {
     padding: 2rem 0;
 }
 a {
-    color: #0c5460;
+    color: #2600a7;
 }
 a:not(.btn):hover, a:not(.btn):focus {
-    color: #0c5460;
+    color: #2600a7;
     text-decoration: underline;
 }
 .h5, h5 {

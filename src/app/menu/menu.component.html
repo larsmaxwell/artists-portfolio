@@ -1,20 +1,19 @@
-<nav class="navbar  navbar-fixed-top">
-  <div class="navbar-header col-md-12">
+<nav class="navbar navbar-fixed-top">
+  <div class="navbar-header col-12">
     <div class="row">
-      <div class="col-8">
-        <a class="navbar-brand" href="/">
+      <div class="col-10">
+        <a class="navbar-brand row" href="/">
           <h1 class="site-title">Lurn Maxwell</h1>
         </a>
       </div>
-      <div class="col-4">
+      <div class="col-2">
         <button type="button" class="navbar-toggler d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
           <fa [name]="'bars'" [size]="1"></fa>
         </button>
       </div>
     </div>
   </div>
-  <hr>
-  <div class="navbar-content navbar-mobile col-md-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
+  <div class="navbar-content navbar-mobile col-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
     <div class="row">
       <div class="col-12">
         <app-works></app-works>
@@ -29,20 +28,16 @@
       </div>
     </div>
   </div>
-  <div class="navbar-content navbar-tablet d-none d-sm-block col-md-12" id="navbar-content">
-    <div class="row">
-      <div class="col-12">
-        <app-works></app-works>
-        <hr class="d-none d-sm-block">
-        <ul class="list-unstyled">
-          <li>
-            <a routerLink="/about">
-              <strong>About</strong>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
+  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content">
+    <app-works></app-works>
+    <hr class="d-none d-sm-block">
+    <ul class="list-unstyled">
+      <li>
+        <a routerLink="/about">
+          <strong>About</strong>
+        </a>
+      </li>
+    </ul>
   </div>
   <div class="navbar-extra row d-none d-sm-block">
     <div class="col-12">

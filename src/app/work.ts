@@ -8,5 +8,5 @@ export class Work {
     buybtn: string;
     discription: string;
     mediaUrl: string;
-    images: string[];
+    album: string[];
 }

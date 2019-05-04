@@ -4,11 +4,15 @@
     <div class="img-center-component stacked col-md-12">
 
         <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
-            <div class="img-controls-prev img-controls-element" routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.prevId }}" (click)="showPrev(album.id, imgControls.prevId)">
-                <fa [name]="'caret-left'" size="2"></fa>
+            <div class="img-controls-prev img-controls-element">
+                <a  routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.prevId }}" (click)="showPrev(album.id, imgControls.prevId)">
+                    <fa [name]="'chevron-left'" size="2"></fa>
+                </a>
             </div>
-            <div class="img-controls-next img-controls-element" routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
-                <fa [name]="'caret-right'" size="2"></fa>
+            <div class="img-controls-next img-controls-element">
+                <a  routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
+                    <fa [name]="'chevron-right'" size="2"></fa>
+                </a>
             </div>
             <div class="img-controls-exit img-controls-element">
                 <a routerLink="/works/{{ imgControls.permalink }}/">

@@ -10,6 +10,7 @@
 
 .img-center-component-inner {
     position: absolute;
+    width: 100%;
 }
 
 .img-center-component-inner a {
@@ -26,6 +27,8 @@
 
 .img-center-component-inner img {
     height: calc(100%);
+    margin: 0 auto;
+    display: block;
 }
 
 .img-controls {
@@ -46,6 +49,7 @@
     right: 0;
     width: 100px;
     height: 100%;
+    z-index: 2;
 }
 
 .img-controls-next fa {
@@ -58,6 +62,7 @@
     left: 0;
     width: 100px;
     height: 100%;
+    z-index: 2;
 }
 
 .img-controls-prev:focus, .img-controls-next:focus {
