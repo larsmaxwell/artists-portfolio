@@ -1,3 +1,5 @@
+import {Album} from './album'
+
 export class Work {
     id: number;
     title: string;
@@ -8,5 +10,5 @@ export class Work {
     buybtn: string;
     discription: string;
     mediaUrl: string;
-    album: string[];
+    album: Album;
 }

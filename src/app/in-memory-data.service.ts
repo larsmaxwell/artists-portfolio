@@ -16,7 +16,8 @@ export class InMemoryDataService implements InMemoryDbService {
           "assets/images/comics-comics/cc1.jpg",
           "assets/images/comics-comics/cc2.jpg",
           "assets/images/comics-comics/cc3.jpg"
-        ]
+        ],
+        album: 1
       },
       {
         id: 2,
@@ -29,7 +30,8 @@ export class InMemoryDataService implements InMemoryDbService {
         description: "Video created for the <a target=\"blank\" href=\"http://www.dallasobserver.com/event/beeflix-vol2-8184216\">Beeflix Video Series</a>. Poetry by Lauren Belmore. <a href=\"https://www.youtube.com/watch?v=DXWDCu3Mze4\">Link.</a><br>",
         images: [
           "assets/images/corridors/corridors.png"
-        ]
+        ],
+        album: 2
       },
       {
         id: 3,
@@ -210,7 +212,8 @@ export class InMemoryDataService implements InMemoryDbService {
           "assets/images/the-rabid-prince/wp2.jpg",
           "assets/images/the-rabid-prince/wp3.jpg",
           "assets/images/the-rabid-prince/wp4.jpg"      
-        ]
+        ],
+        album: 16
       },
       {
         id: 15,

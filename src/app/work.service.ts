@@ -17,6 +17,9 @@ export class WorkService {
 
   private worksUrl = 'api/works';
 
+  // sanity api key: skIgrXCNujRThrjUHWDYQIz36xGRfxjWM0OfUAYK9MzhVOwNccJZcqwyGBq9UsGuke54ZkGtXUymjSmqlpYuFRe0i88LGAqefGB0gqNM72y6a0CcEAWv4BzRHOiRkiBvvDSj9nVhabGq8b5ZD5gbQyzA47PeQrbp6D9AeJ0yVJEXQVvOM2pC
+
+
   constructor(
     private http: HttpClient,
     private messageService: MessageService
