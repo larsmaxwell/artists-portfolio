@@ -28,6 +28,7 @@ import { WorkAlbumComponent } from './work-detail/work-album/work-album.componen
 import { AlbumService } from './album.service';
 import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.component';
 import { GetByTypePipe } from './get-by-type.pipe';
+import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { GetByTypePipe } from './get-by-type.pipe';
     BrowserAnimationsModule,
     BrowserModule,
     LightboxModule,
+    DeferLoadModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

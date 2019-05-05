@@ -259,15 +259,18 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: "cc1",
-            url: "assets/images/comics-comics/cc1.jpg"
+            url: "assets/images/comics-comics/cc1.jpg",
+            show: false
           },
           {
             id: "cc2",
-            url: "assets/images/comics-comics/cc2.jpg"
+            url: "assets/images/comics-comics/cc2.jpg",
+            show: false
           },
           {
             id: "cc3",
-            url: "assets/images/comics-comics/cc3.jpg"
+            url: "assets/images/comics-comics/cc3.jpg",
+            show: false
           }
         ]
       },
@@ -312,23 +315,28 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/dark-planet/cover.png"
+            url: "assets/images/dark-planet/cover.png",
+            show: false
           },
           {
             id: 1,
-            url: "assets/images/dark-planet/p1.png"
+            url: "assets/images/dark-planet/p1.png",
+            show: false
           },
           {
             id: 2,
-            url: "assets/images/dark-planet/p2.png"
+            url: "assets/images/dark-planet/p2.png",
+            show: false
           },
           {
             id: 3,
-            url: "assets/images/dark-planet/p3.png"
+            url: "assets/images/dark-planet/p3.png",
+            show: false
           },
           {
             id: 4,
-            url: "assets/images/dark-planet/p4.png"
+            url: "assets/images/dark-planet/p4.png",
+            show: false
           }
         ]
       },
@@ -495,27 +503,33 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/terry-house-calls/cover.jpg"
+            url: "assets/images/terry-house-calls/cover.jpg",
+            show: false
           },
           {
             id: 1,
-            url: "assets/images/terry-house-calls/1.jpg"
+            url: "assets/images/terry-house-calls/1.jpg",
+            show: false
           },
           {
             id: 2,
-            url: "assets/images/terry-house-calls/2.jpg"
+            url: "assets/images/terry-house-calls/2.jpg",
+            show: false
           },
           {
             id: 3,
-            url: "assets/images/terry-house-calls/3.jpg"
+            url: "assets/images/terry-house-calls/3.jpg",
+            show: false
           },
           {
             id: 4,
-            url: "assets/images/terry-house-calls/thcCoverPhoto.jpg"
+            url: "assets/images/terry-house-calls/thcCoverPhoto.jpg",
+            show: false
           },
           {
             id: 5,
-            url: "assets/images/terry-house-calls/thcPhoto.jpg"
+            url: "assets/images/terry-house-calls/thcPhoto.jpg",
+            show: false
           }
         ]
       },
@@ -526,35 +540,43 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/the-rabid-prince/RpPhoto.jpg"
+            url: "assets/images/the-rabid-prince/RpPhoto.jpg",
+            show: false
           },
           {
             id: 1,
-            url: "assets/images/the-rabid-prince/insideCover.jpg"
+            url: "assets/images/the-rabid-prince/insideCover.jpg",
+            show: false
           },
           {
             id: 2,
-            url: "assets/images/the-rabid-prince/wp0.jpg"
+            url: "assets/images/the-rabid-prince/wp0.jpg",
+            show: false
           },
           {
             id: 3,
-            url: "assets/images/the-rabid-prince/wp1.jpg"
+            url: "assets/images/the-rabid-prince/wp1.jpg",
+            show: false
           },
           {
             id: 4,
-            url: "assets/images/the-rabid-prince/wp2.jpg"
+            url: "assets/images/the-rabid-prince/wp2.jpg",
+            show: false
           },
           {
             id: 5,
-            url: "assets/images/the-rabid-prince/wp3.jpg"
+            url: "assets/images/the-rabid-prince/wp3.jpg",
+            show: false
           },
           {
             id: 6,
-            url: "assets/images/the-rabid-prince/wp4.jpg"
+            url: "assets/images/the-rabid-prince/wp4.jpg",
+            show: false
           },
           {
             id: 7,
-            url: "assets/images/the-rabid-prince/RpPhoto1.jpg"
+            url: "assets/images/the-rabid-prince/RpPhoto1.jpg",
+            show: false
           }
         ]
       },
@@ -565,79 +587,293 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/ufime/UfimeCovr.jpg"
+            url: "assets/images/ufime/UfimeCovr.jpg",
+            show: false
           },
           {
             id: 1,
-            url: "assets/images/ufime/Ufime1.jpg"
+            url: "assets/images/ufime/Ufime1.jpg",
+            show: false
           },
           {
             id: 2,
-            url: "assets/images/ufime/Ufime2.jpg"
+            url: "assets/images/ufime/Ufime2.jpg",
+            show: false
           },
           {
             id: 3,
-            url: "assets/images/ufime/Ufime3.jpg"
+            url: "assets/images/ufime/Ufime3.jpg",
+            show: false
           },
           {
             id: 4,
-            url: "assets/images/ufime/Ufime4.jpg"
+            url: "assets/images/ufime/Ufime4.jpg",
+            show: false
           },
           {
             id: 5,
-            url: "assets/images/ufime/Ufime5.jpg"
+            url: "assets/images/ufime/Ufime5.jpg",
+            show: false
           },
           {
             id: 6,
-            url: "assets/images/ufime/Ufime6.jpg"
+            url: "assets/images/ufime/Ufime6.jpg",
+            show: false
           },
           {
             id: 7,
-            url: "assets/images/ufime/Ufime7.jpg"
+            url: "assets/images/ufime/Ufime7.jpg",
+            show: false
           },
           {
             id: 8,
-            url: "assets/images/ufime/Ufime8.jpg"
+            url: "assets/images/ufime/Ufime8.jpg",
+            show: false
           },
           {
             id: 9,
-            url: "assets/images/ufime/Ufime9.jpg"
+            url: "assets/images/ufime/Ufime9.jpg",
+            show: false
           },
           {
             id: 10,
-            url: "assets/images/ufime/Ufime10.jpg"
+            url: "assets/images/ufime/Ufime10.jpg",
+            show: false
           },
           {
             id: 11,
-            url: "assets/images/ufime/Ufime11.jpg"
+            url: "assets/images/ufime/Ufime11.jpg",
+            show: false
           },
           {
             id: 12,
-            url: "assets/images/ufime/Ufime12.jpg"
+            url: "assets/images/ufime/Ufime12.jpg",
+            show: false
           },
           {
             id: 13,
-            url: "assets/images/ufime/Ufime13.jpg"
+            url: "assets/images/ufime/Ufime13.jpg",
+            show: false
           },
           {
             id: 14,
-            url: "assets/images/ufime/Ufime14.jpg"
+            url: "assets/images/ufime/Ufime14.jpg",
+            show: false
           },
           {
             id: 15,
-            url: "assets/images/ufime/Ufime15.jpg"
+            url: "assets/images/ufime/Ufime15.jpg",
+            show: false
           },
           {
             id: 16,
-            url: "assets/images/ufime/UfimeCoverPhoto.jpg"
+            url: "assets/images/ufime/Ufime16.jpg",
+            show: false
           },
           {
             id: 17,
-            url: "assets/images/ufime/UfimeInsideBooklet0.jpg"
+            url: "assets/images/ufime/Ufime17.jpg",
+            show: false
           },
           {
             id: 18,
-            url: "assets/images/ufime/UfimeInsideBooklet1.jpg"
+            url: "assets/images/ufime/Ufime18.jpg",
+            show: false
+          },
+          {
+            id: 19,
+            url: "assets/images/ufime/Ufime19.jpg",
+            show: false
+          },
+          {
+            id: 20,
+            url: "assets/images/ufime/Ufime20.jpg",
+            show: false
+          },
+          {
+            id: 21,
+            url: "assets/images/ufime/Ufime21.jpg",
+            show: false
+          },
+          {
+            id: 22,
+            url: "assets/images/ufime/Ufime22.jpg",
+            show: false
+          },
+          {
+            id: 23,
+            url: "assets/images/ufime/Ufime23.jpg",
+            show: false
+          },
+          {
+            id: 24,
+            url: "assets/images/ufime/Ufime24.jpg",
+            show: false
+          },
+          {
+            id: 25,
+            url: "assets/images/ufime/Ufime25.jpg",
+            show: false
+          },
+          {
+            id: 26,
+            url: "assets/images/ufime/Ufime26.jpg",
+            show: false
+          },
+          {
+            id: 27,
+            url: "assets/images/ufime/Ufime27.jpg",
+            show: false
+          },
+          {
+            id: 28,
+            url: "assets/images/ufime/Ufime28.jpg",
+            show: false
+          },
+          {
+            id: 29,
+            url: "assets/images/ufime/Ufime29.jpg",
+            show: false
+          },
+          {
+            id: 30,
+            url: "assets/images/ufime/Ufime30.jpg",
+            show: false
+          },
+          {
+            id: 31,
+            url: "assets/images/ufime/Ufime31.jpg",
+            show: false
+          },
+          {
+            id: 32,
+            url: "assets/images/ufime/Ufime32.jpg",
+            show: false
+          },
+          {
+            id: 33,
+            url: "assets/images/ufime/Ufime33.jpg",
+            show: false
+          },
+          {
+            id: 34,
+            url: "assets/images/ufime/Ufime34.jpg",
+            show: false
+          },
+          {
+            id: 35,
+            url: "assets/images/ufime/Ufime35.jpg",
+            show: false
+          },
+          {
+            id: 36,
+            url: "assets/images/ufime/Ufime36.jpg",
+            show: false
+          },
+          {
+            id: 37,
+            url: "assets/images/ufime/Ufime37.jpg",
+            show: false
+          },
+          {
+            id: 38,
+            url: "assets/images/ufime/Ufime38.jpg",
+            show: false
+          },
+          {
+            id: 39,
+            url: "assets/images/ufime/Ufime39.jpg",
+            show: false
+          },
+          {
+            id: 40,
+            url: "assets/images/ufime/Ufime40.jpg",
+            show: false
+          },
+          {
+            id: 41,
+            url: "assets/images/ufime/Ufime41.jpg",
+            show: false
+          },
+          {
+            id: 42,
+            url: "assets/images/ufime/Ufime42.jpg",
+            show: false
+          },
+          {
+            id: 43,
+            url: "assets/images/ufime/Ufime43.jpg",
+            show: false
+          },
+          {
+            id: 44,
+            url: "assets/images/ufime/Ufime44.jpg",
+            show: false
+          },
+          {
+            id: 45,
+            url: "assets/images/ufime/Ufime45.jpg",
+            show: false
+          },
+          {
+            id: 46,
+            url: "assets/images/ufime/Ufime46.jpg",
+            show: false
+          },
+          {
+            id: 47,
+            url: "assets/images/ufime/Ufime47.jpg",
+            show: false
+          },
+          {
+            id: 48,
+            url: "assets/images/ufime/Ufime48.jpg",
+            show: false
+          },
+          {
+            id: 49,
+            url: "assets/images/ufime/Ufime49.jpg",
+            show: false
+          },
+          {
+            id: 50,
+            url: "assets/images/ufime/Ufime50.jpg",
+            show: false
+          },
+          {
+            id: 51,
+            url: "assets/images/ufime/Ufime51.jpg",
+            show: false
+          },
+          {
+            id: 52,
+            url: "assets/images/ufime/Ufime52.jpg",
+            show: false
+          },
+          {
+            id: 53,
+            url: "assets/images/ufime/Ufime53.jpg",
+            show: false
+          },
+          {
+            id: 54,
+            url: "assets/images/ufime/Ufime54.jpg",
+            show: false
+          },
+          {
+            id: 55,
+            url: "assets/images/ufime/UfimeCoverPhoto.jpg",
+            show: false
+          },
+          {
+            id: 56,
+            url: "assets/images/ufime/UfimeInsideBooklet0.jpg",
+            show: false
+          },
+          {
+            id: 57,
+            url: "assets/images/ufime/UfimeInsideBooklet1.jpg",
+            show: false
           }
         ]
       }
