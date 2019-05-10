@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Album } from './album';
-import { MessageService } from './message.service';
+import { Album } from '../types/album';
+import { MessageService } from '../services/message.service';
 
 @Injectable()
 export class AlbumService {

@@ -5,8 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Work } from './work';
-import { MessageService } from './message.service';
+import { Work } from '../types/work';
+import { MessageService } from '../services/message.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,8 +16,7 @@ const httpOptions = {
 export class WorkService {
 
   private worksUrl = 'api/works';
-
-  // sanity api key: skIgrXCNujRThrjUHWDYQIz36xGRfxjWM0OfUAYK9MzhVOwNccJZcqwyGBq9UsGuke54ZkGtXUymjSmqlpYuFRe0i88LGAqefGB0gqNM72y6a0CcEAWv4BzRHOiRkiBvvDSj9nVhabGq8b5ZD5gbQyzA47PeQrbp6D9AeJ0yVJEXQVvOM2pC
+//skIgrXCNujRThrjUHWDYQIz36xGRfxjWM0OfUAYK9MzhVOwNccJZcqwyGBq9UsGuke54ZkGtXUymjSmqlpYuFRe0i88LGAqefGB0gqNM72y6a0CcEAWv4BzRHOiRkiBvvDSj9nVhabGq8b5ZD5gbQyzA47PeQrbp6D9AeJ0yVJEXQVvOM2pC
 
 
   constructor(

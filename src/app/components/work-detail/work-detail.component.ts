@@ -6,8 +6,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs/Subscription';
 
 // App Specific
-import { Work } from '../work';
-import { WorkService } from '../work.service';
+import { Work } from '../../types/work';
+import { WorkService } from '../../services/work.service';
 import { WorksComponent } from '../works/works.component';
 
 @Component({

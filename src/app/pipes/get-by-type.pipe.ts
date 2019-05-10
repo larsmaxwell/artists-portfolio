@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class GetByTypePipe implements PipeTransform {
 
   transform(items: Array<any>, category: string): Array<any> {
-    if (items) return items.filter(item => item.type === category).reverse();
+    if (items) return items.filter(item => item.category === category).reverse();
   }
 
 }

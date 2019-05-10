@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Work } from '../work';
-import { WorkService } from '../work.service'
+import { Work } from '../../types/work';
+import { WorkService } from '../../services/work.service'
 import { WorkDetailComponent } from '../work-detail/work-detail.component'
 
-import { GetByTypePipe } from '../get-by-type.pipe'
+import { GetByTypePipe } from '../../pipes/get-by-type.pipe'
 
 @Component({
   selector: 'app-works',
@@ -19,11 +19,11 @@ export class WorksComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getWorks();
+    // this.getWorks();
   }
 
-  getWorks(): void {
-    this.workService.getWorks()
-      .subscribe(works => this.works = works);
-  }
+  // getWorks(): void {
+  //   this.workService.getWorks()
+  //     .subscribe(works => this.works = works);
+  // }
 }

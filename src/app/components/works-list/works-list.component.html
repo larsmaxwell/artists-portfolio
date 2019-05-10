@@ -1,0 +1,45 @@
+<p >
+  works-list works!
+</p>
+
+
+<li *ngFor="let work of works">
+
+    {{work.name}}
+
+  
+</li>
+
+<ul class="works video-works list-unstyled">
+  <li><h5>Comics/Zines</h5></li>
+  <li *ngFor="let work of (works | getByType: 'zine')">
+    <div *ngIf="work">
+      {{work.name}}
+      <br>
+      work Id: 
+      {{work._id}}
+      <br>
+      work Album Ref: 
+      {{work.album._ref}}
+      <app-album-detail id="{{work.album._ref}}"></app-album-detail>
+    </div>
+  </li>
+</ul>
+
+<ul class="works video-works list-unstyled">
+  <li><h5>Video</h5></li>
+  <li *ngFor="let work of (works | getByType: 'video')">
+    <a *ngIf="work" routerLink="/works/{{work.permalink}}" (click)="refresh()">
+      {{work.name}}
+    </a>
+  </li>
+</ul>
+
+<ul class="works video-works list-unstyled">
+  <li><h5>Coding</h5></li>
+  <li *ngFor="let work of (works | getByType: 'interactive')">
+    <a routerLink="/works/{{work.permalink}}" (click)="refresh()">
+      {{work.name}}
+    </a>
+  </li>
+</ul>

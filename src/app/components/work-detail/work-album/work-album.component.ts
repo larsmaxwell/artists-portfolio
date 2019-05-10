@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Album } from '../../album';
-import { AlbumService } from '../../album.service';
-import { Work } from '../../work';
+import { Album } from '../../../types/album';
+import { AlbumService } from '../../../services/album.service';
+import { Work } from '../../../types/work';
 
 @Component({
   selector: 'app-work-album',
