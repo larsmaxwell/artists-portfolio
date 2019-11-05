@@ -229,26 +229,17 @@ export class InMemoryDataService implements InMemoryDbService {
         type: "zine",
         created: "2019-04-01T00:00:00Z",
         archive: false,
-        description: "Alma and Jo are in love as they face the worst of the sea in a fantasy post climate event future. The two together experience separate realities of the world. One of these realities is filled with horror, but the other is safe. In order to find an item that was abandoned, they venture to the area of the city that was covered in water and overtaken by strange beings.",
-        buybtn: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=97WEHPKSQYEY2",
-        images: [
-          "assets/images/ufime/UfimeCovr.jpg",
-          "assets/images/ufime/Ufime1.jpg",
-          "assets/images/ufime/Ufime2.jpg",
-          "assets/images/ufime/Ufime3.jpg",
-          "assets/images/ufime/Ufime4.jpg",
-          "assets/images/ufime/Ufime5.jpg",
-          "assets/images/ufime/Ufime6.jpg",
-          "assets/images/ufime/Ufime7.jpg",
-          "assets/images/ufime/Ufime8.jpg",
-          "assets/images/ufime/Ufime9.jpg",
-          "assets/images/ufime/Ufime10.jpg",
-          "assets/images/ufime/Ufime11.jpg",
-          "assets/images/ufime/Ufime12.jpg", 
-          "assets/images/ufime/Ufime13.jpg",
-          "assets/images/ufime/Ufime14.jpg",
-          "assets/images/ufime/Ufime15.jpg"
-        ]
+        description: "Alma and Jo face the worst of the ocean in a fantasy post climate event future. The two together experience separate realities of the world. One of these realities is filled with horror, but the other is safe. In order to find an item that was abandoned, they venture to the area of the city that was covered in water and overtaken by strange beings.",
+        buybtn: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=97WEHPKSQYEY2"
+      },
+      {
+        id: 17,
+        title: "Underground",
+        permalink: "Underground",
+        type: "zine",
+        created: "2019-10-30T00:00:00Z",
+        archive: false,
+        description: "A ghost relives their death."
       }
     ];
     const albums = [
@@ -587,7 +578,7 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/ufime/UfimeCovr.jpg",
+            url: "assets/images/ufime/cover-new.jpg",
             show: false
           },
           {
@@ -667,216 +658,263 @@ export class InMemoryDataService implements InMemoryDbService {
           },
           {
             id: 16,
-            url: "assets/images/ufime/Ufime16.jpg",
+            url: "assets/images/ufime/Ufime18ForgotAPage.jpg",
             show: false
           },
           {
             id: 17,
-            url: "assets/images/ufime/Ufime17.jpg",
+            url: "assets/images/ufime/Ufime16.jpg",
             show: false
           },
           {
             id: 18,
-            url: "assets/images/ufime/Ufime18.jpg",
+            url: "assets/images/ufime/Ufime17.jpg",
             show: false
           },
           {
             id: 19,
-            url: "assets/images/ufime/Ufime19.jpg",
+            url: "assets/images/ufime/Ufime18.jpg",
             show: false
           },
           {
             id: 20,
-            url: "assets/images/ufime/Ufime20.jpg",
+            url: "assets/images/ufime/Ufime19.jpg",
             show: false
           },
           {
             id: 21,
-            url: "assets/images/ufime/Ufime21.jpg",
+            url: "assets/images/ufime/Ufime20.jpg",
             show: false
           },
           {
             id: 22,
-            url: "assets/images/ufime/Ufime22.jpg",
+            url: "assets/images/ufime/Ufime21.jpg",
             show: false
           },
           {
             id: 23,
-            url: "assets/images/ufime/Ufime23.jpg",
+            url: "assets/images/ufime/Ufime22.jpg",
             show: false
           },
           {
             id: 24,
-            url: "assets/images/ufime/Ufime24.jpg",
+            url: "assets/images/ufime/Ufime23.jpg",
             show: false
           },
           {
             id: 25,
-            url: "assets/images/ufime/Ufime25.jpg",
+            url: "assets/images/ufime/Ufime24.jpg",
             show: false
           },
           {
             id: 26,
-            url: "assets/images/ufime/Ufime26.jpg",
+            url: "assets/images/ufime/Ufime25.jpg",
             show: false
           },
           {
             id: 27,
-            url: "assets/images/ufime/Ufime27.jpg",
+            url: "assets/images/ufime/Ufime26.jpg",
             show: false
           },
           {
             id: 28,
-            url: "assets/images/ufime/Ufime28.jpg",
+            url: "assets/images/ufime/Ufime27.jpg",
             show: false
           },
           {
             id: 29,
-            url: "assets/images/ufime/Ufime29.jpg",
+            url: "assets/images/ufime/Ufime28.jpg",
             show: false
           },
           {
             id: 30,
-            url: "assets/images/ufime/Ufime30.jpg",
+            url: "assets/images/ufime/Ufime29.jpg",
             show: false
           },
           {
             id: 31,
-            url: "assets/images/ufime/Ufime31.jpg",
+            url: "assets/images/ufime/Ufime30.jpg",
             show: false
           },
           {
             id: 32,
-            url: "assets/images/ufime/Ufime32.jpg",
+            url: "assets/images/ufime/Ufime31.jpg",
             show: false
           },
           {
             id: 33,
-            url: "assets/images/ufime/Ufime33.jpg",
+            url: "assets/images/ufime/Ufime32.jpg",
             show: false
           },
           {
             id: 34,
-            url: "assets/images/ufime/Ufime34.jpg",
+            url: "assets/images/ufime/Ufime33.jpg",
             show: false
           },
           {
             id: 35,
-            url: "assets/images/ufime/Ufime35.jpg",
+            url: "assets/images/ufime/Ufime34.jpg",
             show: false
           },
           {
             id: 36,
-            url: "assets/images/ufime/Ufime36.jpg",
+            url: "assets/images/ufime/Ufime35.jpg",
             show: false
           },
           {
             id: 37,
-            url: "assets/images/ufime/Ufime37.jpg",
+            url: "assets/images/ufime/Ufime36.jpg",
             show: false
           },
           {
             id: 38,
-            url: "assets/images/ufime/Ufime38.jpg",
+            url: "assets/images/ufime/Ufime37.jpg",
             show: false
           },
           {
             id: 39,
-            url: "assets/images/ufime/Ufime39.jpg",
+            url: "assets/images/ufime/Ufime38.jpg",
             show: false
           },
           {
             id: 40,
-            url: "assets/images/ufime/Ufime40.jpg",
+            url: "assets/images/ufime/Ufime39.jpg",
             show: false
           },
           {
             id: 41,
-            url: "assets/images/ufime/Ufime41.jpg",
+            url: "assets/images/ufime/Ufime40.jpg",
             show: false
           },
           {
             id: 42,
-            url: "assets/images/ufime/Ufime42.jpg",
+            url: "assets/images/ufime/Ufime41.jpg",
             show: false
           },
           {
             id: 43,
-            url: "assets/images/ufime/Ufime43.jpg",
+            url: "assets/images/ufime/Ufime42.jpg",
             show: false
           },
           {
             id: 44,
-            url: "assets/images/ufime/Ufime44.jpg",
+            url: "assets/images/ufime/Ufime43.jpg",
             show: false
           },
           {
             id: 45,
-            url: "assets/images/ufime/Ufime45.jpg",
+            url: "assets/images/ufime/Ufime44.jpg",
             show: false
           },
           {
             id: 46,
-            url: "assets/images/ufime/Ufime46.jpg",
+            url: "assets/images/ufime/Ufime45.jpg",
             show: false
           },
           {
             id: 47,
-            url: "assets/images/ufime/Ufime47.jpg",
+            url: "assets/images/ufime/Ufime46.jpg",
             show: false
           },
           {
             id: 48,
-            url: "assets/images/ufime/Ufime48.jpg",
+            url: "assets/images/ufime/Ufime47.jpg",
             show: false
           },
           {
             id: 49,
-            url: "assets/images/ufime/Ufime49.jpg",
+            url: "assets/images/ufime/Ufime48.jpg",
             show: false
           },
           {
             id: 50,
-            url: "assets/images/ufime/Ufime50.jpg",
+            url: "assets/images/ufime/Ufime49.jpg",
             show: false
           },
           {
             id: 51,
-            url: "assets/images/ufime/Ufime51.jpg",
+            url: "assets/images/ufime/Ufime50.jpg",
             show: false
           },
           {
             id: 52,
-            url: "assets/images/ufime/Ufime52.jpg",
+            url: "assets/images/ufime/Ufime51.jpg",
             show: false
           },
           {
             id: 53,
-            url: "assets/images/ufime/Ufime53.jpg",
+            url: "assets/images/ufime/Ufime52.jpg",
             show: false
           },
           {
             id: 54,
-            url: "assets/images/ufime/Ufime54.jpg",
+            url: "assets/images/ufime/Ufime53.jpg",
             show: false
           },
           {
             id: 55,
-            url: "assets/images/ufime/UfimeCoverPhoto.jpg",
-            show: false
-          },
-          {
-            id: 56,
-            url: "assets/images/ufime/UfimeInsideBooklet0.jpg",
+            url: "assets/images/ufime/Ufime54.jpg",
             show: false
           },
           {
             id: 57,
+            url: "assets/images/ufime/UfimeInsideBooklet0.jpg",
+            show: false
+          },
+          {
+            id: 58,
             url: "assets/images/ufime/UfimeInsideBooklet1.jpg",
             show: false
           }
         ]
-      }
+      },
+      {
+        id: 17,
+        title: "Underground",
+        workId: 17,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/underground/cover.jpg",
+            show: false
+          },
+          {
+            id: 1,
+            url: "assets/images/underground/1.png",
+            show: false
+          },
+          {
+            id: 2,
+            url: "assets/images/underground/13.png",
+            show: false
+          },
+          {
+            id: 3,
+            url: "assets/images/underground/15.png",
+            show: false
+          },
+          {
+            id: 4,
+            url: "assets/images/underground/16.png",
+            show: false
+          },
+          {
+            id: 5,
+            url: "assets/images/underground/22.png",
+            show: false
+          },
+          {
+            id: 6,
+            url: "assets/images/underground/23.png",
+            show: false
+          },
+          {
+            id: 7,
+            url: "assets/images/underground/25.png",
+            show: false
+          }
+        ]
+      },
     ];
     return {works, albums};
   }
