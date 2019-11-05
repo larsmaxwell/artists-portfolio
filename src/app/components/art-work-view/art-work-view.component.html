@@ -1,0 +1,27 @@
+<p>
+  art-work-view works!
+</p>
+{{ work | json }}
+
+<div *ngIf="work" id="main">
+  <h2> {{ work.name }} <small>({{ work._createdAt | date:"y" }})</small> </h2>
+  <p class="e2e-inner-html-bound" [innerHTML]="work.description"></p>
+
+  
+  <p>album {{work.album._ref}}</p>
+
+  <div *ngIf="work.buybtn">
+    <a class="btn btn-sm btn-dark" target="blank" href="{{work.buybtn}}">Buy This Book on Paypal</a>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-work-album [work]="work"></app-work-album> -->
+    </div>
+  </div>
+  <span *ngFor="let blockCont of work.description.children">
+    {{blockCont | json}}
+  </span>
+
+  
+</div>

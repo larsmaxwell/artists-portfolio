@@ -1,3 +1,16 @@
 <p>
   album-detail works!
 </p>
+
+
+<div *ngIf="album?.images">
+    {{ album.images | json}}
+  <div *ngFor="let image of album.images">
+    <div class="placeholder">
+        {{image.asset._ref | json}}
+      <app-img-detail imgRef="{{image.asset._ref}}"></app-img-detail>
+    </div>
+  </div>
+</div>
+
+

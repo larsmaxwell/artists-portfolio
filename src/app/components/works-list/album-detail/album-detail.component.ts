@@ -9,7 +9,7 @@ import { ArtWorkAlbumService } from "../../../services/art-work-album.service";
 })
 export class AlbumDetailComponent implements OnInit {
 
-  @Input() albumId: string;
+  @Input() albumId: String;
   album: Album;
 
   constructor(
@@ -17,12 +17,14 @@ export class AlbumDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.getAlbum(this.albumId)
     console.log(this)
+
   }
 
-  getAlbum(id: string) {
+  getAlbum(id: String) {
     this.artWorkAlbumService.getAlbumById(id)
-      .subscribe(result => this.album = result);
+      .subscribe(album => this.album = album);
   }
 }

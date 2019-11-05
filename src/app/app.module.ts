@@ -39,6 +39,8 @@ import { AlbumService } from './services/album.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
+import { ImgDetailComponent } from './components/works-list/album-detail/img-detail/img-detail.component';
+import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { GetByTypePipe } from './pipes/get-by-type.pipe';
     ImgZoomComponent,
     GetByTypePipe,
     WorksListComponent,
-    AlbumDetailComponent
+    AlbumDetailComponent,
+    ImgDetailComponent,
+    ArtWorkViewComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
+
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -82,11 +83,13 @@ export class ArtWorkAlbumService {
   }
 
   /** GET hero by id. Will 404 if id not found */
-  getAlbumById(id: string): Observable<Album> {
+  getAlbumById(id: String): Observable<any> {
     const url = `${this.worksUrl}[_id%20==%20$id]&$id="${id}"`;
-    return this.http.get<Album>(url).pipe(
+
+    return this.http.get<any>(url).pipe(
+      map(album => album.result[0]),
       tap(_ => this.log(`fetched work id=${id}`)),
-      catchError(this.handleError<Album>(`getHero id=${id}`))
+      catchError(this.handleError<any>(`getHero id=${id}`))
     );
   }
 
