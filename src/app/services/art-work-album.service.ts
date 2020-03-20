@@ -25,31 +25,14 @@ export class ArtWorkAlbumService {
   ) { }
 
   /** Get Work from the server */
-  getWorks (): Observable<Album[]> {
+  getAlbums (): Observable<Album[]> {
     // const options = { params: new HttpParams().set('archive', 'false') };
-    const newUrl = `${this.worksUrl}[_type%20==%20$type]&$type="artwork"`;
+    const newUrl = `${this.worksUrl}[_type%20==%20$type]&$type="album"`;
 
     return this.http.get<Album[]>(newUrl)
       .pipe(
         tap(work => this.log(`fetched work`)),
         catchError(this.handleError('getWorks', []))
-      );
-  }
-
-  /** Get Work from the server */
-  getWorksByType (category: string): Observable<Album[]> {
-    if (!category) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    category = category.trim();
-    const options = category ?
-    { params: new HttpParams().set('type', category).append('archive', 'false') } : {};
- 
-    return this.http.get<Album[]>(this.worksUrl, options)
-      .pipe(
-        tap(work => this.log(`fetched work`)),
-        catchError(this.handleError('getWork', []))
       );
   }
 
@@ -64,21 +47,6 @@ export class ArtWorkAlbumService {
           this.log(`${outcome} work id=${id}`);
         }),
         catchError(this.handleError<Album>(`getWork id=${id}`))
-      );
-  }
-
-  getWorkByPermalink(permalink:string): Observable<Album[]> {
-    if (!permalink) {
-      // if not search term, return empty hero array.
-      return of([]);
-    }
-    permalink = permalink.trim();
-    const options = permalink ?
-    { params: new HttpParams().set('permalink', permalink) } : {};
-    return this.http.get<Album[]>(this.worksUrl, options)
-      .pipe(
-        tap(_ => this.log(`fetched permalink=${permalink}`)),
-        catchError(this.handleError<Album[]>('getByPermalink', []))
       );
   }
 

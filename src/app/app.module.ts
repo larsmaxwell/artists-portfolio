@@ -23,11 +23,10 @@ import { AboutComponent } from './components/about/about.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { WorkCategoryComponent } from './components/work-category/work-category.component';
-import { WorkAlbumComponent } from './components/work-detail/work-album/work-album.component';
+import { WorkAlbumComponent } from './components/work-album/work-album.component';
 import { ImgZoomComponent } from './components/work-detail/work-album/img-zoom/img-zoom.component';
 import { WorksListComponent } from './components/works-list/works-list.component';
 import { AlbumDetailComponent } from './components/works-list/album-detail/album-detail.component';
-
 
 // Services
 
@@ -41,6 +40,8 @@ import { AlbumService } from './services/album.service';
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
 import { ImgDetailComponent } from './components/works-list/album-detail/img-detail/img-detail.component';
 import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
+import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.c
     WorksListComponent,
     AlbumDetailComponent,
     ImgDetailComponent,
-    ArtWorkViewComponent
+    ArtWorkViewComponent,
+    GetImgUrlPipe
   ],
   imports: [
     BrowserModule,
@@ -90,4 +92,8 @@ import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.c
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+ }
