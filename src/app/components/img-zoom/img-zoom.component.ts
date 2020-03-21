@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-import { Album } from '../../../types/album';
-import { AlbumService } from '../../../services/album.service';
-import { Work } from '../../../types/work';
+import { Album } from '../../types/album';
+import { AlbumService } from '../../services/album.service';
+import { Work } from '../../types/work';
 
 @Component({
   selector: 'app-img-zoom',

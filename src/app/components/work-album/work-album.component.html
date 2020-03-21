@@ -2,12 +2,29 @@
 
 
 <div class="row" id="work-album-component" *ngIf="album?.images">
+
+  <div class="col-md-4">
+    <div class="row">
+      <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+        <div *ngIf="i === 0" class="col-md-12">
+          <img src="{{ image.asset._ref | getImgUrl }}"  class="img-fluid album-img"/>
+        </div>
+        <div *ngIf="i < 2" class="col-md-6">
+          <img src="{{ image.asset._ref | getImgUrl }}"  class="img-fluid album-img"/>
+        </div>
+      </ng-template>
+    </div>
+  
+  </div>
   <div class="data col-md-3"
       *ngFor="let image of album.images"
       (deferLoad)="image.show = true"
       style="min-height:305px;">
 
-      <img src="{{ image.asset._ref | getImgUrl }}"  class="img-fluid album-img"/>
+
+      <!-- <img src="{{ image.asset._ref | getImgUrl }}"  class="img-fluid album-img"/> -->
+
+
       
       <!-- <a routerLink="/works/{{ work.permalink }}/album/{{album.id}}/{{ image.id }}" [class.disabled]="!isValidLink()">
         <img src="{{image.url}}" class="img-fluid album-img">
