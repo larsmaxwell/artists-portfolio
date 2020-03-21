@@ -16,15 +16,13 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
 
 // Components
 import { AppComponent } from './components/app.component';
-import { WorksComponent } from './components/works/works.component';
-import { WorkDetailComponent } from './components/work-detail/work-detail.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AboutComponent } from './components/about/about.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import { WorkCategoryComponent } from './components/work-category/work-category.component';
 import { WorkAlbumComponent } from './components/work-album/work-album.component';
-import { ImgZoomComponent } from './components/work-detail/work-album/img-zoom/img-zoom.component';
+import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
 import { WorksListComponent } from './components/works-list/works-list.component';
 import { AlbumDetailComponent } from './components/works-list/album-detail/album-detail.component';
 
@@ -46,8 +44,6 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    WorksComponent,
-    WorkDetailComponent,
     DashboardComponent,
     AboutComponent,
     MenuComponent,
