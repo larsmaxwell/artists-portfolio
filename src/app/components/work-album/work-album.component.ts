@@ -12,7 +12,8 @@ export class WorkAlbumComponent implements OnInit {
 
   @Input() albumId: string;
   @Input() work: Work;
-  album: Album;
+  @Input() album: Album;
+  imgUrl: String;
 
   constructor(
     private albumService: ArtWorkAlbumService
@@ -20,13 +21,16 @@ export class WorkAlbumComponent implements OnInit {
 
   ngOnInit() {
     this.getAlbum(this.albumId);
+    console.log(this.work)
   }
 
   getAlbum(albumId: string) {
     this.albumService.getAlbumById(albumId)
-      .subscribe(result => this.album = result);
+      .subscribe(result => {
+        this.album = result;
+        console.log(this.album);
+      });
   }
-
 
   // isValidLink() {
   //   if (window.innerWidth < 525) {

@@ -33,6 +33,7 @@ import { WorkService } from './services/work.service';
 import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
 import { AlbumService } from './services/album.service';
+import { SanityService } from './services/sanity.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
@@ -84,7 +85,8 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
     MessageService,
     OrderModule,
     AlbumService,
-    DeferLoadModule
+    DeferLoadModule,
+    SanityService
   ],
   bootstrap: [AppComponent]
 })

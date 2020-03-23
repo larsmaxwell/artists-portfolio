@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'workstest', component: WorksListComponent },
   { path: 'works/:permalink', component: ArtWorkViewComponent },
-  { path: 'works/:permalink/album/:albumId/:imgId', component: ImgZoomComponent },
+  { path: 'works/:permalink/:albumId/:imgId', component: ImgZoomComponent },
   { path: 'works/category/:category', component: WorkCategoryComponent},
   { path: '**', component: HomeComponent }
 ];

@@ -1,16 +1,14 @@
-
-
-<div class="img-zoom-component" *ngIf="featuredImg" [ngStyle]="{'height': desHeight+'px'}">
+<div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight+'px'}">
     <div class="img-center-component stacked col-md-12">
 
         <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
             <div class="img-controls-prev img-controls-element">
-                <a  routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.prevId }}" (click)="showPrev(album.id, imgControls.prevId)">
+                <a  routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}" (click)="showPrev(album.id, imgControls.prevId)">
                     <fa [name]="'chevron-left'" size="2"></fa>
                 </a>
             </div>
             <div class="img-controls-next img-controls-element">
-                <a  routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
+                <a  routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}" (click)="goToNext(imgControls.permalink, album._id, imgControls.nextId)">
                     <fa [name]="'chevron-right'" size="2"></fa>
                 </a>
             </div>
@@ -21,10 +19,9 @@
             </div>
         </div>
         <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px'}">
-            <a routerLink="/works/{{ imgControls.permalink }}/album/{{ album.id }}/{{ imgControls.nextId }}" (click)="showNext(album.id, imgControls.nextId)">
-                <img src="{{ featuredImg.url }}">
+            <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]" (click)="goToNext(imgControls.permalink, album._id, imgControls.nextId)">
+                <img [src]="urlFor(imgControls.currentImg)" />
             </a>
         </div>
-
     </div>
 </div>
