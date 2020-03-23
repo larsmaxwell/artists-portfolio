@@ -13,7 +13,9 @@
     <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
       <div class="gallery-group-image" *ngIf="i < 4" >
         <div class="album-img"> 
-          <img class="img-fluid" src="{{image.asset._ref | getImgUrl}}"/>
+          <img [src]="urlFor(image).width(300).fit('crop').crop('focalpoint').focalPoint(0 , 1).rect(100, 100, 600, 600)" />
+
+          <!-- <img class="img-fluid" src="{{image.asset._ref | getImgUrl}}"/> -->
         </div>
       </div>
     </ng-template>

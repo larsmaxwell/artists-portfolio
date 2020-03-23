@@ -95,7 +95,6 @@ export class ImgZoomComponent implements OnInit {
 
   urlFor(source: string) {
     return this.sanityImgBuilder.image(source)
-    
   }
 
 }
