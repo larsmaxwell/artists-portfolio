@@ -29,10 +29,8 @@ import { AlbumDetailComponent } from './components/works-list/album-detail/album
 // Services
 
 import { MessageService } from './services/message.service';
-import { WorkService } from './services/work.service';
 import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
-import { AlbumService } from './services/album.service';
 import { SanityService } from './services/sanity.service';
 
 // Pipe
@@ -79,12 +77,10 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
     // )
   ],
   providers: [
-    WorkService,
     ArtWorkService,
     ArtWorkAlbumService,
     MessageService,
     OrderModule,
-    AlbumService,
     DeferLoadModule,
     SanityService
   ],

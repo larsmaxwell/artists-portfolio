@@ -13,4 +13,5 @@ export class Album {
         }
     }>;
     name: string;
+    galleryview: boolean;
 }

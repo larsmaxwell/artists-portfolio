@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Work } from '../../types/work';
-import { WorkService } from '../../services/work.service';
 
 @Component({
   selector: 'app-dashboard',

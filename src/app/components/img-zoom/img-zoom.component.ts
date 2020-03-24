@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, ActivatedRoute} from '@angular/router';
 
-import { Album } from '../../types/album';
+import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
-import { Work } from '../../types/work';
 import { SanityService } from '../../services/sanity.service';
 
 @Component({
