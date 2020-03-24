@@ -1,6 +1,6 @@
 
 // Angular
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -21,7 +21,7 @@ import { ArtWorkService } from '../../services/art-work-service.service';
 export class ArtWorkViewComponent implements OnInit {
 
   work: ArtWork;
-  albumId: number;
+  albumId2: string;
   descriptionHtmlBlock: String; 
 
   constructor(
@@ -30,29 +30,33 @@ export class ArtWorkViewComponent implements OnInit {
     private location: Location,
     private sanitizer: DomSanitizer,
   ) {
-    // blocksToHtml({
-    //   blocks: article.body,
-    //   serializers: serializers
-    // })
-   // [ { "_key": "4773f2f48eb5", "_type": "block", "children": [ { "_key": "4773f2f48eb50", "_type": "span", "marks": [ "strong" ], "text": "heres some text!!!" } ], "markDefs": [], "style": "normal" } ]
-  
   }
 
   ngOnInit() {
     const permalink = this.route.snapshot.paramMap.get('permalink');
     this.getArtWorkByPermalink(permalink);
-    console.log(this);
+
+    this.route.params.subscribe(routeParams => {
+      this.getArtWorkByPermalink(routeParams.permalink);
+    });
+
+
+  }
+
+  ngOnChange() {
+    const permalink = this.route.snapshot.paramMap.get('permalink');
+    this.getArtWorkByPermalink(permalink);
   }
 
   getArtWorkByPermalink(permalink: string) {
     this.artWorkService.getWorkByPermalink(permalink).subscribe(
       data => {
         this.work = data;
+        this.albumId2 = data.album._ref;
+
         this.descriptionHtmlBlock = blocksToHtml({
           blocks: data.description,
         });
-      });
-      //artwork => this.work = artwork);
-  }
+      });  }
 
 }

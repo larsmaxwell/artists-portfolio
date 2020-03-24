@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute} from '@angular/router';
 
 import { Album } from '../../types/album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
@@ -40,6 +39,10 @@ export class ImgZoomComponent implements OnInit {
     this.getAlbum(id, imgId);
     this.desHeight = window.innerHeight;
     this.desWidth = window.innerWidth;
+
+    this.route.params.subscribe(routeParams => {
+      this.getAlbum(routeParams.albumId, routeParams.imgId);
+    });
   }
 
   getAlbum(id: string, imgId: string) {
@@ -54,35 +57,21 @@ export class ImgZoomComponent implements OnInit {
 
         console.log(album);
 
-        // album.images[0].asset._ref
-
         this.currentImg = albumArr[imgId].asset._ref;
         let currentIndex = imgId;
-        // this.featuredImg = albumArr.filter(img => img.id === imgId)[0];
-        // let currImgIndex = albumArr.findIndex(img => img.id === imgId);
 
         let desLength = albumLength - 1;
         let next = parseInt(currentIndex) === desLength ? 0 : parseInt(currentIndex) + 1;
         let prev = parseInt(currentIndex) === 0 ? desLength : parseInt(currentIndex) - 1;
 
-        let nextRef = albumArr[next].asset._ref;
-        let prevRef = albumArr[prev].asset._ref;
-
         this.imgControls = {
             currentImg: albumArr[imgId],
+            currentIndex: imgId,
             nextId: next,
             prevId: prev,
             permalink: currPermalink
         };
       });
-  }
-
-  goToNext(permalink: string, albumId: string, nextIndex: number) {
-    (<any>this.router).navigate([`/works/${permalink}/${albumId}/${nextIndex}`]);
-  }
-
-  goToPrev(permalink: string, albumId: string, prevIndex: number) {
-    (<any>this.router).navigate([`/works/${permalink}/${albumId}/${prevIndex}`]);
   }
 
   getSanity() {
@@ -95,6 +84,15 @@ export class ImgZoomComponent implements OnInit {
 
   urlFor(source: string) {
     return this.sanityImgBuilder.image(source)
+  }
+
+  getNextIndex(index: number) {
+    if (index === this.album.images.length - 1) {
+      return 0;
+    }
+    else {
+      return index+1;
+    }
   }
 
 }

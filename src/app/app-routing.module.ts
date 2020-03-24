@@ -10,20 +10,25 @@ import { WorkCategoryComponent } from './components/work-category/work-category.
 import { WorksListComponent } from './components/works-list/works-list.component';
 import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
 import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
+import { WorkAlbumComponent } from './components/work-album/work-album.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   // { path: 'works', component: ArtWorkViewComponent },
   { path: 'about', component: AboutComponent },
   { path: 'workstest', component: WorksListComponent },
-  { path: 'works/:permalink', component: ArtWorkViewComponent },
+  { path: 'works/:permalink', component: ArtWorkViewComponent,
+    children: [
+      { path: './', component: WorkAlbumComponent },
+    ]
+  },
   { path: 'works/:permalink/:albumId/:imgId', component: ImgZoomComponent },
   { path: 'works/category/:category', component: WorkCategoryComponent},
   { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: true, onSameUrlNavigation: 'reload', paramsInheritanceStrategy: 'always'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

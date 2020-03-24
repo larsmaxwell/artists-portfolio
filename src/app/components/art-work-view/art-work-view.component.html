@@ -3,10 +3,10 @@
 
   <div class="row">
     <div class="col-md-4">
-      <app-work-album [work]="work" [albumId]="work.album._ref"></app-work-album>
+      <app-work-album [albumId]="albumId2"></app-work-album>
     </div>
     <div class="descriptionBlk col-md-8">
-      <div *ngIf="descriptionHtmlBlock" class="wk-dsc" [innerHTML]="descriptionHtmlBlock"></div>
+      <div *ngIf="descriptionHtmlBlock" class="wk-dsc mt-4 mt-sm-4" [innerHTML]="descriptionHtmlBlock"></div>
     </div>
   </div>
 

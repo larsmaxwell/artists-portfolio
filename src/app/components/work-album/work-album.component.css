@@ -9,6 +9,11 @@ a.disabled {
     cursor: default;
 }
 
+.gallery-group-container {
+    padding: 10px;
+    background-color: #eeeeee;
+}
+
 .gallery-group {
     border-radius: 10px;
     border: 1px solid #ccc;
@@ -36,21 +41,12 @@ a.disabled {
     padding-right: 5px;
 }
 .gallery-group-image {
-    width: 50%;
     box-sizing: border-box;
     display: inline-block;
-    border-bottom: 1px solid #ccc;
-}
-.gallery-group-image:nth-child(odd) {
-    padding-right:15px;
-    border-left: 1px solid #ccc;
-}
-.gallery-group-image:nth-child(even) {
-    padding-left:15px;
 }
 .gallery-group-image .album-img {
     background-color: #eee;
-    padding:5px;
+    padding:2px;
 }
 .gallery-group-image .album-img img {
     width: 100%;

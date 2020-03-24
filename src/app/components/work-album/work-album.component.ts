@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Album } from '../../types/album';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
-import { Work } from '../../types/work';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SanityService } from '../../services/sanity.service';
+import { ArtWork } from '../../types/art-work';
+
 
 @Component({
   selector: 'app-work-album',
@@ -12,14 +14,15 @@ import { SanityService } from '../../services/sanity.service';
 export class WorkAlbumComponent implements OnInit {
 
   @Input() albumId: string;
-  @Input() work: Work;
-  @Input() album: Album;
   imgUrl: String;
+  album: Album;
   sanityInstance: any;
   sanityImgBuilder: any;
 
   constructor(
     private albumService: ArtWorkAlbumService,
+    private route: ActivatedRoute,
+    private router: Router,
     private sanityService: SanityService,
   ) { }
 
@@ -27,14 +30,19 @@ export class WorkAlbumComponent implements OnInit {
     this.getSanity();
     this.getSanityUrlBuilder();
     this.getAlbum(this.albumId);
-    console.log(this.work)
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.album) {
+      // insert the new value
+      this.getAlbum(changes.albumId.currentValue);
+    }
   }
 
   getAlbum(albumId: string) {
     this.albumService.getAlbumById(albumId)
       .subscribe(result => {
         this.album = result;
-        console.log(this.album);
       });
   }
 
