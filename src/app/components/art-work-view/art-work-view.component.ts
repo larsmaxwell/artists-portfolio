@@ -47,14 +47,17 @@ export class ArtWorkViewComponent implements OnInit {
   }
 
   getArtWorkByPermalink(permalink: string) {
-    this.artWorkService.getWorkByPermalink(permalink).subscribe(
+    const client = this.artWorkService.init();
+    console.log(permalink);
+    this.artWorkService.getWorkByPermalink(client, permalink).then(
       data => {
-        this.work = data;
-        if (data.album) this.albumId2 = data.album._ref;
+        this.work = data[0];
+        if (data[0].album) this.albumId2 = data[0].album._ref;
 
         this.descriptionHtmlBlock = blocksToHtml({
-          blocks: data.description,
+          blocks: data[0].description,
         });
-      });  }
+      });
+    }
 
 }

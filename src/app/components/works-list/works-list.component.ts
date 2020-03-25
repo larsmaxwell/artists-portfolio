@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtWorkService } from '../../services/art-work-service.service'
 import { ArtWork } from '../../types/art-work';
-import { SanityCategoryService } from '../../services/sanity-category.service';
+import { SanityCategoryService } from '../../services/category.service';
 import { Category } from '../../types/category'
 
 
@@ -17,7 +17,7 @@ export class WorksListComponent implements OnInit {
 
   constructor(
     private artWorkService: ArtWorkService,
-    private sanityCategoryService: SanityCategoryService
+    private categoryService: SanityCategoryService
   ) { }
 
   ngOnInit() {
@@ -26,19 +26,19 @@ export class WorksListComponent implements OnInit {
   }
 
   getWorks(): void {
-    this.artWorkService.getWorks()
-      .subscribe((work:any) =>  { this.works = work.result} );
+    const client = this.artWorkService.init();
+    this.artWorkService.getWorks(client)
+      .then((result) =>  { this.works = result} );
   }
 
   getWorksByCategory(): void {
-    this.artWorkService.getWorks()
-      .subscribe((work:any) =>  { this.works = work.result} );
+    this.getWorks();
   }
 
   getCategories(): void {
-    const sanityClient = this.sanityCategoryService.init();
+    const sanityClient = this.categoryService.init();
 
-    this.sanityCategoryService.getCategories(sanityClient).then(data => {
+    this.categoryService.getCategories(sanityClient).then(data => {
       this.categories = data;
     });
   }

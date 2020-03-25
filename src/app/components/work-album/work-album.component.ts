@@ -16,6 +16,7 @@ export class WorkAlbumComponent implements OnInit {
   @Input() albumId: string;
   imgUrl: String;
   album: Album;
+  sanityClient: any;
   sanityInstance: any;
   sanityImgBuilder: any;
 
@@ -40,9 +41,11 @@ export class WorkAlbumComponent implements OnInit {
   }
 
   getAlbum(albumId: string) {
-    this.albumService.getAlbumById(albumId)
-      .subscribe(result => {
-        this.album = result;
+    this.sanityClient = this.albumService.sanityInit();
+
+    this.albumService.sanityGetAlbumById(albumId, this.sanityClient)
+      .then(result => {
+        this.album = result[0];
       });
   }
 

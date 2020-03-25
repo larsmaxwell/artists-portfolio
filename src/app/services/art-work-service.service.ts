@@ -8,6 +8,9 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { ArtWork } from '../types/art-work';
 import { MessageService } from '../services/message.service';
 
+import { environment } from '../../environments/environment';
+const sanityClientService = require('@sanity/client');
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -24,35 +27,27 @@ export class ArtWorkService {
     private messageService: MessageService
   ) { }
 
+  init() {
+    return new sanityClientService({
+      projectId: environment.sanityProjectId,
+      dataset: environment.dataset,
+      token: environment.token,
+      useCdn: environment.useCdn
+    });
+  }
+
   /** Get ArtWorks from the server */
-  getWorks (): Observable<ArtWork[]> {
-    // const options = { params: new HttpParams().set('archive', 'false') };
-    const newUrl = `${this.worksUrl}[_type%20==%20$type]&$type="artwork"`;
+  getWorks (client: any) {
 
-    return this.http.get<ArtWork[]>(newUrl)
-      .pipe(
-        tap(work => this.log(`fetched work`)),
-        catchError(this.handleError('getWorks', []))
-      );
+    const query = '*[_type == "artwork"]'
+
+    return client.fetch(query);
   }
 
-  getWorkByPermalink(permalink:string): Observable<ArtWork> {
-    const url = `${this.worksUrl}[_type%20==%20"artwork"%20%26%26%20slug.current%20==%20"${permalink}"]`;
-    return this.http.get<any>(url)
-      .pipe(
-        map(artwork => artwork.result[0]),
-        tap(_ => this.log(`fetched permalink=${permalink}`)),
-        catchError(this.handleError<ArtWork[]>('getByPermalink', []))
-      );
-  }
+  getWorkByPermalink(client: any, permalink:string) {
+    const query = `*[_type == "artwork" && slug.current == "${permalink}"]`
 
-  /** GET work by id. Will 404 if id not found */
-  getWork(id: String): Observable<ArtWork> {
-    const url = `${this.worksUrl}[_id%20==%20${id}]`;
-    return this.http.get<ArtWork>(url).pipe(
-      tap(_ => this.log(`fetched work id=${id}`)),
-      catchError(this.handleError<ArtWork>(`getHero id=${id}`))
-    );
+    return client.fetch(query);
   }
 
   /**

@@ -4,5 +4,9 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  sanityProjectId: 'qwmluuy0',
+  dataset: 'production',
+  token: 'skzltzX7McG8z1GrWtT0ePjvR4kiVh4GK0dqykTApp0KPbJEYwOdZMPaLBobEjEpjZitYf7ZAiBvyDuw6LH5nxZNXLYCXcSKMwWxXPunvc78SEaVmiwREBm2UYXS2iBhz0AgBV6dQEASwJmwXIKo1O5qwcWoP4zSyNvbnx4mUmQqT9q3cHb9',
+  useCdn: false
 };

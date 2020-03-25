@@ -9,6 +9,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
 import { Album } from '../types/art-work-album';
 
+import { environment } from '../../environments/environment';
+
+
+const sanityClientService = require('@sanity/client');
+
+
 @Injectable()
 export class ArtWorkAlbumService {
 
@@ -37,7 +43,7 @@ export class ArtWorkAlbumService {
   }
 
   /** GET work by id. Return `undefined` when id not found */
-  getWorkNo404<Data>(id: number): Observable<Album> {
+  getAlbumNo404<Data>(id: number): Observable<Album> {
     const url = `${this.worksUrl}/?id=${id}`;
     return this.http.get<Album[]>(url)
       .pipe(
@@ -50,7 +56,7 @@ export class ArtWorkAlbumService {
       );
   }
 
-  /** GET hero by id. Will 404 if id not found */
+  /** GET Album by id. Will 404 if id not found */
   getAlbumById(id: String): Observable<any> {
     const url = `${this.worksUrl}[_id%20==%20$id]&$id="${id}"`;
 
@@ -59,6 +65,26 @@ export class ArtWorkAlbumService {
       tap(_ => this.log(`fetched work id=${id}`)),
       catchError(this.handleError<any>(`getHero id=${id}`))
     );
+  }
+
+  sanityInit() {
+    return new sanityClientService({
+      projectId: environment.sanityProjectId,
+      dataset: environment.dataset,
+      token: environment.token,
+      useCdn: false // `false` if you want to ensure fresh data
+    });
+  }
+
+  sanityGetAlbumById(id: String, client: any) {
+    const query = `*[_id == '${id}']`
+    return client.fetch(query);
+  }
+
+  getCategories(client: any) {
+    const query = '*[_type == "category"]'
+
+    return client.fetch(query);
   }
 
   /**

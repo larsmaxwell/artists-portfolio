@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SanityCategoryService } from './sanity-category.service';
+import { SanityCategoryService } from './category.service';
 
 describe('SanityCategoryService', () => {
   beforeEach(() => {

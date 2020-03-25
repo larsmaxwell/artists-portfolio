@@ -32,7 +32,7 @@ import { MessageService } from './services/message.service';
 import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
 import { SanityService } from './services/sanity.service';
-import { SanityCategoryService } from './services/sanity-category.service';
+import { SanityCategoryService } from './services/category.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
