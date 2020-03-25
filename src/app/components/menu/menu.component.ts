@@ -15,10 +15,5 @@ export class MenuComponent implements OnInit {
     router.events.subscribe((val) => this.isCollapsed = false)
   }
 
-  ngOnInit() {
-    this.route.params.subscribe(routeParams => {
-      console.log(this.isCollapsed);
-      this.isCollapsed = false;
-    });
-  }
+  ngOnInit() {}
 }
