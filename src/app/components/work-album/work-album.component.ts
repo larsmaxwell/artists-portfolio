@@ -61,6 +61,10 @@ export class WorkAlbumComponent implements OnInit {
     return this.sanityImgBuilder.image(source)
   }
 
+  isMobileSize() {
+    return window.innerWidth <= 575;
+  }
+
   // isValidLink() {
   //   if (window.innerWidth < 525) {
   //     return false;

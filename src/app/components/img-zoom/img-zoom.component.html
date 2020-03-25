@@ -1,36 +1,51 @@
-<div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight+'px'}">
-    <div class="img-center-component stacked col-md-12">
-
-        <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
-            <div class="img-controls-prev img-controls-element">
-                <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
-                    <fa [name]="'chevron-left'" size="2"></fa>
-                </a>
+<ng-template [ngIf]="slideshow">
+    <div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight+'px'}">
+        <div class="img-center-component stacked col-md-12">
+            <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
+                <div class="img-controls-prev img-controls-element">
+                    <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
+                        <fa [name]="'chevron-left'" size="2"></fa>
+                    </a>
+                </div>
+                <div class="img-controls-next img-controls-element">
+                    <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
+                        <fa [name]="'chevron-right'" size="2"></fa>
+                    </a>
+                </div>
+                <div class="img-controls-exit img-controls-element">
+                    <a routerLink="/works/{{ imgControls.permalink }}/">
+                        <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
+                    </a>
+                </div>
             </div>
-            <div class="img-controls-next img-controls-element">
-                <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
-                    <fa [name]="'chevron-right'" size="2"></fa>
-                </a>
+            <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px'}">
+                <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+                    <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]"
+                        [className]="i != imgControls.currentIndex ? 'd-none' : ''">
+                        <img [src]="urlFor(album.images[i])" />
+                    </a>
+                </ng-template>
             </div>
-            <div class="img-controls-exit img-controls-element">
-                <a routerLink="/works/{{ imgControls.permalink }}/">
-                    <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
-                </a>
-            </div>
-        </div>
-        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px'}">
-            <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
-                <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]"
-                    [className]="i != imgControls.currentIndex ? 'd-none' : ''">
-                    <img [src]="urlFor(album.images[i])" />
-                </a>
-                <!--   -->
-            </ng-template>
-
-
-            <!-- <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]" (click)="goToNext(imgControls.permalink, album._id, imgControls.nextId)">
-                <img [src]="urlFor(imgControls.currentImg)" />
-            </a> -->
         </div>
     </div>
-</div>
+</ng-template>
+
+
+<ng-template [ngIf]="!slideshow">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="img-controls-exit img-controls-element">
+                    <a routerLink="/works/{{ imgControls.permalink }}/">
+                        <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
+                    </a>
+                </div>
+            </div>
+            <div class="col-12">
+                <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+                    <img [src]="urlFor(album.images[i])" class="img-fluid"/>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -10,7 +10,7 @@ a.disabled {
 }
 
 .gallery-group-container {
-    padding: 10px;
+    padding: 2px;
     background-color: #eeeeee;
 }
 
@@ -29,16 +29,16 @@ a.disabled {
 
 .gallery-group-link {
     color: #00583f;
-    padding-top: 10px;
-    padding-bottom: 1px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .gallery-group-link span.h5 {
-    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .gallery-group-link fa {
-    padding-right: 5px;
+    padding-left: 5px;
 }
 .gallery-group-image {
     box-sizing: border-box;
@@ -51,5 +51,7 @@ a.disabled {
 .gallery-group-image .album-img img {
     width: 100%;
     border-radius: 10px;
-    border: 3px dotted #f7f7f7;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    /* border: 3px solid #d9d9d9; */
 }

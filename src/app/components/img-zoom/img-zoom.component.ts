@@ -21,6 +21,7 @@ export class ImgZoomComponent implements OnInit {
   desWidth: number;
   sanityInstance: any;
   sanityImgBuilder: any;
+  slideshow: boolean;
 
   constructor(
     private ArtWorkAlbumService: ArtWorkAlbumService,
@@ -34,6 +35,10 @@ export class ImgZoomComponent implements OnInit {
     this.getSanityUrlBuilder();
     const id = this.route.snapshot.paramMap.get('albumId');
     const imgId = this.route.snapshot.paramMap.get('imgId');
+
+    if (imgId) {
+      this.slideshow = true;
+    }
 
     this.getAlbum(id, imgId);
     this.desHeight = window.innerHeight;
@@ -56,20 +61,30 @@ export class ImgZoomComponent implements OnInit {
 
         console.log(album);
 
-        this.currentImg = albumArr[imgId].asset._ref;
-        let currentIndex = imgId;
+        console.log(this.slideshow);
 
-        let desLength = albumLength - 1;
-        let next = parseInt(currentIndex) === desLength ? 0 : parseInt(currentIndex) + 1;
-        let prev = parseInt(currentIndex) === 0 ? desLength : parseInt(currentIndex) - 1;
 
-        this.imgControls = {
-            currentImg: albumArr[imgId],
-            currentIndex: imgId,
-            nextId: next,
-            prevId: prev,
+        if (this.slideshow) {
+          this.currentImg = albumArr[imgId].asset._ref;
+          let currentIndex = imgId;
+  
+          let desLength = albumLength - 1;
+          let next = parseInt(currentIndex) === desLength ? 0 : parseInt(currentIndex) + 1;
+          let prev = parseInt(currentIndex) === 0 ? desLength : parseInt(currentIndex) - 1;
+  
+          this.imgControls = {
+              currentImg: albumArr[imgId],
+              currentIndex: imgId,
+              nextId: next,
+              prevId: prev,
+              permalink: currPermalink
+          };
+        }
+        else {
+          this.imgControls = {
             permalink: currPermalink
-        };
+          };
+        }
       });
   }
 
@@ -92,6 +107,10 @@ export class ImgZoomComponent implements OnInit {
     else {
       return index+1;
     }
+  }
+
+  isMobileSize() {
+    return window.innerWidth <= 575;
   }
 
 }
