@@ -39,8 +39,6 @@ export class ArtWorkViewComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.getArtWorkByPermalink(routeParams.permalink);
     });
-
-
   }
 
   ngOnChange() {
@@ -52,7 +50,7 @@ export class ArtWorkViewComponent implements OnInit {
     this.artWorkService.getWorkByPermalink(permalink).subscribe(
       data => {
         this.work = data;
-        this.albumId2 = data.album._ref;
+        if (data.album) this.albumId2 = data.album._ref;
 
         this.descriptionHtmlBlock = blocksToHtml({
           blocks: data.description,

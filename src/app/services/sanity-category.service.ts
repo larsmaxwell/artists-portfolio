@@ -1,15 +1,13 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 const sanityClientService = require('@sanity/client');
-const imageUrlBuilder = require('@sanity/image-url');
+
 
 @Injectable()
-export class SanityService {
+export class SanityCategoryService {
 
-  // sanityClientService: any;
-  constructor(
-  ) {
-   }
-
+  constructor()
+  {
+  }
 
   init() {
     return new sanityClientService({
@@ -20,8 +18,10 @@ export class SanityService {
     });
   }
 
-  getImageUrlBuilder(sanityClientService: any) {
-    return new imageUrlBuilder(sanityClientService);
+  getCategories(client: any) {
+    const query = '*[_type == "category"]'
+
+    return client.fetch(query);
   }
 
 }

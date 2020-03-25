@@ -32,13 +32,14 @@ import { MessageService } from './services/message.service';
 import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
 import { SanityService } from './services/sanity.service';
+import { SanityCategoryService } from './services/sanity-category.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
 import { ImgDetailComponent } from './components/works-list/album-detail/img-detail/img-detail.component';
 import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
 import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
-
+import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
     AlbumDetailComponent,
     ImgDetailComponent,
     ArtWorkViewComponent,
-    GetImgUrlPipe
+    GetImgUrlPipe,
+    GetByCategoryPipe
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
     MessageService,
     OrderModule,
     DeferLoadModule,
-    SanityService
+    SanityService,
+    SanityCategoryService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,28 +1,11 @@
-<ul class="works video-works list-unstyled" *ngIf="works">
-  <li><h5>Comics/Zines</h5></li>
-  <li *ngFor="let work of (works | getByType: 'zine')">
-      <!-- {{ work | json }} -->
-    <a *ngIf="work" routerLink="/works/{{work.slug.current}}">
-      {{work.name}}
-    </a>
-  </li>
-</ul>
 
-<ul class="works video-works list-unstyled">
-  <li><h5>Video</h5></li>
-  <li *ngFor="let work of (works | getByType: 'video')">
-    <!-- {{ work | json }} -->
-    <a *ngIf="work" routerLink="/works/{{work.slug.current}}">
-      {{work.name}}
-    </a>
-  </li>
-</ul>
-
-<ul class="works video-works list-unstyled">
-  <li><h5>Coding</h5></li>
-  <li *ngFor="let work of (works | getByType: 'interactive')">
-    <a routerLink="/works/{{work.slug.current}}">
-      {{work.name}}
-    </a>
-  </li>
-</ul>
+<ng-template ngFor let-category [ngForOf]="categories" let-i="index">
+  <h5>{{ category.name }}</h5>
+  <ul class="works video-works list-unstyled" *ngIf="works">
+    <li *ngFor="let work of (works | getByCategory: category._id)">
+      <a *ngIf="work && !work.archived" routerLink="/works/{{work.slug.current}}">
+        {{ work.name }}
+      </a>
+    </li>
+  </ul>
+</ng-template>
