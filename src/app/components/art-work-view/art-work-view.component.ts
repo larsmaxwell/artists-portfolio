@@ -1,6 +1,6 @@
 
 // Angular
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
@@ -41,7 +41,7 @@ export class ArtWorkViewComponent implements OnInit {
     });
   }
 
-  ngOnChange() {
+  ngOnChanges(changes: SimpleChanges) {
     const permalink = this.route.snapshot.paramMap.get('permalink');
     this.getArtWorkByPermalink(permalink);
   }
@@ -52,12 +52,19 @@ export class ArtWorkViewComponent implements OnInit {
     this.artWorkService.getWorkByPermalink(client, permalink).then(
       data => {
         this.work = data[0];
-        if (data[0].album) this.albumId2 = data[0].album._ref;
+        if (data[0].album) {
+          this.albumId2 = data[0].album._ref;
+        }
+        else {
+          this.albumId2 = null;
+        }
 
-        this.descriptionHtmlBlock = blocksToHtml({
-          blocks: data[0].description,
-        });
+        if (data[0].description) {
+          this.descriptionHtmlBlock = blocksToHtml({
+            blocks: data[0].description,
+          });
+        }
+
       });
     }
-
 }

@@ -34,19 +34,28 @@ export class WorkAlbumComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.album) {
+    if (typeof changes.albumId.currentValue !== 'undefined') {
       // insert the new value
       this.getAlbum(changes.albumId.currentValue);
     }
+    else {
+      this.getAlbum(null);
+    }
   }
 
-  getAlbum(albumId: string) {
+  getAlbum(albumId: any) {
     this.sanityClient = this.albumService.sanityInit();
 
-    this.albumService.sanityGetAlbumById(albumId, this.sanityClient)
+    if (albumId) {
+      this.albumService.sanityGetAlbumById(albumId, this.sanityClient)
       .then(result => {
         this.album = result[0];
       });
+    }
+    else {
+      this.album = null;
+    }
+
   }
 
   getSanity() {
@@ -64,15 +73,5 @@ export class WorkAlbumComponent implements OnInit {
   isMobileSize() {
     return window.innerWidth <= 575;
   }
-
-  // isValidLink() {
-  //   if (window.innerWidth < 525) {
-  //     return false;
-  //   }
-  //   if (this.work.type !== 'zine') {
-  //     return false;
-  //   }
-  //   return true;
-  // }
 
 }
