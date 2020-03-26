@@ -16,7 +16,7 @@ a:not(.btn):hover, a:not(.btn):focus {
     color: #00583f;
     text-decoration: underline;
 }
-.h5, h5 {
+.navbar-container .h5, .navbar-container h5 {
     font-size: 1rem;
     color: white;
 }

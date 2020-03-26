@@ -95,6 +95,10 @@ a.disabled {
     text-align: center;
 }
 
+.placeholder-empty-link img {
+   opacity: 0;
+}
+
 .img-container {
     max-width: 100%;
     background-size: contain;

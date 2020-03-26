@@ -30,18 +30,19 @@
         <hr>
       </div>
       <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
-        <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<3">
+        <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<hideat">
           <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]" class="img-container">
             <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
           </a>
         </div>
-        <div class="col-6 col-sm-3 placeholder-container" *ngIf="i===4">
+        <div class="col-6 col-sm-3 placeholder-container" *ngIf="i === hideat">
           <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]">
             <div class="placeholder-empty-link">
               <span class="view-all-text">
                 View More
                 <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa>
               </span>
+              <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
             </div>
           </a>
         </div>

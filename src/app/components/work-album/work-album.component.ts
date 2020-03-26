@@ -19,6 +19,7 @@ export class WorkAlbumComponent implements OnInit {
   sanityClient: any;
   sanityInstance: any;
   sanityImgBuilder: any;
+  hideat: number;
 
   constructor(
     private albumService: ArtWorkAlbumService,
@@ -50,6 +51,7 @@ export class WorkAlbumComponent implements OnInit {
       this.albumService.sanityGetAlbumById(albumId, this.sanityClient)
       .then(result => {
         this.album = result[0];
+        this.hideat = result[0].hideat || 4;
       });
     }
     else {

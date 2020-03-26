@@ -42,6 +42,4 @@ export class WorksListComponent implements OnInit {
       this.categories = data;
     });
   }
-
-
 }
