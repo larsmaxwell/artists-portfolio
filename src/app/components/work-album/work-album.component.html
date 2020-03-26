@@ -26,7 +26,7 @@
   <ng-template [ngIf]="album.images && album.images.length > 0">
     <div class="gallery-bottom row mt-4">
       <div class="col-md-12">
-        <a [routerLink]="['./', album._id, 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
+        <a [routerLink]="['./', album._id, isMobileSize() ? '' : 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
         <hr>
       </div>
       <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
