@@ -6,35 +6,44 @@ import { HttpClientModule }    from '@angular/common/http';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService }  from './services/in-memory-data.service';
 import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppComponent } from './app.component';
-import { WorksComponent } from './works/works.component';
-import { WorkDetailComponent } from './work-detail/work-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AboutComponent } from './about/about.component';
-import { MessageService } from './message.service';
-import { WorkService } from './work.service';
-import { MenuComponent } from './menu/menu.component';
-import { HomeComponent } from './home/home.component';
-import { WorkCategoryComponent } from './work-category/work-category.component';
-
-import { LightboxModule } from 'angular2-lightbox';
-import { WorkAlbumComponent } from './work-detail/work-album/work-album.component';
-import { AlbumService } from './album.service';
-import { ImgZoomComponent } from './work-detail/work-album/img-zoom/img-zoom.component';
-import { GetByTypePipe } from './get-by-type.pipe';
 import { DeferLoadModule } from '@trademe/ng-defer-load';
+
+
+// Components
+import { AppComponent } from './components/app.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AboutComponent } from './components/about/about.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HomeComponent } from './components/home/home.component';
+import { WorkCategoryComponent } from './components/work-category/work-category.component';
+import { WorkAlbumComponent } from './components/work-album/work-album.component';
+import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
+import { WorksListComponent } from './components/works-list/works-list.component';
+import { AlbumDetailComponent } from './components/works-list/album-detail/album-detail.component';
+
+// Services
+
+import { MessageService } from './services/message.service';
+import { ArtWorkService } from './services/art-work-service.service';
+import { ArtWorkAlbumService } from './services/art-work-album.service'
+import { SanityService } from './services/sanity.service';
+import { SanityCategoryService } from './services/category.service';
+
+// Pipe
+import { GetByTypePipe } from './pipes/get-by-type.pipe';
+import { ImgDetailComponent } from './components/works-list/album-detail/img-detail/img-detail.component';
+import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
+import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
+import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    WorksComponent,
-    WorkDetailComponent,
     DashboardComponent,
     AboutComponent,
     MenuComponent,
@@ -42,7 +51,13 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     WorkCategoryComponent,
     WorkAlbumComponent,
     ImgZoomComponent,
-    GetByTypePipe
+    GetByTypePipe,
+    WorksListComponent,
+    AlbumDetailComponent,
+    ImgDetailComponent,
+    ArtWorkViewComponent,
+    GetImgUrlPipe,
+    GetByCategoryPipe
   ],
   imports: [
     BrowserModule,
@@ -53,24 +68,29 @@ import { DeferLoadModule } from '@trademe/ng-defer-load';
     OrderModule,
     BrowserAnimationsModule,
     BrowserModule,
-    LightboxModule,
     DeferLoadModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, 
-      { dataEncapsulation: false }
-    )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, 
+    //   { dataEncapsulation: false }
+    // )
   ],
   providers: [
-    WorkService,
+    ArtWorkService,
+    ArtWorkAlbumService,
     MessageService,
     OrderModule,
-    LightboxModule,
-    AlbumService
+    DeferLoadModule,
+    SanityService,
+    SanityCategoryService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+
+
+ }

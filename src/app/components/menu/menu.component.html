@@ -1,0 +1,74 @@
+<nav class="navbar navbar-fixed-top">
+  <div class="navbar-header col-12">
+    <div class="row">
+      <div class="col-10">
+        <a class="navbar-brand row" href="/">
+          <h1 class="site-title">Lurn Maxwell</h1>
+        </a>
+      </div>
+      <div class="col-2">
+        <button type="button" class="navbar-toggler d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
+          <fa [name]="'bars'" [size]="1"></fa>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-content navbar-mobile col-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
+    <div class="row">
+      <div class="col-12">
+        <app-works-list></app-works-list>
+        <hr class="d-none d-sm-block">
+        <ul class="list-unstyled">
+          <li>
+            <a routerLink="/about">
+              <strong>About</strong>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-extra col-12">
+      <div class="row">
+        <ul class="items list-inline">
+          <li class="list-inline-item">
+            <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
+              <fa [name]="'instagram'" [size]="2"></fa>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="mailto:mlmxwell@gmail.com">
+              <fa [name]="'envelope'" [size]="2"></fa>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content">
+    <app-works-list></app-works-list>
+    <hr class="d-none d-sm-block">
+    <ul class="list-unstyled">
+      <li>
+        <a routerLink="/about">
+          <strong>About</strong>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="navbar-extra col-12 d-none d-sm-block">
+    <div class="row">
+      <ul class="items list-inline">
+        <li class="list-inline-item">
+          <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
+            <fa [name]="'instagram'" [size]="1"></fa>
+          </a>
+        </li>
+        <li class="list-inline-item">
+          <a href="mailto:mlmxwell@gmail.com">
+            <fa [name]="'envelope'" [size]="1"></fa>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
