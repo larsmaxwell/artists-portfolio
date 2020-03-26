@@ -28,7 +28,7 @@ export class WorksListComponent implements OnInit {
   getWorks(): void {
     const client = this.artWorkService.init();
     this.artWorkService.getWorks(client)
-      .then((result) =>  { this.works = result} );
+      .then((result) =>  { this.works = result;} );
   }
 
   getWorksByCategory(): void {

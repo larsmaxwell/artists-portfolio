@@ -18,10 +18,6 @@ const httpOptions = {
 @Injectable()
 export class ArtWorkService {
 
-  private env = "production"
-  private id = "qwmluuy0"
-  private worksUrl = "https://" + this.id + ".api.sanity.io/v1/data/query/" + this.env + "/?query=*"
-
   constructor(
     private http: HttpClient,
     private messageService: MessageService
@@ -47,7 +43,10 @@ export class ArtWorkService {
   getWorkByPermalink(client: any, permalink:string) {
     const query = `*[_type == "artwork" && slug.current == "${permalink}"]`
 
-    return client.fetch(query);
+    return client.fetch(query)
+      .catch(err => {
+        this.handleError(err.message);
+      });
   }
 
   /**

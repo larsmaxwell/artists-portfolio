@@ -10,6 +10,9 @@ export class Album {
         asset: {
             _ref: string,
             _type: string
+            fields: Array<{
+                caption: string
+            }>
         }
     }>;
     name: string;
