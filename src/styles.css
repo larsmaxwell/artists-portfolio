@@ -10,18 +10,63 @@ body {
     padding: 2rem 0;
 }
 a {
-    color: #2600a7;
+    color: #00583f;
 }
 a:not(.btn):hover, a:not(.btn):focus {
-    color: #2600a7;
+    color: #00583f;
     text-decoration: underline;
 }
 .h5, h5 {
     font-size: 1rem;
+    color: white;
 }
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Inconsolata', monospace;
 }
 footer {
-    background: #eee; padding: 30px 0;
+    background: #505050;
+    padding: 30px 0;
+}
+footer a {
+    color: #03fdb8;
+}
+footer a:not(.btn):hover, footer a:not(.btn):focus {
+    color: #03fdb8;
+    text-decoration: underline;
+}
+footer p {
+    color: white;
+}
+.navbar-container {
+    background: #272727;
+}
+.navbar-container a {
+    color: #03fdb8;
+}
+.navbar-container a:not(.btn):hover, .navbar-container a:not(.btn):focus {
+    color: #03fdb8;
+    text-decoration: underline;
+}
+.navbar .fa-bars {
+    color:white;
+}
+.site-title {
+    font-size: 1.25em;
+}
+.navbar-brand {
+    padding: 15px 15px 0 0;
+}
+.navbar-toggler {
+    margin-top: .5em;
+}
+.navbar-collapse {
+    max-height: 450px;
+}
+.mobile-info {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.navbar-header {
+    border-bottom: 1px solid #03fdb8;
+    margin-bottom: 10px;
 }

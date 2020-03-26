@@ -232,26 +232,17 @@ export class InMemoryDataService implements InMemoryDbService {
         type: "zine",
         created: "2019-04-01T00:00:00Z",
         archive: false,
-        description: "Alma and Jo are in love as they face the worst of the sea in a fantasy post climate event future. The two together experience separate realities of the world. One of these realities is filled with horror, but the other is safe. In order to find an item that was abandoned, they venture to the area of the city that was covered in water and overtaken by strange beings.",
-        buybtn: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=97WEHPKSQYEY2",
-        images: [
-          "assets/images/ufime/UfimeCovr.jpg",
-          "assets/images/ufime/Ufime1.jpg",
-          "assets/images/ufime/Ufime2.jpg",
-          "assets/images/ufime/Ufime3.jpg",
-          "assets/images/ufime/Ufime4.jpg",
-          "assets/images/ufime/Ufime5.jpg",
-          "assets/images/ufime/Ufime6.jpg",
-          "assets/images/ufime/Ufime7.jpg",
-          "assets/images/ufime/Ufime8.jpg",
-          "assets/images/ufime/Ufime9.jpg",
-          "assets/images/ufime/Ufime10.jpg",
-          "assets/images/ufime/Ufime11.jpg",
-          "assets/images/ufime/Ufime12.jpg", 
-          "assets/images/ufime/Ufime13.jpg",
-          "assets/images/ufime/Ufime14.jpg",
-          "assets/images/ufime/Ufime15.jpg"
-        ]
+        description: "Alma and Jo face the worst of the ocean in a fantasy post climate event future. The two together experience separate realities of the world. One of these realities is filled with horror, but the other is safe. In order to find an item that was abandoned, they venture to the area of the city that was covered in water and overtaken by strange beings.",
+        buybtn: "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=97WEHPKSQYEY2"
+      },
+      {
+        id: 17,
+        title: "Underground",
+        permalink: "Underground",
+        type: "zine",
+        created: "2019-10-30T00:00:00Z",
+        archive: false,
+        description: "A ghost relives their death."
       }
     ];
     const albums = [
@@ -590,7 +581,7 @@ export class InMemoryDataService implements InMemoryDbService {
         images: [
           {
             id: 0,
-            url: "assets/images/ufime/UfimeCovr.jpg",
+            url: "assets/images/ufime/cover-new.jpg",
             show: false
           },
           {
@@ -675,12 +666,12 @@ export class InMemoryDataService implements InMemoryDbService {
           },
           {
             id: 16,
-            url: "assets/images/ufime/Ufime16.jpg",
+            url: "assets/images/ufime/Ufime18ForgotAPage.jpg",
             show: false
           },
           {
             id: 17,
-            url: "assets/images/ufime/Ufime16ForgotAPage.jpg",
+            url: "assets/images/ufime/Ufime16.jpg",
             show: false
           },
           {
@@ -874,11 +865,6 @@ export class InMemoryDataService implements InMemoryDbService {
             show: false
           },
           {
-            id: 56,
-            url: "assets/images/ufime/UfimeCoverPhoto.jpg",
-            show: false
-          },
-          {
             id: 57,
             url: "assets/images/ufime/UfimeInsideBooklet0.jpg",
             show: false
@@ -889,7 +875,54 @@ export class InMemoryDataService implements InMemoryDbService {
             show: false
           }
         ]
-      }
+      },
+      {
+        id: 17,
+        title: "Underground",
+        workId: 17,
+        images: [
+          {
+            id: 0,
+            url: "assets/images/underground/cover.jpg",
+            show: false
+          },
+          {
+            id: 1,
+            url: "assets/images/underground/1.png",
+            show: false
+          },
+          {
+            id: 2,
+            url: "assets/images/underground/13.png",
+            show: false
+          },
+          {
+            id: 3,
+            url: "assets/images/underground/15.png",
+            show: false
+          },
+          {
+            id: 4,
+            url: "assets/images/underground/16.png",
+            show: false
+          },
+          {
+            id: 5,
+            url: "assets/images/underground/22.png",
+            show: false
+          },
+          {
+            id: 6,
+            url: "assets/images/underground/23.png",
+            show: false
+          },
+          {
+            id: 7,
+            url: "assets/images/underground/25.png",
+            show: false
+          }
+        ]
+      },
     ];
     return {works, albums};
   }

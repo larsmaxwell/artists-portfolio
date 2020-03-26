@@ -53,6 +53,7 @@
 }
 
 .img-controls-next fa {
+    color: #000;
     top: 50%;
     position: absolute;
     right: 15%;
@@ -70,6 +71,7 @@
 }
     
 .img-controls-prev fa {
+    color: #000;
     left: 0;
     top: 50%;
     position: absolute;
@@ -84,4 +86,7 @@
     position: absolute;
     right: 0;
     z-index: 2;
+}
+.img-controls-exit h5 {
+    color: #000;
 }
