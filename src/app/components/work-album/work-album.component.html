@@ -5,9 +5,8 @@
   tabindex="0" aria-label="Click to open image gallery" 
   role="button" 
   id="work-album-component" 
-  *ngIf="album?.galleryview === true"
+  *ngIf="fullGalleryView !== true"
   [routerLink]="['./', album._id, isMobileSize() ? '' : 0]">
- 
     <div class="row no-gutters gallery-group-container">
       <div class="gallery-group-image col">
         <div class="album-img"> 
@@ -21,5 +20,26 @@
       </div>
     </div>
   </div>
+</ng-template>
+
+<ng-template [ngIf]="album">
+  <ng-template [ngIf]="album.images && fullGalleryView">
+    <div class="gallery-bottom row mt-4">
+      <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+        <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<3">
+          <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]" class="img-container">
+            <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
+          </a>
+        </div>
+        <div class="col-6 col-sm-3 placeholder-container" *ngIf="i===4">
+          <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]">
+            <div class="placeholder-empty-link">
+              <fa [name]="'ellipsis-h'" [size]="4"></fa>
+            </div>
+          </a>
+        </div>
+      </ng-template> 
+    </div>
+  </ng-template>
 </ng-template>
 

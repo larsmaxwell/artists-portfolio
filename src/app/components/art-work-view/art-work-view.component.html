@@ -2,13 +2,15 @@
   <h2> {{ work.name }} <small>({{ work._createdAt | date:"y" }})</small> </h2>
 
   <div class="row">
-    
-    <div class="descriptionBlk col-md-8 order-1 order-md-2">
+    <div class="descriptionBlk col order-2">
       <div *ngIf="descriptionHtmlBlock" class="wk-dsc mt-xs-4" [innerHTML]="descriptionHtmlBlock"></div>
     </div>
-    <div class="col-md-3 order-2 order-md-1" *ngIf="albumId2">
+    <div class="col-md-3 order-1 d-none d-md-block" *ngIf="work.galleryview">
       <app-work-album [albumId]="albumId2"></app-work-album>
     </div>
   </div>
+  <ng-template [ngIf]="albumId2">
+    <app-work-album [albumId]="albumId2" [fullGalleryView]="true"></app-work-album>
+  </ng-template>
 
 </div>
