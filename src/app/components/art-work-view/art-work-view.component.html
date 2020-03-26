@@ -5,8 +5,19 @@
     <div class="descriptionBlk col order-2">
       <div *ngIf="descriptionHtmlBlock" class="wk-dsc mt-xs-4" [innerHTML]="descriptionHtmlBlock"></div>
     </div>
-    <div class="col-md-3 order-1 d-none d-md-block" *ngIf="work.galleryview">
+    <!-- <div class="col-md-3 order-1 d-none d-md-block" *ngIf="work.galleryview">
       <app-work-album [albumId]="albumId2"></app-work-album>
+    </div> -->
+  </div>
+  <div class="row">
+    <div class="col">
+      <ng-template [ngIf]="work.mediaUrl">
+        <iframe 
+        width="560"
+        height="315"
+        [src]="safeURL"
+        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </ng-template>
     </div>
   </div>
   <ng-template [ngIf]="albumId2">

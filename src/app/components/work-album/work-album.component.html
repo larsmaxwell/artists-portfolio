@@ -1,5 +1,5 @@
 
-<ng-template [ngIf]="album">
+<!-- <ng-template [ngIf]="album">
   <div
   class="gallery-group" 
   tabindex="0" aria-label="Click to open image gallery" 
@@ -20,11 +20,15 @@
       </div>
     </div>
   </div>
-</ng-template>
+</ng-template> -->
 
 <ng-template [ngIf]="album">
-  <ng-template [ngIf]="album.images && fullGalleryView">
+  <ng-template [ngIf]="album.images && album.images.length > 0">
     <div class="gallery-bottom row mt-4">
+      <div class="col-md-12">
+        <a [routerLink]="['./', album._id, 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
+        <hr>
+      </div>
       <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
         <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<3">
           <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]" class="img-container">
@@ -34,7 +38,10 @@
         <div class="col-6 col-sm-3 placeholder-container" *ngIf="i===4">
           <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]">
             <div class="placeholder-empty-link">
-              <fa [name]="'ellipsis-h'" [size]="4"></fa>
+              <span class="view-all-text">
+                View More
+                <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa>
+              </span>
             </div>
           </a>
         </div>
