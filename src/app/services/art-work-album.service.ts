@@ -12,7 +12,7 @@ import { Album } from '../types/art-work-album';
 import { environment } from '../../environments/environment';
 
 
-const sanityClientService = require('@sanity/client');
+const sanityClient = require('@sanity/client');
 
 
 @Injectable()
@@ -68,11 +68,11 @@ export class ArtWorkAlbumService {
   }
 
   sanityInit() {
-    return new sanityClientService({
+    return new sanityClient({
       projectId: environment.sanityProjectId,
       dataset: environment.dataset,
-      token: environment.token,
-      useCdn: false // `false` if you want to ensure fresh data
+      useCdn: environment.useCdn, // `false` if you want to ensure fresh data
+      ignoreBrowserTokenWarning: true
     });
   }
 

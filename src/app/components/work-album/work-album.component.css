@@ -128,4 +128,13 @@ a.disabled {
 
 
 
-
+/* 
+.row.isotope-grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .row.isotope-grid > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+    background-clip: content-box;
+  } */

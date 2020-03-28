@@ -16,9 +16,9 @@ export class ImgZoomComponent implements OnInit {
 
   album: Album;
   currentImg: Object;
-  imgControls: Object;
-  desHeight: number;
-  desWidth: number;
+  imgControls: {};
+  desHeight: string;
+  desWidth: string;
   sanityInstance: any;
   sanityImgBuilder: any;
   slideshow: boolean;
@@ -41,8 +41,9 @@ export class ImgZoomComponent implements OnInit {
     }
 
     this.getAlbum(id, imgId);
-    this.desHeight = window.innerHeight;
-    this.desWidth = window.innerWidth;
+    
+    this.desHeight = window.innerHeight + 'px';
+    this.desWidth = window.innerWidth + 'px';
 
     this.route.params.subscribe(routeParams => {
       this.getAlbum(routeParams.albumId, routeParams.imgId);
@@ -58,11 +59,6 @@ export class ImgZoomComponent implements OnInit {
 
         let albumArr = album.images;
         let albumLength = albumArr.length;
-
-        console.log(album);
-
-        console.log(this.slideshow);
-
 
         if (this.slideshow) {
           this.currentImg = albumArr[imgId].asset._ref;

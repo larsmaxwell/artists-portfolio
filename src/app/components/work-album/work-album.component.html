@@ -24,30 +24,48 @@
 
 <ng-template [ngIf]="album">
   <ng-template [ngIf]="album.images && album.images.length > 0">
-    <div class="gallery-bottom row mt-4">
-      <div class="col-md-12">
-        <a [routerLink]="['./', album._id, isMobileSize() ? '' : 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
-        <hr>
+    <ng-template [ngIf]="galleryview">
+      <div class="gallery-bottom row mt-4">
+        <div class="col-md-12">
+          <a [routerLink]="['./', album._id, 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
+          <hr>
+        </div>
+        <div class="col-md-12">
+          <div class="row">
+
+                <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+                  <div class="gallery-bottom-img-container isotope-item col-md-3 col-6" *ngIf="i<hideat">
+                    <a [routerLink]="['./', album._id, i]" class="img-container">
+                      <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
+                    </a>
+                  </div>
+                  <div class="placeholder-container isotope-item col-6 col-md-3" *ngIf="i === hideat">
+                    <a [routerLink]="['./', album._id, i]">
+                      <div class="placeholder-empty-link">
+                        <span class="view-all-text">
+                          View All
+                          <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa>
+                        </span>
+                        <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
+                      </div>
+                    </a>
+                  </div>
+                </ng-template> 
+
+            
+          </div>
+        </div>
       </div>
-      <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
-        <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<hideat">
-          <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]" class="img-container">
+
+    </ng-template>
+    <ng-template [ngIf]="!galleryview">
+      <div class="gallery-bottom row mt-4">
+        <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
+          <div class="col-6 col-sm-3 gallery-bottom-img-container" *ngIf="i<hideat">
             <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
-          </a>
-        </div>
-        <div class="col-6 col-sm-3 placeholder-container" *ngIf="i === hideat">
-          <a [routerLink]="['./', album._id, isMobileSize() ? '' : i]">
-            <div class="placeholder-empty-link">
-              <span class="view-all-text">
-                View All
-                <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa>
-              </span>
-              <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
-            </div>
-          </a>
-        </div>
-      </ng-template> 
-    </div>
+          </div>
+        </ng-template> 
+      </div>
+    </ng-template>
   </ng-template>
 </ng-template>
-
