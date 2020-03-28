@@ -48,7 +48,6 @@ export class ArtWorkViewComponent implements OnInit {
 
   getArtWorkByPermalink(permalink: string) {
     const client = this.artWorkService.init();
-    console.log(permalink);
     this.artWorkService.getWorkByPermalink(client, permalink).then(
       data => {
         this.work = data[0];

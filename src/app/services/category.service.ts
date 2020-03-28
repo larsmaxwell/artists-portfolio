@@ -15,7 +15,8 @@ export class SanityCategoryService {
       projectId: environment.sanityProjectId,
       dataset: environment.dataset,
       // token: environment.token,
-      useCdn: environment.useCdn
+      useCdn: environment.useCdn,
+      ignoreBrowserTokenWarning: true
     });
   }
 

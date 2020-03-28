@@ -1,14 +1,16 @@
 <ng-template [ngIf]="slideshow">
-    <div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight+'px'}">
-        <div class="img-center-component stacked col-md-12">
-            <div class="img-controls" [ngStyle]="{'height': desHeight+'px'}">
-                <div class="img-controls-prev img-controls-element">
-                    <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
+    <div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight}">
+        <div class="img-center-component stacked">
+            <div class="img-controls" [ngStyle]="{'height': desHeight}">
+                <div class="img-controls-prev img-controls-element"
+                routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
+                    <a>
                         <fa [name]="'chevron-left'" size="2"></fa>
                     </a>
                 </div>
-                <div class="img-controls-next img-controls-element">
-                    <a routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
+                <div class="img-controls-next img-controls-element"
+                routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
+                    <a>
                         <fa [name]="'chevron-right'" size="2"></fa>
                     </a>
                 </div>
@@ -18,7 +20,7 @@
                     </a>
                 </div>
             </div>
-            <div class="img-center-component-inner" [ngStyle]="{'height': desHeight+'px'}">
+            <div class="img-center-component-inner" [ngStyle]="{'height': desHeight}">
                 <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
                     <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]"
                         [className]="i != imgControls.currentIndex ? 'd-none' : ''">

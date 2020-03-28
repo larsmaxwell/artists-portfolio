@@ -5,7 +5,7 @@ declare var sanityClientService: any;
 declare var imageUrlBuilder: any;
 declare var sanityInstance: any;
 declare var sanityImgBuilder: any;
-
+declare var Isotope: any;
 interface NodeModule {
   id: string;
 }

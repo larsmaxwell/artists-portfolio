@@ -4,6 +4,7 @@ import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SanityService } from '../../services/sanity.service';
 import { ArtWork } from '../../types/art-work';
+import * as Isotope from 'isotope-layout';
 
 
 @Component({
@@ -33,6 +34,10 @@ export class WorkAlbumComponent implements OnInit {
     this.getSanity();
     this.getSanityUrlBuilder();
     this.getAlbum(this.albumId);
+
+    // var iso = new Isotope( '.isotope-grid', {
+    //   percentPosition: true,
+    // });
   }
 
   ngOnChanges(changes: SimpleChanges) {
