@@ -14,6 +14,7 @@ import { ArtWork } from '../../types/art-work';
 export class WorkAlbumComponent implements OnInit {
 
   @Input() albumId: string;
+  @Input() galleryview: string;
   imgUrl: String;
   album: Album;
   sanityClient: any;

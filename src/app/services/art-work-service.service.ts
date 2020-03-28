@@ -27,7 +27,7 @@ export class ArtWorkService {
     return new sanityClientService({
       projectId: environment.sanityProjectId,
       dataset: environment.dataset,
-      token: environment.token,
+      // token: environment.token,
       useCdn: environment.useCdn
     });
   }

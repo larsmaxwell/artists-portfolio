@@ -71,7 +71,6 @@ export class ArtWorkAlbumService {
     return new sanityClientService({
       projectId: environment.sanityProjectId,
       dataset: environment.dataset,
-      token: environment.token,
       useCdn: false // `false` if you want to ensure fresh data
     });
   }

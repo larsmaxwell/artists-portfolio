@@ -1,5 +1,5 @@
 <div *ngIf="work" id="main">
-  <h2> {{ work.name }} <small>({{ work._createdAt | date:"y" }})</small> </h2>
+  <h2> {{ work.name }} <small>({{ work?.releaseDate | date:"y" }})</small> </h2>
 
   <div class="row">
     <div class="descriptionBlk col order-2">
@@ -21,7 +21,7 @@
     </div>
   </div>
   <ng-template [ngIf]="albumId2">
-    <app-work-album [albumId]="albumId2"></app-work-album>
+    <app-work-album [albumId]="albumId2" [galleryview]="work.galleryview"></app-work-album>
   </ng-template>
 
 </div>
