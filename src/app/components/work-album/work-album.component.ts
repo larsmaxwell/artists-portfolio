@@ -6,6 +6,8 @@ import { SanityService } from '../../services/sanity.service';
 import { ArtWork } from '../../types/art-work';
 import * as Isotope from 'isotope-layout';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-work-album',
@@ -22,22 +24,24 @@ export class WorkAlbumComponent implements OnInit {
   sanityInstance: any;
   sanityImgBuilder: any;
   hideat: number;
+  faExternalLinkSquareAlt = faExternalLinkSquareAlt;
+
 
   constructor(
     private albumService: ArtWorkAlbumService,
     private route: ActivatedRoute,
     private router: Router,
     private sanityService: SanityService,
-  ) { }
+    library: FaIconLibrary
+  ) {
+
+    library.addIcons(this.faExternalLinkSquareAlt);
+  }
 
   ngOnInit() {
     this.getSanity();
     this.getSanityUrlBuilder();
     this.getAlbum(this.albumId);
-
-    // var iso = new Isotope( '.isotope-grid', {
-    //   percentPosition: true,
-    // });
   }
 
   ngOnChanges(changes: SimpleChanges) {

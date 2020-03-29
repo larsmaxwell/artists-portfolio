@@ -7,6 +7,9 @@ import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { faArrowLeft, faArrowRight, faChevronCircleLeft, faChevronCircleRight} from '@fortawesome/free-solid-svg-icons';
+
 @Component({
   selector: 'app-img-zoom',
   templateUrl: './img-zoom.component.html',
@@ -22,13 +25,21 @@ export class ImgZoomComponent implements OnInit {
   sanityInstance: any;
   sanityImgBuilder: any;
   slideshow: boolean;
+  faArrowLeft = faArrowLeft;
+  faArrowRight = faArrowRight;
+  faChevronCircleLeft = faChevronCircleLeft;
+  faChevronCircleRight = faChevronCircleRight;
+
 
   constructor(
     private ArtWorkAlbumService: ArtWorkAlbumService,
     private sanityService: SanityService,
     private route: ActivatedRoute,
-    private router: RouterModule
-  ) { }
+    private router: RouterModule,
+    private library: FaIconLibrary
+  ) {
+    library.addIcons(this.faArrowLeft, this.faArrowRight, this.faChevronCircleLeft);
+  }
 
   ngOnInit() {
     this.getSanity();

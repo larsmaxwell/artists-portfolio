@@ -4,7 +4,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscriber } from 'rxjs';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
 
