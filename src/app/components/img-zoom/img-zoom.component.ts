@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, ActivatedRoute} from '@angular/router';
@@ -6,9 +6,11 @@ import { RouterModule, ActivatedRoute} from '@angular/router';
 import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
+import { WindowRefService } from '../../services/window-ref.service';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faArrowRight, faChevronCircleLeft, faChevronCircleRight} from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-img-zoom',
@@ -36,7 +38,9 @@ export class ImgZoomComponent implements OnInit {
     private sanityService: SanityService,
     private route: ActivatedRoute,
     private router: RouterModule,
-    private library: FaIconLibrary
+    private library: FaIconLibrary,
+    @Inject(WindowRefService) private window: Window,
+
   ) {
     library.addIcons(this.faArrowLeft, this.faArrowRight, this.faChevronCircleLeft);
   }

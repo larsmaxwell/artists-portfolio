@@ -57,7 +57,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     GetByCategoryPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
