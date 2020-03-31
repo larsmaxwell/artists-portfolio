@@ -45,7 +45,7 @@ export class ArtWorkService {
   getWorkByPermalink(permalink:string): Observable<any> {
 
     const url = `${this.worksUrl}[_type%20==%20"artwork"%20%26%26%20slug.current%20==%20"${permalink}"]`;
-
+    // console.log("URL ", url);
     return this.http.get<any>(url).pipe(
       map(work => work.result[0]),
       tap(_ => this.log(`fetched work id=${permalink}`)),
