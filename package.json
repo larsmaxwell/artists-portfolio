@@ -24,6 +24,7 @@
   "dependencies": {
     "@angular-devkit/build-angular": "^0.901.0",
     "@angular/animations": "~9.0.0-next.11",
+    "@angular/cli": "^9.1.0",
     "@angular/common": "~9.0.0-next.11",
     "@angular/compiler": "~9.0.0-next.11",
     "@angular/core": "~9.0.0-next.11",
@@ -59,7 +60,6 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular/cli": "~9.1.0",
     "@angular/compiler-cli": "~9.0.0-next.11",
     "@angular/language-service": "~9.0.0-next.11",
     "@nguniversal/builders": "^9.0.2",
