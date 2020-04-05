@@ -12,6 +12,7 @@ import * as blocksToHtml from '@sanity/block-content-to-html';
 import { ArtWork } from '../../types/art-work';
 import { ArtWorkService } from '../../services/art-work-service.service';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
+import { SanityService } from '../../services/sanity.service';
 
 @Component({
   selector: 'app-art-work-view',
@@ -24,6 +25,8 @@ export class ArtWorkViewComponent implements OnInit {
   albumId2: string;
   safeURL: SafeResourceUrl;
   descriptionHtmlBlock: String; 
+  sanityInstance: any;
+  sanityImgBuilder: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,21 +35,31 @@ export class ArtWorkViewComponent implements OnInit {
     private location: Location,
     private _sanitizer: DomSanitizer,
     private meta: Meta,
-    private title: Title
+    private title: Title,
+    private sanityService: SanityService
   ) {
   }
 
-  setMeta( newItems: {title:string, description: string, keywords: string}) {
+  setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
     this.title.setTitle( newItems.title );
     this.meta.updateTag({name: 'description', content: newItems.description});
-    this.meta.updateTag({name: 'keywords', content: newItems.description});
+    this.meta.updateTag({name: 'keywords', content: newItems.keywords});
+    this.meta.updateTag({property: 'og:title', content: newItems.title});
+    this.meta.updateTag({property: 'og:description', content: newItems.description});
+
+
+    this.meta.updateTag({name: 'twitter:description', content: newItems.description});
+    this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
+    this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
   }
 
   ngOnInit() {
     const permalink = this.route.snapshot.paramMap.get('permalink');
     this.getArtWorkByPermalink(permalink);
 
-    this.title.setTitle( "ngOnInit" );
+    this.title.setTitle( "Loading..." );
+    this.getSanity();
+    this.getSanityUrlBuilder();
 
     this.route.params.subscribe(routeParams => {
       this.getArtWorkByPermalink(routeParams.permalink);
@@ -79,10 +92,21 @@ export class ArtWorkViewComponent implements OnInit {
             blocks: data.description,
           });
         }
-        this.title.setTitle( "subscribe2" );
-        
-        metaData = {title: data.name, description: data.name, keywords: data.name}
+        console.log(data);
+        metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
       });
+    }
+
+    getSanity() {
+      this.sanityInstance = this.sanityService.init();
+    }
+
+    getSanityUrlBuilder() {
+      this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
+    }
+
+    urlFor(source: string) {
+      return this.sanityImgBuilder.image(source)
     }
 }

@@ -76,8 +76,4 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-
-
- }
+export class AppModule {}
