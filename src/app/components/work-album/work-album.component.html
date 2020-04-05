@@ -27,7 +27,11 @@
     <ng-template [ngIf]="galleryview">
       <div class="gallery-bottom row mt-4">
         <div class="col-md-12">
-          <a [routerLink]="['./', album._id, 0]"><h5>Gallery <fa class="" [name]="'external-link'" [size]="'xs'"></fa></h5></a>
+          <a [routerLink]="['./', album._id, 0]">
+            <h5>Gallery 
+              <fa-icon [icon]="faExternalLinkSquareAlt"></fa-icon>
+            </h5>
+          </a>
           <hr>
         </div>
         <div class="col-md-12">
@@ -44,7 +48,7 @@
                       <div class="placeholder-empty-link">
                         <span class="view-all-text">
                           View All
-                          <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa>
+                          <!-- <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa> -->
                         </span>
                         <img [src]="urlFor(album.images[i])" class="img-fluid image-album-list" />
                       </div>

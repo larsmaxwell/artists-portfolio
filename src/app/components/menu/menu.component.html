@@ -2,13 +2,13 @@
   <div class="navbar-header col-12">
     <div class="row">
       <div class="col-10">
-        <a class="navbar-brand row" href="/">
+        <a class="navbar-brand row" routerLink="/">
           <h1 class="site-title">Lurn Maxwell</h1>
         </a>
       </div>
       <div class="col-2">
         <button type="button" class="navbar-toggler d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
-          <fa [name]="'bars'" [size]="1"></fa>
+          <fa-icon [icon]="faBars"></fa-icon>
         </button>
       </div>
     </div>
@@ -32,12 +32,13 @@
         <ul class="items list-inline">
           <li class="list-inline-item">
             <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
-              <fa [name]="'instagram'" [size]="2"></fa>
+              <fa-icon [icon]="faInstagram"></fa-icon>
+
             </a>
           </li>
           <li class="list-inline-item">
             <a href="mailto:mlmxwell@gmail.com">
-              <fa [name]="'envelope'" [size]="2"></fa>
+              <fa-icon [icon]="faEnvelope"></fa-icon>
             </a>
           </li>
         </ul>
@@ -60,12 +61,12 @@
       <ul class="items list-inline">
         <li class="list-inline-item">
           <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
-            <fa [name]="'instagram'" [size]="1"></fa>
+            <fa-icon [icon]="faInstagram"></fa-icon>
           </a>
         </li>
         <li class="list-inline-item">
           <a href="mailto:mlmxwell@gmail.com">
-            <fa [name]="'envelope'" [size]="1"></fa>
+            <fa-icon [icon]="faEnvelope"></fa-icon>
           </a>
         </li>
       </ul>

@@ -5,18 +5,18 @@
                 <div class="img-controls-prev img-controls-element"
                 routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
                     <a>
-                        <fa [name]="'chevron-left'" size="2"></fa>
+                        <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
                     </a>
                 </div>
                 <div class="img-controls-next img-controls-element"
                 routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
                     <a>
-                        <fa [name]="'chevron-right'" size="2"></fa>
+                        <fa-icon [icon]="faChevronCircleRight"></fa-icon>
                     </a>
                 </div>
                 <div class="img-controls-exit img-controls-element">
                     <a routerLink="/works/{{ imgControls.permalink }}/">
-                        <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
+                        <h5><fa-icon [icon]="faArrowLeft"></fa-icon> Go Back</h5>
                     </a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
             <div class="col-12">
                 <div class="img-controls-exit img-controls-element">
                     <a routerLink="/works/{{ imgControls.permalink }}/">
-                        <h5><fa [name]="'arrow-left'" size="1"></fa>Go Back</h5>
+                        <h5><fa-icon [icon]="faArrowLeft"></fa-icon></h5>
                     </a>
                 </div>
             </div>

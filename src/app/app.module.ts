@@ -3,15 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
-import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome'
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './services/in-memory-data.service';
 import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DeferLoadModule } from '@trademe/ng-defer-load';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 // Components
@@ -60,37 +57,23 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     GetByCategoryPipe
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    Angular2FontawesomeModule,
+    FontAwesomeModule,
     OrderModule,
     BrowserAnimationsModule,
-    BrowserModule,
-    DeferLoadModule,
-
-    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-    // and returns simulated server responses.
-    // Remove it when a real server is ready to receive requests.
-    // HttpClientInMemoryWebApiModule.forRoot(
-    //   InMemoryDataService, 
-    //   { dataEncapsulation: false }
-    // )
+    BrowserModule
   ],
   providers: [
     ArtWorkService,
     ArtWorkAlbumService,
     MessageService,
     OrderModule,
-    DeferLoadModule,
     SanityService,
     SanityCategoryService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-
-
-
- }
+export class AppModule {}
