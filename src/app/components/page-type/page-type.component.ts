@@ -56,6 +56,7 @@ export class PageTypeComponent implements OnInit {
     this.meta.updateTag({name: 'twitter:description', content: newItems.description});
     this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
     this.meta.updateTag({name: 'image', content: newItems.featuredImage});
+    this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
   }
 
   getPage(permalink: string) {
@@ -72,7 +73,7 @@ export class PageTypeComponent implements OnInit {
           );
         }
         var featuredImage = this.urlFor(data.featuredImage.asset._ref);
-        metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords }
+        metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords, featuredImage: featuredImage }
         this.setMeta(metaData);
       });
   }
