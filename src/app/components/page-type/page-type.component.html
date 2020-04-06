@@ -1,0 +1,13 @@
+
+<div class="mt-4 mb-4 container">
+  <ng-template [ngIf]="blockContent">
+    <ng-template ngFor let-content [ngForOf]="blockContent" let-i="index">
+      <ng-template [ngIf]="content._type === 'image'">
+        <img [src]="urlFor(content).width(300)" class="rounded float-left mr-3" />
+      </ng-template>
+      <ng-template [ngIf]="content._type === 'block'">
+        <div [innerHTML]="getBlocks(content)"></div>
+      </ng-template>
+    </ng-template>
+  </ng-template>
+</div>

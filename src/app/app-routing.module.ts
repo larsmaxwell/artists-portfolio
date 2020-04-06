@@ -11,11 +11,10 @@ import { WorksListComponent } from './components/works-list/works-list.component
 import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
 import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
 import { WorkAlbumComponent } from './components/work-album/work-album.component';
+import { PageTypeComponent } from './components/page-type/page-type.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  // { path: 'works', component: ArtWorkViewComponent },
-  { path: 'about', component: AboutComponent },
   { path: 'workstest', component: WorksListComponent },
   { path: 'works/:permalink', component: ArtWorkViewComponent,
     children: [
@@ -25,12 +24,14 @@ const routes: Routes = [
   { path: 'works/:permalink/:albumId/:imgId', component: ImgZoomComponent, },
   { path: 'works/:permalink/:albumId/', component: ImgZoomComponent },
   { path: 'works/category/:category', component: WorkCategoryComponent},
+  { path: 'pages/:permatwo', component: PageTypeComponent},
   { path: '**', component: HomeComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', paramsInheritanceStrategy: 'always'})],
+  imports: [
+    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', paramsInheritanceStrategy: 'always'}),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-//enableTracing: true, 

@@ -92,7 +92,6 @@ export class ArtWorkViewComponent implements OnInit {
             blocks: data.description,
           });
         }
-        console.log(data);
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
       });

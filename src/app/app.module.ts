@@ -2,14 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { FormsModule }    from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
+import { Location } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { OrderModule } from 'ngx-order-pipe';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 
 // Components
 import { AppComponent } from './components/app.component';
@@ -22,6 +23,8 @@ import { WorkAlbumComponent } from './components/work-album/work-album.component
 import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
 import { WorksListComponent } from './components/works-list/works-list.component';
 import { AlbumDetailComponent } from './components/works-list/album-detail/album-detail.component';
+import { PageTypeComponent } from './components/page-type/page-type.component';
+import { PageListComponent } from './components/page-list/page-list.component';
 
 // Services
 
@@ -30,6 +33,7 @@ import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
 import { SanityService } from './services/sanity.service';
 import { SanityCategoryService } from './services/category.service';
+import { PageService } from './services/page.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
@@ -48,13 +52,15 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     WorkCategoryComponent,
     WorkAlbumComponent,
     ImgZoomComponent,
+    PageTypeComponent,
     GetByTypePipe,
     WorksListComponent,
     AlbumDetailComponent,
     ImgDetailComponent,
     ArtWorkViewComponent,
     GetImgUrlPipe,
-    GetByCategoryPipe
+    GetByCategoryPipe,
+    PageListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
@@ -70,6 +76,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     ArtWorkService,
     ArtWorkAlbumService,
     MessageService,
+    PageService,
     OrderModule,
     SanityService,
     SanityCategoryService
