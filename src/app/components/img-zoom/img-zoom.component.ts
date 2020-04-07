@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject, SimpleChanges } from '@angular/core';
-import { CommonModule } from '@angular/common';  
+import { Component, OnInit, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';  
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
 import { RouterModule, ActivatedRoute} from '@angular/router';
 
@@ -29,6 +29,7 @@ export class ImgZoomComponent implements OnInit {
   sanityImgBuilder: any;
   slideshow: boolean;
   currPermalink: string;
+  isBrowser: boolean;
   albumid: string;
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
@@ -45,8 +46,10 @@ export class ImgZoomComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     @Inject(WindowRefService) private window: Window,
+    @Inject(PLATFORM_ID) private platformId
   ) {
     library.addIcons(this.faArrowLeft, this.faArrowRight, this.faChevronCircleLeft);
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
@@ -63,9 +66,10 @@ export class ImgZoomComponent implements OnInit {
     this.getAlbum(this.albumid);
 
     this.getAlbumImages(this.albumid, imgId);
-    
-    this.desHeight = window.innerHeight + 'px';
-    this.desWidth = window.innerWidth + 'px';
+    if (this.isBrowser) {
+      this.desHeight = window.innerHeight + 'px';
+      this.desWidth = window.innerWidth + 'px';
+    }
 
     this.route.params.subscribe(routeParams => {
       let imgId = routeParams.imgId;
@@ -156,7 +160,9 @@ export class ImgZoomComponent implements OnInit {
   }
 
   isMobileSize() {
-    return window.innerWidth <= 575;
+    if (this.isBrowser) {
+      return window.innerWidth <= 575;
+    }
   }
 
 }
