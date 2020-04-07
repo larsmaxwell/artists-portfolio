@@ -21,6 +21,7 @@ const routes: Routes = [
       { path: './', component: WorkAlbumComponent },
     ]
   },
+  { path: 'about', redirectTo: 'pages/about' },
   { path: 'works/:permalink/:albumId/:imgId', component: ImgZoomComponent, },
   { path: 'works/:permalink/:albumId/', component: ImgZoomComponent },
   { path: 'works/category/:category', component: WorkCategoryComponent},
