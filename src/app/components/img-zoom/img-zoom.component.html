@@ -1,39 +1,38 @@
-<ng-template [ngIf]="slideshow">
-    <div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight}">
-        <div class="img-center-component stacked">
-            <div class="img-controls" [ngStyle]="{'height': desHeight}">
-                <div class="img-controls-prev img-controls-element"
-                routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.prevId }}">
-                    <a>
-                        <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
-                    </a>
-                </div>
-                <div class="img-controls-next img-controls-element"
-                routerLink="/works/{{ imgControls.permalink }}/{{ album._id }}/{{ imgControls.nextId }}">
-                    <a>
-                        <fa-icon [icon]="faChevronCircleRight"></fa-icon>
-                    </a>
-                </div>
-                <div class="img-controls-exit img-controls-element">
-                    <a routerLink="/works/{{ imgControls.permalink }}/">
-                        <h5><fa-icon [icon]="faArrowLeft"></fa-icon> Go Back</h5>
-                    </a>
-                </div>
+
+<div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight}">
+    <div class="img-center-component stacked">
+        <div class="img-controls" [ngStyle]="{'height': desHeight}">
+            <div class="img-controls-prev img-controls-element"
+            [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
+                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
+                    <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
+                </a>
             </div>
-            <div class="img-center-component-inner" [ngStyle]="{'height': desHeight}">
-                <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
-                    <a [routerLink]="['/works', imgControls.permalink, album._id, imgControls.nextId ]"
-                        [className]="i != imgControls.currentIndex ? 'd-none' : ''">
-                        <img [src]="urlFor(album.images[i])" />
-                    </a>
-                </ng-template>
+            <div class="img-controls-next img-controls-element"
+            [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
+                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
+                    <fa-icon [icon]="faChevronCircleRight"></fa-icon>
+                </a>
+            </div>
+            <div class="img-controls-exit img-controls-element">
+                <a [routerLink]="['/works', imgControls.permalink ]">
+                    <h5><fa-icon [icon]="faArrowLeft"></fa-icon> Go Back</h5>
+                </a>
             </div>
         </div>
+        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight}">
+            <ng-template ngFor let-image [ngForOf]="images" let-i="index">
+                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]"
+                    [className]="i != imgControls.currentIndex ? 'd-none' : ''">
+                    <img [src]="image.asset.url" [alt]="image.caption || ''" />
+                </a>
+            </ng-template>
+        </div>
     </div>
-</ng-template>
+</div>
 
 
-<ng-template [ngIf]="!slideshow">
+<!-- <ng-template [ngIf]="!slideshow">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -44,10 +43,10 @@
                 </div>
             </div>
             <div class="col-12">
-                <ng-template ngFor let-image [ngForOf]="album.images" let-i="index">
-                    <img [src]="urlFor(album.images[i])" class="img-fluid"/>
+                <ng-template ngFor let-image [ngForOf]="images" let-i="index">
+                    <img [src]="urlFor(images[i])" class="img-fluid"/>
                 </ng-template>
             </div>
         </div>
     </div>
-</ng-template>
+</ng-template> -->

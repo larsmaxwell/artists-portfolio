@@ -1,6 +1,7 @@
 import { Injectable, Input } from '@angular/core';
 const imageUrlBuilder = require('@sanity/image-url');
 const sanityClientService = require('@sanity/client');
+import { environment } from '../../environments/environment'
 
 @Injectable()
 export class SanityService {
@@ -13,10 +14,9 @@ export class SanityService {
 
   init() {
     return new sanityClientService({
-      projectId: 'qwmluuy0',
-      dataset: 'production',
-      useCdn: false, // `false` if you want to ensure fresh data
-      ignoreBrowserTokenWarning: true
+      projectId: environment.sanityProjectId,
+      dataset: environment.dataset,
+      useCdn: environment.useCdn, // `false` if you want to ensure fresh data
     });
   }
 

@@ -22,7 +22,7 @@ import { SanityService } from '../../services/sanity.service';
 export class ArtWorkViewComponent implements OnInit {
 
   work: ArtWork;
-  albumId2: string;
+  albumId: string;
   safeURL: SafeResourceUrl;
   descriptionHtmlBlock: String; 
   sanityInstance: any;
@@ -81,10 +81,10 @@ export class ArtWorkViewComponent implements OnInit {
         this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(data.mediaUrl);
 
         if (data.album) {
-          this.albumId2 = data.album._ref;
+          this.albumId = data.album._ref;
         }
         else {
-          this.albumId2 = null;
+          this.albumId = null;
         }
 
         if (data.description) {
@@ -92,7 +92,6 @@ export class ArtWorkViewComponent implements OnInit {
             blocks: data.description,
           });
         }
-        console.log(data);
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
       });

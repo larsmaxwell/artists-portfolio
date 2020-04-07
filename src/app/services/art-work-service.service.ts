@@ -51,17 +51,6 @@ export class ArtWorkService {
       tap(_ => this.log(`fetched work id=${permalink}`)),
       catchError(this.handleError<any>(`getHero id=${permalink}`))
     );
-
-    // return client.fetch(query)
-    //   .catch(err => {
-    //     this.handleError(err.message);
-    //   });
-
-      // .pipe(
-      //   map(result<any> => result),
-      //   tap(_ => this.log(`fetched work permalink=${permalink}`)),
-      //   catchError(this.handleError<any>(`getWork permalink=${permalink}`))
-      // )
   }
 
   /**
