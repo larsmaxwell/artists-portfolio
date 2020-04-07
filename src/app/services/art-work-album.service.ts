@@ -54,6 +54,21 @@ export class ArtWorkAlbumService {
       );
   }
 
+  getAlbumImages(client: any, id: string) {
+    const query = `*[_id == "${id}"]{images[]{..., "asset": asset->}}[]`;
+    const itemsObservable = new Observable(observer => {
+      return client.fetch(query)
+        .then(data => {
+          observer.next(data[0].images)
+          observer.complete()
+        })
+        .catch(err => {
+          this.handleError(err.message);
+        });
+    });
+    return itemsObservable;
+  }
+
   /** GET Album by id. Will 404 if id not found */
   getAlbumById(id: String): Observable<any> {
     const url = `${this.worksUrl}[_id%20==%20$id]&$id="${id}"`;

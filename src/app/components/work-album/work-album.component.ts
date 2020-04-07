@@ -17,15 +17,15 @@ import { faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 export class WorkAlbumComponent implements OnInit {
 
   @Input() albumId: string;
-  @Input() galleryview: string;
+  @Input() galleryview: boolean;
+  @Input() hideat: number;
   imgUrl: String;
   album: Album;
   sanityClient: any;
   sanityInstance: any;
   sanityImgBuilder: any;
-  hideat: number;
   faExternalLinkSquareAlt = faExternalLinkSquareAlt;
-
+  images: any;
 
   constructor(
     private albumService: ArtWorkAlbumService,
@@ -36,38 +36,45 @@ export class WorkAlbumComponent implements OnInit {
   ) {
 
     library.addIcons(this.faExternalLinkSquareAlt);
+    this.getSanity();
+    this.getSanityUrlBuilder();
   }
 
   ngOnInit() {
-    this.getSanity();
-    this.getSanityUrlBuilder();
-    this.getAlbum(this.albumId);
+
+    // this.getAlbum(this.albumId);
+    this.getAlbumImages(this.albumId);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (typeof changes.albumId.currentValue !== 'undefined') {
       // insert the new value
-      this.getAlbum(changes.albumId.currentValue);
+      this.getAlbumImages(changes.albumId.currentValue);
     }
     else {
-      this.getAlbum(null);
+      this.getAlbumImages(null);
     }
   }
 
-  getAlbum(albumId: any) {
-    this.sanityClient = this.albumService.sanityInit();
+  // getAlbum(albumId: any) {
 
-    if (albumId) {
-      this.albumService.sanityGetAlbumById(albumId, this.sanityClient)
-      .then(result => {
-        this.album = result[0];
-        this.hideat = result[0].hideat || 4;
-      });
-    }
-    else {
-      this.album = null;
-    }
+  //   if (albumId) {
+  //     this.albumService.sanityGetAlbumById(albumId, this.sanityInstance)
+  //     .then(result => {
+  //       this.album = result[0];
+  //       this.hideat = this.hideat || 4;
+  //     });
+  //   }
+  //   else {
+  //     this.album = null;
+  //   }
 
+  // }
+
+  getAlbumImages(id) {
+    this.albumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
+      this.images = data;
+    });
   }
 
   getSanity() {

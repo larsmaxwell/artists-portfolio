@@ -33,7 +33,7 @@ export class PageService {
   getPageByPermalink(permalink:string): Observable<Page> {
 
     const url = `${this.clientUrl}[_type%20==%20"page"%20%26%26%20slug.current%20==%20"${permalink}"]`;
-    // console.log("URL ", url);
+
     return this.http.get<any>(url).pipe(
       map(data => data.result[0]),
       tap(_ => this.log(`fetched work id=${permalink}`)),
