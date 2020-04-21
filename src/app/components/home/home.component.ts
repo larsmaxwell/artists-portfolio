@@ -54,8 +54,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.title.setTitle( "Loading..." );
-
     this.activeSlide = "";
 
     this.getSanity();
@@ -64,7 +62,7 @@ export class HomeComponent implements OnInit {
     this.imageID = this.route.snapshot.paramMap.get('imgId');
     this.slideshowView = !!this.route.snapshot.paramMap.get('imgId');
 
-    console.log(this.slideshowView);
+    this.setMeta();
 
     // Set element 
     this.setBrowserEffects();
@@ -163,5 +161,16 @@ export class HomeComponent implements OnInit {
     if (this.isBrowser) {
       return window.innerWidth <= 600;
     }
+  }
+
+  setMeta() {
+    this.title.setTitle("Lurn Maxwell: Home");
+    this.meta.updateTag({name: 'description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle"});
+    this.meta.updateTag({name: 'keywords', content: "comics, horror comics, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
+    this.meta.updateTag({property: 'og:title', content: "Lurn Maxwell: About" });
+    this.meta.updateTag({property: 'og:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
+    this.meta.updateTag({name: 'twitter:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
+    this.meta.updateTag({name: 'twitter:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
+    this.meta.updateTag({property: 'og:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
   }
 }
