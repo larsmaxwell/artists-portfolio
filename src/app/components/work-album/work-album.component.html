@@ -36,24 +36,26 @@
         </div>
         <div class="col-md-12">
           <div class="row">
-            <ng-template ngFor let-image [ngForOf]="images" let-i="index">
-              <div class="gallery-bottom-img-container isotope-item col-md-3 col-6" *ngIf="i<hideat">
+            <!-- [updateLayout]="getAlbumImages(albumId)" -->
+            <ng-container *ngFor="let image of images; let i = index;">
+              <div class="gallery-bottom-img-container col-md-3"
+              *ngIf="i < hideat">
                 <a [routerLink]="['./', albumId, i]" class="img-container">
-                  <img [src]="urlFor(images[i])" [alt]="image.caption || ''" class="img-fluid image-album-list" />
+                  <img [src]="urlFor(image).width(300)" [alt]="image.caption || ''" class="img-fluid image-album-list" />
                 </a>
               </div>
-              <div class="placeholder-container isotope-item col-6 col-md-3" *ngIf="i === hideat">
+              <div class="masonry-item placeholder-container isotope-item col-md-3"
+              *ngIf="i === hideat">
                 <a [routerLink]="['./', albumId, 0]">
                   <div class="placeholder-empty-link">
                     <span class="view-all-text">
                       View All
-                      <!-- <fa [name]="'arrows-alt'" [size]="'xs'" class="fa-1"></fa> -->
                     </span>
-                    <img [src]="urlFor(images[i])" class="img-fluid image-album-list" />
+                    <img [src]="urlFor(image).width(200)" class="img-fluid image-album-list" />
                   </div>
                 </a>
               </div>
-            </ng-template>
+            </ng-container>
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { PageTypeComponent } from './components/page-type/page-type.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'illustration/:imgId', component: HomeComponent },
   { path: 'workstest', component: WorksListComponent },
   { path: 'works/:permalink', component: ArtWorkViewComponent,
     children: [

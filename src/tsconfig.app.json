@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "angularCompilerOptions": {
     "entryModule": "./app/app.module#AppModule",
-    // "enableIvy": false // set to false
+    "enableIvy": false // set to false
   },
   "compilerOptions": {
     "outDir": "../out-tsc/app",

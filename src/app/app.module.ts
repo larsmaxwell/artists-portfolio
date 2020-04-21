@@ -11,6 +11,7 @@ import { OrderModule } from 'ngx-order-pipe';
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 // Components
 import { AppComponent } from './components/app.component';
@@ -31,6 +32,7 @@ import { PageListComponent } from './components/page-list/page-list.component';
 import { MessageService } from './services/message.service';
 import { ArtWorkService } from './services/art-work-service.service';
 import { ArtWorkAlbumService } from './services/art-work-album.service'
+import { IllustrationService } from './services/illustration.service';
 import { SanityService } from './services/sanity.service';
 import { SanityCategoryService } from './services/category.service';
 import { PageService } from './services/page.service';
@@ -70,11 +72,13 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     FontAwesomeModule,
     OrderModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    NgMasonryGridModule
   ],
   providers: [
     ArtWorkService,
     ArtWorkAlbumService,
+    IllustrationService,
     MessageService,
     PageService,
     OrderModule,

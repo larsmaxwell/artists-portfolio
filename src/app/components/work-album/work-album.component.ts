@@ -26,6 +26,7 @@ export class WorkAlbumComponent implements OnInit {
   sanityImgBuilder: any;
   faExternalLinkSquareAlt = faExternalLinkSquareAlt;
   images: any;
+  localStorage = localStorage; 
 
   constructor(
     private albumService: ArtWorkAlbumService,

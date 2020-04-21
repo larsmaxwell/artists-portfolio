@@ -1,6 +1,71 @@
-<!-- contact.html -->
-<div class="clearfix row">
-  <div class="col-md-6">
-      <img class="img-fluid" src="/assets/images/home/tunnel.png">
+
+<div id="galleryWrapperLurn" class="gallery-wrapper" [style.height]="isMobileSize() || slideshowView === false ? '' : desHeight">
+
+  <div id="slideshow" class="slideshow" 
+  [style.height]="isMobileSize ? '' : desHeight"
+  [hidden]="!slideshowView">
+    <div
+        *ngFor="let illustration of illustrations; let i = index;"
+        [style.height]="isMobileSize ? '' : desHeight" 
+        class="slide"
+        [ngClass]="{
+          'active-slide': isActiveSlide(illustration._id)
+        }"
+        [attr.aria-hidden]="!isActiveSlide(illustration._id)"
+        [attr.data-img-id]="illustration.featuredImage._id"
+        [style.height]="isMobileSize() ? '' : desHeight"
+        >
+      <img class="img-fluid" [src]="urlFor(illustration.featuredImage).width(1000)" [alt]="illustration.caption ? illustration.caption : ''" [style.height]="isMobileSize() ? '' : desHeight"/>
+      <div class="image-title-mobile"> <strong>{{ illustration.name }}</strong><br>
+        {{ illustration.description }}
+      </div>
+    </div>
+
+    <div class="overlay-controls left-control" [routerLink]="['/illustration', imgControls.prevId]"></div>
+    <div class="overlay-controls center-control thumbnail-toggle" [routerLink]="['/illustration', imgControls.nextId ]"></div>
+    <div class="overlay-controls right-control" [routerLink]="['/illustration', imgControls.nextId ]"></div>
+    <div class="overlay-controls exit-control">
+      <a [routerLink]="['/']" class="h5">
+          <fa-icon [icon]="faArrowLeft"></fa-icon> thumbnails
+      </a>
+    </div>
+
+    <div class="overlay-controls nav-control">
+      <p *ngIf="currentIll">
+        <strong>{{ currentIll.name }}</strong><br>
+        {{ currentIll.description }}
+      </p>
+      <a [routerLink]="['/illustration', imgControls.prevId ]" class="h6">
+        Prev
+      </a>
+      /
+      <a [routerLink]="['/illustration', imgControls.nextId ]" class="h6">
+        Next
+      </a>
+    </div>
+  </div>
+
+  <div id="thumbnails"
+  [hidden]="slideshowView">
+    <ng-masonry-grid
+    (onNgMasonryInit)="onNgMasonryInit($event)"
+    [masonryOptions]="{ gutter: 5 }" 
+    [useAnimation]="true"
+    [useImagesLoaded]="true"
+    >
+    <!-- Masonry Grid Item -->
+      <ng-masonry-grid-item 
+      id="{{'masonry-item-'+i}}" 
+      *ngFor="let illustration of illustrations; let i = index;" 
+      class="masonry-item">
+        <a
+        [routerLink]="['/illustration', illustration._id]">
+          <img [src]="urlFor(illustration.featuredImage).width(500)"
+          [alt]="illustration.caption ? illustration.caption : '' "
+          class="img-fluid"/>
+        </a>
+      <!-- Grid Content  -->
+      </ng-masonry-grid-item>
+    </ng-masonry-grid>
   </div>
 </div>
