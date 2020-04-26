@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:heroku": "npm run build:ssr && npm run serve:ssr",
-    "build": "ng build",
+    "start:heroku": "npm run serve:ssr",
+    "build": "npm run build:ssr",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
