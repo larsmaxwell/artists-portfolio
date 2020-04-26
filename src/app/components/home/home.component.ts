@@ -20,6 +20,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export class HomeComponent implements OnInit {
 
   illustrations: any;
+  illustrationsImages: any;
   sanityInstance: any;
   sanityImgBuilder: any;
   gridView: any;
@@ -100,10 +101,10 @@ export class HomeComponent implements OnInit {
 
   getWorks(): void {
     const client = this.illustrationService.init();
-    this.illustrationService.getItemsClient(client)
-      .subscribe((result) =>  { 
-        this.illustrations = result;
-
+    this.illustrationService.getAssetsClient(client)
+      .subscribe((data) =>  { 
+        this.illustrations = data;
+        console.log(this.illustrations);
         if (this.slideshowView && !this.isMobileSize()) {
           this.setImgControls(this.imageID);
         }

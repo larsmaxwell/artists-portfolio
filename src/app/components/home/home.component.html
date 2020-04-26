@@ -3,7 +3,7 @@
 
   <div id="slideshow" class="slideshow" 
   [style.height]="isMobileSize ? '' : desHeight"
-  [hidden]="!slideshowView">
+  *ngIf="slideshowView">
     <div
         *ngFor="let illustration of illustrations; let i = index;"
         [style.height]="isMobileSize ? '' : desHeight" 
@@ -46,10 +46,10 @@
   </div>
 
   <div id="thumbnails"
-  [hidden]="slideshowView">
+  *ngIf="!slideshowView">
     <ng-masonry-grid
     (onNgMasonryInit)="onNgMasonryInit($event)"
-    [masonryOptions]="{ gutter: 5 }" 
+    [masonryOptions]="{ transitionDuration: '0.2s', gutter: 5, viewportFactor : 1}" 
     [useAnimation]="true"
     [useImagesLoaded]="true"
     >
@@ -58,12 +58,8 @@
       id="{{'masonry-item-'+i}}" 
       *ngFor="let illustration of illustrations; let i = index;" 
       class="masonry-item">
-        <a
-        [routerLink]="['/illustration', illustration._id]">
-          <img [src]="urlFor(illustration.featuredImage).width(425)"
-          [alt]="illustration.caption ? illustration.caption : '' "
-          class="img-fluid"/>
-        </a>
+        <app-illustration-tile [illustration]="illustration" class="illustration-tile">
+        </app-illustration-tile>
       <!-- Grid Content  -->
       </ng-masonry-grid-item>
     </ng-masonry-grid>

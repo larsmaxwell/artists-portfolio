@@ -1,0 +1,10 @@
+
+.underground-image {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+}
+
+.illustration-tile {
+    position: relative;
+}

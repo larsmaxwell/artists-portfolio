@@ -63,6 +63,23 @@ export class IllustrationService {
     return itemsObservable;
   }
 
+  /** Get ArtWorks from the server */
+  getAssetsClient(client: any): any {
+    const query = `*[_type == "illustration"]{_id, _createdAt, name, description, featuredImage{..., "asset": asset->}}[]`;
+
+    const itemsObservable = new Observable(observer => {
+      return client.fetch(query)
+        .then(data => {
+          observer.next(data)
+          observer.complete()
+        })
+        .catch(err => {
+          this.handleError(err.message);
+        });
+    });
+    return itemsObservable;
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

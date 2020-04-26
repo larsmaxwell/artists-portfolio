@@ -81,5 +81,10 @@
 
 
 .masonry-item {
-  width: calc(33.333333% - 5px);
+  width: calc(25% - 5px);
+  display: block;
+}
+
+.masonry-image-wrapper {
+  background-color: rgba(175,175,175,.1);
 }

@@ -77,12 +77,6 @@ export class ImgZoomComponent implements OnInit {
     });
   }
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   console.log(changes);
-  //   const imgId = this.route.snapshot.paramMap.get('imgId');
-  //   this.getAlbumImages(this.albumid, imgId);
-  // }
-
   getAlbumImages(id, imgId) {
     this.ArtWorkAlbumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
       this.images = data;

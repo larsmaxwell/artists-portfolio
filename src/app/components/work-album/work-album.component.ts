@@ -57,21 +57,6 @@ export class WorkAlbumComponent implements OnInit {
     }
   }
 
-  // getAlbum(albumId: any) {
-
-  //   if (albumId) {
-  //     this.albumService.sanityGetAlbumById(albumId, this.sanityInstance)
-  //     .then(result => {
-  //       this.album = result[0];
-  //       this.hideat = this.hideat || 4;
-  //     });
-  //   }
-  //   else {
-  //     this.album = null;
-  //   }
-
-  // }
-
   getAlbumImages(id) {
     this.albumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
       this.images = data;
