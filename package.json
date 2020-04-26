@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:heroku": "npm run serve:ssr",
+    "start:heroku": "npm run build:ssr && npm run serve:ssr",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
