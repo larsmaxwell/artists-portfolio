@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
     private sanityService: SanityService,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    library.addIcons(this.faArrowLeft,);
+    library.addIcons(this.faArrowLeft);
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

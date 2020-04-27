@@ -49,8 +49,8 @@
   *ngIf="!slideshowView">
     <ng-masonry-grid
     (onNgMasonryInit)="onNgMasonryInit($event)"
-    [masonryOptions]="{ transitionDuration: '0.2s', gutter: 5, viewportFactor : 1}" 
-    [useAnimation]="true"
+    [masonryOptions]="{ gutter: 5, viewportFactor : 1}" 
+    [useAnimation]="false"
     [useImagesLoaded]="true"
     >
     <!-- Masonry Grid Item -->
@@ -58,7 +58,7 @@
       id="{{'masonry-item-'+i}}" 
       *ngFor="let illustration of illustrations; let i = index;" 
       class="masonry-item">
-        <app-illustration-tile [illustration]="illustration" class="illustration-tile">
+        <app-illustration-tile [illustration]="illustration" class="picture-tile">
         </app-illustration-tile>
       <!-- Grid Content  -->
       </ng-masonry-grid-item>
