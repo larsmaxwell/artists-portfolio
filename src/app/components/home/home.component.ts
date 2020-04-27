@@ -71,8 +71,6 @@ export class HomeComponent implements OnInit {
     this.getWorks();
 
     this.route.params.subscribe(routeParams => {
-      console.log(routeParams);
-      
       if (this.slideshowView) {
         this.setImgControls(routeParams.imgId);
       }
@@ -81,21 +79,12 @@ export class HomeComponent implements OnInit {
     if (this.isBrowser) {
       let self = this;
       window.addEventListener('resize', function() {
-        console.log(self);
         self.setBrowserEffects();
       });
     }
-
-    // this.imgControls.
-
-    // this.route.params.subscribe(routeParams => {
-    //   this.getWorks();
-    // });
   }
 
   onNgMasonryInit($event: Masonry) {
-
-    console.log($event);
     this._masonry = $event;
   }
 
@@ -104,7 +93,6 @@ export class HomeComponent implements OnInit {
     this.illustrationService.getAssetsClient(client)
       .subscribe((data) =>  { 
         this.illustrations = data;
-        console.log(this.illustrations);
         if (this.slideshowView && !this.isMobileSize()) {
           this.setImgControls(this.imageID);
         }

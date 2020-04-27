@@ -1,52 +1,27 @@
 
-<div class="img-zoom-component" *ngIf="currentImg" [ngStyle]="{'height': desHeight}">
-    <div class="img-center-component stacked">
-        <div class="img-controls" [ngStyle]="{'height': desHeight}">
-            <div class="img-controls-prev img-controls-element"
-            [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
-                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
-                    <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
-                </a>
-            </div>
-            <div class="img-controls-next img-controls-element"
-            [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
-                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
-                    <fa-icon [icon]="faChevronCircleRight"></fa-icon>
-                </a>
-            </div>
-            <div class="img-controls-exit img-controls-element">
-                <a [routerLink]="['/works', imgControls.permalink ]">
-                    <h5><fa-icon [icon]="faArrowLeft"></fa-icon> Go Back</h5>
-                </a>
-            </div>
-        </div>
-        <div class="img-center-component-inner" [ngStyle]="{'height': desHeight}">
-            <ng-template ngFor let-image [ngForOf]="images" let-i="index">
-                <a [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]"
-                    [className]="i != imgControls.currentIndex ? 'd-none' : ''">
-                    <img [src]="image.asset.url" [alt]="image.caption || ''" />
-                </a>
-            </ng-template>
-        </div>
-    </div>
+<div class="slideshow" *ngIf="currentImg" 
+  [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}">
+
+  <div class="overlay-controls left-control" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+  </div>
+  <div class="overlay-controls center-control thumbnail-toggle" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
+  </div>
+  <div class="overlay-controls right-control" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
+    <fa-icon [icon]="faArrowRight"></fa-icon>
+  </div>
+  <div class="overlay-controls exit-control">
+    <a [routerLink]="['/works', imgControls.permalink ]" class="h5">
+        <fa-icon [icon]="faArrowLeft"></fa-icon> Go back
+    </a>
+  </div>
+  <div *ngFor="let image of images; let i = index;"
+    [class]="'slide slide-'+ i"
+    [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}"
+    [ngClass]="{
+      'active-slide': isCorrectIndex(i)
+    }">
+      <img [src]="image.asset.url" [alt]="image.caption || ''" class="img-fluid"
+      [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}">
+  </div>
 </div>
-
-
-<!-- <ng-template [ngIf]="!slideshow">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <div class="img-controls-exit img-controls-element">
-                    <a routerLink="/works/{{ imgControls.permalink }}/">
-                        <h5><fa-icon [icon]="faArrowLeft"></fa-icon></h5>
-                    </a>
-                </div>
-            </div>
-            <div class="col-12">
-                <ng-template ngFor let-image [ngForOf]="images" let-i="index">
-                    <img [src]="urlFor(images[i])" class="img-fluid"/>
-                </ng-template>
-            </div>
-        </div>
-    </div>
-</ng-template> -->

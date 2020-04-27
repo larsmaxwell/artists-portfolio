@@ -114,6 +114,7 @@ footer p {
   position: relative;
   text-align: left;
   height: 100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -161,6 +162,22 @@ footer p {
     display: none;
   }
 }
+
+.overlay-controls.right-control fa-icon, .overlay-controls.right-control fa-icon {
+  position: absolute;
+  top: 48%;
+  background: #fff;
+  padding: 10px;
+}
+
+.overlay-controls.right-control fa-icon {
+  right: 0;
+}
+
+.overlay-controls.left-control fa-icon {
+  left: 0;
+}
+
 .overlay-controls.nav-control {
   height: auto;
   bottom: 0;

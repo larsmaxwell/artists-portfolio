@@ -1,11 +1,5 @@
   <a
   [routerLink]="['/illustration', illustration._id]" class="">
-    <!-- <picture class="">
-      <img alt="" class="underground-image img-fluid" [src]="urlFor(illustration.featuredImage).width(4)">
-
-      <img alt="" [srcset]="urlFor(illustration.featuredImage).width(425)" class="img-fluid">
-    </picture> -->
-
     <picture class="intrinsic">
       <img alt="" [src]="urlFor(illustration.featuredImage).width(4)" width="300px" class="intrinsic-backgound background">
       <img alt="" [srcset]="urlFor(illustration.featuredImage).width(425)" class="img-fluid intrinsic-item">

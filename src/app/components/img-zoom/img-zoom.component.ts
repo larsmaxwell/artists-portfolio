@@ -22,7 +22,7 @@ export class ImgZoomComponent implements OnInit {
   album: Album;
   images: any;
   currentImg: any;
-  imgControls: {};
+  imgControls: any;
   desHeight: string;
   desWidth: string;
   sanityInstance: any;
@@ -116,6 +116,10 @@ export class ImgZoomComponent implements OnInit {
         }
 
     });
+  }
+
+  isCorrectIndex(id) {
+    return parseInt(id) === parseInt(this.imgControls.currentIndex);
   }
 
   getAlbum(id: string) {
