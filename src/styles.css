@@ -163,7 +163,7 @@ footer p {
   }
 }
 
-.overlay-controls.right-control fa-icon, .overlay-controls.right-control fa-icon {
+.overlay-controls.right-control fa-icon, .overlay-controls.left-control fa-icon {
   position: absolute;
   top: 48%;
   background: #fff;
