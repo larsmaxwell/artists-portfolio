@@ -1,7 +1,7 @@
-import { Component, OnInit, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Input, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';  
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { RouterModule, ActivatedRoute} from '@angular/router';
+import { Router, RouterModule, ActivatedRoute, ParamMap} from '@angular/router';
 
 import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
@@ -19,10 +19,13 @@ import { faArrowLeft, faArrowRight, faChevronCircleLeft, faChevronCircleRight} f
 })
 export class ImgZoomComponent implements OnInit {
 
+  @Input() albumId: string;
+
   album: Album;
   images: any;
   currentImg: any;
   imgControls: any;
+  imgIndex: number;
   desHeight: string;
   desWidth: string;
   sanityInstance: any;
@@ -30,7 +33,7 @@ export class ImgZoomComponent implements OnInit {
   slideshow: boolean;
   currPermalink: string;
   isBrowser: boolean;
-  albumid: string;
+  getAlbumId: string;
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
   faChevronCircleLeft = faChevronCircleLeft;
@@ -41,7 +44,7 @@ export class ImgZoomComponent implements OnInit {
     private ArtWorkAlbumService: ArtWorkAlbumService,
     private sanityService: SanityService,
     private route: ActivatedRoute,
-    private router: RouterModule,
+    private router: Router,
     private library: FaIconLibrary,
     private meta: Meta,
     private title: Title,
@@ -55,84 +58,102 @@ export class ImgZoomComponent implements OnInit {
   ngOnInit() {
     this.getSanity();
     this.getSanityUrlBuilder();
-    this.albumid = this.route.snapshot.paramMap.get('albumId');
-    const imgId = this.route.snapshot.paramMap.get('imgId');
+    const currentRoute = this.route ? this.route : this.route;
+    const snapshotCapture = currentRoute ? currentRoute.snapshot : currentRoute.snapshot;
+
+    // Get information about the album
+    this.getAlbumId = this.albumId || this.route.snapshot.paramMap.get('albumId');
+    this.getAlbum(this.getAlbumId);
+
+    this.imgIndex = parseInt(this.route.snapshot.paramMap.get('imgId')) || 0;
     this.currPermalink = this.route.snapshot.paramMap.get('permalink');
 
-    if (imgId) {
+    if (this.imgIndex && this.currPermalink) {
       this.slideshow = true;
     }
 
-    this.getAlbum(this.albumid);
+    this.getAlbumImages(this.getAlbumId);
 
-    this.getAlbumImages(this.albumid, imgId);
-    if (this.isBrowser) {
-      this.desHeight = window.innerHeight + 'px';
-      this.desWidth = window.innerWidth + 'px';
-    }
-
-    this.route.params.subscribe(routeParams => {
-      let imgId = routeParams.imgId;
-      this.getAlbumImages(this.albumid, imgId);
+    this.route.params.subscribe(params => {
+      this.getAlbumId = params.albumId ? params.albumId : this.albumId;
+      this.imgIndex = params.imgId ? parseInt(params.imgId) : 0;
+      this.getAlbumImages(this.getAlbumId);
     });
+
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    
+    this.getAlbumId = this.route.snapshot.paramMap.get('albumId') ? this.route.snapshot.paramMap.get('albumId') : this.albumId;
+    this.imgIndex = this.route.snapshot.paramMap.get('imgId') ? parseInt(this.route.snapshot.paramMap.get('imgId')) : 0;
+
+    this.getAlbumImages(this.getAlbumId);
   }
 
-  getAlbumImages(id, imgId) {
+  getWindowHeight() {
+    if (this.isBrowser) {
+      return window.innerHeight;
+    }
+  }
+
+  getAlbumImages(id) {
     this.ArtWorkAlbumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
+      // console.log(this.images);
       this.images = data;
       let albumLength = this.images.length;
 
-        this.currentImg = data[imgId].asset;
-        let currentIndex = imgId;
+      this.updateCurrentImage(data[this.imgIndex]);
 
-        let desLength = albumLength - 1;
-        let next = parseInt(currentIndex) === desLength ? 0 : parseInt(currentIndex) + 1;
-        let prev = parseInt(currentIndex) === 0 ? desLength : parseInt(currentIndex) - 1;
-
-        this.imgControls = {
-            currentImg: data[imgId],
-            currentIndex: imgId,
-            nextId: next,
-            prevId: prev,
-            permalink: this.currPermalink
-        };
-
-        this.meta.updateTag({name: 'image', content: data[imgId].asset.url});
-        this.meta.updateTag({property: 'og:image', content: data[imgId].asset.url});
-        this.meta.updateTag({name: 'twitter:image', content: data[imgId].asset.url});
-
-
-        if (data[imgId].caption) {
-          this.meta.updateTag({name: 'description', content: data[imgId].caption});
-          this.meta.updateTag({property: 'og:description', content: data[imgId].caption});
-          this.meta.updateTag({name: 'twitter:description', content: data[imgId].caption});
-        }
-        else {
-          let descString = `Gallery Image Page ${imgId} View`
-          this.meta.updateTag({name: 'description', content: descString});
-          this.meta.updateTag({property: 'og:description', content: descString});
-          this.meta.updateTag({name: 'twitter:description', content: descString});
-
-        }
-
+      this.updateImageControls();
     });
   }
 
+  updateCurrentImage(image) {
+    this.currentImg = image;
+  }
+
+  updateImageControls() {
+    let desLength = this.images.length - 1;
+    let imgInd = this.imgIndex
+    let next = imgInd === desLength ? 0 : imgInd + 1;
+    let prev = imgInd === 0 ? desLength : imgInd - 1;
+
+    this.imgControls = {
+        currentImg: this.currentImg,
+        currentIndex: imgInd,
+        nextId: next,
+        prevId: prev,
+        permalink: this.currPermalink
+    };
+  }
+
+  updateRouter(forward:boolean) {
+    forward: forward || false;
+    if (forward === true) {
+      this.router.navigate([this.albumId, this.imgControls.nextId], { relativeTo: this.route });
+      this.imgIndex = parseInt(this.imgControls.nextId);
+    } else {
+      this.router.navigate([this.albumId, this.imgControls.prevId], { relativeTo: this.route });
+      this.imgIndex = parseInt(this.imgControls.prevId);
+    }
+
+    // Set the asset for the index
+    this.updateCurrentImage(this.images[this.imgIndex].asset);
+    // Update the controls available to the view
+    this.updateImageControls();
+  }
+
   isCorrectIndex(id) {
-    return parseInt(id) === parseInt(this.imgControls.currentIndex);
+    return parseInt(id) === this.imgIndex;
   }
 
   getAlbum(id: string) {
-    const currPermalink = this.route.snapshot.paramMap.get('permalink');
+
+    // const currPermalink = this.route.firstChild.snapshot.paramMap.get('permalink');
 
     this.ArtWorkAlbumService.getAlbumById(id)
       .subscribe(album => {
         this.album = album;
-        this.title.setTitle( album.name );
-        this.meta.updateTag({property: 'og:title', content: album.name});
-
-        this.meta.updateTag({property: 'og:title', content: album.name});
-        this.meta.updateTag({name: 'keywords', content: album.name + ' artwork view, view images, gallery view'});
+        console.log(album);
       });
   }
 
@@ -159,7 +180,7 @@ export class ImgZoomComponent implements OnInit {
 
   isMobileSize() {
     if (this.isBrowser) {
-      return window.innerWidth <= 575;
+      return window.innerWidth <= 768;
     }
   }
 

@@ -27,6 +27,7 @@ import { AlbumDetailComponent } from './components/works-list/album-detail/album
 import { PageTypeComponent } from './components/page-type/page-type.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationTileComponent } from './components/illustration-tile/illustration-tile.component';
+import { StoreIndexComponent } from './components/store-index/store-index.component'
 
 // Services
 
@@ -64,7 +65,8 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     GetImgUrlPipe,
     GetByCategoryPipe,
     PageListComponent,
-    IllustrationTileComponent
+    IllustrationTileComponent,
+    StoreIndexComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),

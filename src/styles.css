@@ -10,14 +10,16 @@ body {
     padding: 2rem 0;
 }
 a {
-    color: #00583f;
+    color: #138565;
 }
 a:not(.btn):hover, a:not(.btn):focus {
     color: #00583f;
     text-decoration: underline;
 }
+.navbar-container hr {
+  border-bottom: 1px solid #03fdb8;
+}
 .navbar-container .h5, .navbar-container h5 {
-    font-size: 1rem;
     color: white;
 }
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -109,8 +111,6 @@ footer p {
   vertical-align: top;
 }
 
-
-
 .slideshow {
   position: relative;
   text-align: left;
@@ -120,63 +120,36 @@ footer p {
 }
 
 .slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  display: inline-block;
   text-align: center;
-  opacity: 0;
-  z-index: -1;
 }
 
 .slide.active-slide {
-  opacity: 1;
-  z-index: 889;
+  display: inline-block;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 575px) {
   .slide {
-    position: relative;
-    height: auto;
-    display: block;
-    opacity: 1;
-    z-index: 0;
-  }
-  .slide.active-slide {
-    display: block;
+    display: none;
   }
 }
 
 .overlay-controls {
-  position: absolute;
-  top: 0;
-  height: 100%;
-  z-index: 998;
+
 }
 
-@media only screen and (max-width: 600px) {
-  .overlay-controls {
-    display: none;
-  }
-  .overlay-controls.thumbnail-toggle {
-    display: none;
-  }
-}
-
-.overlay-controls.right-control fa-icon, .overlay-controls.left-control fa-icon {
-  position: absolute;
-  top: 48%;
+.overlay-controls.right-control .button-right, .overlay-controls.left-control .button-left {
   background: #fff;
   padding: 10px;
 }
 
-.overlay-controls.right-control fa-icon {
-  right: 0;
+.overlay-controls.right-control .button-right {
+  /* right: 0; */
 }
 
-.overlay-controls.left-control fa-icon {
-  left: 0;
+.overlay-controls.left-control .button-left {
+  /* left: 0; */
 }
 
 .overlay-controls.nav-control {
@@ -190,17 +163,18 @@ footer p {
   height: auto;
   background-color: white;
 }
-.overlay-controls.left-control {
-  width: 40%;
+.overlay-controls.left-control, .overlay-controls.right-control {
+  display: none;
 }
-.overlay-controls.right-control {
-  left: 60%;
-  width: 40%;
+@media only screen and (min-width: 575px) {
+  .overlay-controls.left-control, .overlay-controls.right-control {
+    display: inline-block;
+    width: fit-content;
+  }
 }
 .overlay-controls.center-control {
-  left: 40%;
-  width: 20%;
-  cursor: n-resize;
+  cursor: e-resize;
+  display: inline-block;
 }
 
 .thumbnail-toggle {

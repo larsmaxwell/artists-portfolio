@@ -20,7 +20,14 @@
       </ng-template>
     </div>
   </div>
-  <ng-template [ngIf]="albumId">
-    <app-work-album [albumId]="albumId" [galleryview]="work.galleryview" [hideat]="work.hideat"></app-work-album>
+  <ng-template [ngIf]="work.album._ref && work.galleryview === true">
+    <!-- <app-work-album [albumId]="albumId" [galleryview]="work.galleryview" [hideat]="work.hideat"></app-work-album> -->
+    
+    <!-- <router-outlet ></router-outlet> -->
+    <app-img-zoom [albumId]="work.album._ref"></app-img-zoom>
+  </ng-template>
+  <ng-template [ngIf]="work.galleryview === false">
+    <!-- [caption]="image.caption || ''" class="img-fluid"<app-work-album [albumId]="albumId" [galleryview]="work.galleryview" [hideat]="work.hideat"></app-work-album> -->
+    <img [src]="urlFor(work.featuredImage)">
   </ng-template>
 </div>

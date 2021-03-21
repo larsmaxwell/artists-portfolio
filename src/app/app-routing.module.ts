@@ -12,6 +12,7 @@ import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
 import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
 import { WorkAlbumComponent } from './components/work-album/work-album.component';
 import { PageTypeComponent } from './components/page-type/page-type.component';
+import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,14 +20,15 @@ const routes: Routes = [
   { path: 'workstest', component: WorksListComponent },
   { path: 'works/:permalink', component: ArtWorkViewComponent,
     children: [
-      { path: './', component: WorkAlbumComponent },
+      { path: ':albumId/:imgId', component: ImgZoomComponent },
     ]
   },
+  // { path: 'works/:permalink/:albumId/:imgId', component: ArtWorkViewComponent, },
   { path: 'about', redirectTo: 'pages/about' },
-  { path: 'works/:permalink/:albumId/:imgId', component: ImgZoomComponent, },
-  { path: 'works/:permalink/:albumId/', component: ImgZoomComponent },
+  // { path: 'works/:permalink/:albumId/', component: ImgZoomComponent },
   { path: 'works/category/:category', component: WorkCategoryComponent},
   { path: 'pages/:permatwo', component: PageTypeComponent},
+  { path: 'store/', component: StoreIndexComponent },
   { path: '**', component: HomeComponent }
 ];
 

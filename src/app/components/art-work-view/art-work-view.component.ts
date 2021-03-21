@@ -4,7 +4,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { Location, isPlatformServer } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { Subscriber } from 'rxjs';
+import { Subscriber, Observable } from 'rxjs';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
 
@@ -27,6 +27,7 @@ export class ArtWorkViewComponent implements OnInit {
   descriptionHtmlBlock: String; 
   sanityInstance: any;
   sanityImgBuilder: any;
+  hideGallery: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,7 @@ export class ArtWorkViewComponent implements OnInit {
     private title: Title,
     private sanityService: SanityService
   ) {
+    this.hideGallery = false;
   }
 
   setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
@@ -78,6 +80,7 @@ export class ArtWorkViewComponent implements OnInit {
       data => {
         var metaData;
         this.work = data;
+
         this.safeURL = this._sanitizer.bypassSecurityTrustResourceUrl(data.mediaUrl);
 
         if (data.album) {
@@ -92,6 +95,7 @@ export class ArtWorkViewComponent implements OnInit {
             blocks: data.description,
           });
         }
+
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
       });

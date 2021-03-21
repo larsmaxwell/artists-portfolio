@@ -26,14 +26,7 @@
   <ng-template [ngIf]="images && images.length > 0">
     <ng-template [ngIf]="galleryview">
       <div class="gallery-bottom row mt-4">
-        <div class="col-md-12">
-          <a [routerLink]="['./', albumId, 0]">
-            <h5>Gallery 
-              <fa-icon [icon]="faExternalLinkSquareAlt"></fa-icon>
-            </h5>
-          </a>
-          <hr>
-        </div>
+
         <div class="col-md-12">
           <div class="row">
             <!-- [updateLayout]="getAlbumImages(albumId)" -->

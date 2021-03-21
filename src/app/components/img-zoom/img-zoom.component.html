@@ -1,27 +1,38 @@
 
-<div class="slideshow" *ngIf="currentImg" 
-  [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}">
-
-  <div class="overlay-controls left-control" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.prevId ]">
-    <fa-icon [icon]="faArrowLeft"></fa-icon>
+<div class="col-md-12">
+  <h5>Gallery </h5>
+  <hr>
+</div>
+<div class="slideshow" *ngIf="currentImg">
+  <!-- <div class="overlay-controls exit-control">
+    <button [routerLink]="['/works', imgControls.permalink ]" class="h5">
+        <fa-icon [icon]="faArrowLeft" aria-hidden="true"></fa-icon> Go back to Item information
+    </button>
+  </div> -->
+  <div class="overlay-controls left-control">
+    <button (click)="updateRouter(false)" class="button-left" aria-label="Visit the last item in the image gallery"><fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon></button>
   </div>
-  <div class="overlay-controls center-control thumbnail-toggle" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
-  </div>
-  <div class="overlay-controls right-control" [routerLink]="['/works', imgControls.permalink, albumid, imgControls.nextId ]">
-    <fa-icon [icon]="faArrowRight"></fa-icon>
-  </div>
-  <div class="overlay-controls exit-control">
-    <a [routerLink]="['/works', imgControls.permalink ]" class="h5">
-        <fa-icon [icon]="faArrowLeft"></fa-icon> Go back
-    </a>
-  </div>
-  <div *ngFor="let image of images; let i = index;"
-    [class]="'slide slide-'+ i"
-    [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}"
-    [ngClass]="{
-      'active-slide': isCorrectIndex(i)
+  <div class="overlay-controls center-control thumbnail-toggle"
+    (click)="updateRouter(true)"
+    [ngStyle]="{
+      'height': isMobileSize() ? 'auto' : getWindowHeight() + 'px'
     }">
-      <img [src]="image.asset.url" [alt]="image.caption || ''" class="img-fluid"
-      [ngStyle]="{'height': isMobileSize() ? 'auto' : desHeight}">
+    <div *ngFor="let image of images; let i = index;"
+      [class]="'slide slide-'+ i"
+      [ngStyle]="{
+        'height': isMobileSize() ? 'auto' : getWindowHeight() + 'px'
+      }"
+      [ngClass]="{
+        'active-slide': isCorrectIndex(i)
+      }"
+      (click)="updateRouter(true)"
+      >
+      <img alt="" [src]="urlFor(image).width(4)" class="d-none intrinsic-backgound background"
+      [ngStyle]="{'height': isMobileSize() ? 'auto' : getWindowHeight() + 'px'}">
+      <img [src]="urlFor(image).height(getWindowHeight())" [title]="image.caption || ''" [alt]="image.caption || ''" class="img-fluid">
+    </div>
+  </div>
+  <div class="overlay-controls right-control">
+    <button (click)="updateRouter(true)" class="button-right" aria-label="Visit the next item in the image gallery"><fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon></button>
   </div>
 </div>
