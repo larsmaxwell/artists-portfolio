@@ -3,17 +3,17 @@
   <h5>Gallery </h5>
   <hr>
 </div>
-<div class="slideshow" *ngIf="currentImg">
-  <!-- <div class="overlay-controls exit-control">
-    <button [routerLink]="['/works', imgControls.permalink ]" class="h5">
-        <fa-icon [icon]="faArrowLeft" aria-hidden="true"></fa-icon> Go back to Item information
-    </button>
-  </div> -->
+
+<p>Current Img Index {{ imgIndex | json }}</p>
+    <p>Pagination Start Index: {{ paginationCtrl.paginationStartIndex | json }}</p>
+    <p>Max Pagination (-1): {{ maxPagination | json }}</p>
+    <p>images length (-1): {{ this.images.length | json }}</p>
+
+<div class="img-zoom" *ngIf="currentImg">
   <div class="overlay-controls left-control">
     <button (click)="updateRouter(false)" class="button-left" aria-label="Visit the last item in the image gallery"><fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon></button>
   </div>
   <div class="overlay-controls center-control thumbnail-toggle"
-    (click)="updateRouter(true)"
     [ngStyle]="{
       'height': isMobileSize() ? 'auto' : getWindowHeight() + 'px'
     }">
@@ -34,5 +34,57 @@
   </div>
   <div class="overlay-controls right-control">
     <button (click)="updateRouter(true)" class="button-right" aria-label="Visit the next item in the image gallery"><fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon></button>
+  </div>
+  <div class="overlay-controls bottom-control carousel-pagination">
+
+    
+    <nav *ngIf="!isMobileSize()" aria-label="Slideshow Navigation">
+      <p>Showing slide number {{ imgIndex+1 }} of {{images.length}} slides</p>
+      <ul class="pagination justify-content-center pagination-sm">
+        <!-- Prev Arrow -->
+        <li [ngClass]="{
+          'disabled': paginationCtrl.isPrevDisabled,
+          'page-item' : true
+        }">
+          <button class="page-link" 
+            (click)="goToSlide(
+              paginationCtrl.paginationStartIndex > 0 ? paginationCtrl.paginationStartIndex - 1 : 0
+            )"
+            [disabled]="paginationCtrl.isPrevDisabled"
+            > 
+            <span aria-hidden="true">&laquo;</span> Previous 
+          </button>
+        </li>
+
+        <!-- Current Items -->
+        <li *ngFor="let item of paginationCtrl.activePaginationItems; let i = index;"
+          [ngClass]="{
+            'active': isCorrectIndex(paginationCtrl.paginationStartIndex + i),
+            'page-item' : true
+          }"> 
+          <button [ngClass]="{
+              'page-link' : true
+            }"
+            (click)="goToSlide(paginationCtrl.paginationStartIndex + i)">
+            pg{{ i+1+paginationCtrl.paginationStartIndex }}
+            <span *ngIf="isCorrectIndex(paginationCtrl.paginationStartIndex + i)" class="badge badge-light">
+              (Current Slide)
+            </span>
+          </button>
+        </li>
+
+        <!-- Next Arrow -->
+        <li [ngClass]="{
+          'disabled': paginationCtrl.isNextDisabled,
+          'page-item' : true
+        }">
+          <button class="page-link"
+            [disabled]="paginationCtrl.isNextDisabled"
+            (click)="goToSlide(paginationCtrl.paginationStartIndex + maxPagination)">
+            <span aria-hidden="true">&raquo;</span> Next
+          </button>
+        </li>
+      </ul>
+    </nav>
   </div>
 </div>

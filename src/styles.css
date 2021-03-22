@@ -25,15 +25,6 @@ a:not(.btn):hover, a:not(.btn):focus {
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Inconsolata', monospace;
 }
-app-img-zoom {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
 footer {
     background: #505050;
     padding: 30px 0;
@@ -111,12 +102,19 @@ footer p {
   vertical-align: top;
 }
 
-.slideshow {
+.img-zoom {
   position: relative;
   text-align: left;
-  height: 100%;
-  width: 100%;
   overflow: hidden;
+}
+
+@media only screen and (min-width: 575px) {
+  .img-zoom {
+    /* border: 2px solid #e5e5e5;
+    border-radius: 3px;
+    background: #f1f1f1;
+    padding: 2em 2em 0 2em; */
+  }
 }
 
 .slide {
@@ -133,10 +131,6 @@ footer p {
   .slide {
     display: none;
   }
-}
-
-.overlay-controls {
-
 }
 
 .overlay-controls.right-control .button-right, .overlay-controls.left-control .button-left {
@@ -181,3 +175,7 @@ footer p {
   display: block;
   cursor: pointer;
 }
+
+/* // Pagination Overrides
+
+// page-link */
