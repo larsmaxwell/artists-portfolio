@@ -1,7 +1,8 @@
+import { filter } from 'rxjs/operators';
 import { Component, OnInit, Input, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';  
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { Router, RouterModule, ActivatedRoute, ParamMap} from '@angular/router';
+import { Router, RouterModule, ActivatedRoute, NavigationEnd, RouterEvent, Event, ChildActivationEnd, ParamMap} from '@angular/router';
 
 import { Album } from '../../types/art-work-album';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
@@ -23,8 +24,11 @@ export class ImgZoomComponent implements OnInit {
 
   album: Album;
   images: any;
+  child: any;
+  subscription: any;
   currentImg: any;
   imgControls: any;
+  maxDimensions: any;
   paginationCtrl: any;
   imgIndex: number;
   maxPagination: number;
@@ -46,7 +50,7 @@ export class ImgZoomComponent implements OnInit {
     private ArtWorkAlbumService: ArtWorkAlbumService,
     private sanityService: SanityService,
     private route: ActivatedRoute,
-    private router: Router,
+    public router: Router,
     private library: FaIconLibrary,
     private meta: Meta,
     private title: Title,
@@ -63,16 +67,28 @@ export class ImgZoomComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    const self = this;
     // Set global variables based on whats available in the root
     this.setRouteParameterGlobalValues();
 
     this.getAlbumImages(this.getAlbumId); // Only need to do this once since images are loaded on load
 
-    this.route.params.subscribe(params => {
-      this.setRouteParameterGlobalValues();
+    this.router.events.pipe(
+      filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+    ).subscribe((e: NavigationEnd) => {
+      if (this.route.firstChild && this.child !== this.route.firstChild) {
+        if (this.subscription) { this.subscription.unsubscribe(); }
+        this.child = this.route.firstChild;
+        this.subscription = this.route.firstChild.url.subscribe(
+          x => {
+            this.setRouteParameterGlobalValues();
 
-      this.getAlbumImages(this.getAlbumId);
-    });
+            this.getAlbumImages(this.getAlbumId); // Only need to do this once since images are loaded on load
+          }
+        );
+      }
+   });
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -85,6 +101,10 @@ export class ImgZoomComponent implements OnInit {
     // Homepage route params
     this.homePage = !this.route.firstChild; // opposite of child page
 
+    if (this.homePage) {
+      this.imgIndex=0;
+    }
+
     // Get information about the album and Img ID on the page
     if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('albumId')) {
       this.getAlbumId = this.route.firstChild.snapshot.paramMap.get('albumId');
@@ -95,7 +115,6 @@ export class ImgZoomComponent implements OnInit {
     else {
       this.getAlbumId = this.albumId; // @input albumID
     }
-
     if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('imgId')) {
       this.imgIndex = parseInt(this.route.firstChild.snapshot.paramMap.get('imgId'));
     } 
@@ -122,23 +141,31 @@ export class ImgZoomComponent implements OnInit {
   }
 
   goToSlide(imgIndex) {
-    // Navigate the router to a new location
-    if (this.homePage === false) {
-      this.router.navigate([this.albumId, imgIndex], { relativeTo: this.route });
-    }
     this.imgIndex = imgIndex;
-    
+    this.currentImg = this.images[this.imgIndex];
+
     this.updateSlideshowView();
+    // Navigate the router to a new location
+    if (this.homePage === false && this.imgIndex !== 0) {
+      this.router.navigate([this.albumId, this.imgIndex], { relativeTo: this.route });
+    }
+
   }
 
   updateIndexSlideAndRoute() {
     if (this.images) {
-      if (this.imgIndex <= this.images.length-1) {
-        this.currentImg = this.images[this.imgIndex];
+      // Set the max width of all of the images
+      this.maxDimensions = this.images[0].metaData.dimensions;
+      this.images.forEach(element => {
+        console.log(element);
+        if (element.metaData.dimensions.width > this.maxDimensions.width) {
+          this.maxDimensions = element.metaData.dimensions;
+        }
+      });
 
+      if (this.imgIndex <= this.images.length-1) {
         this.goToSlide(this.imgIndex);
-      } else { // If there's a link to an index that doesn't exist.
-        
+      } else { // If there's a link to an index t dhat doesn't exist.
         this.imgIndex = 0;
         this.currentImg = this.images[0];
 
@@ -150,13 +177,18 @@ export class ImgZoomComponent implements OnInit {
   setActivePaginationItems() {
     // Get the number of Sets -- how many times can the max amt in a set 
     let numberSets = Math.ceil(this.images.length / this.maxPagination); // number of pagination menus to loop through + skip ahead
-    let maxItem = (numberSets * this.maxPagination) - this.maxPagination;
+    let maxItem = numberSets * this.maxPagination;
 
+    // Get the number of sets it would take to get to the closest
+    // to the imgIndex
     // Img index
     let imgIndex = this.imgIndex;
-    let pagDevIndex = imgIndex / (this.maxPagination);
+    let pagDevIndex = imgIndex / this.maxPagination;
     let pagDevIndexFlr = Math.floor(pagDevIndex);
-    let paginationStartIndex = pagDevIndexFlr * (this.maxPagination);
+    
+    let paginationStartIndex = pagDevIndexFlr > 0
+        ? pagDevIndexFlr * this.maxPagination
+        : 0;
 
     // Not sure what I was trying to do here: 
     // let nextDisabledRemainder = Math.ceil(this.images.length % this.maxPagination);
@@ -168,10 +200,10 @@ export class ImgZoomComponent implements OnInit {
     this.paginationCtrl = {
       paginationStartIndex: paginationStartIndex,
       isPrevDisabled: paginationStartIndex <= 0,
-      isNextDisabled: paginationStartIndex >= maxItem,
+      isNextDisabled: paginationStartIndex >= maxItem - this.maxPagination,
       activePaginationItems: this.images.filter((image, index) => {
         console.log(paginationStartIndex);
-        return index >= paginationStartIndex && index <= paginationStartIndex + (this.maxPagination-1);
+        return index >= paginationStartIndex && index < paginationStartIndex + this.maxPagination;
       })
     }
   }

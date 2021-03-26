@@ -4,14 +4,16 @@
   <hr>
 </div>
 
-<p>Current Img Index {{ imgIndex | json }}</p>
-    <p>Pagination Start Index: {{ paginationCtrl.paginationStartIndex | json }}</p>
-    <p>Max Pagination (-1): {{ maxPagination | json }}</p>
-    <p>images length (-1): {{ this.images.length | json }}</p>
+
 
 <div class="img-zoom" *ngIf="currentImg">
   <div class="overlay-controls left-control">
-    <button (click)="updateRouter(false)" class="button-left" aria-label="Visit the last item in the image gallery"><fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon></button>
+    <button 
+      [routerLink]="[albumId, imgIndex!== 0 ? imgIndex - 1 : images.length-1]"
+      class="button-left"
+      aria-label="Visit the last item in the image gallery">
+      <fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon>
+    </button>
   </div>
   <div class="overlay-controls center-control thumbnail-toggle"
     [ngStyle]="{
@@ -25,7 +27,7 @@
       [ngClass]="{
         'active-slide': isCorrectIndex(i)
       }"
-      (click)="updateRouter(true)"
+      [routerLink]="[albumId, imgIndex!== images.length-1 ? imgIndex + 1 : 0]"
       >
       <img alt="" [src]="urlFor(image).width(4)" class="d-none intrinsic-backgound background"
       [ngStyle]="{'height': isMobileSize() ? 'auto' : getWindowHeight() + 'px'}">
@@ -33,26 +35,48 @@
     </div>
   </div>
   <div class="overlay-controls right-control">
-    <button (click)="updateRouter(true)" class="button-right" aria-label="Visit the next item in the image gallery"><fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon></button>
+    <button 
+    [routerLink]="[albumId, imgIndex!== images.length ? imgIndex + 1 : 0]"
+    class="button-right" aria-label="Visit the next item in the image gallery"><fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon></button>
   </div>
-  <div class="overlay-controls bottom-control carousel-pagination">
 
-    
-    <nav *ngIf="!isMobileSize()" aria-label="Slideshow Navigation">
+  <!-- Pagination -->
+  <div *ngIf="!isMobileSize()" class="overlay-controls bottom-control carousel-pagination">
+    <nav aria-label="Slideshow Navigation">
       <p>Showing slide number {{ imgIndex+1 }} of {{images.length}} slides</p>
       <ul class="pagination justify-content-center pagination-sm">
+        
         <!-- Prev Arrow -->
         <li [ngClass]="{
-          'disabled': paginationCtrl.isPrevDisabled,
+          'disabled': imgIndex === 0,
+          'page-item' : true
+          }">
+          <button class="page-link" 
+            [routerLink]="[albumId, imgIndex!== 0 ? imgIndex - 1 : images.length - 1]"
+            [disabled]="imgIndex === 0"
+            > 
+            <span aria-hidden="true">&laquo;</span>
+            <span class=""> Previous</span>
+          </button>
+        </li>
+
+        <!-- skip backwards 6 slides -->
+        <li 
+        *ngIf="!paginationCtrl.isPrevDisabled"
+        [ngClass]="{
           'page-item' : true
         }">
           <button class="page-link" 
-            (click)="goToSlide(
-              paginationCtrl.paginationStartIndex > 0 ? paginationCtrl.paginationStartIndex - 1 : 0
-            )"
-            [disabled]="paginationCtrl.isPrevDisabled"
-            > 
-            <span aria-hidden="true">&laquo;</span> Previous 
+            [routerLink]="[
+              albumId,
+              paginationCtrl.paginationStartIndex !== 0
+                ? paginationCtrl.paginationStartIndex - 1
+                : 0
+            ]"> 
+            <span class="screenreader-only d-none">Skip backward to slide </span> {{ paginationCtrl.paginationStartIndex !== 0
+              ? paginationCtrl.paginationStartIndex
+              : 0 }}
+              <span aria-hidden="true">&#8230;</span> 
           </button>
         </li>
 
@@ -65,26 +89,48 @@
           <button [ngClass]="{
               'page-link' : true
             }"
-            (click)="goToSlide(paginationCtrl.paginationStartIndex + i)">
-            pg{{ i+1+paginationCtrl.paginationStartIndex }}
+            [routerLink]="[albumId, paginationCtrl.paginationStartIndex + i]">
+            {{ i + 1 + this.paginationCtrl.paginationStartIndex }}
             <span *ngIf="isCorrectIndex(paginationCtrl.paginationStartIndex + i)" class="badge badge-light">
               (Current Slide)
             </span>
           </button>
         </li>
 
-        <!-- Next Arrow -->
-        <li [ngClass]="{
-          'disabled': paginationCtrl.isNextDisabled,
-          'page-item' : true
-        }">
+        <!-- Next elipsis -->
+        <li *ngIf="!paginationCtrl.isNextDisabled"
+          [ngClass]="{
+            'disabled': paginationCtrl.isNextDisabled,
+            'page-item' : true
+          }">
           <button class="page-link"
             [disabled]="paginationCtrl.isNextDisabled"
-            (click)="goToSlide(paginationCtrl.paginationStartIndex + maxPagination)">
-            <span aria-hidden="true">&raquo;</span> Next
+            [routerLink]="[albumId, paginationCtrl.paginationStartIndex + maxPagination]"
+            >
+            <span aria-hidden="true">&#8230;</span> {{ paginationCtrl.paginationStartIndex + maxPagination +1}}
+          </button>
+        </li>
+
+        <!-- Next button  -->
+        <li [ngClass]="{
+          'disabled': imgIndex === this.images.length-1,
+          'page-item' : true
+          }">
+          <button class="page-link" 
+            [routerLink]="[albumId, imgIndex !== images.length - 1 ? imgIndex + 1 : 0]"
+            [disabled]="imgIndex === this.images.length-1"
+            > 
+            <span class="">Next</span> 
+            <span aria-hidden="true">&raquo;</span>
+
           </button>
         </li>
       </ul>
+
+      <p>Current Img Index {{ imgIndex | json }}</p>
+<p>Pagination Start Index: {{ this.paginationCtrl.paginationStartIndex | json }}</p>
+<p>Max Pagination (-1): {{ maxPagination | json }}</p>
+<p>images length (-1): {{ this.images.length | json }}</p>
     </nav>
   </div>
 </div>

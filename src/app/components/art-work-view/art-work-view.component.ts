@@ -69,8 +69,8 @@ export class ArtWorkViewComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    const permalink = this.route.snapshot.paramMap.get('permalink');
-    this.getArtWorkByPermalink(permalink);
+    // const permalink = this.route.snapshot.paramMap.get('permalink');
+    // this.getArtWorkByPermalink(permalink);
   }
 
   getArtWorkByPermalink(permalink: string) {
