@@ -153,13 +153,14 @@ export class ImgZoomComponent implements OnInit {
   }
 
   updateIndexSlideAndRoute() {
-    if (this.images) {
+    if (this.images && this.images.length > 0) {
       // Set the max width of all of the images
-      this.maxDimensions = this.images[0].metaData.dimensions;
+      this.maxDimensions = this.images[0].asset.metadata.dimensions;
+
       this.images.forEach(element => {
         console.log(element);
-        if (element.metaData.dimensions.width > this.maxDimensions.width) {
-          this.maxDimensions = element.metaData.dimensions;
+        if (element.asset.metadata.dimensions.width > this.maxDimensions.width) {
+          this.maxDimensions = element.asset.metadata.dimensions;
         }
       });
 
@@ -190,13 +191,6 @@ export class ImgZoomComponent implements OnInit {
         ? pagDevIndexFlr * this.maxPagination
         : 0;
 
-    // Not sure what I was trying to do here: 
-    // let nextDisabledRemainder = Math.ceil(this.images.length % this.maxPagination);
-    // let nextDisabledRemainderCleaned = nextDisabledRemainder === 0 
-    //     ? this.maxPagination : nextDisabledRemainder;
-    // let noRemainderGhost = nextDisabledRemainderCleaned * this.maxPagination; // Next "Perfect" match
-    // let cutOffItem = noRemainderGhost - this.maxPagination
-
     this.paginationCtrl = {
       paginationStartIndex: paginationStartIndex,
       isPrevDisabled: paginationStartIndex <= 0,
@@ -208,8 +202,13 @@ export class ImgZoomComponent implements OnInit {
     }
   }
 
-  getProperSlideHeight(img) {
-    const localimg = img;
+  getProperSlideWidth() {
+    if (Math.ceil(this.maxDimensions.width / this.maxDimensions.height) > 1)  {
+      return '80%';
+    }
+    else {
+      return '60%';
+    }
   }
 
   getAlbumImages(id) {
@@ -276,6 +275,12 @@ export class ImgZoomComponent implements OnInit {
   }
 
   isMobileSize() {
+    if (this.isBrowser) {
+      return window.innerWidth <= 576;
+    }
+  }
+
+  isDeviceSize() {
     if (this.isBrowser) {
       return window.innerWidth <= 768;
     }

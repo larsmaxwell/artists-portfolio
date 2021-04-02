@@ -9,49 +9,49 @@ body {
 #main {
     padding: 2rem 0;
 }
-a {
-    color: #138565;
+a  {
+    color: #007a6e;
+    text-decoration: underline;
+    text-decoration-style: dotted;
 }
 a:not(.btn):hover, a:not(.btn):focus {
-    color: #00583f;
-    text-decoration: underline;
+  color: white;
+  background-color: #007a6e;
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.btn {
+  border-width: 2px;
+  border-style: groove;
+  border-color: black;
+  background-color: white;
+}
+/* Reset button to original properties*/
+.btn.focus, .btn:focus, .page-link:focus {
+  outline: 2px solid -webkit-focus-ring-color;
+  box-shadow: none;
+}
+
+.btn:focus, .btn.focus .btn:hover {
+  background-color: #e9ecef;
 }
 .navbar-container hr {
-  border-bottom: 1px solid #03fdb8;
+  border-bottom: 1px solid #007a6e;
 }
-.navbar-container .h5, .navbar-container h5 {
-    color: white;
-}
+
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Inconsolata', monospace;
 }
 footer {
-    background: #505050;
+    background: #e6e6e6;
     padding: 30px 0;
 }
-footer a {
-    color: #03fdb8;
-}
-footer a:not(.btn):hover, footer a:not(.btn):focus {
-    color: #03fdb8;
-    text-decoration: underline;
-}
-footer p {
-    color: white;
-}
+
 .navbar-container {
-    background: #272727;
+    background: #f7f7f7;
 }
-.navbar-container a {
-    color: #03fdb8;
-}
-.navbar-container a:not(.btn):hover, .navbar-container a:not(.btn):focus {
-    color: #03fdb8;
-    text-decoration: underline;
-}
-.navbar .fa-bars {
-    color:white;
-}
+
 .site-title {
     font-size: 1.25em;
 }
@@ -69,8 +69,7 @@ footer p {
     border-bottom: 1px solid #eee;
 }
 .navbar-header {
-    border-bottom: 1px solid #03fdb8;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .underground-image {
@@ -118,6 +117,7 @@ footer p {
 }
 
 .slide {
+  cursor:e-resize;
   width: fit-content;
   display: inline-block;
   text-align: center;
@@ -134,16 +134,15 @@ footer p {
 }
 
 .overlay-controls.right-control .button-right, .overlay-controls.left-control .button-left {
-  background: #fff;
   padding: 10px;
 }
 
 .overlay-controls.right-control .button-right {
-  /* right: 0; */
+  cursor: e-resize;
 }
 
 .overlay-controls.left-control .button-left {
-  /* left: 0; */
+  cursor: w-resize;
 }
 
 .overlay-controls.nav-control {
@@ -167,15 +166,40 @@ footer p {
   }
 }
 .overlay-controls.center-control {
-  cursor: e-resize;
   display: inline-block;
+ 
+}
+@media only screen and (max-width: 575px) {
+  .overlay-controls.center-control {
+    max-width: 100%;
+    width: 100%;
+  }
 }
 
 .thumbnail-toggle {
+  max-width: 100%;
+  width: 80%;
+  text-align: center;
   display: block;
-  cursor: pointer;
 }
 
-/* // Pagination Overrides
+/* Pagination Overrides */
 
-// page-link */
+.page-item.active .page-link,
+.page-item.active .page-link,
+.page-item.disabled .page-link, 
+.page-item .page-link {
+  border-color: black;
+}
+
+.page-item.disabled .page-link {
+  border-style: dashed;
+  color: black;
+}
+
+.page-item.active .page-link {
+  background-color: black;
+}
+.page-item .page-link {
+  color: #007a6e;
+}
