@@ -1,3 +1,4 @@
+import { fromEvent, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Component, OnInit, Input, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';  
@@ -23,6 +24,20 @@ export class ImgZoomComponent implements OnInit {
   @Input() albumId: string;
 
   album: Album;
+  resizeObservable$: Observable<Event>;
+  resizeSubscription$: Subscription;
+  faArrowLeft = faArrowLeft;
+  faArrowRight = faArrowRight;
+  faChevronCircleLeft = faChevronCircleLeft;
+  faChevronCircleRight = faChevronCircleRight;
+  activePaginationItems: [];
+  homePage: boolean;
+  isBrowser: boolean;
+  imgIndex: number;
+  maxPagination: number;
+  desHeight: string;
+  currPermalink: string;
+  getAlbumId: string;
   images: any;
   child: any;
   subscription: any;
@@ -30,20 +45,8 @@ export class ImgZoomComponent implements OnInit {
   imgControls: any;
   maxDimensions: any;
   paginationCtrl: any;
-  imgIndex: number;
-  maxPagination: number;
-  desHeight: string;
-  homePage: boolean;
-  activePaginationItems: [];
   sanityInstance: any;
   sanityImgBuilder: any;
-  currPermalink: string;
-  isBrowser: boolean;
-  getAlbumId: string;
-  faArrowLeft = faArrowLeft;
-  faArrowRight = faArrowRight;
-  faChevronCircleLeft = faChevronCircleLeft;
-  faChevronCircleRight = faChevronCircleRight;
 
 
   constructor(
@@ -70,9 +73,9 @@ export class ImgZoomComponent implements OnInit {
 
     const self = this;
     // Set global variables based on whats available in the root
-    this.setRouteParameterGlobalValues();
+    // this.setRouteParameterGlobalValues();
 
-    this.getAlbumImages(this.getAlbumId); // Only need to do this once since images are loaded on load
+    // this.getAlbumImages(this.getAlbumId); // Only need to do this once since images are loaded on load
 
     this.router.events.pipe(
       filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
@@ -97,6 +100,13 @@ export class ImgZoomComponent implements OnInit {
     this.getAlbumImages(this.getAlbumId);
   }
 
+  ngAfterViewInit() {
+    // this.resizeObservable$ = fromEvent(window, 'resize');
+    // this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
+      // very costly
+    // })
+  }
+
   setRouteParameterGlobalValues() {
     // Homepage route params
     this.homePage = !this.route.firstChild; // opposite of child page
@@ -106,15 +116,16 @@ export class ImgZoomComponent implements OnInit {
     }
 
     // Get information about the album and Img ID on the page
-    if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('albumId')) {
-      this.getAlbumId = this.route.firstChild.snapshot.paramMap.get('albumId');
-    } 
-    else if (this.route.snapshot.paramMap.get('albumId')) {
-      this.getAlbumId = this.route.snapshot.paramMap.get('albumId');
-    }
-    else {
+    // if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('albumId')) {
+    //   this.getAlbumId = this.route.firstChild.snapshot.paramMap.get('albumId');
+    // } 
+    // else if (this.route.snapshot.paramMap.get('albumId')) {
+    //   this.getAlbumId = this.route.snapshot.paramMap.get('albumId');
+    // }
+    // else {
       this.getAlbumId = this.albumId; // @input albumID
-    }
+    // }
+
     if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('imgId')) {
       this.imgIndex = parseInt(this.route.firstChild.snapshot.paramMap.get('imgId'));
     } 

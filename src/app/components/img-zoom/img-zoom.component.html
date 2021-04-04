@@ -1,21 +1,12 @@
 
-<div class="col-md-12">
-  <h5>Gallery </h5>
-  <hr>
-</div>
-
-
-
-<div class="img-zoom" *ngIf="currentImg"
-  [ngStyle]="{'width': isDeviceSize() ? '100%' : getProperSlideWidth()}">
-
-  <div class="container-main-overlay-controls">
+<div class="img-zoom row" *ngIf="currentImg">
+  <div class="container-main-overlay-controls col-12">
     <div class="overlay-controls left-control">
       <button 
         [routerLink]="[albumId, imgIndex!== 0 ? imgIndex - 1 : images.length-1]"
-        class="btn button-left"
-        aria-label="Visit the last item in the image gallery">
+        class="btn button-left">
         <fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon>
+        <span class="sr-only">Previous Item</span>
       </button>
     </div>
     <div [id]="'overlay-controls-' + albumId"
@@ -26,33 +17,33 @@
         [ngClass]="{
           'active-slide': isCorrectIndex(i)
         }"
-        [routerLink]="[albumId, imgIndex!== images.length-1 ? imgIndex + 1 : 0]"
-        role="group" 
+        [attr.aria-hidden]="!isCorrectIndex(i)"
         aria-roledescription="slide"
-        [attr.aria-label]="i+1 + ' of ' + images.length + ' slides'"
         >
-        <img 
+        <a [routerLink]="[albumId, imgIndex!== images.length-1 ? imgIndex + 1 : 0]"
+        class="link-unstyled">
+          <img 
           [src]="urlFor(image).height(getWindowHeight())" 
           [attr.data-src]="urlFor(image).width(4)"
-          [title]="image.caption || ''" 
           [alt]="image.caption || ''"
           class="img-fluid">
+          <span class="sr-only"> {{i+1}} of {{ images.length }} slides. {{ image.caption }}</span>
+        </a>
         
       </div>
     </div>
     <div class="overlay-controls right-control">
       <button 
       [routerLink]="[albumId, imgIndex!== images.length ? imgIndex + 1 : 0]"
-      class="btn button-right" 
-      [attr.aria-label]="'Visit the next item ('+ imgIndex!== images.length ? imgIndex + 1 : 0 + ') in the image gallery'">
+      class="btn button-right">
       <fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon>
-
+      <span class="sr-only">Next Item</span>
     </button>
     </div>
   </div>
 
   <!-- Pagination -->
-  <div class="container-secondary-overlay-controls">
+  <div class="container-secondary-overlay-controls col-12">
     <div *ngIf="!isMobileSize()" class="overlay-controls bottom-control carousel-pagination">
       <nav aria-label="Slideshow Navigation">
         <ul class="pagination justify-content-center pagination-sm">
@@ -60,7 +51,7 @@
           <!-- Prev Arrow -->
           <li [ngClass]="{
             'disabled': imgIndex === 0,
-            'page-item' : true
+            'page-item': true
             }">
             <button class="page-link" 
               [routerLink]="[albumId, imgIndex!== 0 ? imgIndex - 1 : images.length - 1]"
@@ -87,9 +78,7 @@
                   : 0
               ]"
               [attr.aria-controls]="'overlay-controls-' + albumId"
-              [attr.aria-label]="paginationCtrl.paginationStartIndex + ' of ' + images.length + ' slides'"
               >
-              <span class="screenreader-only d-none">Skip backward to slide </span> 
               {{ paginationCtrl.paginationStartIndex !== 0
                 ? paginationCtrl.paginationStartIndex
                 : 0 }}
@@ -142,7 +131,7 @@
               [attr.aria-controls]="'overlay-controls-' + albumId"
               > 
               <span class="sr-only">
-                Next Slide {{imgIndex+1 !== images.length ? imgIndex + 1 : 0}}
+                Next Slide {{imgIndex+1 !== images.length ? imgIndex + 2 : 0}}
               </span> 
               <span aria-hidden="true">&raquo;</span>
 
