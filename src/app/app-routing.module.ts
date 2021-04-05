@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app.component';
-import { HomeComponent } from './components/home/home.component';
+import { IndexComponent } from './components/index/index.component';
 import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
 import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'illustration/:imgId', component: HomeComponent },
+  { path: '', component: IndexComponent },
+  { path: 'illustration/:imgId', component: IndexComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
       { path: ':albumId/:imgId', component: AlbumComponent },
@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'about', redirectTo: 'pages/about' },
   { path: 'pages/:permatwo', component: PageComponent},
   { path: 'store/', component: StoreIndexComponent },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: IndexComponent }
 ];
 
 @NgModule({

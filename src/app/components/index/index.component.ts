@@ -13,11 +13,11 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css']
 })
-export class HomeComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   illustrations: any;
   illustrationsImages: any;

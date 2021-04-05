@@ -16,7 +16,7 @@ import { NgMasonryGridModule } from 'ng-masonry-grid';
 // Components
 import { AppComponent } from './components/app.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { HomeComponent } from './components/home/home.component';
+import { IndexComponent } from './components/index/index.component';
 import { WorkComponent } from './components/work/work.component';
 import { AlbumComponent } from './components/album/album.component';
 import { WorkListComponent } from './components/work-list/work-list.component';
@@ -44,7 +44,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
   declarations: [
     AppComponent,
     MenuComponent,
-    HomeComponent,
+    IndexComponent,
     AlbumComponent,
     PageComponent,
     GetByTypePipe,
