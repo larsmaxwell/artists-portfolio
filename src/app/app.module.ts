@@ -15,18 +15,14 @@ import { NgMasonryGridModule } from 'ng-masonry-grid';
 
 // Components
 import { AppComponent } from './components/app.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AboutComponent } from './components/about/about.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
-import { WorkCategoryComponent } from './components/work-category/work-category.component';
-import { WorkAlbumComponent } from './components/work-album/work-album.component';
-import { ImgZoomComponent } from './components/img-zoom/img-zoom.component';
-import { WorksListComponent } from './components/works-list/works-list.component';
-import { AlbumDetailComponent } from './components/works-list/album-detail/album-detail.component';
-import { PageTypeComponent } from './components/page-type/page-type.component';
+import { WorkComponent } from './components/work/work.component';
+import { AlbumComponent } from './components/album/album.component';
+import { WorkListComponent } from './components/work-list/work-list.component';
+import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
-import { IllustrationTileComponent } from './components/illustration-tile/illustration-tile.component';
+import { IllustrationComponent } from './components/illustration/illustration.component';
 import { StoreIndexComponent } from './components/store-index/store-index.component'
 
 // Services
@@ -41,31 +37,23 @@ import { PageService } from './services/page.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
-import { ImgDetailComponent } from './components/works-list/album-detail/img-detail/img-detail.component';
-import { ArtWorkViewComponent } from './components/art-work-view/art-work-view.component';
 import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
-    AboutComponent,
     MenuComponent,
     HomeComponent,
-    WorkCategoryComponent,
-    WorkAlbumComponent,
-    ImgZoomComponent,
-    PageTypeComponent,
+    AlbumComponent,
+    PageComponent,
     GetByTypePipe,
-    WorksListComponent,
-    AlbumDetailComponent,
-    ImgDetailComponent,
-    ArtWorkViewComponent,
+    WorkListComponent,
+    WorkComponent,
     GetImgUrlPipe,
     GetByCategoryPipe,
     PageListComponent,
-    IllustrationTileComponent,
+    IllustrationComponent,
     StoreIndexComponent
   ],
   imports: [

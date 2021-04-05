@@ -15,11 +15,11 @@ import { faArrowLeft, faArrowRight, faBullseye, faChevronCircleLeft, faChevronCi
 
 
 @Component({
-  selector: 'app-img-zoom',
-  templateUrl: './img-zoom.component.html',
-  styleUrls: ['./img-zoom.component.css']
+  selector: 'app-album',
+  templateUrl: './album.component.html',
+  styleUrls: ['./album.component.css']
 })
-export class ImgZoomComponent implements OnInit {
+export class AlbumComponent implements OnInit {
 
   @Input() albumId: string;
 

@@ -15,11 +15,11 @@ import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 
 @Component({
-  selector: 'app-art-work-view',
-  templateUrl: './art-work-view.component.html',
-  styleUrls: ['./art-work-view.component.css']
+  selector: 'app-art-work',
+  templateUrl: './work.component.html',
+  styleUrls: ['./work.component.css']
 })
-export class ArtWorkViewComponent implements OnInit {
+export class WorkComponent implements OnInit {
 
   work: ArtWork;
   albumId: string;

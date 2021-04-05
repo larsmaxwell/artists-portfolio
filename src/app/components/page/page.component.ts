@@ -14,11 +14,11 @@ import { environment } from '../../../environments/environment';
 import * as blocksToHtml from '@sanity/block-content-to-html';
 
 @Component({
-  selector: 'app-page-type',
-  templateUrl: './page-type.component.html',
-  styleUrls: ['./page-type.component.css']
+  selector: 'app-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.css']
 })
-export class PageTypeComponent implements OnInit {
+export class PageComponent implements OnInit {
 
   page: Page;
   pageContentHtml: any;

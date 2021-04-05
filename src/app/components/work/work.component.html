@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col">
       <ng-template [ngIf]="work.album && work.album._ref && work.galleryview === true">
-        <app-img-zoom [albumId]="work.album._ref"></app-img-zoom>
+        <app-album [albumId]="work.album._ref"></app-album>
       </ng-template>
       <ng-template [ngIf]="work.galleryview === false">
         <img [src]="urlFor(work.featuredImage)">

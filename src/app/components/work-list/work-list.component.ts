@@ -6,11 +6,11 @@ import { Category } from '../../types/category'
 
 
 @Component({
-  selector: 'app-works-list',
-  templateUrl: './works-list.component.html',
-  styleUrls: ['./works-list.component.css']
+  selector: 'app-work-list',
+  templateUrl: './work-list.component.html',
+  styleUrls: ['./work-list.component.css']
 })
-export class WorksListComponent implements OnInit {
+export class WorkListComponent implements OnInit {
   works: ArtWork;
   sanityClient: any;
   categories: Category[];

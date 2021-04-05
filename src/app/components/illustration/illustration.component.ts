@@ -6,11 +6,11 @@ import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-illustration-tile',
-  templateUrl: './illustration-tile.component.html',
-  styleUrls: ['./illustration-tile.component.css']
+  selector: 'app-illustration',
+  templateUrl: './illustration.component.html',
+  styleUrls: ['./illustration.component.css']
 })
-export class IllustrationTileComponent implements OnInit {
+export class IllustrationComponent implements OnInit {
 
   @Input() illustration: any;
 

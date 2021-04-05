@@ -58,8 +58,8 @@
       id="{{'masonry-item-'+i}}" 
       *ngFor="let illustration of illustrations; let i = index;" 
       class="masonry-item">
-        <app-illustration-tile [illustration]="illustration" class="picture-tile">
-        </app-illustration-tile>
+        <app-illustration [illustration]="illustration" class="picture">
+        </app-illustration>
       <!-- Grid Content  -->
       </ng-masonry-grid-item>
     </ng-masonry-grid>
