@@ -4,7 +4,7 @@
     <div class="overlay-controls left-control">
       <button 
         [routerLink]="[albumId, imgIndex!== 0 ? imgIndex - 1 : images.length-1]"
-        class="btn button-left">
+        class="btn btn-primary button-left">
         <fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon>
         <span class="sr-only">Previous Item</span>
       </button>
@@ -20,7 +20,7 @@
         [attr.aria-hidden]="!isCorrectIndex(i)"
         aria-roledescription="slide"
         >
-        <a [routerLink]="[albumId, imgIndex!== images.length-1 ? imgIndex + 1 : 0]"
+        <a *ngIf="!isMobileSize()" [routerLink]="[albumId, imgIndex!== images.length-1 ? imgIndex + 1 : 0]"
         class="link-unstyled">
           <img 
           [src]="urlFor(image).height(getWindowHeight())" 
@@ -29,13 +29,19 @@
           class="img-fluid">
           <span class="sr-only"> {{i+1}} of {{ images.length }} slides. {{ image.caption }}</span>
         </a>
-        
+        <img 
+        *ngIf="isMobileSize()"
+        [src]="urlFor(image).height(getWindowHeight())" 
+        [attr.data-src]="urlFor(image).width(4)"
+        [alt]="image.caption || ''"
+        class="img-fluid">
+        <span class="sr-only"> {{i+1}} of {{ images.length }} slides. {{ image.caption }}</span>
       </div>
     </div>
     <div class="overlay-controls right-control">
       <button 
       [routerLink]="[albumId, imgIndex!== images.length ? imgIndex + 1 : 0]"
-      class="btn button-right">
+      class="btn btn-primary button-right">
       <fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon>
       <span class="sr-only">Next Item</span>
     </button>

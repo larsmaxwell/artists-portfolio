@@ -9,30 +9,34 @@ body {
 #main {
     padding-top: 2rem;
 }
-a  {
+a, btn.btn-link  {
     color: #007a6e;
     text-decoration: underline;
     text-decoration-style: dotted;
 }
-a:not(.btn):hover, a:not(.btn):focus {
+a:not(.btn-primary):hover, a:not(.btn-primary):focus,
+.btn-link:hover, .btn-link:focus {
   color: white;
   background-color: #007a6e;
   text-decoration: none;
   border-radius: 2px;
 }
 
-.btn {
+.btn.btn-primary {
   border-width: 2px;
+  color: #007a6e;
   border-style: groove;
   border-color: black;
   background-color: white;
 }
 /* Reset button to original properties*/
-.btn.focus, .btn:focus, .page-link:focus {
+.btn.btn-primary.focus, .btn.btn-primary:focus, .page-link:focus {
+  color: #007a6e;
   outline: 2px solid -webkit-focus-ring-color;
   box-shadow: none;
 }
-.btn:focus, .btn.focus .btn:hover {
+.btn.btn-primary:focus, .btn.btn-primary.focus, .btn.btn-primary:hover {
+  color: #007a6e;
   background-color: #e9ecef;
 }
 .link-unstyled:not(.btn),

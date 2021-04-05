@@ -7,7 +7,7 @@
         </a>
       </div>
       <div class="col-2">
-        <button type="button" class="navbar-toggler btn d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
+        <button type="button" class="navbar-toggler btn btn-primary d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
           <fa-icon [icon]="faBars"></fa-icon>
         </button>
       </div>
@@ -16,6 +16,7 @@
   <div class="navbar-content navbar-mobile col-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
     <div class="row">
       <div class="col-12">
+
         <app-work-list></app-work-list>
         <hr>
         <app-page-list></app-page-list>
@@ -48,6 +49,14 @@
     </div>
   </div>
   <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content">
+    <h5 class="d-none">
+      <a routerLink="/">
+      Store
+      </a>
+      <span class="sm badge badge-light">
+        <a href="">(0 items in Cart)</a>
+      </span>
+    </h5>
     <app-work-list></app-work-list>
 
     <app-page-list></app-page-list>
