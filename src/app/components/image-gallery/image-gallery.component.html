@@ -1,0 +1,167 @@
+
+<div class="img-zoom row" *ngIf="images && images.length > 0">
+    <div class="container-main-overlay-controls col-12">
+      <div class="overlay-controls left-control">
+        <button 
+          [routerLink]="[routerLinkBase, images[currentImgIndex!== 0 ? currentImgIndex - 1 : images.length-1].asset.assetId]"
+          class="btn btn-primary button-left">
+          <fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon>
+          <span class="sr-only">Previous Item</span>
+        </button>
+      </div>
+      <div [id]="'overlay-controls'"
+          class="liveregion overlay-controls center-control thumbnail-toggle"
+          aria-live="polite">
+        <div *ngFor="let image of images; let i = index;"
+          [class]="'slide slide-'+ i"
+          [ngClass]="{
+            'active-slide': isCorrectIndex(i)
+          }"
+          [attr.aria-hidden]="!isCorrectIndex(i)"
+          aria-roledescription="slide"
+          >
+          <a *ngIf="(isMobile === false)"
+          [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
+          class="link-unstyled">
+            <img 
+            [src]="urlFor(image).height(getWindowHeight())" 
+            [attr.data-src]="urlFor(image).width(4)"
+            [alt]="image.caption || ''"
+            class="img-fluid">
+            <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
+          </a>
+          <img 
+          *ngIf="isMobile"
+          [src]="urlFor(image).height(getWindowHeight())" 
+          [attr.data-src]="urlFor(image).width(4)"
+          [alt]="image.caption || ''"
+          class="img-fluid">
+          <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
+        </div>
+      </div>
+      <div class="overlay-controls right-control">
+        <button 
+        [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
+        class="btn btn-primary button-right">
+        <fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon>
+        <span class="sr-only">Next Item</span>
+      </button>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+  <div *ngIf="pagination === true"  class="container-secondary-overlay-controls col-12">
+    <div *ngIf="!isMobile" class="overlay-controls bottom-control carousel-pagination">
+      <nav aria-label="Slideshow Navigation">
+        <ul class="pagination justify-content-center pagination-sm">
+          
+          <!-- Prev Arrow -->
+          <li [ngClass]="{
+            'disabled': currentImgIndex === 0,
+            'page-item': true
+            }">
+            <button class="page-link" 
+              [routerLink]="[routerLinkBase, images[currentImgIndex!== 0 ? currentImgIndex - 1 : images.length-1].asset.assetId]"
+              [disabled]="currentImgIndex === 0"
+              [attr.aria-controls]="'overlay-controls-'"
+              > 
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous Slide {{currentImgIndex!== 0 ? currentImgIndex : images.length}}
+              </span> 
+            </button>
+          </li>
+  
+          <!-- skip backwards 6 slides -->
+          <li 
+          *ngIf="!paginationCtrl.isPrevDisabled"
+          [ngClass]="{
+            'page-item' : true
+          }">
+            <button class="page-link"
+              [routerLink]="[
+                routerLinkBase, 
+                images[
+                  paginationCtrl.paginationStartIndex !== 0
+                    ? paginationCtrl.paginationStartIndex - 1
+                    : 0
+                ].asset.assetId]"
+              [attr.aria-controls]="'overlay-controls-'"
+              >
+              {{ paginationCtrl.paginationStartIndex !== 0
+                ? paginationCtrl.paginationStartIndex
+                : 0 }}
+
+                <span aria-hidden="true">&#8230;</span> 
+            </button>
+          </li>
+  
+          <!-- Current Items -->
+          <li *ngFor="let item of paginationCtrl.activePaginationItems; let i = index;"
+            [ngClass]="{
+              'active': isCorrectIndex(paginationCtrl.paginationStartIndex + i),
+              'page-item' : true
+            }"> 
+            <button [ngClass]="{
+                'page-link' : true
+              }"
+              [routerLink]="[
+                routerLinkBase, 
+                images[
+                  paginationCtrl.paginationStartIndex + i
+                ].asset.assetId]"
+              [attr.aria-controls]="'overlay-controls-'">
+              <span *ngIf="isCorrectIndex(paginationCtrl.paginationStartIndex + i)" class="badge badge-light">
+                (Current Slide)
+              </span> {{ i + 1 + this.paginationCtrl.paginationStartIndex }}
+            </button>
+          </li>
+  
+          <!-- Next elipsis skip forward 6 slides  -->
+          <li *ngIf="!paginationCtrl.isNextDisabled"
+            [ngClass]="{
+              'disabled': paginationCtrl.isNextDisabled,
+              'page-item' : true
+            }">
+            <button class="page-link"
+              [disabled]="paginationCtrl.isNextDisabled"
+              [routerLink]="[
+              routerLinkBase, 
+              images[
+                paginationCtrl.paginationStartIndex + maxPagination
+              ].asset.assetId]"
+              [attr.aria-controls]="'overlay-controls-'"
+              >
+              <span aria-hidden="true">&#8230;</span> 
+              {{ paginationCtrl.paginationStartIndex + maxPagination +1 }}
+            </button>
+          </li>
+  
+          <!-- Next button  -->
+          <li [ngClass]="{
+            'disabled': currentImgIndex === this.images.length-1,
+            'page-item' : true
+            }">
+            <button class="page-link" 
+              [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
+              [disabled]="currentImgIndex === this.images.length-1"
+              [attr.aria-controls]="'overlay-controls-'"
+              > 
+              <span class="sr-only">
+                Next Slide {{currentImgIndex+1 !== images.length ? currentImgIndex + 2 : 0}}
+              </span> 
+              <span aria-hidden="true">&raquo;</span>
+
+            </button>
+          </li>
+        </ul>
+  
+      </nav>
+    </div>
+  </div>
+    <!-- <p>Current Img Index {{ imgIndex | json }}</p>
+    <p>Pagination Start Index: {{ this.paginationCtrl.paginationStartIndex | json }}</p>
+    <p>Max Pagination (-1): {{ maxPagination | json }}</p>
+    <p>images length (-1): {{ this.images.length | json }}</p> -->
+  
+</div>
+  

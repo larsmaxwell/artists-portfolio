@@ -35,17 +35,6 @@ export class IllustrationService {
     });
   }
 
-  getItems (): Observable<Illustration[]> {
-    // const options = { params: new HttpParams().set('archive', 'false') };
-    const newUrl = `${this.worksUrl}[_type%20==%20$type]&$type="illustration"`;
-
-    return this.http.get<Illustration[]>(newUrl)
-      .pipe(
-        tap(work => this.log(`fetched work`)),
-        catchError(this.handleError('getWorks', []))
-      );
-  }
-
   /** Get ArtWorks from the server */
   getItemsClient(client: any): any {
     const query = `*[_type == "illustration"]`

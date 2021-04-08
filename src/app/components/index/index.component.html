@@ -1,36 +1,38 @@
 
-<div id="galleryWrapperLurn" class="gallery-wrapper" [style.height]="isMobileSize() || slideshowView === false ? '' : desHeight">
+<div id="galleryWrapperLurn" class="gallery-wrapper">
 
   <div id="slideshow" class="slideshow" 
   [style.height]="isMobileSize ? '' : desHeight"
   *ngIf="slideshowView">
     <div
         *ngFor="let illustration of illustrations; let i = index;"
-        [style.height]="isMobileSize ? '' : desHeight" 
-        class="slide"
-        [ngClass]="{
-          'active-slide': isActiveSlide(illustration._id)
-        }"
-        [attr.aria-hidden]="!isActiveSlide(illustration._id)"
-        [attr.data-img-id]="illustration.featuredImage._id"
-        [style.height]="isMobileSize() ? '' : desHeight"
         >
-      <img class="img-fluid" [src]="urlFor(illustration.featuredImage).width(1000)" [alt]="illustration.caption ? illustration.caption : ''" [style.height]="isMobileSize() ? '' : desHeight"/>
+      <!-- <img class="img-fluid" [src]="urlFor(illustration.featuredImage).width(1000)" [alt]="illustration.caption ? illustration.caption : ''" [style.height]="isMobileSize() ? '' : desHeight"/> -->
       <div class="image-title-mobile"> <strong>{{ illustration.name }}</strong><br>
         {{ illustration.description }}
       </div>
     </div>
 
-    <div class="overlay-controls left-control" [routerLink]="['/illustration', imgControls.prevId]"></div>
+    <app-image-gallery 
+    [images]="images"
+    [currentImgIndex]="currentIndex"
+    [routerLinkBase]="'/illustration'"
+    [currentImg]="currentIll"
+    [pagination]="false"
+    [illustrationIds]="true"
+    ></app-image-gallery>
+
+
+    <!-- <div class="overlay-controls left-control" [routerLink]="['/illustration', imgControls.prevId]"></div>
     <div class="overlay-controls center-control thumbnail-toggle" [routerLink]="['/illustration', imgControls.nextId ]"></div>
     <div class="overlay-controls right-control" [routerLink]="['/illustration', imgControls.nextId ]"></div>
     <div class="overlay-controls exit-control">
       <a [routerLink]="['/']" class="h5">
           <fa-icon [icon]="faArrowLeft"></fa-icon> thumbnails
       </a>
-    </div>
+    </div> -->
 
-    <div class="overlay-controls nav-control">
+    <!-- <div class="overlay-controls nav-control">
       <p *ngIf="currentIll">
         <strong>{{ currentIll.name }}</strong><br>
         {{ currentIll.description }}
@@ -42,7 +44,7 @@
       <a [routerLink]="['/illustration', imgControls.nextId ]">
         Next
       </a>
-    </div>
+    </div> -->
   </div>
 
   <div id="thumbnails"

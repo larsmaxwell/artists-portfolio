@@ -20,6 +20,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 export class IndexComponent implements OnInit {
 
   illustrations: any;
+  images:any = [];
+
   illustrationsImages: any;
   sanityInstance: any;
   sanityImgBuilder: any;
@@ -66,7 +68,6 @@ export class IndexComponent implements OnInit {
     this.setMeta();
 
     // Set element 
-    this.setBrowserEffects();
     // Get illustrations
     this.getWorks();
 
@@ -76,12 +77,6 @@ export class IndexComponent implements OnInit {
       }
     });
 
-    if (this.isBrowser) {
-      let self = this;
-      window.addEventListener('resize', function() {
-        self.setBrowserEffects();
-      });
-    }
   }
 
   onNgMasonryInit($event: Masonry) {
@@ -93,6 +88,11 @@ export class IndexComponent implements OnInit {
     this.illustrationService.getAssetsClient(client)
       .subscribe((data) =>  { 
         this.illustrations = data;
+        this.illustrations.forEach(element => {
+          this.images.push(element.featuredImage);
+        });
+        console.log(this.images);
+
         if (this.slideshowView && !this.isMobileSize()) {
           this.setImgControls(this.imageID);
         }
@@ -119,31 +119,14 @@ export class IndexComponent implements OnInit {
     if (!this.illustrations) return;
 
     this.currentIndex = this.illustrations.findIndex((item) => {
-      return item._id === imgId;
-    });
+      return item.featuredImage.asset.assetId === imgId;
+    }) || 0;
 
     this.currentIll = this.illustrations.filter((item) => {
-      return item._id === imgId;
-    })[0];
+      return item.featuredImage.asset.assetId === imgId;
+    });
 
     this.imageID = imgId;
-
-    let next = this.currentIndex === this.illustrations.length-1 ? 0 : this.currentIndex + 1;
-    let prev = this.currentIndex === 0 ? this.illustrations.length-1 : this.currentIndex - 1;
-
-    this.imgControls.prevId = this.illustrations[prev]._id;
-    this.imgControls.nextId = this.illustrations[next]._id;
-  }
-
-  setBrowserEffects() {
-    if (this.isMobileSize() && this.isBrowser) {
-      this.slideshowView = true
-    }
-
-    if (this.isBrowser) {
-      this.desHeight = window.innerHeight + 'px';
-      this.desWidth = window.innerWidth + 'px';
-    }
   }
 
   isMobileSize() {

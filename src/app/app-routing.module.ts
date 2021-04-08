@@ -10,12 +10,16 @@ import { PageComponent } from './components/page/page.component';
 import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
-  { path: '', component: IndexComponent },
+  { path: './', redirectTo: 'illustration' },
+  { path: 'illustration/', component: IndexComponent,
+    children: [
+      { path: ':imgId', component: AlbumComponent },
+    ]
+  },
   { path: 'illustration/:imgId', component: IndexComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
-      { path: ':albumId/:imgId', component: AlbumComponent },
-      { path: ':albumId/', component: AlbumComponent },
+      { path: ':imgId', component: AlbumComponent },
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },
