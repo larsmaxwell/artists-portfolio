@@ -12,6 +12,7 @@ body {
 a, btn.btn-link  {
     color: #007a6e;
     text-decoration: underline;
+    text-decoration-color: #02b9a7;
     text-decoration-style: dotted;
 }
 a:not(.btn-primary):hover, a:not(.btn-primary):focus,
