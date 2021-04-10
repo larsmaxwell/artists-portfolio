@@ -66,11 +66,12 @@ export class WorkComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.getArtWorkByPermalink(routeParams.permalink);
     });
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
     // const permalink = this.route.snapshot.paramMap.get('permalink');
-    // this.getArtWorkByPermalink(permalink);
+    //this.getArtWorkByPermalink(this.route.snapshot.paramMap.get('permalink'));
   }
 
   getArtWorkByPermalink(permalink: string) {

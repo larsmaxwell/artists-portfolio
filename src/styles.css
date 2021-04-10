@@ -45,6 +45,7 @@ a:not(.btn-primary):hover, a:not(.btn-primary):focus,
 .link-unstyled:not(.btn):active,
 .link-unstyled:not(.btn):focus,
 .link-unstyled:not(.btn):active:hover {
+
   font-style: inherit;
   color: inherit;
   background-color: transparent;
@@ -57,7 +58,7 @@ a:not(.btn-primary):hover, a:not(.btn-primary):focus,
   border-radius: inherit;
   border: inherit;
   box-shadow: inherit;
-  padding: inherit;
+  padding: unset;
   vertical-align: inherit;
 }
 .navbar-container hr {

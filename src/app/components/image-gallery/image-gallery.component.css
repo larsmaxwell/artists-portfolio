@@ -15,7 +15,7 @@
   }
 }
 .slide {
-  cursor:e-resize;
+
   width: fit-content;
   display: inline-block;
   text-align: center;
@@ -75,6 +75,7 @@
 }
 
 .overlay-controls.center-control {
+  cursor: e-resize;
   display: inline-block;
 }
 @media only screen and (max-width: 575px) {

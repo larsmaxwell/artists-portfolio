@@ -32,7 +32,7 @@ export class AlbumComponent implements OnInit {
   currPermalink: string;
   getAlbumId: string;
   images: any;
-  child: any;
+  child: ActivatedRoute;
   subscription: any;
   currentImg: any;
   imgControls: any;
@@ -62,20 +62,25 @@ export class AlbumComponent implements OnInit {
   ngOnInit() {
 
     const self = this;
-    // Set global variables based on whats available in the root
-    // this.setRouteParameterGlobalValues();
-
-    // this.getAlbumImages(this.getAlbumId); // Only need to do this once since images are loaded on load
-    // album images only need to be fetched when major changes happen
-
 
     this.router.events.pipe(
       filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
     ).subscribe((e: NavigationEnd) => {
+      
       if (this.route.firstChild && this.child !== this.route.firstChild) {
         if (this.subscription) { this.subscription.unsubscribe(); }
         this.child = this.route.firstChild;
         this.subscription = this.route.firstChild.url.subscribe(
+          x => {
+            this.setRouteParameterGlobalValues();
+            this.updateIndexSlideAndRoute(); // Only need to do this once since images are loaded on load
+          }
+        );
+      }
+      else if (!this.route.firstChild) {
+        if (this.subscription) { this.subscription.unsubscribe(); }
+        // Reset the content if the same parent link is clicked again
+        this.subscription = this.route.parent.url.subscribe(
           x => {
             this.setRouteParameterGlobalValues();
             this.updateIndexSlideAndRoute(); // Only need to do this once since images are loaded on load
@@ -99,25 +104,10 @@ export class AlbumComponent implements OnInit {
       this.imgIndex=0;
     }
 
-    // Get information about the album and Img ID on the page
-    // if (this.route.firstChild && this.route.firstChild.snapshot.paramMap.get('albumId')) {
-    //   this.getAlbumId = this.route.firstChild.snapshot.paramMap.get('albumId');
-    // } 
-    // else if (this.route.snapshot.paramMap.get('albumId')) {
-    //   this.getAlbumId = this.route.snapshot.paramMap.get('albumId');
-    // }
-    // else {
-      this.getAlbumId = this.albumId; // @input albumID
-    // }
+    this.getAlbumId = this.albumId; // @input albumID
 
     this.currPermalink = this.route.snapshot.paramMap.get('permalink');
   }
-
-  // General function for Updating most portions of the view when
-  // the route changes
-  // updateSlideshowView() {
-  //   this.setActivePaginationItems();
-  // }
 
   updateIndexSlideAndRoute() {
 

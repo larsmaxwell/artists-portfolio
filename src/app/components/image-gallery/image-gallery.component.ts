@@ -1,8 +1,9 @@
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { max } from 'rxjs/operators';
-
 import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';  
+import { isPlatformBrowser } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { SanityService } from '../../services/sanity.service';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -40,6 +41,7 @@ export class ImageGalleryComponent implements OnInit {
   constructor(
     private sanityService: SanityService,
     private library: FaIconLibrary,
+    public router: Router,
     @Inject(PLATFORM_ID) private platformId
   ) { 
     this.isBrowser = isPlatformBrowser(platformId);
@@ -66,6 +68,13 @@ export class ImageGalleryComponent implements OnInit {
     this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
       this.isMobile = this.isMobileSize();
     });
+  }
+
+  enterKeyListener() {
+    this.router.navigate([
+      this.routerLinkBase, 
+      this.images[this.currentImgIndex < this.images.length-1 ? this.currentImgIndex + 1 : 0].asset.assetId
+    ]);
   }
 
   isMobileSize() {

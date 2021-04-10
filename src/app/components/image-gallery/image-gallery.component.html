@@ -10,8 +10,14 @@
         </button>
       </div>
       <div [id]="'overlay-controls'"
-          class="liveregion overlay-controls center-control thumbnail-toggle"
-          aria-live="polite">
+        class="liveregion overlay-controls center-control thumbnail-toggle"
+        aria-live="polite"
+        *ngIf="!isMobile" 
+        tabindex="0"
+        [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
+        (keyup.enter)="enterKeyListener()"
+        >
+        
         <div *ngFor="let image of images; let i = index;"
           [class]="'slide slide-'+ i"
           [ngClass]="{
@@ -20,30 +26,45 @@
           [attr.aria-hidden]="!isCorrectIndex(i)"
           aria-roledescription="slide"
           >
-          <a *ngIf="(isMobile === false)"
-          [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
-          class="link-unstyled">
-            <img 
-            [src]="urlFor(image).height(getWindowHeight())" 
-            [attr.data-src]="urlFor(image).width(4)"
-            [alt]="image.caption || ''"
-            class="img-fluid">
-            <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
-          </a>
+
           <img 
-          *ngIf="isMobile"
           [src]="urlFor(image).height(getWindowHeight())" 
           [attr.data-src]="urlFor(image).width(4)"
           [alt]="image.caption || ''"
           class="img-fluid">
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
+
           <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
-          <strong>{{ illustrations[i].name }}</strong><br>
-          {{ illustrations[i].description }}
-        </p>
+            <strong>{{ illustrations[i].name }}</strong><br>
+            {{ illustrations[i].description }}
+          </p>
         </div>
-        
-      </div>
+      </div> 
+      <div [id]="'overlay-controls'"
+        *ngIf="isMobile"
+        class="liveregion overlay-controls center-control thumbnail-toggle"
+        >
+        <div *ngFor="let image of images; let i = index;"
+          [class]="'slide slide-'+ i"
+          [ngClass]="{
+            'active-slide': isCorrectIndex(i)
+          }"
+          [attr.aria-hidden]="!isCorrectIndex(i)"
+          >
+          <img 
+          [src]="urlFor(image).height(getWindowHeight())" 
+          [attr.data-src]="urlFor(image).width(4)"
+          [alt]="image.caption || ''"
+          tabindex="0"
+          class="img-fluid">
+          <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
+
+          <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
+            <strong>{{ illustrations[i].name }}</strong><br>
+            {{ illustrations[i].description }}
+          </p>
+        </div>
+      </div> 
       <div
         *ngIf="!isMobile" 
         class="overlay-controls right-control">
