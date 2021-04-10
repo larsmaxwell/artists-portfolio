@@ -23,6 +23,8 @@ import { WorkListComponent } from './components/work-list/work-list.component';
 import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationComponent } from './components/illustration/illustration.component';
+import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
+
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { StoreIndexComponent } from './components/store-index/store-index.component'
 
@@ -48,14 +50,15 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     MenuComponent,
     IndexComponent,
     AlbumComponent,
-    PageComponent,
     GetByTypePipe,
     WorkListComponent,
     WorkComponent,
     GetImgUrlPipe,
     GetByCategoryPipe,
+    PageComponent,
     PageListComponent,
     IllustrationComponent,
+    IllustrationListComponent,
     ImageGalleryComponent,
     StoreIndexComponent,
   ],

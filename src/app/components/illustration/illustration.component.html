@@ -1,7 +1,20 @@
-<a
-[routerLink]="['/illustration', illustration.featuredImage.asset.assetId]" class="">
-  <picture class="intrinsic">
-    <img alt="" [src]="urlFor(illustration.featuredImage).width(4)" width="700px" class="intrinsic-backgound background">
-    <img alt="" [srcset]="urlFor(illustration.featuredImage).width(425)" class="img-fluid intrinsic-item">
-  </picture>
-</a>
+
+<div id="galleryWrapperLurn" class="gallery-wrapper">
+  <div id="slideshow" class="slideshow" 
+  [style.height]="isMobileSize ? '' : desHeight"
+  *ngIf="slideshowView">
+    <br>
+    <h5>Illustration</h5>
+
+    <app-image-gallery 
+    [images]="images"
+    [illustrations]="illustrations"
+    [currentImgIndex]="currentIndex"
+    [routerLinkBase]="'/illustration'"
+    [currentImg]="currentIll"
+    [pagination]="false"
+    [homePage]="true"
+    [illustrationIds]="true"
+    ></app-image-gallery>
+  </div>
+</div>

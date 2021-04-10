@@ -1,16 +1,4 @@
-import { Component, OnInit, Inject, ViewChild, OnChanges, SimpleChanges, PLATFORM_ID } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location, isPlatformBrowser } from '@angular/common';
-import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
-
-// App Specific
-import { Illustration } from '../../types/illustration';
-import { IllustrationService } from '../../services/illustration.service';
-import { SanityService } from '../../services/sanity.service';
-
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-index',
@@ -19,130 +7,10 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 })
 export class IndexComponent implements OnInit {
 
-  illustrations: any;
-  images:any = [];
-
-  illustrationsImages: any;
-  sanityInstance: any;
-  sanityImgBuilder: any;
-  gridView: any;
-  desHeight: any;
-  desWidth: any;
-  _masonry: Masonry;
-  masonryItems: any[]; // NgMasonryGrid Grid item list
-  isBrowser: boolean;
-  activeSlide: string;
-  imageID: string;
-  slideshowView: any;
-  imgControls: any = {};
-  currentIndex: number;
-  currentIll: any;
-
-  faArrowLeft = faArrowLeft;
-
   constructor(
-    private route: ActivatedRoute,
-    private illustrationService: IllustrationService,
-    private location: Location,
-    private library: FaIconLibrary,
-    private _sanitizer: DomSanitizer,
-    private meta: Meta,
-    private title: Title,
-    private sanityService: SanityService,
-    @Inject(PLATFORM_ID) private platformId
   ) { 
-    library.addIcons(this.faArrowLeft);
-    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
-
-    this.activeSlide = "";
-
-    this.getSanity();
-    this.getSanityUrlBuilder();
-
-    this.imageID = this.route.snapshot.paramMap.get('imgId');
-    this.slideshowView = !!this.route.snapshot.paramMap.get('imgId');
-
-    this.setMeta();
-
-    // Set element 
-    // Get illustrations
-    this.getWorks();
-
-    this.route.params.subscribe(routeParams => {
-      if (this.slideshowView) {
-        this.setImgControls(routeParams.imgId);
-      }
-    });
-
-  }
-
-  onNgMasonryInit($event: Masonry) {
-    this._masonry = $event;
-  }
-
-  getWorks(): void {
-    const client = this.illustrationService.init();
-    this.illustrationService.getAssetsClient(client)
-      .subscribe((data) =>  { 
-        this.illustrations = data;
-        this.illustrations.forEach(element => {
-          this.images.push(element.featuredImage);
-        });
-        console.log(this.images);
-
-        if (this.slideshowView && !this.isMobileSize()) {
-          this.setImgControls(this.imageID);
-        }
-      });
-  }
-
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
-  }
-
-  urlFor(source: string) {
-    return this.sanityImgBuilder.image(source)
-  }
-
-  isActiveSlide(id:string) {
-    return this.imageID === id;
-  }
-
-  setImgControls(imgId:any) {
-    if (!this.illustrations) return;
-
-    this.currentIndex = this.illustrations.findIndex((item) => {
-      return item.featuredImage.asset.assetId === imgId;
-    }) || 0;
-
-    this.currentIll = this.illustrations.filter((item) => {
-      return item.featuredImage.asset.assetId === imgId;
-    });
-
-    this.imageID = imgId;
-  }
-
-  isMobileSize() {
-    if (this.isBrowser) {
-      return window.innerWidth <= 600;
-    }
-  }
-
-  setMeta() {
-    this.title.setTitle("Lurn Maxwell: Home");
-    this.meta.updateTag({name: 'description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle"});
-    this.meta.updateTag({name: 'keywords', content: "comics, horror comics, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
-    this.meta.updateTag({property: 'og:title', content: "Lurn Maxwell: About" });
-    this.meta.updateTag({property: 'og:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
-    this.meta.updateTag({name: 'twitter:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
-    this.meta.updateTag({name: 'twitter:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
-    this.meta.updateTag({property: 'og:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
   }
 }

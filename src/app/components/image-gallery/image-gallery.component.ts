@@ -25,6 +25,8 @@ export class ImageGalleryComponent implements OnInit {
   @Input() pagination: boolean;
   @Input() maxPagination: number;
   @Input() illustrationIds: boolean;
+  @Input() homePage: boolean
+  @Input() illustrations: any;
 
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;

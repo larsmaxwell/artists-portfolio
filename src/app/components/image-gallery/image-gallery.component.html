@@ -1,7 +1,7 @@
 
 <div class="img-zoom row" *ngIf="images && images.length > 0">
     <div class="container-main-overlay-controls col-12">
-      <div class="overlay-controls left-control">
+      <div *ngIf="!isMobile" class="overlay-controls left-control">
         <button 
           [routerLink]="[routerLinkBase, images[currentImgIndex!== 0 ? currentImgIndex - 1 : images.length-1].asset.assetId]"
           class="btn btn-primary button-left">
@@ -37,9 +37,16 @@
           [alt]="image.caption || ''"
           class="img-fluid">
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
+          <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
+          <strong>{{ illustrations[i].name }}</strong><br>
+          {{ illustrations[i].description }}
+        </p>
         </div>
+        
       </div>
-      <div class="overlay-controls right-control">
+      <div
+        *ngIf="!isMobile" 
+        class="overlay-controls right-control">
         <button 
         [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
         class="btn btn-primary button-right">
@@ -50,8 +57,8 @@
     </div>
 
     <!-- Pagination -->
-  <div *ngIf="pagination === true"  class="container-secondary-overlay-controls col-12">
-    <div *ngIf="!isMobile" class="overlay-controls bottom-control carousel-pagination">
+  <div *ngIf="!isMobile && pagination === true"  class="container-secondary-overlay-controls col-12">
+    <div class="overlay-controls bottom-control carousel-pagination">
       <nav aria-label="Slideshow Navigation">
         <ul class="pagination justify-content-center pagination-sm">
           

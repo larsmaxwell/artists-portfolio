@@ -4,22 +4,25 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AppComponent } from './components/app.component';
 import { IndexComponent } from './components/index/index.component';
+import { IllustrationComponent } from './components/illustration/illustration.component';
+import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
 import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
 import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
-  { path: './', redirectTo: 'illustration' },
-  { path: 'illustration/', component: IndexComponent,
+  { path: './', component: IndexComponent },
+  { path: 'illustration/', component: IllustrationListComponent,
     children: [
-      { path: ':imgId', component: AlbumComponent },
+      { path: ':imgId', component: IllustrationComponent },
     ]
   },
   { path: 'illustration/:imgId', component: IndexComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
       { path: ':imgId', component: AlbumComponent },
+      { path: ':albumId/:imgId', redirectTo: '' }
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },
