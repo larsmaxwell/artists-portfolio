@@ -27,7 +27,7 @@
           [alt]="images[currentImgIndex].asset.caption || ''"
           [style.height]="getWindowHeight() + 'px'"
           [attr.data.src]="urlFor(images[currentImgIndex]).width(20)"
-          [src]="urlFor(images[currentImgIndex]).height(getWindowHeight())"
+          [src]="urlFor(images[currentImgIndex]).height(getWindowHeight()+100)"
           class="img-fluid">
           <span class="sr-only"> {{currentImgIndex+1}} of {{ images.length }} images. {{ images[currentImgIndex].asset.caption }} </span>
 
