@@ -18,7 +18,26 @@
         (keyup.enter)="enterKeyListener()"
         >
         
-        <div *ngFor="let image of images; let i = index;"
+        <div 
+          [class]="'active-slide slide slide-'+ currentImgIndex"
+          aria-roledescription="slide"
+          >
+
+          <img 
+          [alt]="images[currentImgIndex].asset.caption || ''"
+          [style.height]="getWindowHeight() + 'px'"
+          [attr.data.src]="urlFor(images[currentImgIndex]).width(20)"
+          [src]="urlFor(images[currentImgIndex]).height(getWindowHeight())"
+          class="img-fluid">
+          <span class="sr-only"> {{currentImgIndex+1}} of {{ images.length }} images. {{ images[currentImgIndex].asset.caption }} </span>
+
+          <p *ngIf="illustrations && (illustrations[currentImgIndex].name || illustrations[currentImgIndex].description)">
+            <strong>{{ illustrations[currentImgIndex].name }}</strong><br>
+            {{ illustrations[currentImgIndex].description }}
+          </p>
+        </div>
+
+        <!-- <div *ngFor="let image of images; let i = index;"
           [class]="'slide slide-'+ i"
           [ngClass]="{
             'active-slide': isCorrectIndex(i)
@@ -28,9 +47,10 @@
           >
 
           <img 
-          [src]="urlFor(image).height(getWindowHeight())" 
-          [attr.data-src]="urlFor(image).width(4)"
           [alt]="image.caption || ''"
+          [style.height]="getWindowHeight() + 'px'"
+          [defaultImage]="urlFor(image).width(20)"
+          [lazyLoad]="urlFor(image)"
           class="img-fluid">
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
@@ -38,7 +58,7 @@
             <strong>{{ illustrations[i].name }}</strong><br>
             {{ illustrations[i].description }}
           </p>
-        </div>
+        </div> -->
       </div> 
       <div [id]="'overlay-controls'"
         *ngIf="isMobile"

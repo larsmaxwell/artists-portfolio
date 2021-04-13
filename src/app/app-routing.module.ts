@@ -13,12 +13,8 @@ import { StoreIndexComponent } from './components/store-index/store-index.compon
 
 const routes: Routes = [
   { path: './', component: IndexComponent },
-  { path: 'illustration/', component: IllustrationListComponent,
-    children: [
-      { path: ':imgId', component: IllustrationComponent },
-    ]
-  },
-  { path: 'illustration/:imgId', component: IndexComponent },
+  { path: 'illustration/', component: IllustrationListComponent },
+  { path: 'illustration/:imgId', component: IllustrationComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
       { path: ':imgId', component: AlbumComponent },

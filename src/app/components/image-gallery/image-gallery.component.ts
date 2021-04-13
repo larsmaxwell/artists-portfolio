@@ -4,6 +4,8 @@ import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges } from '@a
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { Image } from '../../types/image';
+
 import { SanityService } from '../../services/sanity.service';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -20,7 +22,7 @@ export class ImageGalleryComponent implements OnInit {
   resizeObservable$: Observable<any>;
   resizeSubscription$: Subscription;
   @Input() images: any;
-  @Input() currentImg: string;
+  @Input() currentImg: Image;
   @Input() routerLinkBase: string;
   @Input() currentImgIndex: number;
   @Input() pagination: boolean;
@@ -54,7 +56,8 @@ export class ImageGalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
- 
+    
+
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -123,24 +126,11 @@ export class ImageGalleryComponent implements OnInit {
         ? pagDevIndexFlr * this.maxPagination
         : 0;
 
-    // // Set the max width of all of the images
-    // this.maxDimensions = this.images[0].asset.metadata.dimensions;
-
-    // // this.maxDimensions = this.images.pipe( max<any>((a: any, b: any) => a.asset.metadata.dimensions.width < b.asset.metadata.dimensions.width ? -1 : 1));
-    // this.images.forEach(element => {
-    //   console.log(element);
-    //   if (element.asset.metadata.dimensions.width > this.maxDimensions.width) {
-    //     this.maxDimensions = element.asset.metadata.dimensions;
-    //   }
-    // });
-
-
     this.paginationCtrl = {
       paginationStartIndex: paginationStartIndex,
       isPrevDisabled: paginationStartIndex <= 0,
       isNextDisabled: paginationStartIndex >= maxItem - this.maxPagination,
       activePaginationItems: this.images.filter((image, index) => {
-        console.log(paginationStartIndex);
         return index >= paginationStartIndex && index < paginationStartIndex + this.maxPagination;
       })
     }

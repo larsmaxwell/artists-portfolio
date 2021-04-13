@@ -2,7 +2,7 @@ import { Component, OnInit, Inject, ViewChild, OnChanges, SimpleChanges, PLATFOR
 import { ActivatedRoute } from '@angular/router';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
+// import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
 
 // App Specific
 import { Illustration } from '../../types/illustration';
@@ -28,8 +28,8 @@ export class IllustrationComponent implements OnInit {
   gridView: any;
   desHeight: any;
   desWidth: any;
-  _masonry: Masonry;
-  masonryItems: any[]; // NgMasonryGrid Grid item list
+  // _masonry: Masonry;
+  // masonryItems: any[]; // NgMasonryGrid Grid item list
   isBrowser: boolean;
   activeSlide: string;
   imageID: string;
@@ -77,9 +77,9 @@ export class IllustrationComponent implements OnInit {
 
   }
 
-  onNgMasonryInit($event: Masonry) {
-    this._masonry = $event;
-  }
+  // onNgMasonryInit($event: Masonry) {
+  //   this._masonry = $event;
+  // }
 
   getWorks(): void {
     const client = this.illustrationService.init();
@@ -90,7 +90,6 @@ export class IllustrationComponent implements OnInit {
         this.illustrations.forEach(element => {
           this.images.push(element.featuredImage);
         });
-        console.log(this.images);
         if (!this.imageID) {
           this.imageID = this.images[0].asset.assetId;
         }
