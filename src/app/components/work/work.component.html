@@ -26,7 +26,8 @@
         <app-album [albumId]="work.album._ref"></app-album>
       </ng-template>
       <ng-template [ngIf]="work.galleryview === false">
-        <img [src]="urlFor(work.featuredImage)">
+        <img [src]="urlFor(work.featuredImage)" 
+          appImgObserver intersectionDebounce="10">
       </ng-template>
     </div>
   </div>

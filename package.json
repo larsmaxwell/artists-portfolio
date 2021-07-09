@@ -54,6 +54,7 @@
     "imagesloaded": "^4.1.4",
     "install": "^0.10.4",
     "masonry-layout": "^4.2.2",
+    "ng-lazyload-image": "^9.1.0",
     "ng-masonry-grid": "^1.3.0",
     "ngbox": "0.0.15",
     "ngx-masonry": "^9.1.1",

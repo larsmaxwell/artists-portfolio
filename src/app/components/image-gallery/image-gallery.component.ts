@@ -10,16 +10,22 @@ import { SanityService } from '../../services/sanity.service';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faArrowRight, faBullseye, faChevronCircleLeft, faChevronCircleRight} from '@fortawesome/free-solid-svg-icons';
+// import { IntersectionStatus } from '../../directives/from-intersection-observer';
+// import { ImgObserverDirective } from '../../directives/img-observer.directive'
 
 // Reusable image
 @Component({
   selector: 'app-image-gallery',
   templateUrl: './image-gallery.component.html',
-  styleUrls: ['./image-gallery.component.css']
+  styleUrls: ['./image-gallery.component.css'],
+  // viewProviders: [LazyLoadImageModule]
 })
 export class ImageGalleryComponent implements OnInit {
 
+  // visibilityStatus: {[key: number]: IntersectionStatus} = {};
+  // intersectionStatus = IntersectionStatus;
   resizeObservable$: Observable<any>;
+  indexChange$: Observable<any>;
   resizeSubscription$: Subscription;
   @Input() images: any;
   @Input() currentImg: Image;
@@ -62,6 +68,13 @@ export class ImageGalleryComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges) {
     this.setActivePaginationItems();
+
+    if (changes.currentImgIndex && changes.currentImgIndex.isFirstChange() === false) {
+      // this.indexChange$ = Observable.create(function(observer) {
+      //   // observer.next({isIntersecting:true});
+      //   // observer.complete();
+      // });
+    }
   }
 
   ngAfterViewInit() {

@@ -14,12 +14,18 @@ import { ArtWorkService } from '../../services/art-work-service.service';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 
+//  Directiives
+// import { ImgObserverDirective } from '../../directives/img-observer.directive'
+// import { IntersectionStatus } from '../../directives/from-intersection-observer';
+
 @Component({
   selector: 'app-art-work',
   templateUrl: './work.component.html',
-  styleUrls: ['./work.component.css']
+  styleUrls: ['./work.component.css'],
 })
 export class WorkComponent implements OnInit {
+  // visibilityStatus: {[key: number]: IntersectionStatus} = {};
+  // intersectionStatus = IntersectionStatus;
 
   work: ArtWork;
   albumId: string;
@@ -68,6 +74,11 @@ export class WorkComponent implements OnInit {
     });
 
   }
+  
+  // onVisibilityChanged(index: number, status: IntersectionStatus) {
+  //   this.visibilityStatus[index] = status;
+  // }
+
 
   ngOnChanges(changes: SimpleChanges) {
     // const permalink = this.route.snapshot.paramMap.get('permalink');

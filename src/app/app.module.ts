@@ -42,6 +42,9 @@ import { GetByTypePipe } from './pipes/get-by-type.pipe';
 import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
+// Directive
+import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image'; // <-- import it
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,7 +71,8 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     FontAwesomeModule,
     OrderModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    LazyLoadImageModule
   ],
   providers: [
     ArtWorkService,
@@ -78,7 +82,8 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     PageService,
     OrderModule,
     SanityService,
-    SanityCategoryService
+    SanityCategoryService,
+    { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }
   ],
   bootstrap: [AppComponent]
 })
