@@ -1,8 +1,8 @@
-import { fromEvent, Observable, Subscription } from 'rxjs';
+import { from, fromEvent, Observable, Subscription } from 'rxjs';
 import { max } from 'rxjs/operators';
 import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterEvent, ParamMap } from '@angular/router';
 
 import { Image } from '../../types/image';
 
@@ -50,31 +50,28 @@ export class ImageGalleryComponent implements OnInit {
     private sanityService: SanityService,
     private library: FaIconLibrary,
     public router: Router,
+    public route: ActivatedRoute,
     @Inject(PLATFORM_ID) private platformId
   ) { 
     this.isBrowser = isPlatformBrowser(platformId);
+    this.route = route;
 
     library.addIcons(this.faArrowLeft, this.faArrowRight);
-
+    this.route.paramMap.subscribe((params : ParamMap)=> {  
+      this.indexChange$ = new Observable((observer) => {
+        observer.next({isIntersecting: true});
+      });
+    });  
 
     this.getSanity();
     this.getSanityUrlBuilder();
   }
 
   ngOnInit(): void {
-    
-
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.setActivePaginationItems();
-
-    if (changes.currentImgIndex && changes.currentImgIndex.isFirstChange() === false) {
-      // this.indexChange$ = Observable.create(function(observer) {
-      //   // observer.next({isIntersecting:true});
-      //   // observer.complete();
-      // });
-    }
   }
 
   ngAfterViewInit() {

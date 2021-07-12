@@ -22,13 +22,11 @@
           [class]="'active-slide slide slide-'+ currentImgIndex"
           aria-roledescription="slide"
           >
-          <!-- [attr.data-src]="urlFor(images[currentImgIndex]).height(getWindowHeight()+100)"
-          [src]="urlFor(images[currentImgIndex]).width(20)" -->
           <img 
           [alt]="images[currentImgIndex].asset.caption || ''"
-          [style.height]="getWindowHeight() + 'px'"
-          [defaultImage]="urlFor(images[currentImgIndex]).width(20)"
-          [lazyLoad]="urlFor(images[currentImgIndex]).height(getWindowHeight()+100)"
+          [style.height]=""
+          loading="lazy"
+          [src]="urlFor(images[currentImgIndex]).height(getWindowHeight()+100)"
           class="img-fluid">
           <span class="sr-only"> {{currentImgIndex+1}} of {{ images.length }} images. {{ images[currentImgIndex].asset.caption }} </span>
 
@@ -73,8 +71,8 @@
           [attr.aria-hidden]="!isCorrectIndex(i)"
           >
           <img 
-          [src]="urlFor(image).height(getWindowHeight())" 
-          [attr.data-src]="urlFor(image).width(4)"
+          [src]="urlFor(image)"
+          load="lazy"
           [alt]="image.caption || ''"
           tabindex="0"
           class="img-fluid">
