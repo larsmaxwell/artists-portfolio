@@ -46,6 +46,7 @@
     "@sanity/image-url": "^0.140.17",
     "ajv": "^6.9.1",
     "base-64": "^0.1.0",
+    "bootstrap": "^5.0.2",
     "core-js": "^2.4.1",
     "enhanced-resolve": "^3.3.0",
     "express": "^4.16.2",

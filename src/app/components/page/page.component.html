@@ -3,10 +3,7 @@
   <ng-template [ngIf]="blockContent">
     <ng-template ngFor let-content [ngForOf]="blockContent" let-i="index">
       <ng-template [ngIf]="content._type === 'image'">
-        <picture class="mr-3 float-left intrinsic rounded">
-          <img alt="" [src]="urlFor(content).width(4)" width="300px">
-          <img alt="" [srcset]="urlFor(content).width(300)" class="img-fluid intrinsic-item">
-        </picture>
+        <img alt="" [src]="urlFor(content).width(300)" width="300px">
       </ng-template>
       <ng-template [ngIf]="content._type === 'block'">
         <div [innerHTML]="getBlocks(content)"></div>
