@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -45,6 +46,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 // Directive
 import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image'; // <-- import it
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +67,8 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
+    NgxGoogleAnalyticsModule.forRoot('UA-115925018-1'),
+    NgxGoogleAnalyticsRouterModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,

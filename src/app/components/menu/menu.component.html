@@ -6,14 +6,19 @@
           <h1 class="site-title">Lurn Maxwell</h1>
         </a>
       </div>
-      <div class="col-2">
-        <button type="button" class="navbar-toggler btn btn-primary d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
-          <fa-icon [icon]="faBars"></fa-icon>
+      <div class="col-2 d-block d-sm-none">
+        <button type="button" class="navbar-toggler btn btn-primary  float-right" (click)="isCollapsed = !isCollapsed" id="navbar-trigger">
+          <fa-icon [icon]="faBars"></fa-icon> <span class="sr-only">Mobile Menu</span>
         </button>
       </div>
     </div>
   </div>
-  <div class="navbar-content navbar-mobile col-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
+  <div class="navbar-content navbar-mobile col-12 d-sm-none"
+    [ngClass]="{
+      'd-none': !isCollapsed,
+      'd-block': isCollapsed
+    }"
+    id="navbar-content">
     <div class="row">
       <div class="col-12">
 
@@ -48,15 +53,8 @@
       </div>
     </div>
   </div>
-  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content">
-    <h5 class="d-none">
-      <a routerLink="/">
-      Store
-      </a>
-      <span class="sm badge badge-light">
-        <a href="">(0 items in Cart)</a>
-      </span>
-    </h5>
+  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content-mobile">
+
     <app-work-list></app-work-list>
 
     <app-page-list></app-page-list>

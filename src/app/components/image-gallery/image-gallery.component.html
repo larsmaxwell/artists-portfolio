@@ -5,7 +5,7 @@
         <button 
           [routerLink]="[routerLinkBase, images[currentImgIndex!== 0 ? currentImgIndex - 1 : images.length-1].asset.assetId]"
           class="btn btn-primary button-left">
-          <fa-icon [icon]="faArrowLeft" class="screenreader-only" aria-hidden="true"></fa-icon>
+          <fa-icon [icon]="faArrowLeft" aria-hidden="true"></fa-icon>
           <span class="sr-only">Previous Item</span>
         </button>
       </div>
@@ -68,11 +68,12 @@
           [ngClass]="{
             'active-slide': isCorrectIndex(i)
           }"
-          [attr.aria-hidden]="!isCorrectIndex(i)"
           >
           <img 
-          [src]="urlFor(image)"
-          load="lazy"
+          [src]="urlFor(image).width(getWindowWidth())"
+          [style.width.px]="getWindowWidth()"
+          [style.height.px]="scaleImageHeight(image.asset.metadata.dimensions, getWindowWidth())"
+          loading="lazy"
           [alt]="image.caption || ''"
           tabindex="0"
           class="img-fluid">

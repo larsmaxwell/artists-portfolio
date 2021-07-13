@@ -96,6 +96,14 @@ export class ImageGalleryComponent implements OnInit {
     }
   }
 
+  getWindowWidth() {
+    return window.innerWidth;
+  }
+
+  scaleImageHeight(assetData, imageWidth) {
+    return (imageWidth * assetData.height) / assetData.width;
+  }
+
   getWindowHeight() {
     if (this.isBrowser) {
       return window.innerHeight > 1200 ? 1200 : window.innerHeight;
