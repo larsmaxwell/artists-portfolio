@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from '../services/message.service';
 
 import { environment } from '../../environments/environment';
-import { Illustration } from '../types/illustration';
+import { Illustration } from '../models/illustration.model';
 const sanityClientService = require('@sanity/client');
 
 const httpOptions = {

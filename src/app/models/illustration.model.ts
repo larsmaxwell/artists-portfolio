@@ -1,4 +1,4 @@
-import { Image } from './image'
+import { Image } from './image.model'
 
 export class Illustration {
     _createdAt: Date;

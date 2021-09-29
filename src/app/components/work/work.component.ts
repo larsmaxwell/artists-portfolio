@@ -9,7 +9,7 @@ import { Subscriber, Observable } from 'rxjs';
 import * as blocksToHtml from '@sanity/block-content-to-html';
 
 // App Specific
-import { ArtWork } from '../../types/art-work';
+import { ArtWork } from '../../models/art-work.model';
 import { ArtWorkService } from '../../services/art-work-service.service';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';

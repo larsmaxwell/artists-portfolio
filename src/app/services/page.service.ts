@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MessageService } from '../services/message.service';
 import { Observable, of, throwError} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
-import { Page } from '../types/page';
+import { Page } from '../models/page.model';
 
 import { environment } from '../../environments/environment';
 const sanityClientService = require('@sanity/client');

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of, throwError} from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { ArtWork } from '../types/art-work';
+import { ArtWork } from '../models/art-work.model';
 import { MessageService } from '../services/message.service';
 
 import { environment } from '../../environments/environment';

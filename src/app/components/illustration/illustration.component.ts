@@ -5,7 +5,7 @@ import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-bro
 // import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
 
 // App Specific
-import { Illustration } from '../../types/illustration';
+import { Illustration } from '../../models/illustration.model';
 import { IllustrationService } from '../../services/illustration.service';
 import { SanityService } from '../../services/sanity.service';
 
@@ -76,10 +76,6 @@ export class IllustrationComponent implements OnInit {
     });
 
   }
-
-  // onNgMasonryInit($event: Masonry) {
-  //   this._masonry = $event;
-  // }
 
   getWorks(): void {
     const client = this.illustrationService.init();

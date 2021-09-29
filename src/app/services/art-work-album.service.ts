@@ -5,7 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../services/message.service';
-import { Album } from '../types/art-work-album';
+import { Album } from '../models/album.model';
 
 import { environment } from '../../environments/environment';
 

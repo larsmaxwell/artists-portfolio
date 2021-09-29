@@ -4,7 +4,7 @@ import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges } from '@a
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterEvent, ParamMap } from '@angular/router';
 
-import { Image } from '../../types/image';
+import { Image } from '../../models/image.model';
 
 import { SanityService } from '../../services/sanity.service';
 

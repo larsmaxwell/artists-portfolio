@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ArtWorkService } from '../../services/art-work-service.service'
-import { ArtWork } from '../../types/art-work';
+import { ArtWork } from '../../models/art-work.model';
 import { SanityCategoryService } from '../../services/category.service';
-import { Category } from '../../types/category'
+import { Category } from '../../models/category.model'
 
 
 @Component({

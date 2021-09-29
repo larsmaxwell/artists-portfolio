@@ -44,7 +44,7 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 // Directive
-import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyload-image'; // <-- import it
+import { LazyLoadImageModule } from 'ng-lazyload-image'; // <-- import it
 
 
 @NgModule({
@@ -86,8 +86,7 @@ import { LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS, ScrollHooks } from 'ng-lazyl
     PageService,
     OrderModule,
     SanityService,
-    SanityCategoryService,
-    { provide: LAZYLOAD_IMAGE_HOOKS, useClass: ScrollHooks }
+    SanityCategoryService
   ],
   bootstrap: [AppComponent]
 })

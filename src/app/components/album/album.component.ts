@@ -5,7 +5,7 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
 import { Router, RouterModule, ActivatedRoute, NavigationEnd, RouterEvent, Event, ChildActivationEnd, ParamMap} from '@angular/router';
 
-import { Album } from '../../types/art-work-album';
+import { Album } from '../../models/album.model';
 import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 import { WindowRefService } from '../../services/window-ref.service';

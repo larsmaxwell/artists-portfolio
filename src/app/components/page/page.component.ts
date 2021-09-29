@@ -8,7 +8,7 @@ import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-bro
 import { PageService } from "../../services/page.service";
 import { SanityService } from "../../services/sanity.service";
 
-import {Page} from "../../types/page";
+import {Page} from "../../models/page.model";
 import { environment } from '../../../environments/environment';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
