@@ -31,12 +31,7 @@ import { StoreIndexComponent } from './components/store-index/store-index.compon
 
 // Services
 import { MessageService } from './services/message.service';
-import { ArtWorkService } from './services/art-work-service.service';
-import { ArtWorkAlbumService } from './services/art-work-album.service'
-import { IllustrationService } from './services/illustration.service';
 import { SanityService } from './services/sanity.service';
-import { SanityCategoryService } from './services/category.service';
-import { PageService } from './services/page.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
@@ -79,14 +74,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image'; // <-- import it
     LazyLoadImageModule
   ],
   providers: [
-    ArtWorkService,
-    ArtWorkAlbumService,
-    IllustrationService,
     MessageService,
-    PageService,
     OrderModule,
     SanityService,
-    SanityCategoryService
   ],
   bootstrap: [AppComponent]
 })

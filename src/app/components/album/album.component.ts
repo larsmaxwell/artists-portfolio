@@ -6,7 +6,6 @@ import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-bro
 import { Router, RouterModule, ActivatedRoute, NavigationEnd, RouterEvent, Event, ChildActivationEnd, ParamMap} from '@angular/router';
 
 import { Album } from '../../models/album.model';
-import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 import { WindowRefService } from '../../services/window-ref.service';
 
@@ -42,7 +41,6 @@ export class AlbumComponent implements OnInit {
 
 
   constructor(
-    private ArtWorkAlbumService: ArtWorkAlbumService,
     private sanityService: SanityService,
     private route: ActivatedRoute,
     public router: Router,
@@ -53,8 +51,7 @@ export class AlbumComponent implements OnInit {
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
-    this.getSanity();
-    this.getSanityUrlBuilder();
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.maxPagination = 6;
   }
@@ -128,10 +125,7 @@ export class AlbumComponent implements OnInit {
   }
 
   getAlbumImages(id) {
-
-    const imgIDCopy =  this.imgIndex;
-
-    this.ArtWorkAlbumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
+    this.sanityService.getAlbumImages(id).subscribe(data => {
       // console.log(this.images);
       this.images = data;
 
@@ -141,14 +135,6 @@ export class AlbumComponent implements OnInit {
 
   isCorrectIndex(id) {
     return parseInt(id) === this.imgIndex;
-  }
-
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
   }
 
   urlFor(source: string) {

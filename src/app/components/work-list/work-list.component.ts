@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ArtWorkService } from '../../services/art-work-service.service'
 import { ArtWork } from '../../models/art-work.model';
-import { SanityCategoryService } from '../../services/category.service';
 import { Category } from '../../models/category.model'
+import { SanityService } from '../../services/sanity.service';
 
 
 @Component({
@@ -11,13 +10,11 @@ import { Category } from '../../models/category.model'
   styleUrls: ['./work-list.component.css']
 })
 export class WorkListComponent implements OnInit {
-  works: ArtWork;
-  sanityClient: any;
+  works: ArtWork[];
   categories: Category[];
 
   constructor(
-    private artWorkService: ArtWorkService,
-    private categoryService: SanityCategoryService
+    private sanityService: SanityService,
   ) { }
 
   ngOnInit() {
@@ -26,9 +23,8 @@ export class WorkListComponent implements OnInit {
   }
 
   getWorks(): void {
-    const client = this.artWorkService.init();
-    this.artWorkService.getWorks(client)
-      .then((result) =>  { this.works = result;} );
+    this.sanityService.getWorks()
+      .subscribe((result) => this.works = result);
   }
 
   getWorksByCategory(): void {
@@ -36,9 +32,7 @@ export class WorkListComponent implements OnInit {
   }
 
   getCategories(): void {
-    const sanityClient = this.categoryService.init();
-
-    this.categoryService.getCategories(sanityClient).then(data => {
+    this.sanityService.getCategories().then(data => {
       this.categories = data;
     });
   }

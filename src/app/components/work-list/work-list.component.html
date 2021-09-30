@@ -3,7 +3,7 @@
   <h5>{{ category.name }}</h5>
   <ul class="works video-works list-unstyled" *ngIf="works">
     <li *ngFor="let work of (works | getByCategory: category._id | orderBy: 'releaseDate' : 'reverse')">
-      <a *ngIf="work && !work.archived" routerLink="/works/{{work.slug.current}}">
+      <a *ngIf="work && !work.archived" [routerLink]="['/works', work.slug.current]">
         {{ work.name }}
       </a>
     </li>

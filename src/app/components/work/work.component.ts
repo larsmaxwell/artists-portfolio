@@ -10,8 +10,6 @@ import * as blocksToHtml from '@sanity/block-content-to-html';
 
 // App Specific
 import { ArtWork } from '../../models/art-work.model';
-import { ArtWorkService } from '../../services/art-work-service.service';
-import { ArtWorkAlbumService } from '../../services/art-work-album.service';
 import { SanityService } from '../../services/sanity.service';
 
 //  Directiives
@@ -37,8 +35,6 @@ export class WorkComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private artWorkService: ArtWorkService,
-    private albumService: ArtWorkAlbumService,
     private location: Location,
     private _sanitizer: DomSanitizer,
     private meta: Meta,
@@ -66,29 +62,17 @@ export class WorkComponent implements OnInit {
     this.getArtWorkByPermalink(permalink);
 
     this.title.setTitle( "Loading..." );
-    this.getSanity();
-    this.getSanityUrlBuilder();
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.route.params.subscribe(routeParams => {
       this.getArtWorkByPermalink(routeParams.permalink);
     });
 
   }
-  
-  // onVisibilityChanged(index: number, status: IntersectionStatus) {
-  //   this.visibilityStatus[index] = status;
-  // }
-
-
-  ngOnChanges(changes: SimpleChanges) {
-    // const permalink = this.route.snapshot.paramMap.get('permalink');
-    //this.getArtWorkByPermalink(this.route.snapshot.paramMap.get('permalink'));
-  }
 
   getArtWorkByPermalink(permalink: string) {
-    const client = this.artWorkService.init();
 
-    this.artWorkService.getWorkByPermalink(permalink).subscribe(
+    this.sanityService.getWorkByPermalink(permalink).subscribe(
       data => {
         var metaData;
         this.work = data;
@@ -111,14 +95,6 @@ export class WorkComponent implements OnInit {
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
       });
-    }
-
-    getSanity() {
-      this.sanityInstance = this.sanityService.init();
-    }
-
-    getSanityUrlBuilder() {
-      this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
     }
 
     urlFor(source: string) {

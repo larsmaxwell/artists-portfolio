@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'works/:permalink', component: WorkComponent,
     children: [
       { path: ':imgId', component: AlbumComponent },
-      { path: ':albumId/:imgId', redirectTo: '' }
+      { path: ':albumId/:imgId', redirectTo: ':imgId' }
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },

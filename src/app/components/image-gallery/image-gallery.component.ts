@@ -64,7 +64,7 @@ export class ImageGalleryComponent implements OnInit {
     });  
 
     this.getSanity();
-    this.getSanityUrlBuilder();
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
   }
 
   ngOnInit(): void {
@@ -116,10 +116,6 @@ export class ImageGalleryComponent implements OnInit {
 
   getSanity() {
     this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
   }
 
   urlFor(source: string) {
