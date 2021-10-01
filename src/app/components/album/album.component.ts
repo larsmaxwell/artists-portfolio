@@ -60,8 +60,12 @@ export class AlbumComponent implements OnInit {
 
     const self = this;
 
+    // router event to subscribe for front page and child page
+
     this.router.events.pipe(
-      filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
+      filter((e: Event): e is NavigationEnd => {
+        return e instanceof NavigationEnd
+      })
     ).subscribe((e: NavigationEnd) => {
       
       if (this.route.firstChild && this.child !== this.route.firstChild) {
