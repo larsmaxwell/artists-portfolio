@@ -32,7 +32,8 @@ export class WorkListComponent implements OnInit {
   }
 
   getCategories(): void {
-    this.sanityService.getCategories().then(data => {
+    this.sanityService.getCategories()
+    .subscribe(data => {
       this.categories = data;
     });
   }

@@ -6,6 +6,7 @@ const sanityClientService = require('@sanity/client');
 import { environment } from '../../environments/environment'
 import { Album } from '../models/album.model';
 import { ArtWork } from '../models/art-work.model';
+import { Category } from '../models/category.model';
 import { Image } from '../models/image.model';
 import { Page } from '../models/page.model';
 import { MessageService } from './message.service';
@@ -84,6 +85,12 @@ export class SanityService {
     );
   }
 
+  getCategories():Observable<Category[]> {
+    const query = '*[_type == "category"]'
+
+    return this.getSanityObservable(query);
+  }
+
   getSanityObservable(query:string) {
     return new Observable<any>(observer => {
       return this.client.fetch(query)
@@ -101,12 +108,6 @@ export class SanityService {
         return throwError(error);
       })
     );;
-  }
-
-  getCategories() {
-    const query = '*[_type == "category"]'
-
-    return this.client.fetch(query);
   }
 
   /**

@@ -1,5 +1,5 @@
 
-<ng-template ngFor let-category [ngForOf]="categories" let-i="index">
+<ng-template ngFor let-category *ngIf="categories" [ngForOf]="categories" let-i="index">
   <h5>{{ category.name }}</h5>
   <ul class="works video-works list-unstyled" *ngIf="works">
     <li *ngFor="let work of (works | getByCategory: category._id | orderBy: 'releaseDate' : 'reverse')">
