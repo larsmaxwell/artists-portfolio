@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment'
 import { Album } from '../models/album.model';
 import { ArtWork } from '../models/art-work.model';
 import { Image } from '../models/image.model';
+import { Page } from '../models/page.model';
 import { MessageService } from './message.service';
 
 @Injectable()
@@ -33,9 +34,8 @@ export class SanityService {
     return new imageUrlBuilder(this.client);
   }
 
-  getPage(permalink:string): any {
+  getPage(permalink:string):Observable<Page> {
     const query = `*[_type == "page" && slug.current == "${permalink}"]`
-
     return this.getSanityObservable(query).pipe(
       map((data) => {
         return data[0];
@@ -43,45 +43,44 @@ export class SanityService {
     );
   }
 
-  getPageImages(id: string) {
+  getPageImages(id: string):Observable<any> {
     const query = `*[_id == "${id}"]{pageContent[]{..., "asset": asset->}}[]`;
     return this.getSanityObservable(query).pipe(
       map((data) => data[0].pageContent)
     );
   }
 
-  getPages() {
+  getPages():Observable<Page[]> {
     const query = `*[_type == "page"]`
     return this.getSanityObservable(query);
   }
   
   /** Get ArtWorks from the server */
-  getIllustrationAssets(): any {
+  getIllustrationAssets():Observable<any> {
     const query = `*[_type == "illustration"]{_id, _createdAt, name, description, featuredImage{..., "asset": asset->}}[]`;
-
     return this.getSanityObservable(query);
   }
 
   /** Get ArtWorks from the server */
-  getWorks () {
-    const query = '*[_type == "artwork"]'
-
+  getWorks():Observable<ArtWork[]> {
+    const query = '*[_type == "artwork"]';
     return this.getSanityObservable(query);
   }
 
-  getWorkByPermalink(permalink:string): any {
-    const query = `*[_type == "artwork" && slug.current == "${permalink}"]`
-
+  getWorkByPermalink(permalink:string): Observable<ArtWork> {
+    const query = `*[_type == "artwork" && slug.current == "${permalink}"]`;
     return this.getSanityObservable(query)
     .pipe(
       map(work => work[0])
     );;
   }
 
-  getAlbumImages(id: string) {
+  getAlbumImages(id: string):Observable<any> {
     const query = `*[_id == "${id}"]{images[]{..., "asset": asset->}}[]`;
     return this.getSanityObservable(query).pipe(
-      map(data => data[0].images)
+      map(data => {
+        return data[0].images
+      })
     );
   }
 
