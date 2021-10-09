@@ -40,6 +40,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 // Directive
 import { LazyLoadImageModule } from 'ng-lazyload-image'; // <-- import it
+import { AlbumSharedService } from './services/album-shared.service';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image'; // <-- import it
     MessageService,
     OrderModule,
     SanityService,
+    AlbumSharedService
   ],
   bootstrap: [AppComponent]
 })

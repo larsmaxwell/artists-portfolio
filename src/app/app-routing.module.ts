@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'illustration/:imgId', component: IllustrationComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
+      { path: '', component: AlbumComponent },
       { path: ':imgId', component: AlbumComponent },
       { path: ':albumId/:imgId', redirectTo: ':imgId' }
     ]

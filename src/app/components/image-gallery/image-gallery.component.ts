@@ -1,6 +1,6 @@
 import { from, fromEvent, Observable, Subscription } from 'rxjs';
 import { max } from 'rxjs/operators';
-import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Inject, PLATFORM_ID, SimpleChanges, AfterViewChecked, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, Router, RouterEvent, ParamMap } from '@angular/router';
 
@@ -20,7 +20,7 @@ import { faArrowLeft, faArrowRight, faBullseye, faChevronCircleLeft, faChevronCi
   styleUrls: ['./image-gallery.component.css'],
   // viewProviders: [LazyLoadImageModule]
 })
-export class ImageGalleryComponent implements OnInit {
+export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // visibilityStatus: {[key: number]: IntersectionStatus} = {};
   // intersectionStatus = IntersectionStatus;
@@ -28,13 +28,11 @@ export class ImageGalleryComponent implements OnInit {
   indexChange$: Observable<any>;
   resizeSubscription$: Subscription;
   @Input() images: any;
-  @Input() currentImg: Image;
   @Input() routerLinkBase: string;
   @Input() currentImgIndex: number;
   @Input() pagination: boolean;
   @Input() maxPagination: number;
   @Input() illustrationIds: boolean;
-  @Input() homePage: boolean
   @Input() illustrations: any;
 
   faArrowLeft = faArrowLeft;
@@ -51,6 +49,7 @@ export class ImageGalleryComponent implements OnInit {
     private library: FaIconLibrary,
     public router: Router,
     public route: ActivatedRoute,
+    private cdRef : ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId
   ) { 
     this.isBrowser = isPlatformBrowser(platformId);
@@ -60,17 +59,18 @@ export class ImageGalleryComponent implements OnInit {
     this.route.paramMap.subscribe((params : ParamMap)=> {  
       this.indexChange$ = new Observable((observer) => {
         observer.next({isIntersecting: true});
+        observer.complete();
       });
     });  
-
-    this.getSanity();
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
   }
 
   ngOnInit(): void {
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    if ( changes.images) this.images = changes.images.currentValue;
+
     this.setActivePaginationItems();
   }
 
@@ -81,6 +81,8 @@ export class ImageGalleryComponent implements OnInit {
     this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
       this.isMobile = this.isMobileSize();
     });
+
+    this.cdRef.detectChanges();
   }
 
   enterKeyListener() {
@@ -101,6 +103,8 @@ export class ImageGalleryComponent implements OnInit {
   }
 
   scaleImageHeight(assetData, imageWidth) {
+    console.log(imageWidth * assetData.height);
+    console.log(assetData.width);
     return (imageWidth * assetData.height) / assetData.width;
   }
 
@@ -112,10 +116,6 @@ export class ImageGalleryComponent implements OnInit {
 
   isCorrectIndex(id) {
     return parseInt(id) === this.currentImgIndex;
-  }
-
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
   }
 
   urlFor(source: string) {
@@ -150,11 +150,14 @@ export class ImageGalleryComponent implements OnInit {
     }
   }
 
-
   getRouterLink(index:number) {
     if (this.illustrationIds) {
       index = this.images[index]._id || null;
     }
     return index;
+  }
+
+  ngOnDestroy() {
+    this.resizeSubscription$.unsubscribe();
   }
 }

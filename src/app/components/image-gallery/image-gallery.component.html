@@ -17,8 +17,7 @@
         [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
         (keyup.enter)="enterKeyListener()"
         >
-        
-        <div 
+        <!-- <div 
           [class]="'active-slide slide slide-'+ currentImgIndex"
           aria-roledescription="slide"
           >
@@ -34,9 +33,9 @@
             <strong>{{ illustrations[currentImgIndex].name }}</strong><br>
             {{ illustrations[currentImgIndex].description }}
           </p>
-        </div>
+        </div> -->
 
-        <!-- <div *ngFor="let image of images; let i = index;"
+        <div *ngFor="let image of images; let i = index;"
           [class]="'slide slide-'+ i"
           [ngClass]="{
             'active-slide': isCorrectIndex(i)
@@ -45,11 +44,13 @@
           aria-roledescription="slide"
           >
 
+
+          <!-- [defaultImage]="urlFor(image).width(20)"
+          [lazyLoad]="urlFor(image)" -->
           <img 
           [alt]="image.caption || ''"
-          [style.height]="getWindowHeight() + 'px'"
-          [defaultImage]="urlFor(image).width(20)"
-          [lazyLoad]="urlFor(image)"
+          [style.height]="(getWindowHeight()+100) + 'px'"
+          [src]="urlFor(image).height(getWindowHeight()+100)"
           class="img-fluid">
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
@@ -57,9 +58,10 @@
             <strong>{{ illustrations[i].name }}</strong><br>
             {{ illustrations[i].description }}
           </p>
-        </div> -->
+        </div>
       </div> 
-      <div [id]="'overlay-controls'"
+      <!-- Simplified Mobile Version -->
+      <div id="overlay-controls"
         *ngIf="isMobile"
         class="liveregion overlay-controls center-control thumbnail-toggle"
         >

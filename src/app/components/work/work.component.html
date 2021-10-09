@@ -22,12 +22,13 @@
   </div>
   <div class="row">
     <div class="col">
-      <ng-template [ngIf]="work?.album._ref && work.galleryview === true">
-        <app-album [albumId]="work.album._ref"></app-album>
+      <ng-template [ngIf]="work.album && work.album._ref && work.galleryview === true">
+        <router-outlet></router-outlet>
       </ng-template>
       <ng-template #nongalleryview [ngIf]="work?.galleryview === false">
         <img [src]="urlFor(work.featuredImage)" 
-          appImgObserver intersectionDebounce="10">
+          appImgObserver intersectionDebounce="10"
+          class="img-fluid">
       </ng-template>
     </div>
   </div>

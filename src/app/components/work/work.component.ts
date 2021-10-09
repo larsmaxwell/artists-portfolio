@@ -11,6 +11,7 @@ import * as blocksToHtml from '@sanity/block-content-to-html';
 // App Specific
 import { ArtWork } from '../../models/art-work.model';
 import { SanityService } from '../../services/sanity.service';
+import { AlbumSharedService } from '../../services/album-shared.service';
 
 //  Directiives
 // import { ImgObserverDirective } from '../../directives/img-observer.directive'
@@ -26,6 +27,7 @@ export class WorkComponent implements OnInit {
   // intersectionStatus = IntersectionStatus;
 
   work: ArtWork;
+  images: any[];
   albumId: string;
   safeURL: SafeResourceUrl;
   descriptionHtmlBlock: String; 
@@ -39,7 +41,8 @@ export class WorkComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
-    private sanityService: SanityService
+    private sanityService: SanityService,
+    private albumShared: AlbumSharedService
   ) {
     this.hideGallery = false;
   }
@@ -50,11 +53,12 @@ export class WorkComponent implements OnInit {
     this.meta.updateTag({name: 'keywords', content: newItems.keywords});
     this.meta.updateTag({property: 'og:title', content: newItems.title});
     this.meta.updateTag({property: 'og:description', content: newItems.description});
-
-
     this.meta.updateTag({name: 'twitter:description', content: newItems.description});
     this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
     this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
   }
 
   ngOnInit() {
@@ -67,11 +71,9 @@ export class WorkComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.getArtWorkByPermalink(routeParams.permalink);
     });
-
   }
 
   getArtWorkByPermalink(permalink: string) {
-
     this.sanityService.getWorkByPermalink(permalink).subscribe(
       data => {
         var metaData;
@@ -94,10 +96,22 @@ export class WorkComponent implements OnInit {
 
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
-      });
-    }
 
-    urlFor(source: string) {
-      return this.sanityImgBuilder.image(source)
-    }
+        this.albumShared.updateAlbumId(this.albumId);
+    });
+  }
+
+  getAlbumImages(albumId) {
+
+    this.sanityService.getAlbumImages(albumId).subscribe(data => {
+      // console.log(this.images);
+      this.images = data;
+
+    });
+
+  }
+
+  urlFor(source: string) {
+    return this.sanityImgBuilder.image(source)
+  }
 }
