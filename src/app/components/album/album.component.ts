@@ -38,6 +38,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   sanityInstance: any;
   sanityImgBuilder: any;
   albumSharedSubscription: Subscription;
+  isLoading: boolean = false;
 
   constructor(
     private sanityService: SanityService,
@@ -59,6 +60,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
     this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.route.params.subscribe(routeParams => {
+      this.isLoading = true;
       // Homepage route params
       this.homePage = !routeParams.imgId; // opposite of child page
 
@@ -76,11 +78,12 @@ export class AlbumComponent implements OnInit, OnDestroy {
     });
 
     this.albumSharedSubscription = this.albumSharedService.imagesChanged.subscribe((data) => {
-        this.images = data;
+      this.images = data;
 
-        if (this.images) {
-          this.updateCurrentImgAndIndex(this.route.snapshot.params);
-        }
+      if (this.images) {
+        this.updateCurrentImgAndIndex(this.route.snapshot.params);
+      }
+      this.isLoading = false;
     });
   }
 

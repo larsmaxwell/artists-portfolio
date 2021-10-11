@@ -4,7 +4,6 @@ import { SanityService } from './sanity.service';
 
 @Injectable()
 export class AlbumSharedService {
-  albumIdChanged = new Subject<any>();
   imagesChanged = new Subject<any[] | null>();
   images: any[];
 
@@ -13,16 +12,17 @@ export class AlbumSharedService {
   ) { }
 
   updateAlbumId(id) {
-    this.albumIdChanged.next(id);
+    this.images = [];
     if (!id) {
-      this.images = [];
       this.imagesChanged.next(null);
     }
-    this.sanityService.getAlbumImages(id).subscribe(data => {
-      // console.log(this.images);
-      this.images = data;
-      this.imagesChanged.next(data)
-    });
+    else {
+      this.sanityService.getAlbumImages(id).subscribe(data => {
+        // console.log(this.images);
+        this.images = data;
+        this.imagesChanged.next(data)
+      });
+    }
   }
 
 }

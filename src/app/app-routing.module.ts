@@ -9,7 +9,6 @@ import { IllustrationListComponent } from './components/illustration-list/illust
 import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
-import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
   { path: './', component: IndexComponent },
@@ -24,7 +23,6 @@ const routes: Routes = [
   },
   { path: 'about', redirectTo: 'pages/about' },
   { path: 'pages/:permatwo', component: PageComponent},
-  { path: 'store/', component: StoreIndexComponent },
   { path: '**', component: IndexComponent }
 ];
 

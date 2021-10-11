@@ -1,5 +1,6 @@
-
+<app-loading-indicator *ngIf="isLoading"></app-loading-indicator>
 <app-image-gallery 
+*ngIf="!isLoading"
 [images]="images"
 [routerLinkBase]="'/works/'+currPermalink"
 [currentImgIndex]="imgIndex"

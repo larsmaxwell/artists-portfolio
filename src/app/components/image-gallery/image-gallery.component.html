@@ -71,8 +71,11 @@
             'active-slide': isCorrectIndex(i)
           }"
           >
+          
           <img 
-          [src]="urlFor(image).width(getWindowWidth())"
+          appLazyLoad
+          [attr.data-src]="urlFor(image).width(getWindowWidth())"
+          [src]="urlFor(image).width(20)"
           [style.width.px]="getWindowWidth()"
           [style.height.px]="scaleImageHeight(image.asset.metadata.dimensions, getWindowWidth())"
           loading="lazy"
@@ -93,9 +96,9 @@
         <button 
         [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
         class="btn btn-primary button-right">
-        <fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon>
-        <span class="sr-only">Next Item</span>
-      </button>
+          <fa-icon [icon]="faArrowRight" aria-hidden="true"></fa-icon>
+          <span class="sr-only">Next Item</span>
+        </button>
       </div>
     </div>
 

@@ -18,7 +18,6 @@ import { faArrowLeft, faArrowRight, faBullseye, faChevronCircleLeft, faChevronCi
   selector: 'app-image-gallery',
   templateUrl: './image-gallery.component.html',
   styleUrls: ['./image-gallery.component.css'],
-  // viewProviders: [LazyLoadImageModule]
 })
 export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 

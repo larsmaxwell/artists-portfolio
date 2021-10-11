@@ -26,8 +26,8 @@ import { IllustrationComponent } from './components/illustration/illustration.co
 import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
 
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
-import { StoreIndexComponent } from './components/store-index/store-index.component'
 
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 // Services
 import { MessageService } from './services/message.service';
@@ -39,9 +39,11 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 // Directive
-import { LazyLoadImageModule } from 'ng-lazyload-image'; // <-- import it
 import { AlbumSharedService } from './services/album-shared.service';
 
+
+import { ImageLazyLoadModule } from './img-lazy-load/image-lazy-load.module';
+import { ImgObserverDirective } from './img-observer/img-observer.directive';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { AlbumSharedService } from './services/album-shared.service';
     IllustrationComponent,
     IllustrationListComponent,
     ImageGalleryComponent,
-    StoreIndexComponent
+    LoadingIndicatorComponent,
+    ImgObserverDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
@@ -72,7 +75,7 @@ import { AlbumSharedService } from './services/album-shared.service';
     OrderModule,
     BrowserAnimationsModule,
     BrowserModule,
-    LazyLoadImageModule
+    ImageLazyLoadModule,
   ],
   providers: [
     MessageService,

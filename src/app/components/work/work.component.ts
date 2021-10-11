@@ -34,6 +34,7 @@ export class WorkComponent implements OnInit {
   sanityInstance: any;
   sanityImgBuilder: any;
   hideGallery: boolean;
+  isLoading:boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -62,13 +63,15 @@ export class WorkComponent implements OnInit {
   }
 
   ngOnInit() {
-    const permalink = this.route.snapshot.paramMap.get('permalink');
-    this.getArtWorkByPermalink(permalink);
 
-    this.title.setTitle( "Loading..." );
     this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.route.params.subscribe(routeParams => {
+      this.isLoading = true;
+
+      this.title.setTitle( "Loading..." );
+
+
       this.getArtWorkByPermalink(routeParams.permalink);
     });
   }
@@ -98,18 +101,18 @@ export class WorkComponent implements OnInit {
         this.setMeta(metaData);
 
         this.albumShared.updateAlbumId(this.albumId);
+
+        this.isLoading = false;
     });
   }
 
-  getAlbumImages(albumId) {
+  // getAlbumImages(albumId) {
 
-    this.sanityService.getAlbumImages(albumId).subscribe(data => {
-      // console.log(this.images);
-      this.images = data;
+  //   this.sanityService.getAlbumImages(albumId).subscribe(data => {
+  //     this.images = data;
+  //   });
 
-    });
-
-  }
+  // }
 
   urlFor(source: string) {
     return this.sanityImgBuilder.image(source)
