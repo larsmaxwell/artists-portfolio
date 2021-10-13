@@ -49,8 +49,8 @@
           [lazyLoad]="urlFor(image)" -->
           <app-gallery-image 
           [image]="urlFor(image).width(30).blur(20)"
-          [lazyLoadImg]="urlFor(image).width(getWindowWidth())"
-          [windowWidth]="getWindowWidth()"
+          [lazyLoadImg]="urlFor(image).height(getWindowHeight())"
+          [height]="getWindowHeight()"
           [caption]="image.caption"></app-gallery-image>
 
           <!-- <img 
