@@ -47,11 +47,17 @@
 
           <!-- [defaultImage]="urlFor(image).width(20)"
           [lazyLoad]="urlFor(image)" -->
-          <img 
+          <app-gallery-image 
+          [image]="urlFor(image).width(30).blur(20)"
+          [lazyLoadImg]="urlFor(image).width(getWindowWidth())"
+          [windowWidth]="getWindowWidth()"
+          [caption]="image.caption"></app-gallery-image>
+
+          <!-- <img 
           [alt]="image.caption || ''"
-          [style.height]="(getWindowHeight()+100) + 'px'"
+          [style.height.px]="getWindowHeight()+100"
           [src]="urlFor(image).height(getWindowHeight()+100)"
-          class="img-fluid">
+          class="img-fluid"> -->
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
           <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
@@ -69,13 +75,13 @@
           [class]="'slide slide-'+ i"
           [ngClass]="{
             'active-slide': isCorrectIndex(i)
-          }"
-          >
-          
+          }">
+
           <app-gallery-image 
-          [image]="urlFor(image).width(20)"
-          [lazyLoadImg]="urlFor(image).width(375)"
+          [image]="urlFor(image).width(4).blur(10)"
+          [lazyLoadImg]="urlFor(image).width(getWindowWidth())"
           [windowWidth]="getWindowWidth()"
+          [scaledHeight]="scaleImageHeight(image.asset.metadata.dimensions, getWindowWidth())"
           [caption]="image.caption"></app-gallery-image>
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>

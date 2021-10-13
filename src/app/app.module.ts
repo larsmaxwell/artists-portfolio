@@ -24,14 +24,14 @@ import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationComponent } from './components/illustration/illustration.component';
 import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
-
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
-
+import { GalleryImageComponent } from './components/gallery-image/gallery-image.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 // Services
 import { MessageService } from './services/message.service';
 import { SanityService } from './services/sanity.service';
+import { AlbumSharedService } from './services/album-shared.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
@@ -39,11 +39,7 @@ import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 // Directive
-import { AlbumSharedService } from './services/album-shared.service';
-
-import { ImageLazyLoadModule } from './image-lazy-load/image-lazy-load.module';
-import { ImgObserverDirective } from './img-observer/img-observer.directive';
-import { GalleryImageComponent } from './components/gallery-image/gallery-image.component';
+import { ImgObserverDirective } from './directives/img-observer/img-observer.directive';
 
 @NgModule({
   declarations: [
@@ -62,8 +58,8 @@ import { GalleryImageComponent } from './components/gallery-image/gallery-image.
     IllustrationListComponent,
     ImageGalleryComponent,
     LoadingIndicatorComponent,
-    ImgObserverDirective,
-    GalleryImageComponent
+    GalleryImageComponent,
+    ImgObserverDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
@@ -76,7 +72,6 @@ import { GalleryImageComponent } from './components/gallery-image/gallery-image.
     OrderModule,
     BrowserAnimationsModule,
     BrowserModule,
-    ImageLazyLoadModule,
   ],
   providers: [
     MessageService,

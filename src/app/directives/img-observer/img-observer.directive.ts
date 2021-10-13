@@ -1,11 +1,10 @@
-import { Directive, ElementRef, EventEmitter, Input, Output, OnInit, OnDestroy, NgModule, HostBinding } from '@angular/core';
+import { Directive, ElementRef, EventEmitter, Input, Output, OnInit, OnDestroy } from '@angular/core';
 import { fromIntersectionObserver, IntersectionStatus } from './from-intersection-observer';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 
 @Directive({
-  selector: 'img[appImgObserver]'
+  selector: '[appImgObserver]'
 })
 export class ImgObserverDirective {
 
@@ -35,10 +34,6 @@ export class ImgObserverDirective {
     ).pipe(
       takeUntil(this.destroy$)
     ).subscribe((status) => {
-      console.log(status);
-      if (status === "Visible") {
-        this.element.nativeElement.src = this.element.nativeElement.dataset.src;
-      }
       this.visibilityChange.emit(status);
     });  
   }

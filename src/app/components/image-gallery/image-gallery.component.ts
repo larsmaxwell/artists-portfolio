@@ -67,8 +67,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ( changes.images) this.images = changes.images.currentValue;
-
     this.setActivePaginationItems();
   }
 
@@ -101,8 +99,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   scaleImageHeight(assetData, imageWidth) {
-    console.log(imageWidth * assetData.height);
-    console.log(assetData.width);
     return (imageWidth * assetData.height) / assetData.width;
   }
 

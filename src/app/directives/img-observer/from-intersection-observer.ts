@@ -33,6 +33,22 @@ export const fromIntersectionObserver = (
       subscriber.next(IntersectionStatus.Pending);
     });
 
+    subject$
+      .pipe(
+        debounceTime(debounce),
+        filter(Boolean)
+      )
+      .subscribe(async ({ entry, observer }) => {
+        const isEntryVisible = await isVisible(entry.target as HTMLImageElement);
+
+        if (isEntryVisible) {
+          subscriber.next(IntersectionStatus.Visible);
+          observer.unobserve(entry.target);
+        } else {
+          subscriber.next(IntersectionStatus.NotVisible);
+        }
+      });
+
     intersectionObserver.observe(element);
 
     return {
@@ -43,6 +59,16 @@ export const fromIntersectionObserver = (
     }
   });
 
+async function isVisible(element: HTMLImageElement) {
+  return new Promise(resolve => {
+    const observer = new IntersectionObserver(([entry]) => {
+      resolve(entry.isIntersecting);
+      observer.disconnect();
+    });
+
+    observer.observe(element);
+  });
+}
 
 function isIntersecting(entry: IntersectionObserverEntry) {
   return entry.isIntersecting || entry.intersectionRatio > 0;

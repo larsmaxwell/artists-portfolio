@@ -74,6 +74,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
         // If there are images inherited from album service, update slides if needed
         this.updateCurrentImgAndIndex(routeParams);
+        this.isLoading = false;
       }
     });
 

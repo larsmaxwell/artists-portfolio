@@ -1,6 +1,6 @@
 import { Injectable, Input } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, filter, map } from 'rxjs/operators';
 const imageUrlBuilder = require('@sanity/image-url');
 const sanityClientService = require('@sanity/client');
 import { environment } from '../../environments/environment'
@@ -58,8 +58,22 @@ export class SanityService {
   
   /** Get ArtWorks from the server */
   getIllustrationAssets():Observable<any> {
-    const query = `*[_type == "illustration"]{_id, _createdAt, name, description, featuredImage{..., "asset": asset->}}[]`;
-    return this.getSanityObservable(query);
+    const query = `*[_type == "illustration"]{_id, _createdAt, releaseDate, name, description, featuredImage{..., "asset": asset->}}[]`;
+    return this.getSanityObservable(query)
+    .pipe(map(results => {
+      return results.sort((a, b) => {
+        const date1 = new Date(a.releaseDate).getTime();
+        const date2 = new Date(b.releaseDate).getTime();
+        if (date1 < date2) {
+          return 1;
+        }
+        if (date1 > date2) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+    }));
   }
 
   /** Get ArtWorks from the server */
