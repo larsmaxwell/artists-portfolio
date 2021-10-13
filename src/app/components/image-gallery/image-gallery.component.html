@@ -72,16 +72,12 @@
           }"
           >
           
-          <img 
-          appLazyLoad
-          [attr.data-src]="urlFor(image).width(getWindowWidth())"
-          [src]="urlFor(image).width(20)"
-          [style.width.px]="getWindowWidth()"
-          [style.height.px]="scaleImageHeight(image.asset.metadata.dimensions, getWindowWidth())"
-          loading="lazy"
-          [alt]="image.caption || ''"
-          tabindex="0"
-          class="img-fluid">
+          <app-gallery-image 
+          [image]="urlFor(image).width(20)"
+          [lazyLoadImg]="urlFor(image).width(375)"
+          [windowWidth]="getWindowWidth()"
+          [caption]="image.caption"></app-gallery-image>
+
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
           <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">

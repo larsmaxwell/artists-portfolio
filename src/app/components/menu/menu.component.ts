@@ -18,7 +18,6 @@ export class MenuComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, router: Router, library: FaIconLibrary) { 
     this.isCollapsed = false;
-    library.addIcons(this.faEnvelope, this.faInstagram, this.faBars);
 
     router.events.subscribe((val) => this.isCollapsed = false)
   }

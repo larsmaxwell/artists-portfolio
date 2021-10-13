@@ -54,7 +54,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isBrowser = isPlatformBrowser(platformId);
     this.route = route;
 
-    library.addIcons(this.faArrowLeft, this.faArrowRight);
     this.route.paramMap.subscribe((params : ParamMap)=> {  
       this.indexChange$ = new Observable((observer) => {
         observer.next({isIntersecting: true});

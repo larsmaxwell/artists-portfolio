@@ -10,6 +10,7 @@ import { SanityService } from '../../services/sanity.service';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-illustration',
@@ -49,7 +50,7 @@ export class IllustrationComponent implements OnInit {
     private sanityService: SanityService,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    library.addIcons(this.faArrowLeft);
+    // this.library.addIcons(this.faArrowLeft);
     this.isBrowser = isPlatformBrowser(platformId);
   }
 

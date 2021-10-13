@@ -15,7 +15,6 @@ export class IndexComponent implements OnInit {
   constructor(
     private library: FaIconLibrary,
   ) {
-    library.addIcons(this.faBed);
 
   }
 
