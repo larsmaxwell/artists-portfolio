@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { IllustrationService } from './illustration.service';
+import { AlbumSharedService } from './album-shared.service';
 
-describe('IllustrationService', () => {
-  let service: IllustrationService;
+describe('AlbumSharedService', () => {
+  let service: AlbumSharedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(IllustrationService);
+    service = TestBed.inject(AlbumSharedService);
   });
 
   it('should be created', () => {

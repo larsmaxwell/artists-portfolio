@@ -1,0 +1,11 @@
+<img
+appImgObserver
+intersectionDebounce="800"
+(visibilityChange)="onVisibilityChange($event)"
+[attr.data-src]="image"
+[src]="srcAttr"
+[style.width.px]="width"
+[style.height.px]="height"
+[alt]="caption || ''"
+tabindex="0"
+class="img-fluid">

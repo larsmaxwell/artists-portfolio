@@ -6,20 +6,21 @@
           <h1 class="site-title">Lurn Maxwell</h1>
         </a>
       </div>
-      <div class="col-2">
-        <button type="button" class="navbar-toggler btn btn-primary d-block d-sm-none float-right" (click)="isCollapsed = !isCollapsed"  id="navbar-content">
-          <fa-icon [icon]="faBars"></fa-icon>
+      <div class="col-2 d-block d-sm-none">
+        <button type="button" class="navbar-toggler btn btn-primary  float-right" (click)="isCollapsed = !isCollapsed" id="navbar-trigger">
+          <fa-icon [icon]="faBars"></fa-icon> <span class="sr-only">Mobile Menu</span>
         </button>
       </div>
     </div>
   </div>
-  <div class="navbar-content navbar-mobile col-12 d-block d-sm-none" id="navbar-content" *ngIf="isCollapsed">
+  <div class="navbar-content navbar-mobile col-12 d-sm-none"
+    [ngClass]="{
+      'd-none': !isCollapsed,
+      'd-block': isCollapsed
+    }"
+    id="navbar-content">
     <div class="row">
       <div class="col-12">
-
-        <app-work-list></app-work-list>
-        <hr>
-        <app-page-list></app-page-list>
         <ul class="list-unstyled">
           <li>
             <h5>
@@ -29,37 +30,30 @@
             </h5>
           </li>
         </ul>
+        <app-work-list></app-work-list>
+        <hr>
+        <app-page-list></app-page-list>
       </div>
     </div>
     <div class="navbar-extra col-12">
       <div class="row">
-        <ul class="items list-inline">
-          <li class="list-inline-item">
+        <ul class="items">
+          <li class="">
             <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
-              <fa-icon [icon]="faInstagram"></fa-icon> <span class="sr-only">Instagram</span>
+              <fa-icon [icon]="faInstagram" size="2x"></fa-icon> <span class="sr-only">Instagram</span>
             </a>
           </li>
-          <li class="list-inline-item">
+          <li class="">
             <a href="mailto:mlmxwell@gmail.com">
-              <fa-icon [icon]="faEnvelope"></fa-icon><span class="sr-only">Email</span>
+              <fa-icon [icon]="faEnvelope" size="2x"></fa-icon><span class="sr-only">Email</span>
             </a>
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content">
-    <h5 class="d-none">
-      <a routerLink="/">
-      Store
-      </a>
-      <span class="sm badge badge-light">
-        <a href="">(0 items in Cart)</a>
-      </span>
-    </h5>
-    <app-work-list></app-work-list>
+  <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content-mobile">
 
-    <app-page-list></app-page-list>
     <ul class="list-unstyled">
       <li>
         <h5>
@@ -69,18 +63,20 @@
         </h5>
       </li>
     </ul>
+    <app-work-list></app-work-list>
+    <app-page-list></app-page-list>
   </div>
   <div class="navbar-extra col-12 d-none d-sm-block">
     <div class="row">
       <ul class="items list-inline">
         <li class="list-inline-item">
           <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
-            <fa-icon [icon]="faInstagram" size="sm"></fa-icon> <span class="sr-only">Instagram</span>
+            <fa-icon [icon]="faInstagram" size="2x"></fa-icon> <span class="sr-only">Instagram</span>
           </a>
         </li>
         <li class="list-inline-item">
           <a href="mailto:mlmxwell@gmail.com">
-            <fa-icon [icon]="faEnvelope" size="sm"></fa-icon> <span class="sr-only">Email</span>
+            <fa-icon [icon]="faEnvelope" size="2x"></fa-icon> <span class="sr-only">Email</span>
           </a>
         </li>
       </ul>

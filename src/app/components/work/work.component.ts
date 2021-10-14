@@ -9,35 +9,41 @@ import { Subscriber, Observable } from 'rxjs';
 import * as blocksToHtml from '@sanity/block-content-to-html';
 
 // App Specific
-import { ArtWork } from '../../types/art-work';
-import { ArtWorkService } from '../../services/art-work-service.service';
-import { ArtWorkAlbumService } from '../../services/art-work-album.service';
+import { ArtWork } from '../../models/art-work.model';
 import { SanityService } from '../../services/sanity.service';
+import { AlbumSharedService } from '../../services/album-shared.service';
+
+//  Directiives
+// import { ImgObserverDirective } from '../../directives/img-observer.directive'
+// import { IntersectionStatus } from '../../directives/from-intersection-observer';
 
 @Component({
   selector: 'app-art-work',
   templateUrl: './work.component.html',
-  styleUrls: ['./work.component.css']
+  styleUrls: ['./work.component.css'],
 })
 export class WorkComponent implements OnInit {
+  // visibilityStatus: {[key: number]: IntersectionStatus} = {};
+  // intersectionStatus = IntersectionStatus;
 
   work: ArtWork;
+  images: any[];
   albumId: string;
   safeURL: SafeResourceUrl;
   descriptionHtmlBlock: String; 
   sanityInstance: any;
   sanityImgBuilder: any;
   hideGallery: boolean;
+  isLoading:boolean = false;
 
   constructor(
     private route: ActivatedRoute,
-    private artWorkService: ArtWorkService,
-    private albumService: ArtWorkAlbumService,
     private location: Location,
     private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
-    private sanityService: SanityService
+    private sanityService: SanityService,
+    private albumShared: AlbumSharedService
   ) {
     this.hideGallery = false;
   }
@@ -48,36 +54,30 @@ export class WorkComponent implements OnInit {
     this.meta.updateTag({name: 'keywords', content: newItems.keywords});
     this.meta.updateTag({property: 'og:title', content: newItems.title});
     this.meta.updateTag({property: 'og:description', content: newItems.description});
-
-
     this.meta.updateTag({name: 'twitter:description', content: newItems.description});
     this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
     this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
   }
 
-  ngOnInit() {
-    const permalink = this.route.snapshot.paramMap.get('permalink');
-    this.getArtWorkByPermalink(permalink);
-
-    this.title.setTitle( "Loading..." );
-    this.getSanity();
-    this.getSanityUrlBuilder();
-
-    this.route.params.subscribe(routeParams => {
-      this.getArtWorkByPermalink(routeParams.permalink);
-    });
-
+  ngOnChanges(changes: SimpleChanges) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    // const permalink = this.route.snapshot.paramMap.get('permalink');
-    //this.getArtWorkByPermalink(this.route.snapshot.paramMap.get('permalink'));
+  ngOnInit() {
+
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
+
+    this.route.params.subscribe(routeParams => {
+      this.isLoading = true;
+
+      this.title.setTitle( "Loading..." );
+
+
+      this.getArtWorkByPermalink(routeParams.permalink);
+    });
   }
 
   getArtWorkByPermalink(permalink: string) {
-    const client = this.artWorkService.init();
-
-    this.artWorkService.getWorkByPermalink(permalink).subscribe(
+    this.sanityService.getWorkByPermalink(permalink).subscribe(
       data => {
         var metaData;
         this.work = data;
@@ -99,18 +99,22 @@ export class WorkComponent implements OnInit {
 
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
         this.setMeta(metaData);
-      });
-    }
 
-    getSanity() {
-      this.sanityInstance = this.sanityService.init();
-    }
+        this.albumShared.updateAlbumId(this.albumId);
 
-    getSanityUrlBuilder() {
-      this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
-    }
+        this.isLoading = false;
+    });
+  }
 
-    urlFor(source: string) {
-      return this.sanityImgBuilder.image(source)
-    }
+  // getAlbumImages(albumId) {
+
+  //   this.sanityService.getAlbumImages(albumId).subscribe(data => {
+  //     this.images = data;
+  //   });
+
+  // }
+
+  urlFor(source: string) {
+    return this.sanityImgBuilder.image(source)
+  }
 }

@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
 
 import { AppRoutingModule }     from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,24 +24,22 @@ import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationComponent } from './components/illustration/illustration.component';
 import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
-
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
-import { StoreIndexComponent } from './components/store-index/store-index.component'
-
+import { GalleryImageComponent } from './components/gallery-image/gallery-image.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 // Services
 import { MessageService } from './services/message.service';
-import { ArtWorkService } from './services/art-work-service.service';
-import { ArtWorkAlbumService } from './services/art-work-album.service'
-import { IllustrationService } from './services/illustration.service';
 import { SanityService } from './services/sanity.service';
-import { SanityCategoryService } from './services/category.service';
-import { PageService } from './services/page.service';
+import { AlbumSharedService } from './services/album-shared.service';
 
 // Pipe
 import { GetByTypePipe } from './pipes/get-by-type.pipe';
 import { GetImgUrlPipe } from './pipes/get-img-url.pipe';
 import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
+
+// Directive
+import { ImgObserverDirective } from './directives/img-observer/img-observer.directive';
 
 @NgModule({
   declarations: [
@@ -58,27 +57,27 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
     IllustrationComponent,
     IllustrationListComponent,
     ImageGalleryComponent,
-    StoreIndexComponent
+    LoadingIndicatorComponent,
+    GalleryImageComponent,
+    ImgObserverDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
+    NgxGoogleAnalyticsModule.forRoot('UA-115925018-1'),
+    NgxGoogleAnalyticsRouterModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
     FontAwesomeModule,
     OrderModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
   ],
   providers: [
-    ArtWorkService,
-    ArtWorkAlbumService,
-    IllustrationService,
     MessageService,
-    PageService,
     OrderModule,
     SanityService,
-    SanityCategoryService
+    AlbumSharedService,
   ],
   bootstrap: [AppComponent]
 })

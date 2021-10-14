@@ -9,7 +9,6 @@ import { IllustrationListComponent } from './components/illustration-list/illust
 import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
-import { StoreIndexComponent } from './components/store-index/store-index.component';
 
 const routes: Routes = [
   { path: './', component: IndexComponent },
@@ -17,19 +16,19 @@ const routes: Routes = [
   { path: 'illustration/:imgId', component: IllustrationComponent },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
+      { path: '', component: AlbumComponent },
       { path: ':imgId', component: AlbumComponent },
-      { path: ':albumId/:imgId', redirectTo: '' }
+      { path: ':albumId/:imgId', redirectTo: ':imgId' }
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },
   { path: 'pages/:permatwo', component: PageComponent},
-  { path: 'store/', component: StoreIndexComponent },
   { path: '**', component: IndexComponent }
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload', paramsInheritanceStrategy: 'always'}),
+    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', paramsInheritanceStrategy: 'always', relativeLinkResolution: 'legacy' }),
   ],
   exports: [RouterModule]
 })

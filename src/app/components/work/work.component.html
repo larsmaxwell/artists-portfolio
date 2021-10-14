@@ -1,34 +1,44 @@
 <div *ngIf="work" id="main">
-  <h2> {{ work.name }} <small>({{ work?.releaseDate | date:"y" }})</small> </h2>
+  <div *ngIf="isLoading">
+    <app-loading-indicator></app-loading-indicator>
+  </div>
+  <div id="main-wrapper" *ngIf="!isLoading">
+    <h2> {{ work.name }} <small>({{ work?.releaseDate | date:"y" }})</small> </h2>
 
-  <div class="row">
-    <div class="descriptionBlk col order-2">
-      <div *ngIf="descriptionHtmlBlock" class="wk-dsc mt-xs-4" [innerHTML]="descriptionHtmlBlock"></div>
+    <div class="row">
+      <div class="descriptionBlk col order-2">
+        <div *ngIf="descriptionHtmlBlock" class="wk-dsc mt-xs-4" [innerHTML]="descriptionHtmlBlock"></div>
+      </div>
+      <!-- <div class="col-md-3 order-1 d-none d-md-block" *ngIf="work.galleryview">
+        <app-work-album [albumId]="albumId2"></app-work-album>
+      </div> -->
     </div>
-    <!-- <div class="col-md-3 order-1 d-none d-md-block" *ngIf="work.galleryview">
-      <app-work-album [albumId]="albumId2"></app-work-album>
-    </div> -->
-  </div>
-  <div class="row">
-    <div class="col">
-      <ng-template [ngIf]="work.mediaUrl">
-        <iframe 
-        width="560"
-        height="315"
-        [src]="safeURL"
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </ng-template>
+    <div class="row">
+      <div class="col">
+        <ng-template [ngIf]="work.mediaUrl">
+          <iframe 
+          width="560"
+          height="315"
+          [src]="safeURL"
+          frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ng-template [ngIf]="work.album && work.album._ref && work.galleryview === true">
+          <router-outlet></router-outlet>
+        </ng-template>
+        <ng-template [ngIf]="work?.galleryview === false">
+          <img [src]="urlFor(work.featuredImage)" 
+            appImgObserver intersectionDebounce="10"
+            class="img-fluid">
+        </ng-template>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col">
-      <ng-template [ngIf]="work.album && work.album._ref && work.galleryview === true">
-        <app-album [albumId]="work.album._ref"></app-album>
-      </ng-template>
-      <ng-template [ngIf]="work.galleryview === false">
-        <img [src]="urlFor(work.featuredImage)">
-      </ng-template>
-    </div>
-  </div>
-  
+
+
+
+
 </div>

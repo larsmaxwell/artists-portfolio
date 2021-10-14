@@ -5,12 +5,12 @@ import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-bro
 // import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
 
 // App Specific
-import { Illustration } from '../../types/illustration';
-import { IllustrationService } from '../../services/illustration.service';
+import { Illustration } from '../../models/illustration.model';
 import { SanityService } from '../../services/sanity.service';
 
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 @Component({
   selector: 'app-illustration',
@@ -42,7 +42,6 @@ export class IllustrationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private illustrationService: IllustrationService,
     private location: Location,
     private library: FaIconLibrary,
     private _sanitizer: DomSanitizer,
@@ -51,7 +50,7 @@ export class IllustrationComponent implements OnInit {
     private sanityService: SanityService,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    library.addIcons(this.faArrowLeft);
+    // this.library.addIcons(this.faArrowLeft);
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -59,8 +58,7 @@ export class IllustrationComponent implements OnInit {
 
     this.activeSlide = "";
 
-    this.getSanity();
-    this.getSanityUrlBuilder();
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
  
     this.imageID = this.route.snapshot.paramMap.get('imgId');
     this.slideshowView = !!this.route.snapshot.paramMap.get('imgId') || this.isMobileSize;
@@ -77,33 +75,20 @@ export class IllustrationComponent implements OnInit {
 
   }
 
-  // onNgMasonryInit($event: Masonry) {
-  //   this._masonry = $event;
-  // }
-
   getWorks(): void {
-    const client = this.illustrationService.init();
-    this.illustrationService.getAssetsClient(client)
-      .subscribe((data) =>  {
+    this.sanityService.getIllustrationAssets()
+    .subscribe((data) =>  {
 
-        this.illustrations = data;
-        this.illustrations.forEach(element => {
-          this.images.push(element.featuredImage);
-        });
-        if (!this.imageID) {
-          this.imageID = this.images[0].asset.assetId;
-        }
-
-        this.setImgControls(this.imageID);
+      this.illustrations = data;
+      this.illustrations.forEach(element => {
+        this.images.push(element.featuredImage);
       });
-  }
+      if (!this.imageID) {
+        this.imageID = this.images[0].asset.assetId;
+      }
 
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
+      this.setImgControls(this.imageID);
+    });
   }
 
   urlFor(source: string) {
@@ -136,7 +121,7 @@ export class IllustrationComponent implements OnInit {
     this.title.setTitle("Lurn Maxwell: Home");
     this.meta.updateTag({name: 'description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle"});
     this.meta.updateTag({name: 'keywords', content: "comics, horror comics, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
-    this.meta.updateTag({property: 'og:title', content: "Lurn Maxwell: About" });
+    this.meta.updateTag({property: 'og:title', content: "Lurn Maxwell: Illustrations" });
     this.meta.updateTag({property: 'og:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
     this.meta.updateTag({name: 'twitter:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
     this.meta.updateTag({name: 'twitter:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });

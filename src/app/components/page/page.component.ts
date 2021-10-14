@@ -4,11 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location, isPlatformServer } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
 
-
-import { PageService } from "../../services/page.service";
 import { SanityService } from "../../services/sanity.service";
 
-import {Page} from "../../types/page";
+import {Page} from "../../models/page.model";
 import { environment } from '../../../environments/environment';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
@@ -32,7 +30,6 @@ export class PageComponent implements OnInit {
     private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
-    private pageService: PageService,
     private sanityService: SanityService
   ) { }
 
@@ -40,8 +37,7 @@ export class PageComponent implements OnInit {
     const permalink = this.route.snapshot.paramMap.get('permatwo');
 
     this.title.setTitle( "Loading..." );
-    this.getSanity();
-    this.getSanityUrlBuilder();
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.getPage(permalink);
 
@@ -60,13 +56,13 @@ export class PageComponent implements OnInit {
   }
 
   getPage(permalink: string) {
-    this.pageService.getPageByPermalink(permalink).subscribe(
+    this.sanityService.getPage(permalink).subscribe(
       data => {
         var metaData;
         this.page = data;
 
         if (data.pageContent) {
-          this.pageService.getPageImages(this.sanityInstance, data._id).subscribe(
+          this.sanityService.getPageImages(data._id).subscribe(
             data => {
               this.blockContent = data;
             }
@@ -76,14 +72,6 @@ export class PageComponent implements OnInit {
         metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords, featuredImage: featuredImage }
         this.setMeta(metaData);
       });
-  }
-
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
   }
 
   urlFor(source: string) {

@@ -4,11 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Location, isPlatformServer } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
 
-
-import { PageService } from "../../services/page.service";
 import { SanityService } from "../../services/sanity.service";
 
-import {Page} from "../../types/page";
+import {Page} from "../../models/page.model";
 import { environment } from '../../../environments/environment';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
@@ -27,22 +25,15 @@ export class PageListComponent implements OnInit {
     // private route: ActivatedRoute,
     private meta: Meta,
     private title: Title,
-    private pageService: PageService,
     private sanityService: SanityService
   ) { }
 
   ngOnInit(): void {
-    this.getSanity();
 
-    this.getPages(this.sanityInstance);
-  }
-
-  getPages(client) {
-    this.pageService.getPages(client).subscribe(
-      data => {
-        var metaData;
-        this.pages = data;
-      });
+    this.sanityService.getPages().subscribe(
+    data => {
+      this.pages = data;
+    });
   }
 
   setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
@@ -52,9 +43,5 @@ export class PageListComponent implements OnInit {
     this.meta.updateTag({property: 'og:title', content: newItems.title});
     this.meta.updateTag({property: 'og:description', content: newItems.description});
     this.meta.updateTag({name: 'twitter:description', content: newItems.description});
-  }
-
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
   }
 }

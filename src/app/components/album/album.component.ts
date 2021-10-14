@@ -1,24 +1,24 @@
 import { fromEvent, Observable, Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Component, OnInit, Input, Inject, SimpleChanges, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Input, Inject, SimpleChanges, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';  
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-import { Router, RouterModule, ActivatedRoute, NavigationEnd, RouterEvent, Event, ChildActivationEnd, ParamMap} from '@angular/router';
+import { Router, RouterModule, ActivatedRoute, NavigationEnd, RouterEvent, Event, ChildActivationEnd, ParamMap, Params} from '@angular/router';
 
-import { Album } from '../../types/art-work-album';
-import { ArtWorkAlbumService } from '../../services/art-work-album.service';
+import { Album } from '../../models/album.model';
 import { SanityService } from '../../services/sanity.service';
 import { WindowRefService } from '../../services/window-ref.service';
+import { AlbumSharedService } from '../../services/album-shared.service';
+import { Image } from '../../models/image.model';
 
 @Component({
   selector: 'app-album',
   templateUrl: './album.component.html',
   styleUrls: ['./album.component.css']
 })
-export class AlbumComponent implements OnInit {
+export class AlbumComponent implements OnInit, OnDestroy {
 
-  @Input() albumId: string;
-
+  albumId: string;
   album: Album;
   resizeObservable$: Observable<any>;
   resizeSubscription$: Subscription;
@@ -30,20 +30,19 @@ export class AlbumComponent implements OnInit {
   maxPagination: number;
   desHeight: string;
   currPermalink: string;
-  getAlbumId: string;
   images: any;
   child: ActivatedRoute;
   subscription: any;
-  currentImg: any;
   imgControls: any;
   paginationCtrl: any;
   sanityInstance: any;
   sanityImgBuilder: any;
-
+  albumSharedSubscription: Subscription;
+  isLoading: boolean = false;
 
   constructor(
-    private ArtWorkAlbumService: ArtWorkAlbumService,
     private sanityService: SanityService,
+    private albumSharedService: AlbumSharedService,
     private route: ActivatedRoute,
     public router: Router,
     private meta: Meta,
@@ -53,105 +52,60 @@ export class AlbumComponent implements OnInit {
   ) {
     this.isBrowser = isPlatformBrowser(platformId);
 
-    this.getSanity();
-    this.getSanityUrlBuilder();
 
     this.maxPagination = 6;
   }
 
   ngOnInit() {
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
-    const self = this;
+    this.route.params.subscribe(routeParams => {
+      this.isLoading = true;
+      // Homepage route params
+      this.homePage = !routeParams.imgId; // opposite of child page
 
-    this.router.events.pipe(
-      filter((e: Event): e is NavigationEnd => e instanceof NavigationEnd)
-    ).subscribe((e: NavigationEnd) => {
-      
-      if (this.route.firstChild && this.child !== this.route.firstChild) {
-        if (this.subscription) { this.subscription.unsubscribe(); }
-        this.child = this.route.firstChild;
-        this.subscription = this.route.firstChild.url.subscribe(
-          x => {
-            this.setRouteParameterGlobalValues();
-            this.updateIndexSlideAndRoute(); // Only need to do this once since images are loaded on load
-          }
-        );
+      if (this.homePage) {
+        this.imgIndex=0;
       }
-      else if (!this.route.firstChild) {
-        if (this.subscription) { this.subscription.unsubscribe(); }
-        // Reset the content if the same parent link is clicked again
-        this.subscription = this.route.parent.url.subscribe(
-          x => {
-            this.setRouteParameterGlobalValues();
-            this.updateIndexSlideAndRoute(); // Only need to do this once since images are loaded on load
-          }
-        );
+      this.currPermalink = routeParams.permalink;
+
+      if (this.albumSharedService.images) {
+        this.images = this.albumSharedService.images;
+
+        // If there are images inherited from album service, update slides if needed
+        this.updateCurrentImgAndIndex(routeParams);
+        this.isLoading = false;
       }
-   });
-  }
+    });
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.setRouteParameterGlobalValues();
-
-    this.getAlbumImages(this.albumId);
-  }
-
-  setRouteParameterGlobalValues() {
-    // Homepage route params
-    this.homePage = !this.route.firstChild; // opposite of child page
-
-    if (this.homePage) {
-      this.imgIndex=0;
-    }
-
-    this.getAlbumId = this.albumId; // @input albumID
-
-    this.currPermalink = this.route.snapshot.paramMap.get('permalink');
-  }
-
-  updateIndexSlideAndRoute() {
-
-    this.imgIndex = this.route.firstChild ? this.images.findIndex((item) => {
-      return item.asset.assetId === this.route.firstChild.snapshot.paramMap.get('imgId');
-    }) : 0;
-
-    this.currentImg = this.images[this.imgIndex];
-
-    if (this.images && this.images.length > 0) {
-      if (this.imgIndex <= this.images.length-1) {
-        this.currentImg = this.images[this.imgIndex];
-      } else { // If there's a link to an index t dhat doesn't exist.
-        this.imgIndex = 0;
-        this.currentImg = this.images[0];
-      }
-    }
-  }
-
-  getAlbumImages(id) {
-
-    const imgIDCopy =  this.imgIndex;
-
-    this.ArtWorkAlbumService.getAlbumImages(this.sanityInstance, id).subscribe(data => {
-      // console.log(this.images);
+    this.albumSharedSubscription = this.albumSharedService.imagesChanged.subscribe((data) => {
       this.images = data;
 
-      this.updateIndexSlideAndRoute();
+      if (this.images) {
+        this.updateCurrentImgAndIndex(this.route.snapshot.params);
+      }
+      this.isLoading = false;
     });
+  }
+
+  updateCurrentImgAndIndex(routeParams) {
+    if (this.images && this.images.length > 0) {
+
+      this.imgIndex = !this.homePage ? this.images.findIndex((item) => {
+        return item.asset.assetId === routeParams.imgId;
+      }) : 0;
+    }
   }
 
   isCorrectIndex(id) {
     return parseInt(id) === this.imgIndex;
   }
 
-  getSanity() {
-    this.sanityInstance = this.sanityService.init();
-  }
-
-  getSanityUrlBuilder() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder(this.sanityInstance);
-  }
-
   urlFor(source: string) {
     return this.sanityImgBuilder.image(source)
+  }
+
+  ngOnDestroy() {
+    if (this.albumSharedSubscription) this.albumSharedSubscription.unsubscribe();
   }
 }

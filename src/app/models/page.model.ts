@@ -6,7 +6,12 @@ export class Page {
     _updatedAt: Date;
     name: string;
     slug: {_type: string, curent: string};
-    pageContent: Array<{_key: string, _type: string, children: Array<{marks:  Array<{}>, text: string }>, markDefs: Array<{_key: string, _type: string, href: string, style: string}>}>;
+    pageContent: [{
+        _key: string,
+        _type: string,
+        children: [{marks:  [{}], text: string }], 
+        markDefs: [{_key: string, _type: string, href: string, style: string}]
+    }];
     metaDescription: string;
     metaKeywords: string;
     featuredImage: {_type: string, asset: {_ref: string, _type: string}}
