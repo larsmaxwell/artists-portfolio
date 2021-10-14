@@ -18,8 +18,8 @@
     "prerender": "ng run mlauren-artist-website:prerender"
   },
   "engines": {
-    "node": "10.15.0",
-    "npm": "6.4.1"
+    "node": "^12.14.0",
+    "npm": "6.12.0"
   },
   "private": true,
   "dependencies": {
