@@ -15,25 +15,7 @@
         *ngIf="!isMobile" 
         tabindex="0"
         [routerLink]="[routerLinkBase, images[currentImgIndex < images.length-1 ? currentImgIndex + 1 : 0].asset.assetId]"
-        (keyup.enter)="enterKeyListener()"
-        >
-        <!-- <div 
-          [class]="'active-slide slide slide-'+ currentImgIndex"
-          aria-roledescription="slide"
-          >
-          <img 
-          [alt]="images[currentImgIndex].asset.caption || ''"
-          [style.height]=""
-          loading="lazy"
-          [src]="urlFor(images[currentImgIndex]).height(getWindowHeight()+100)"
-          class="img-fluid">
-          <span class="sr-only"> {{currentImgIndex+1}} of {{ images.length }} images. {{ images[currentImgIndex].asset.caption }} </span>
-
-          <p *ngIf="illustrations && (illustrations[currentImgIndex].name || illustrations[currentImgIndex].description)">
-            <strong>{{ illustrations[currentImgIndex].name }}</strong><br>
-            {{ illustrations[currentImgIndex].description }}
-          </p>
-        </div> -->
+        (keyup.enter)="enterKeyListener()">
 
         <div *ngFor="let image of images; let i = index;"
           [class]="'slide slide-'+ i"
@@ -41,23 +23,15 @@
             'active-slide': isCorrectIndex(i)
           }"
           [attr.aria-hidden]="!isCorrectIndex(i)"
-          aria-roledescription="slide"
-          >
+          aria-roledescription="slide">
 
-
-          <!-- [defaultImage]="urlFor(image).width(20)"
-          [lazyLoad]="urlFor(image)" -->
           <app-gallery-image 
           [image]="urlFor(image).width(30).blur(20)"
-          [lazyLoadImg]="urlFor(image).height(getWindowHeight())"
-          [height]="getWindowHeight()"
+          [lazyLoadImg]="urlFor(image).width(maxDimensions.tabletUp.maxWidth)"
+          [height]=""
+          [width]="maxDimensions.tabletUp.maxWidth"
           [caption]="image.caption"></app-gallery-image>
 
-          <!-- <img 
-          [alt]="image.caption || ''"
-          [style.height.px]="getWindowHeight()+100"
-          [src]="urlFor(image).height(getWindowHeight()+100)"
-          class="img-fluid"> -->
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
           <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
@@ -80,8 +54,7 @@
           <app-gallery-image 
           [image]="urlFor(image).width(4).blur(10)"
           [lazyLoadImg]="urlFor(image).width(getWindowWidth())"
-          [windowWidth]="getWindowWidth()"
-          [scaledHeight]="scaleImageHeight(image.asset.metadata.dimensions, getWindowWidth())"
+          [width]="getWindowWidth()"
           [caption]="image.caption"></app-gallery-image>
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>

@@ -41,7 +41,15 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   isBrowser: boolean;
   sanityInstance: any;
   sanityImgBuilder: any;
-  maxDimensions: any;
+
+  maxDimensions = {
+    mobile: {
+      maxWidth: 575
+    },
+    tabletUp: {
+      maxWidth: 700
+    }
+  }
 
   constructor(
     private sanityService: SanityService,
@@ -67,6 +75,7 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+
     this.setActivePaginationItems();
   }
 

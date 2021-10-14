@@ -8,8 +8,8 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
 export class GalleryImageComponent implements OnInit {
   @Input() image: string;
   @Input() lazyLoadImg: string;
-  @Input() windowWidth: number;
-  @Input() scaledHeight: number;
+  @Input() width: number;
+  @Input() height: number;
   @Input() caption: string;
 
   srcAttr:string = '';
