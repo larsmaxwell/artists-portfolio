@@ -80,14 +80,16 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.isMobile = this.isMobileSize();
-
-    this.resizeObservable$ = fromEvent(window, 'resize');
-    this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
+    if (this.isBrowser) {
       this.isMobile = this.isMobileSize();
-    });
 
-    this.cdRef.detectChanges();
+      this.resizeObservable$ = fromEvent(window, 'resize');
+      this.resizeSubscription$ = this.resizeObservable$.subscribe( evt => {
+        this.isMobile = this.isMobileSize();
+      });
+
+      this.cdRef.detectChanges();
+    }
   }
 
   enterKeyListener() {
@@ -104,7 +106,9 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getWindowWidth() {
-    return window.innerWidth;
+    if (this.isBrowser) {
+      return window.innerWidth;
+    }
   }
 
   scaleImageHeight(assetData, imageWidth) {
