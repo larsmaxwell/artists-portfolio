@@ -161,6 +161,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.resizeSubscription$.unsubscribe();
+    if (this.resizeSubscription$) this.resizeSubscription$.unsubscribe();
   }
 }

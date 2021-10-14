@@ -63,8 +63,8 @@ import { ImgObserverDirective } from './directives/img-observer/img-observer.dir
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'mlauren-artist-website' }),
-    NgxGoogleAnalyticsModule.forRoot('UA-115925018-1'),
-    NgxGoogleAnalyticsRouterModule,
+    // NgxGoogleAnalyticsModule.forRoot('UA-115925018-1'),
+    // NgxGoogleAnalyticsRouterModule.forRoot(),
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
