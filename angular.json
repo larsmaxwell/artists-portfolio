@@ -18,6 +18,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -25,13 +26,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -44,8 +39,10 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
+              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
+              "vendorChunk": true,
               "buildOptimizer": true,
               "budgets": [
                 {
@@ -60,8 +57,7 @@
                 }
               ]
             }
-          },
-          "defaultConfiguration": ""
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -127,9 +123,7 @@
           "options": {
             "outputPath": "dist/mlauren-artist-website/server",
             "main": "server.ts",
-            "tsConfig": "src/tsconfig.server.json",
-            "sourceMap": true,
-            "optimization": false
+            "tsConfig": "src/tsconfig.server.json"
           },
           "configurations": {
             "production": {
@@ -143,8 +137,7 @@
               "sourceMap": false,
               "optimization": true
             }
-          },
-          "defaultConfiguration": ""
+          }
         },
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
