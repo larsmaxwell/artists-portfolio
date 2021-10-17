@@ -59,7 +59,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
     private cdRef : ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    this.isBrowser = isPlatformBrowser(platformId);
     this.route = route;
 
     this.route.paramMap.subscribe((params : ParamMap)=> {  
@@ -71,6 +70,8 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
     this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
   }
 
