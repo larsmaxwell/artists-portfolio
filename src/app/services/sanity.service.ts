@@ -1,6 +1,7 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, filter, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 const imageUrlBuilder = require('@sanity/image-url');
 const sanityClientService = require('@sanity/client');
 import { environment } from '../../environments/environment'
@@ -15,10 +16,12 @@ import { MessageService } from './message.service';
 export class SanityService {
 
   client: any;
+  private worksUrl = "https://qwmluuy0.api.sanity.io/v1/data/query/production/?query=*"
 
   // sanityClientService: any;
   constructor(
-    private messageService: MessageService
+    private messageService: MessageService,
+    private http: HttpClient,
   ) {
     this.client = this.init();
   }
@@ -36,92 +39,112 @@ export class SanityService {
   }
 
   getPage(permalink:string):Observable<Page> {
-    const query = `*[_type == "page" && slug.current == "${permalink}"]`
-    return this.getSanityObservable(query).pipe(
-      map((data) => {
-        return data[0];
-      })
+    const query = `[_type == "page" && slug.current == "${permalink}"]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(data => { 
+        const cheeck = data.result[0];
+        return data.result[0];
+      }),
+      tap(data => this.log(`fetched page id=${data._id}`)),
+      catchError(this.handleError<any>(`Page permalink=${permalink}`))
     );
   }
 
   getPageImages(id: string):Observable<any> {
-    const query = `*[_id == "${id}"]{pageContent[]{..., "asset": asset->}}[]`;
-    return this.getSanityObservable(query).pipe(
-      map((data) => data[0].pageContent)
+    const query = `[_id == "${id}"]{pageContent[]{..., "asset": asset->}}[]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(data => data.result[0].pageContent),
+      tap(_ => this.log(`fetched pageContent`)),
+      catchError(this.handleError<any>(`Works not found`))
     );
   }
 
   getPages():Observable<Page[]> {
-    const query = `*[_type == "page"]`
-    return this.getSanityObservable(query);
+    const query = `[_type == "page"]`
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(data => data.result),
+      tap(_ => this.log(`fetched works`)),
+      catchError(this.handleError<any>(`Works not found`))
+    );
   }
   
   /** Get ArtWorks from the server */
   getIllustrationAssets():Observable<any> {
-    const query = `*[_type == "illustration"]{_id, _createdAt, releaseDate, name, description, featuredImage{..., "asset": asset->}}[]`;
-    return this.getSanityObservable(query)
-    .pipe(map(results => {
-      return results.sort((a, b) => {
-        const date1 = new Date(a.releaseDate).getTime();
-        const date2 = new Date(b.releaseDate).getTime();
-        if (date1 < date2) {
-          return 1;
-        }
-        if (date1 > date2) {
-          return -1;
-        }
-        // a must be equal to b
-        return 0;
-      });
-    }));
+    const query = `[_type == "illustration"]{_id, _createdAt, releaseDate, name, description, featuredImage{..., "asset": asset->}}[]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      tap(_ => this.log(`fetched illustration images`)),
+      map(data => {
+        return data.result.sort((a, b) => {
+          const date1 = new Date(a.releaseDate).getTime();
+          const date2 = new Date(b.releaseDate).getTime();
+          if (date1 < date2) {
+            return 1;
+          }
+          if (date1 > date2) {
+            return -1;
+          }
+          // a must be equal to b
+          return 0;
+        });
+      }),
+      catchError(this.handleError<any>(`fetched illustration images`))
+    );
   }
 
   /** Get ArtWorks from the server */
   getWorks():Observable<ArtWork[]> {
-    const query = '*[_type == "artwork"]';
-    return this.getSanityObservable(query);
+    const query = '[_type == "artwork"]';
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(data => data.result),
+      tap(_ => this.log(`fetched works`)),
+      catchError(this.handleError<any>(`Works not found`))
+    );
   }
 
   getWorkByPermalink(permalink:string): Observable<ArtWork> {
-    const query = `*[_type == "artwork" && slug.current == "${permalink}"]`;
-    return this.getSanityObservable(query)
-    .pipe(
-      map(work => work[0])
-    );;
+    // For some reason, sanity client does not work with SSR
+    const query = `[_type == "artwork" && slug.current == "${permalink}"]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(work => work.result[0]),
+      tap(work => this.log(`fetched work id=${work._id}`)),
+      catchError(this.handleError<any>(`Work permalink=${permalink}`))
+    );
   }
 
-  getAlbumImages(id: string):Observable<any> {
-    const query = `*[_id == "${id}"]{images[]{..., "asset": asset->}}[]`;
-    return this.getSanityObservable(query).pipe(
+  getAlbumImages(id: string): Observable<any> {
+    const query = `[_id == "${id}"]{images[]{..., "asset": asset->}}[]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      tap(_ => this.log(`fetched album images ${id}`)),
       map(data => {
-        return data[0].images
-      })
+        return data.result[0].images;
+      }),
+      catchError(this.handleError<any>(`Work albume ID =${id}`))
     );
   }
 
   getCategories():Observable<Category[]> {
-    const query = '*[_type == "category"]'
+    const query = '[_type == "category"]';
+    const encodeStr = encodeURIComponent(query);
 
-    return this.getSanityObservable(query);
-  }
-
-  getSanityObservable(query:string) {
-    return new Observable<any>(observer => {
-      return this.client.fetch(query)
-        .then(data => {
-          observer.next(data)
-          observer.complete()
-        })
-        .catch(err => {
-          observer.error(err);
-        });
-    })
-    .pipe(
-      catchError(error => {
-        this.handleError(error.message);
-        return throwError(error);
-      })
-    );;
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      map(data => data.result),
+      tap(_ => this.log(`fetched categories`)),
+      catchError(this.handleError<any>(`Categories`))
+    );
   }
 
   /**
@@ -146,6 +169,6 @@ export class SanityService {
 
   /** Log a message with the MessageService */
   private log(message: string) {
-    this.messageService.add('PageService: ' + message);
+    this.messageService.add('SanityService: ' + message);
   }
 }

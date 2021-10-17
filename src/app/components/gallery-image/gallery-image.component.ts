@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, HostBinding, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 
 @Component({
   selector: 'app-gallery-image',
@@ -13,16 +14,28 @@ export class GalleryImageComponent implements OnInit {
   @Input() caption: string;
 
   srcAttr:string = '';
+  isBrowser: boolean;
 
-  constructor() { }
+  constructor(
+    @Inject(PLATFORM_ID) private platformId
+  ) { }
 
   ngOnInit(): void {
-    this.srcAttr = this.image;
+    this.isBrowser = isPlatformBrowser(this.platformId);
+
+    if (this.isBrowser) {
+      this.srcAttr = this.image;
+    }
+    else {
+      this.srcAttr = this.lazyLoadImg;
+    }
   }
 
   onVisibilityChange(visibilityStatus) {
-    if (visibilityStatus === "Visible") {
-      this.srcAttr = this.lazyLoadImg;
+    if (this.isBrowser) {
+      if (visibilityStatus === "Visible") {
+        this.srcAttr = this.lazyLoadImg;
+      }
     }
   }
 }

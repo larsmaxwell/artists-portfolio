@@ -97,7 +97,7 @@ export class WorkComponent implements OnInit {
           });
         }
 
-        metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: this.urlFor(data.featuredImage.asset._ref) }
+        metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: data.featuredImage? this.urlFor(data.featuredImage.asset._ref): '' }
         this.setMeta(metaData);
 
         this.albumShared.updateAlbumId(this.albumId);
@@ -105,14 +105,6 @@ export class WorkComponent implements OnInit {
         this.isLoading = false;
     });
   }
-
-  // getAlbumImages(albumId) {
-
-  //   this.sanityService.getAlbumImages(albumId).subscribe(data => {
-  //     this.images = data;
-  //   });
-
-  // }
 
   urlFor(source: string) {
     return this.sanityImgBuilder.image(source)
