@@ -94,6 +94,9 @@ export class AlbumComponent implements OnInit, OnDestroy {
       this.imgIndex = !this.homePage ? this.images.findIndex((item) => {
         return item.asset.assetId === routeParams.imgId;
       }) : 0;
+
+      const currImg = this.images[this.imgIndex];
+      this.updateMeta({image: currImg.asset.url});
     }
   }
 
@@ -107,5 +110,10 @@ export class AlbumComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.albumSharedSubscription) this.albumSharedSubscription.unsubscribe();
+  }
+
+  updateMeta(data) {
+    this.meta.updateTag({name: 'twitter:image', content: data.image });
+    this.meta.updateTag({property: 'og:image', content: data.image });
   }
 }

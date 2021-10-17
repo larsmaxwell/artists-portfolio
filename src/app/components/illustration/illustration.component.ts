@@ -39,6 +39,7 @@ export class IllustrationComponent implements OnInit {
   currentIll: any;
 
   faArrowLeft = faArrowLeft;
+  isHome:boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -63,13 +64,18 @@ export class IllustrationComponent implements OnInit {
     this.imageID = this.route.snapshot.paramMap.get('imgId');
     this.slideshowView = !!this.route.snapshot.paramMap.get('imgId') || this.isMobileSize;
 
-    this.setMeta();
 
     // Set element 
     // Get illustrations
     this.getWorks();
 
     this.route.params.subscribe(routeParams => {
+      if (!routeParams.imgId) {
+        this.isHome = true;
+      }
+      else {
+        this.isHome = false;
+      }
       this.setImgControls(routeParams.imgId);
     });
 
@@ -107,8 +113,12 @@ export class IllustrationComponent implements OnInit {
     }) || 0;
 
     this.currentIll = this.illustrations[this.currentIndex];
-
     this.imageID = imgId;
+
+    if (!this.isHome) {
+      const meta = { description: this.currentIll.description, name: this.currentIll.name, image: this.currentIll.featuredImage.asset.url };
+      this.setMeta(meta);
+    }
   }
 
   isMobileSize() {
@@ -117,14 +127,14 @@ export class IllustrationComponent implements OnInit {
     }
   }
 
-  setMeta() {
-    this.title.setTitle("Lurn Maxwell: Home");
-    this.meta.updateTag({name: 'description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle"});
-    this.meta.updateTag({name: 'keywords', content: "comics, horror comics, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
-    this.meta.updateTag({property: 'og:title', content: "Lurn Maxwell: Illustrations" });
-    this.meta.updateTag({property: 'og:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
-    this.meta.updateTag({name: 'twitter:description', content: "Lauren (Lurn) Maxwell is a comix maker and illustrator in Seattle" });
-    this.meta.updateTag({name: 'twitter:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
-    this.meta.updateTag({property: 'og:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
+  setMeta(data) {
+    this.title.setTitle("Lauren (Lurn) Maxwell- Current Illustration: " + data.name);
+    this.meta.updateTag({name: 'description', content: data.name + " (" + data.description + ")"});
+    this.meta.updateTag({name: 'keywords', content: "comics, horror comics, illustration, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
+    this.meta.updateTag({property: 'og:title', content: "Lauren (Lurn) Maxwell- Current Illustration: " + data.name });
+    this.meta.updateTag({property: 'og:description', content:  data.name + " (" + data.description + ")" });
+    this.meta.updateTag({name: 'twitter:description', content: data.name + " (" + data.description + ")" });
+    this.meta.updateTag({name: 'twitter:image', content: data.image });
+    this.meta.updateTag({property: 'og:image', content: data.image });
   }
 }

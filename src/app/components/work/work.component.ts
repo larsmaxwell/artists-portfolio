@@ -49,10 +49,10 @@ export class WorkComponent implements OnInit {
   }
 
   setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
-    this.title.setTitle( newItems.title );
+    this.title.setTitle( 'Lauren (Lurn) Maxwell - ' + newItems.title );
     this.meta.updateTag({name: 'description', content: newItems.description});
-    this.meta.updateTag({name: 'keywords', content: newItems.keywords});
-    this.meta.updateTag({property: 'og:title', content: newItems.title});
+    this.meta.updateTag({name: 'keywords', content: newItems.keywords?newItems.keywords:''  });
+    this.meta.updateTag({property: 'og:title', content:  'Lauren (Lurn) Maxwell - ' + newItems.title});
     this.meta.updateTag({property: 'og:description', content: newItems.description});
     this.meta.updateTag({name: 'twitter:description', content: newItems.description});
     this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
