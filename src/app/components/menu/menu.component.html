@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-fixed-top row">
   <div class="navbar-header col-12">
     <div class="row">
       <div class="col-10">
@@ -21,6 +21,9 @@
     id="navbar-content">
     <div class="row">
       <div class="col-12">
+        <hr> 
+        <app-page-list></app-page-list>
+        <hr>
         <ul class="list-unstyled">
           <li>
             <h5>
@@ -31,19 +34,18 @@
           </li>
         </ul>
         <app-work-list></app-work-list>
-        <hr>
-        <app-page-list></app-page-list>
+        <hr>        
       </div>
     </div>
     <div class="navbar-extra col-12">
       <div class="row">
-        <ul class="items">
-          <li class="">
+        <ul class="list-inline list-unstyled">
+          <li class="list-inline-item">
             <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
               <fa-icon [icon]="faInstagram" size="2x"></fa-icon> <span class="sr-only">Instagram</span>
             </a>
           </li>
-          <li class="">
+          <li class="list-inline-item">
             <a href="mailto:mlmxwell@gmail.com">
               <fa-icon [icon]="faEnvelope" size="2x"></fa-icon><span class="sr-only">Email</span>
             </a>
@@ -54,17 +56,16 @@
   </div>
   <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content-mobile">
 
+    <app-page-list></app-page-list>
+    <hr>
     <ul class="list-unstyled">
       <li>
-        <h5>
-          <a routerLink="/">
+        <a class="h5" routerLink="/">
           Illustration
-          </a>
-        </h5>
+        </a>
       </li>
     </ul>
     <app-work-list></app-work-list>
-    <app-page-list></app-page-list>
   </div>
   <div class="navbar-extra col-12 d-none d-sm-block">
     <div class="row">

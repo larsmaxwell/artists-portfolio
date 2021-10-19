@@ -61,7 +61,7 @@ a:not(.btn-primary):hover, a:not(.btn-primary):focus,
   vertical-align: inherit;
 }
 .navbar-container hr {
-  border-bottom: 1px solid #007f73;
+  border-bottom: 1px dashed #ececec;
 }
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -74,11 +74,12 @@ footer {
 
 
 .navbar-container {
-    background: #fafafa;
+    background: #fffff8;
 }
 
 .site-title {
-    font-size: 1.25em;
+  font-size: 1.5em;
+  white-space: break-spaces;
 }
 .navbar-brand {
     padding: 15px 15px 0 0;
@@ -96,6 +97,17 @@ footer {
 .navbar-header {
   margin-bottom: 10px;
 }
+@media only screen and (max-width: 574px) {
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .navbar-header {
+    background-color: #f6f6ec;
+    margin-bottom: 0;
+  }
+}
+
 
 .underground-image {
   /* z-index: 0;
