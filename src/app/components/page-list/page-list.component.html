@@ -1,10 +1,10 @@
 <ul class="list-unstyled" *ngIf="pages">
   <li *ngFor="let page of pages">
-      <h5>
-        <a *ngIf="page.archived !== true" routerLink="/pages/{{page.slug.current}}">
+      <h6>
+        <a routerLinkActive="active" routerLinkActive="active" *ngIf="page.archived !== true" routerLink="/pages/{{page.slug.current}}">
           {{ page.name }}
         </a>
-      </h5>
+      </h6>
 
   </li>
 </ul>

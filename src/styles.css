@@ -13,6 +13,9 @@ a, btn.btn-link  {
     text-decoration-color: #02b9a7;
     text-decoration-style: dotted;
 }
+a.active {
+  color: #000e0c;
+}
 a:not(.btn-primary):hover, a:not(.btn-primary):focus,
 .btn-link:hover, .btn-link:focus {
   color: white;

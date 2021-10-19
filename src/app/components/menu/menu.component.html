@@ -21,16 +21,22 @@
     id="navbar-content">
     <div class="row">
       <div class="col-12">
-        <hr> 
-        <app-page-list></app-page-list>
         <hr>
         <ul class="list-unstyled">
           <li>
-            <h5>
-              <a routerLink="/">
+            <a  routerLinkActive="active" class="h6" href="https://mlaurenstore.square.site/" target="_blank">
+              Store
+            </a>
+          </li>
+        </ul>
+        <app-page-list></app-page-list>
+        <ul class="list-unstyled">
+          <li>
+            <h6>
+              <a [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="/" [classList]>
               Illustration
               </a>
-            </h5>
+            </h6>
           </li>
         </ul>
         <app-work-list></app-work-list>
@@ -56,11 +62,17 @@
   </div>
   <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content-mobile">
 
-    <app-page-list></app-page-list>
-    <hr>
     <ul class="list-unstyled">
       <li>
-        <a class="h5" routerLink="/">
+        <a class="h6" href="https://mlaurenstore.square.site/" target="_blank">
+          Store
+        </a>
+      </li>
+    </ul>
+    <app-page-list></app-page-list>
+    <ul class="list-unstyled">
+      <li>
+        <a [routerLinkActiveOptions]="{ exact: true }" class="h6" routerLinkActive="active" routerLink="/">
           Illustration
         </a>
       </li>
