@@ -47,7 +47,7 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
       maxWidth: 575
     },
     tabletUp: {
-      maxWidth: 700
+      maxWidth: 500
     }
   }
 
