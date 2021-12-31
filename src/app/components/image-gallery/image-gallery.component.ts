@@ -42,12 +42,21 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   sanityInstance: any;
   sanityImgBuilder: any;
 
-  maxDimensions = {
-    mobile: {
-      maxWidth: 575
+  imageDimensions = {
+    mobileUp: {
+      width: 700
     },
     tabletUp: {
-      maxWidth: 500
+      width: 1200
+    }
+  }
+
+  maxDimensions = {
+    mobile: {
+      width: 575
+    },
+    tabletUp: {
+      width: 1200
     }
   }
 
@@ -78,6 +87,10 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnChanges(changes: SimpleChanges) {
 
     this.setActivePaginationItems();
+  }
+
+  determineParentRatio() {
+
   }
 
   ngAfterViewInit() {

@@ -63,9 +63,6 @@ a:not(.btn-primary):hover, a:not(.btn-primary):focus,
   padding: unset;
   vertical-align: inherit;
 }
-.navbar-container hr {
-  border-bottom: 1px dashed #ececec;
-}
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: 'Courier New', monospace;

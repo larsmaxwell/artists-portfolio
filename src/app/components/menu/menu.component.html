@@ -21,26 +21,25 @@
     id="navbar-content">
     <div class="row">
       <div class="col-12">
-        <hr>
+        <br>
         <ul class="list-unstyled">
           <li>
-            <a  routerLinkActive="active" class="h6" href="https://mlaurenstore.square.site/" target="_blank">
+            <h5>
+              <a [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="/" [classList]>
+              Illustration
+              </a>
+            </h5>
+          </li>
+        </ul>
+        <app-work-list></app-work-list>
+        <app-page-list></app-page-list>
+        <ul class="list-unstyled">
+          <li>
+            <a routerLinkActive="active" class="h5" href="https://mlaurenstore.square.site/" target="_blank">
               Store
             </a>
           </li>
         </ul>
-        <app-page-list></app-page-list>
-        <ul class="list-unstyled">
-          <li>
-            <h6>
-              <a [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active" routerLink="/" [classList]>
-              Illustration
-              </a>
-            </h6>
-          </li>
-        </ul>
-        <app-work-list></app-work-list>
-        <hr>        
       </div>
     </div>
     <div class="navbar-extra col-12">
@@ -61,23 +60,22 @@
     </div>
   </div>
   <div class="navbar-content navbar-tablet d-none d-sm-block" id="navbar-content-mobile">
-
     <ul class="list-unstyled">
       <li>
-        <a class="h6" href="https://mlaurenstore.square.site/" target="_blank">
-          Store
-        </a>
-      </li>
-    </ul>
-    <app-page-list></app-page-list>
-    <ul class="list-unstyled">
-      <li>
-        <a [routerLinkActiveOptions]="{ exact: true }" class="h6" routerLinkActive="active" routerLink="/">
+        <a [routerLinkActiveOptions]="{ exact: true }" class="h5" routerLinkActive="active" routerLink="/">
           Illustration
         </a>
       </li>
     </ul>
     <app-work-list></app-work-list>
+    <app-page-list></app-page-list>
+    <ul class="list-unstyled">
+      <li>
+        <a class="h5" href="https://mlaurenstore.square.site/" target="_blank">
+          Store
+        </a>
+      </li>
+    </ul>
   </div>
   <div class="navbar-extra col-12 d-none d-sm-block">
     <div class="row">
