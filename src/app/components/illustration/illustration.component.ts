@@ -7,17 +7,14 @@ import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-bro
 // App Specific
 import { Illustration } from '../../models/illustration.model';
 import { SanityService } from '../../services/sanity.service';
-
-import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-illustration',
   templateUrl: './illustration.component.html',
   styleUrls: ['./illustration.component.css']
 })
-export class IllustrationComponent implements OnInit {
+export class IllustrationComponent implements OnInit, OnChanges {
 
   illustrations: any;
   images:any = [];
@@ -37,14 +34,12 @@ export class IllustrationComponent implements OnInit {
   imgControls: any = {};
   currentIndex: number;
   currentIll: any;
-
-  faArrowLeft = faArrowLeft;
+  routeSubscription: Subscription;
   isHome:boolean;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private library: FaIconLibrary,
     private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
@@ -67,7 +62,19 @@ export class IllustrationComponent implements OnInit {
 
     // Set element 
     // Get illustrations
-    this.getWorks();
+    //this.getWorks();
+
+    this.routeSubscription = this.route.data.subscribe((data: {home: boolean, illustrations: Illustration[] }) => {
+      this.isHome = data.home;
+
+      this.illustrations = data.illustrations;
+
+      this.images = this.illustrations.map(illustration => illustration.featuredImage)
+
+      if (!this.imageID) {
+        this.imageID = this.images[0].asset.assetId;
+      }
+    });
 
     this.route.params.subscribe(routeParams => {
       if (!routeParams.imgId) {
@@ -78,6 +85,10 @@ export class IllustrationComponent implements OnInit {
       }
       this.setImgControls(routeParams.imgId);
     });
+
+  }
+
+  ngOnChanges() {
 
   }
 
@@ -97,15 +108,11 @@ export class IllustrationComponent implements OnInit {
     });
   }
 
-  urlFor(source: string) {
-    return this.sanityImgBuilder.image(source)
-  }
-
   isActiveSlide(id:string) {
     return this.imageID === id;
   }
 
-  setImgControls(imgId:any) {
+  setImgControls(imgId:string) {
     if (!this.illustrations) return;
 
     this.currentIndex = this.illustrations.findIndex((item) => {

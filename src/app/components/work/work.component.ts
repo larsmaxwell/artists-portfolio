@@ -43,7 +43,7 @@ export class WorkComponent implements OnInit {
     private meta: Meta,
     private title: Title,
     private sanityService: SanityService,
-    private albumShared: AlbumSharedService
+    private albumSharedService: AlbumSharedService
   ) {
     this.hideGallery = false;
   }
@@ -100,7 +100,7 @@ export class WorkComponent implements OnInit {
         metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: data.featuredImage? this.urlFor(data.featuredImage.asset._ref): '' }
         this.setMeta(metaData);
 
-        this.albumShared.updateAlbumId(this.albumId);
+        this.albumSharedService.updateAlbumId(this.albumId);
 
         this.isLoading = false;
     });
