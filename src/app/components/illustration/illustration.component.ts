@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, OnChanges, SimpleChanges, PLATFORM_ID } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 import { Location, isPlatformBrowser } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
 // import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
@@ -63,27 +63,23 @@ export class IllustrationComponent implements OnInit, OnChanges {
     // Set element 
     // Get illustrations
     //this.getWorks();
-
-    this.routeSubscription = this.route.data.subscribe((data: {home: boolean, illustrations: Illustration[] }) => {
+    this.route.data.subscribe((data: Data) => {
       this.isHome = data.home;
 
       this.illustrations = data.illustrations;
 
-      this.images = this.illustrations.map(illustration => illustration.featuredImage)
+      this.images = this.illustrations.map(illustration => illustration.featuredImage);
 
       if (!this.imageID) {
         this.imageID = this.images[0].asset.assetId;
       }
+      this.setImgControls(this.imageID);
     });
 
     this.route.params.subscribe(routeParams => {
-      if (!routeParams.imgId) {
-        this.isHome = true;
+      if (routeParams.imgId) {
+        this.setImgControls(routeParams.imgId);
       }
-      else {
-        this.isHome = false;
-      }
-      this.setImgControls(routeParams.imgId);
     });
 
   }
@@ -113,14 +109,14 @@ export class IllustrationComponent implements OnInit, OnChanges {
   }
 
   setImgControls(imgId:string) {
-    if (!this.illustrations) return;
+    if (!this.images) return;
 
-    this.currentIndex = this.illustrations.findIndex((item) => {
-      return item.featuredImage.asset.assetId === imgId;
-    }) || 0;
+    this.imageID = imgId;
+    this.currentIndex = imgId ? this.images.findIndex((item) => {
+      return item.asset.assetId === imgId;
+    }) : 0;
 
     this.currentIll = this.illustrations[this.currentIndex];
-    this.imageID = imgId;
 
     if (!this.isHome) {
       const meta = { description: this.currentIll.description, name: this.currentIll.name, image: this.currentIll.featuredImage.asset.url };

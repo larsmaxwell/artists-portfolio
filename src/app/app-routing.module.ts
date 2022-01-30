@@ -13,10 +13,8 @@ import { IllustrationResolverService } from './services/illustration-resolver.se
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', 
-    component: IllustrationComponent,
-    resolve: {illustrations: IllustrationResolverService},
-    data: { home: true }, },
-  { path: 'illustration/', 
+    redirectTo: 'illustration/' },
+  { path: 'illustration',
     component: IllustrationComponent,
     resolve: {illustrations: IllustrationResolverService},
     data: { home: true },
@@ -35,7 +33,7 @@ const routes: Routes = [
   },
   { path: 'about', redirectTo: 'pages/about' },
   { path: 'pages/:permatwo', component: PageComponent},
-  { path: '**', component: IndexComponent }
+  { path: '**', redirectTo: 'illustration' }
 ];
 
 @NgModule({
