@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './illustration.component.html',
   styleUrls: ['./illustration.component.css']
 })
-export class IllustrationComponent implements OnInit, OnChanges {
+export class IllustrationComponent implements OnInit {
 
   illustrations: any;
   images:any = [];
@@ -81,10 +81,6 @@ export class IllustrationComponent implements OnInit, OnChanges {
         this.setImgControls(routeParams.imgId);
       }
     });
-
-  }
-
-  ngOnChanges() {
 
   }
 
