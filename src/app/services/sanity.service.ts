@@ -43,16 +43,13 @@ export class SanityService {
     const encodeStr = encodeURIComponent(query);
 
     return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
-      map(data => { 
-        const cheeck = data.result[0];
-        return data.result[0];
-      }),
+      map(data => data.result[0]),
       tap(data => this.log(`fetched page id=${data._id}`)),
       catchError(this.handleError<any>(`Page permalink=${permalink}`))
     );
   }
 
-  getPageImages(id: string):Observable<any> {
+  getPageBlockContents(id: string):Observable<any> {
     const query = `[_id == "${id}"]{pageContent[]{..., "asset": asset->}}[]`;
     const encodeStr = encodeURIComponent(query);
 
