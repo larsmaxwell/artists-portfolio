@@ -1,5 +1,5 @@
 
-<div class="mt-4 mb-4 container">
+<div class="mt-4 mb-4 container" *ngIf="page">
   <h3>{{ page.name }}</h3>
   <div class="block-content">
     <ng-template [ngIf]="blockContent">
