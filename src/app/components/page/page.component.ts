@@ -10,6 +10,9 @@ import {Page} from "../../models/page.model";
 import { environment } from '../../../environments/environment';
 
 import * as blocksToHtml from '@sanity/block-content-to-html';
+import { EMPTY, Observable, of } from 'rxjs';
+import { flatMap } from 'rxjs/operators';
+import { Image } from '../../models/image.model';
 
 @Component({
   selector: 'app-page',
@@ -23,24 +26,23 @@ export class PageComponent implements OnInit {
   sanityInstance: any;
   sanityImgBuilder: any;
   blockContent: any;
+  metaData: {title:string, description: string, keywords: string, featuredImage: any};
+  featuredImage: any;
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
-    private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
     private sanityService: SanityService
   ) { }
 
   ngOnInit(): void {
-    const permalink = this.route.snapshot.paramMap.get('permatwo');
+    const permalink = this.route.snapshot.paramMap.get('permalink');
 
     this.title.setTitle( "Loading..." );
     this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.getPage(permalink);
-
   }
 
   setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
@@ -56,22 +58,32 @@ export class PageComponent implements OnInit {
   }
 
   getPage(permalink: string) {
-    this.sanityService.getPage(permalink).subscribe(
-      data => {
-        var metaData;
-        this.page = data;
+    let getPageData:Observable<Page> = this.sanityService.getPage(permalink);
+    let getPageContentData: Observable<any>;
 
-        if (data.pageContent) {
-          this.sanityService.getPageImages(data._id).subscribe(
-            data => {
-              this.blockContent = data;
-            }
-          );
+    getPageData.subscribe((data) => {
+      const featuredImage = this.urlFor(data.featuredImage.asset._ref);
+
+      this.page = data;
+      this.metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords, featuredImage: featuredImage }
+      this.setMeta(this.metaData);
+    })
+
+    getPageData
+    .pipe(
+      flatMap((pageData) => {
+        if (pageData.pageContent.length > 0) {
+          getPageContentData = this.sanityService.getPageBlockContents(pageData._id);
+          return getPageContentData;
         }
-        var featuredImage = this.urlFor(data.featuredImage.asset._ref);
-        metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords, featuredImage: featuredImage }
-        this.setMeta(metaData);
-      });
+        else {
+          return EMPTY;
+        }
+      })
+    )
+    .subscribe((data) => {
+      this.blockContent = data;
+    });
   }
 
   urlFor(source: string) {
