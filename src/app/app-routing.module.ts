@@ -32,7 +32,7 @@ const routes: Routes = [
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },
-  { path: 'pages/:permatwo', component: PageComponent},
+  { path: 'pages/:permalink', component: PageComponent},
   { path: '**', redirectTo: 'illustration' }
 ];
 

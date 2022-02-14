@@ -40,7 +40,6 @@ export class PageComponent implements OnInit {
     const permalink = this.route.snapshot.paramMap.get('permalink');
 
     this.title.setTitle( "Loading..." );
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.getPage(permalink);
   }
@@ -87,7 +86,7 @@ export class PageComponent implements OnInit {
   }
 
   urlFor(source: string) {
-    return this.sanityImgBuilder.image(source)
+    return this.sanityService.getImageUrlBuilder().image(source)
   }
 
   getBlocks(source: string) {

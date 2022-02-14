@@ -3,6 +3,7 @@ import { PageListComponent } from './page-list.component';
 import {Page} from "../../models/page.model";
 import { SanityService } from '../../services/sanity.service';
 import { of } from 'rxjs';
+import { By } from "@angular/platform-browser";
 
 const pageData = require('../../../test-data/pages.json');
 
@@ -26,7 +27,6 @@ describe('PageListComponent', () => {
         {provide: SanityService, useValue: mockSanityService}
       ]
     });
-    // .compileComponents();
 
     fixture = TestBed.createComponent(PageListComponent)
   });
@@ -37,4 +37,11 @@ describe('PageListComponent', () => {
 
     expect(fixture.componentInstance.pages.length).toBe(1);
   });
+
+  it('should create one li for each page', () => {
+    mockSanityService.getPages.and.returnValue(of(PAGES));
+    fixture.detectChanges();
+
+    expect(fixture.debugElement.queryAll(By.css('li')).length).toBe(1);
+  })
 });
