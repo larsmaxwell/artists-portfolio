@@ -25,10 +25,7 @@ export class IllustrationComponent implements OnInit {
   gridView: any;
   desHeight: any;
   desWidth: any;
-  // _masonry: Masonry;
-  // masonryItems: any[]; // NgMasonryGrid Grid item list
   isBrowser: boolean;
-  activeSlide: string;
   imageID: string;
   slideshowView: any;
   imgControls: any = {};
@@ -39,30 +36,21 @@ export class IllustrationComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
-    private _sanitizer: DomSanitizer,
     private meta: Meta,
     private title: Title,
     private sanityService: SanityService,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    // this.library.addIcons(this.faArrowLeft);
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit() {
-
-    this.activeSlide = "";
-
     this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
  
     this.imageID = this.route.snapshot.paramMap.get('imgId');
-    this.slideshowView = !!this.route.snapshot.paramMap.get('imgId') || this.isMobileSize;
+    this.slideshowView = !!this.route.snapshot.paramMap.get('imgId') || this.isMobileSize();
 
-
-    // Set element 
     // Get illustrations
-    //this.getWorks();
     this.route.data.subscribe((data: Data) => {
       this.isHome = data.home;
 
@@ -82,22 +70,6 @@ export class IllustrationComponent implements OnInit {
       }
     });
 
-  }
-
-  getWorks(): void {
-    this.sanityService.getIllustrationAssets()
-    .subscribe((data) =>  {
-
-      this.illustrations = data;
-      this.illustrations.forEach(element => {
-        this.images.push(element.featuredImage);
-      });
-      if (!this.imageID) {
-        this.imageID = this.images[0].asset.assetId;
-      }
-
-      this.setImgControls(this.imageID);
-    });
   }
 
   isActiveSlide(id:string) {

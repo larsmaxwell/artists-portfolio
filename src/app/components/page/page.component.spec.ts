@@ -53,8 +53,6 @@ describe('PageComponent', () => {
   });
 
   it('should render page name in an h3 tag', () => {
-    component.page = PAGE;
-
     fixture.detectChanges();
     const name = "About/Contact"
     const titleText = fixture.debugElement.query(By.css('h3')).nativeElement.textContent;
