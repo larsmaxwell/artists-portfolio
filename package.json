@@ -8,6 +8,7 @@
     "start:heroku": "npm run serve:ssr",
     "build": "npm run build:ssr",
     "test": "ng test",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "npm run ngcc && npm run build:ssr",
@@ -76,6 +77,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
     "protractor": "~7.0.0",
+    "puppeteer": "^13.3.2",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.6.4"
