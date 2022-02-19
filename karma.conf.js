@@ -5,11 +5,16 @@ module.exports = function (config) {
   config.set({
     basePath: '',
     frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    files: [
+      'src/**/*.js',
+      'test/**/*.js'
+    ],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
+      require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
@@ -18,15 +23,13 @@ module.exports = function (config) {
     jasmineHtmlReporter: {
       
     },
-    coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/artists-portfolio'),
-      subdir: '.',
-      reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
-      ]
+    reporters: ['coverage', 'progress'],
+    preprocessors: {
+      // source files, that you wanna generate coverage for
+      // do not include tests or libraries
+      // (these files will be instrumented by Istanbul)
+      'src/**/*.js': ['coverage']
     },
-    reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
