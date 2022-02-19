@@ -1,0 +1,316 @@
+[
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2021-08-31T18:04:38Z",
+          "_id": "image-9fdf48639379991848456e7f78c001a7e9e71129-1071x1558-jpg",
+          "_rev": "ChHF3QonPCCfAgHS0591ns",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2021-08-31T18:04:38Z",
+          "assetId": "9fdf48639379991848456e7f78c001a7e9e71129",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.6874197689345315,
+                  "height": 1558,
+                  "width": 1071
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAdABQDASIAAhEBAxEB/8QAGgAAAgIDAAAAAAAAAAAAAAAAAAQFBgEDB//EACcQAAIBAwMDAwUAAAAAAAAAAAECAwAEEQUSIQcTYSJBUQYxQnGx/8QAFwEAAwEAAAAAAAAAAAAAAAAAAgQFA//EACERAQACAgEDBQAAAAAAAAAAAAEAAgMREgQFIRVBcqHw/9oADAMBAAIRAxEAPwDok/URL91SO9NtIDntFcHHmk9R6j27i1gnunEoJ3dsZDDHvVAs9Jf6iv5WicQKh5lbjj4Hmp6w0DT9NZZLrEmB6TLyGNEXwGjI6f3iTVyLv2ZKv1Uu7PbBZwdyJBgM45NFMJJYQKI91rHj8VAoqffqzk8cez5R6oADb6lP027eKSRYZAiNyRjnPyKJprqa42zxntIPuf7SF/bC3uJZVdiw9Q8VsGoT3emBJ23MTnf7/qsq56tuVSH6RldbfExKd8jFYy/nOKKmNMsEezV2ZstzxRSt+vvVSMHa6an/2Q=="
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "PXL_20210731_232013482.jpeg",
+          "path": "images/qwmluuy0/production/9fdf48639379991848456e7f78c001a7e9e71129-1071x1558.jpg",
+          "sha1hash": "9fdf48639379991848456e7f78c001a7e9e71129",
+          "size": 584013,
+          "uploadId": "Mimp3S2ALbPHvnyQkJffcN57SP1LOaTM",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/9fdf48639379991848456e7f78c001a7e9e71129-1071x1558.jpg"
+      },
+      "illustrationData": {
+          "name": "Garden No.2"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2021-04-13T04:42:26Z",
+          "_id": "image-f6ebaa2616fd37a9efed6cc4a755496e7df4a9f8-457x668-png",
+          "_rev": "tPJzeXvlkgUXgi4lXbdywN",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2021-04-13T04:42:26Z",
+          "assetId": "f6ebaa2616fd37a9efed6cc4a755496e7df4a9f8",
+          "extension": "png",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.6841317365269461,
+                  "height": 668,
+                  "width": 457
+              },
+              "hasAlpha": true,
+              "isOpaque": false,
+              "lqip": "data:image/png;base64,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"
+          },
+          "mimeType": "image/png",
+          "originalFilename": "mini-comic-cover.png",
+          "path": "images/qwmluuy0/production/f6ebaa2616fd37a9efed6cc4a755496e7df4a9f8-457x668.png",
+          "sha1hash": "f6ebaa2616fd37a9efed6cc4a755496e7df4a9f8",
+          "size": 716026,
+          "uploadId": "SzUAT85D9dyTlN9jHQFbn0tlX1TYZ9rJ",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/f6ebaa2616fd37a9efed6cc4a755496e7df4a9f8-457x668.png"
+      },
+      "illustrationData": {
+          "name": "666 cover",
+          "description": "Riso red and black on green paper"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2021-04-05T05:29:57Z",
+          "_id": "image-9b0763b6105ce39a252201e04208172441d24563-1252x1731-jpg",
+          "_rev": "lcGV0Km6dpvYovREqkzzMY",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2021-04-05T05:29:57Z",
+          "assetId": "9b0763b6105ce39a252201e04208172441d24563",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.7232813402657423,
+                  "height": 1731,
+                  "width": 1252
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAcABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAUGAwT/xAAlEAACAQQBAwQDAAAAAAAAAAABAgMABAUREhMhMQYUMkFRgaH/xAAWAQEBAQAAAAAAAAAAAAAAAAAEBQb/xAAnEQABAgUCBQUAAAAAAAAAAAABAgMABBESITFBBRMiUdEGcYGhsf/aAAwDAQACEQMRAD8AvrG0myqRs0Agh+Sk/Mn800y2MlgsxqZo9IQXc/2uT0rlmv4XV1WNota1909yjDIWbwXJ0hGiR2rMTj7rUxynum06DOPnXEPZbQpFyM130iPh9Tw26CJo3mKdua+DRWzWeBsz0Tzcr5IJoq4JbhrnWJZw13pr9wO+YTguJja1trXI42GW0la2RSDzI4kgfVUnSieBRIeQ87J81B469luo7S1l49EkbUDW9V35K7lkykUJOokjLBF7D91Ne4a4twNFeBcRvQe+5hImUhN4HYQ5vIXjmIhsElQjfKipmXLXsr79w6gdgF7AUVZZ9Oq5aakad1eYEviBuNPweI//2Q=="
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "headInTheCloudsLR.jpg",
+          "path": "images/qwmluuy0/production/9b0763b6105ce39a252201e04208172441d24563-1252x1731.jpg",
+          "sha1hash": "9b0763b6105ce39a252201e04208172441d24563",
+          "size": 1893592,
+          "uploadId": "qYkCILHMtteEC61VelqTQFdIwbAn7jrh",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/9b0763b6105ce39a252201e04208172441d24563-1252x1731.jpg"
+      },
+      "illustrationData": {
+          "name": "Unique Universal",
+          "description": "Marker and pencil on paper."
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2020-04-14T07:11:55Z",
+          "_id": "image-2d68c95b16f9a097b790f0ac75f9642e1e8e5673-2960x2909-jpg",
+          "_rev": "jRkZT6629Ev16Wm3qnjqFD",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2020-04-14T07:11:55Z",
+          "assetId": "2d68c95b16f9a097b790f0ac75f9642e1e8e5673",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 1.0175317978686833,
+                  "height": 2909,
+                  "width": 2960
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAUABQDASIAAhEBAxEB/8QAGAABAQADAAAAAAAAAAAAAAAAAAMFBgf/xAAiEAACAgIBBAMBAAAAAAAAAAABAgADBBEhBQYSMUFRYXL/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAH/xAAdEQEAAwADAAMAAAAAAAAAAAABAAIRAxITBCFS/9oADAMBAAIRAxEAPwDpJ7o6m7AtkFF/n3Kp3DkZJKX3lWB4Yj4ksOymzFaqxalc7KbHoyFOK4sR3qR18gW2eCJGU5eNNdklvSvUHZRe5s+jddWQSik6OomaXI6eg0MStR9CJr8ez99mb43/AHNYsvdrDYdeT+xriRd2CMoYgDkREXXJGrFbNagd2Pkf2IiFZdhq7P/Z"
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "SynthMouse.jpg",
+          "path": "images/qwmluuy0/production/2d68c95b16f9a097b790f0ac75f9642e1e8e5673-2960x2909.jpg",
+          "sha1hash": "2d68c95b16f9a097b790f0ac75f9642e1e8e5673",
+          "size": 10730088,
+          "uploadId": "uDyD377KuPOO2eSrsrOYXRTi0KdzsbCt",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/2d68c95b16f9a097b790f0ac75f9642e1e8e5673-2960x2909.jpg"
+      },
+      "illustrationData": {
+          "name": "Synthesizer Mouse Riso Print",
+          "description": "5 color riso print"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2020-04-15T02:20:44Z",
+          "_id": "image-565aacfe180c0314dacacda348639df1b5f72480-1800x2700-jpg",
+          "_rev": "jRkZT6629Ev16Wm3qsNVLD",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2020-04-15T02:20:44Z",
+          "assetId": "565aacfe180c0314dacacda348639df1b5f72480",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.6666666666666666,
+                  "height": 2700,
+                  "width": 1800
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAeABQDASIAAhEBAxEB/8QAGgABAQACAwAAAAAAAAAAAAAABQABAgMEB//EACcQAAICAQIEBgMAAAAAAAAAAAECAAMRBBIFBiFBExUiMVFhUnGR/8QAGAEAAgMAAAAAAAAAAAAAAAAAAgMBBAX/xAAaEQEBAQEAAwAAAAAAAAAAAAABABESAxMx/9oADAMBAAIRAxEAPwD2XgTivUlnO1cHBz0H7nX1a73ZjYjbj7qczh5l0V+h4eEFh2O+0kdx9wfgVVqXWpklMZIPsJkO/K5y8ybAA95TcgknBxKRKleYtalgXTKFsR+pPwYArGlClZBDHJPeE+NZ+Z/sylrCwEkn6hewZ55jMybVbHG5ScGUN8wur9NbYX4IlAUkoDl//9k="
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "CoverPlain.jpg",
+          "path": "images/qwmluuy0/production/565aacfe180c0314dacacda348639df1b5f72480-1800x2700.jpg",
+          "sha1hash": "565aacfe180c0314dacacda348639df1b5f72480",
+          "size": 2126846,
+          "uploadId": "Uxbezc8GyhYKWyXGTecd0yfhu9Qb84s9",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/565aacfe180c0314dacacda348639df1b5f72480-1800x2700.jpg"
+      },
+      "illustrationData": {
+          "name": "Double Soft Cover"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2021-10-13T21:40:46Z",
+          "_id": "image-6ad3a1c7d1a52763c2468f46e7dc0fb5fc716487-2433x3133-jpg",
+          "_rev": "O49m8f7ZfFohMwskdo6lJH",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2021-10-13T21:40:46Z",
+          "assetId": "6ad3a1c7d1a52763c2468f46e7dc0fb5fc716487",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "blurHash": "dLKxt$gK9cI,Ifxrs+e@xKt2oHN1~QWFRos;%3xbR%R%",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.7765719757421002,
+                  "height": 3133,
+                  "width": 2433
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAaABQDASIAAhEBAxEB/8QAGQAAAgMBAAAAAAAAAAAAAAAAAAUCAwQH/8QAJBAAAgEDAwQDAQAAAAAAAAAAAQIDAAQRBRIxEyEyQQdRcRT/xAAYAQEAAwEAAAAAAAAAAAAAAAAEAQIDBf/EAB4RAAICAQUBAAAAAAAAAAAAAAECAAMhBBESMVFB/9oADAMBAAIRAxEAPwDpNtrUkErmM9z4DkVTrWsSSzo2CzKuGJHJ/KptbNmSOYIen9ke81s1XRru4G5RGXc9vzFDOorpAZzCjmVxMkc6TAuN6gngDiioR2Vxar0pGVnXyIPuilC1DkHEjkfsYaLLqEln1YlQwA+B75pj/aCQzrICRhkPGaT/ABY7vpF4HZmAbtk5x2qzex1edSzbfrNcZtLXZsx8l6rCK1Ps0XElqspB3g84HqilGuMy32FJA2Dg0U1GVFCgdTNrc9T/2Q=="
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "DeerInForestPrint.jpg",
+          "path": "images/qwmluuy0/production/6ad3a1c7d1a52763c2468f46e7dc0fb5fc716487-2433x3133.jpg",
+          "sha1hash": "6ad3a1c7d1a52763c2468f46e7dc0fb5fc716487",
+          "size": 11515830,
+          "uploadId": "cukgxUu9lE45ixJqowXWSA9gpC6kxfjq",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/6ad3a1c7d1a52763c2468f46e7dc0fb5fc716487-2433x3133.jpg"
+      },
+      "illustrationData": {
+          "name": "Deer in Forest",
+          "description": "3 color riso print"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2020-04-15T02:09:54Z",
+          "_id": "image-aa2d7d28025d4b6b4ca46500986c807bf7eb0e73-6547x5037-jpg",
+          "_rev": "wy3BCXwFt0klslUjNgABRA",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2020-04-15T02:09:54Z",
+          "assetId": "aa2d7d28025d4b6b4ca46500986c807bf7eb0e73",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 1.2997816160412945,
+                  "height": 5037,
+                  "width": 6547
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAPABQDASIAAhEBAxEB/8QAGAAAAwEBAAAAAAAAAAAAAAAAAAQHAwj/xAAmEAABAwQBAwQDAAAAAAAAAAACAQMEAAUGESEHEjITFUGBIlFx/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/AN42EXewXiBj72Qe4M9+29jyx+9f2rBYrSzi0eBGacbQTIk/Idqu+eF+Kai4U2zeDuDz3qCpKQivkP3TV/cjtSbfHcjk8rxK2JKXiqJxQc0dd7zk0DqLMahXogjK2BNghInai74oqm5z0ov2Q30p0eVbxbVsQ06Gy438/dFB/9k="
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "P2-3.jpg",
+          "path": "images/qwmluuy0/production/aa2d7d28025d4b6b4ca46500986c807bf7eb0e73-6547x5037.jpg",
+          "sha1hash": "aa2d7d28025d4b6b4ca46500986c807bf7eb0e73",
+          "size": 7915167,
+          "uploadId": "5tD3reMcJZPpQBiuz7AsbKSU3P0tMC8Z",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/aa2d7d28025d4b6b4ca46500986c807bf7eb0e73-6547x5037.jpg"
+      },
+      "illustrationData": {
+          "name": "Underground",
+          "description": "Inner Cover"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2020-04-15T02:13:19Z",
+          "_id": "image-d7281fb2c123cad9ebe3c6df81f4536f0ed5ddb1-3278x5065-png",
+          "_rev": "RjOTvFJJjmC6xQzfBBVgrN",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2020-04-15T02:13:19Z",
+          "assetId": "d7281fb2c123cad9ebe3c6df81f4536f0ed5ddb1",
+          "extension": "png",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 0.6471865745310957,
+                  "height": 5065,
+                  "width": 3278
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAfCAIAAABoLHqZAAAACXBIWXMAAFxGAABcRgEUlENBAAAEqUlEQVQ4yz2V9yu/XRjH7z9FiUh2EVIoP6AQJSNC/GCTvX+QFckme+89H3uXlczsrySKHuOLx1bP675PnB9O53Of876u9/W+3ud8JBMTk7KyssvLy6enp+fn58/Pz+/v74+Pj9fX17e3N36+v7/z/eHh4a8yWNze3v6rDMnQ0LCoqOji4uJBGWC+vr7A/KeMD2Ww+Psz7u/v7+7uwDNLBgYGBQUFgMUGSUgF+OXl5fHxkZmfzPASae9/BmsZnJeXd3Z29vsJDKkEVdYsmH8TipwMvkh6enopKSnz8/MbGxu7u7snJyf7+/t7e3sHBwdHR0d/lHF4eMjW9vb25ubm1tYWP4+Pjzkj6ejohIeHV1VVkb+iomJsbGxkZGRwcHB8fHxycnJ2dnZhYYF1b29vR0dHfX19eXk5i4mJCb5I+vr6qampjY2NkZGRycnJ3d3d/yhjaWlpbm6OQzMzMyJcV1cX0WNjY3Nzc0G2t7fLaufn57OdlJSUkZFBkuXlZZCrq6ujo6McWlxcJDk/iQLBoKCg7OzscWXIYCLBJC0tjRnlbm5uqJPk6enpOTk5MD8/P7++vkYUvri6uuIL5KBBstrx8fEcKi4u3tnZwRj0Gc9UVla6ubn5+PhQJz+RFxYgPTw8YIT+tFOu2dvbG84wR32QOIxU0HFwcPDy8sJCKysrtANRLCwsEIi0OIdjMtjZ2ZlPtIFgX8q4urqCm7u7e1RUFGBIURRp7e3tkZZWCxdLRkZGgCmGxn7/DMyEzkSEUWJiIjlZUF1CQgKyYRtBUDIzM/P09KRmCsaGbOBEvIUramtraUxgYCBRRH6EoBdcCSyIOpKxsXFAQAAb09PTJAeDh3APHSosLAQZFhYGkkDMtIouUCAmOz09le0ZEhJCSPrU39+PGVCO9jBnZmYSF9pgampquD8oj9SkmVSGpK2tHRwcXF1dXVdX19TUNDAwwDYm7enpQQiqzcrKAol+gJubm9niAG7Di7K3Q0NDiQ2Y5AIJBbggD7YnP0WVlJRwBjCYzs5OqiCipKurKy4GydmDNjq3trbSG39/f7oFL9bEgsvw8DBxycFJaMq0fX19uRLR0dGoWlpa2tDQgPh42M7OztTU1NHRMS4uDjBUIQW+ra0NvHyrNDU1LS0trayskB0DcRRXYiw/Pz9ra2stLS1m4lIz9hCckY3MMlhNTQ17Q15VVVVFRYVZXV2dKNAhs4aGhrm5Od3iGre0tHANqQhqLORbxbaTkxN5bG1tiaKuDABUy3csZGNjg7cAkLavr48Z2qRFGlltVOU3nYiIiHBxceE+cHXoMMbGYaiFnBQJjIJpB6JCHoisNjqJT5DhXKEyeDQEgCRg6D8HMAYO4TDkqVx2GKxowIQy8D0z9mLmGWIBjLV4mwBTqog1NDQkvyTQFm1gY2pqijcIewoD8p1q6TBHBYY0HCMHsWRwTEwMHUcMTghu7IlYFAJ/dGYXthDhDMwhJdtTgAlPGSCFgcQJ8pOK5IIz4YjLTGjAbMkvCSJTPRh+i8eZELw7HILqL0lRMzBuK3GJImfGA9BmA1aNygDDCfFuowKEIUlooqyvr6+trYm/gf8BG/i7TS3RW28AAAAASUVORK5CYII="
+          },
+          "mimeType": "image/png",
+          "originalFilename": "P1.png",
+          "path": "images/qwmluuy0/production/d7281fb2c123cad9ebe3c6df81f4536f0ed5ddb1-3278x5065.png",
+          "sha1hash": "d7281fb2c123cad9ebe3c6df81f4536f0ed5ddb1",
+          "size": 501235,
+          "uploadId": "GI7d2sOays8cXeObKU9533ZqZrwz8id8",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/d7281fb2c123cad9ebe3c6df81f4536f0ed5ddb1-3278x5065.png"
+      },
+      "illustrationData": {
+          "name": "Underground Inside"
+      }
+  },
+  {
+      "_type": "image",
+      "asset": {
+          "_createdAt": "2021-10-13T21:43:06Z",
+          "_id": "image-ac208a95296c2625dee9f4b145e9c5570d99beac-3257x2536-jpg",
+          "_rev": "wSJXiE27QDw03C3USKqD9b",
+          "_type": "sanity.imageAsset",
+          "_updatedAt": "2021-10-13T21:43:06Z",
+          "assetId": "ac208a95296c2625dee9f4b145e9c5570d99beac",
+          "extension": "jpg",
+          "metadata": {
+              "_type": "sanity.imageMetadata",
+              "blurHash": "VVSF%,xctTk9xw-taxbUoNV]XRW,j0jKn,o=ohjLWFkA",
+              "dimensions": {
+                  "_type": "sanity.imageDimensions",
+                  "aspectRatio": 1.2843059936908516,
+                  "height": 2536,
+                  "width": 3257
+              },
+              "hasAlpha": false,
+              "isOpaque": true,
+              "lqip": "data:image/jpeg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAQABQDASIAAhEBAxEB/8QAGAAAAgMAAAAAAAAAAAAAAAAAAAQDBgj/xAAfEAACAgICAwEAAAAAAAAAAAABAgQRAAMSUQUTIWH/xAAWAQEBAQAAAAAAAAAAAAAAAAADBAX/xAAcEQEAAgIDAQAAAAAAAAAAAAABAAIDEQQSMUH/2gAMAwEAAhEDEQA/ANO7tw5cQSGAJrvIRI2N0AR8xaXIf2sGjupU0GAu8SlvNU6/TEd02fNhuuI7zPycootSqr98Ip11LHHJOoEty/RhifhTygIVRkFmgwo4ZViVobNQ2f/Z"
+          },
+          "mimeType": "image/jpeg",
+          "originalFilename": "Dancing Girls Print.jpg",
+          "path": "images/qwmluuy0/production/ac208a95296c2625dee9f4b145e9c5570d99beac-3257x2536.jpg",
+          "sha1hash": "ac208a95296c2625dee9f4b145e9c5570d99beac",
+          "size": 4090485,
+          "uploadId": "bMuOHndr98mlvkT0XK70BH9TRcgJANjm",
+          "url": "https://cdn.sanity.io/images/qwmluuy0/production/ac208a95296c2625dee9f4b145e9c5570d99beac-3257x2536.jpg"
+      },
+      "illustrationData": {
+          "name": "Dancing to Turn the World",
+          "description": "Screen Print"
+      }
+  }
+]

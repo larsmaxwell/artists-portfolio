@@ -14,5 +14,6 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "resolveJsonModule": true
 }

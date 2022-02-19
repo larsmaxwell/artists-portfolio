@@ -1,0 +1,26 @@
+[
+  {
+    "_createdAt": "2020-04-05T07:15:58Z",
+    "_id": "59eca4d9-4817-4ef0-9883-9c349fc13573",
+    "_rev": "owzTu8zM85wiLrUvnUkjlH",
+    "_type": "page",
+    "_updatedAt": "2021-10-19T19:48:18Z",
+    "archived": false,
+    "featuredImage": {
+      "_type": "image",
+      "asset": {
+      "_ref": "image-be0fe8d2e7c449c91530b928243a381597a6750f-2048x2019-png",
+      "_type": "reference"
+      }
+    },
+    "metaDescription": "Lurn (Lurn) Maxwell (they/them) is an artist and coder living in Seattle from Dallas, Tx. Lurn makes self published comics, illustrations, paintings, apparel and digital media.",
+    "metaKeywords": "about page, comics, comix artist, illustration, artist, video, seattle, wa, texas, dallas, artist, illustrator",
+    "name": "About/Contact",
+    "pageContent": [],
+    "releaseDate": "2020-04-05",
+    "slug": {
+      "_type": "slug",
+      "current": "about"
+    }
+  }
+]

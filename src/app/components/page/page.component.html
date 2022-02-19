@@ -1,13 +1,20 @@
 
-<div class="mt-4 mb-4 container">
-  <ng-template [ngIf]="blockContent">
-    <ng-template ngFor let-content [ngForOf]="blockContent" let-i="index">
-      <ng-template [ngIf]="content._type === 'image'">
-        <img alt="" [src]="urlFor(content).width(300)" width="300px">
-      </ng-template>
-      <ng-template [ngIf]="content._type === 'block'">
-        <div [innerHTML]="getBlocks(content)"></div>
+<div class="mt-4 mb-4 container" *ngIf="page">
+  <h3>{{ page.name }}</h3>
+  <div class="block-content">
+    <ng-template [ngIf]="blockContent">
+      <ng-template ngFor let-content [ngForOf]="blockContent" let-i="index">
+        <ng-template [ngIf]="content._type === 'image'">
+          <span [id]="'blockContent-'+i" class="block-content__image" > 
+            <img alt="" [src]="urlFor(content)"
+            class="img-fluid img-thumbnail mb-1">
+          </span>
+        </ng-template>
+        <ng-template [ngIf]="content._type === 'block'">
+          <span [id]="'blockContent-'+i" class="block-content__block" [innerHTML]="getBlocks(content)">
+          </span>
+        </ng-template>
       </ng-template>
     </ng-template>
-  </ng-template>
+  </div>
 </div>

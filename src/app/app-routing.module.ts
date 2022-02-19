@@ -9,11 +9,21 @@ import { IllustrationListComponent } from './components/illustration-list/illust
 import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
+import { IllustrationResolverService } from './services/illustration-resolver.service';
 
 const routes: Routes = [
-  { path: './', component: IndexComponent },
-  { path: 'illustration/', component: IllustrationListComponent },
-  { path: 'illustration/:imgId', component: IllustrationComponent },
+  { path: '', pathMatch: 'full', 
+    redirectTo: 'illustration/' },
+  { path: 'illustration',
+    component: IllustrationComponent,
+    resolve: {illustrations: IllustrationResolverService},
+    data: { home: true },
+  },
+  { path: 'illustration/:imgId',
+    component: IllustrationComponent, 
+    resolve: {illustrations: IllustrationResolverService},
+    data: { home: false },
+  },
   { path: 'works/:permalink', component: WorkComponent,
     children: [
       { path: '', component: AlbumComponent },
@@ -22,8 +32,8 @@ const routes: Routes = [
     ]
   },
   { path: 'about', redirectTo: 'pages/about' },
-  { path: 'pages/:permatwo', component: PageComponent},
-  { path: '**', component: IndexComponent }
+  { path: 'pages/:permalink', component: PageComponent},
+  { path: '**', redirectTo: 'illustration' }
 ];
 
 @NgModule({

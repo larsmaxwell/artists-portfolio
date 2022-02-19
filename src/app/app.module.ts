@@ -40,6 +40,7 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 
 // Directive
 import { ImgObserverDirective } from './directives/img-observer/img-observer.directive';
+import { IllustrationResolverService } from './services/illustration-resolver.service';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { ImgObserverDirective } from './directives/img-observer/img-observer.dir
     OrderModule,
     SanityService,
     AlbumSharedService,
+    IllustrationResolverService
   ],
   bootstrap: [AppComponent]
 })

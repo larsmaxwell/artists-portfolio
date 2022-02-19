@@ -10,10 +10,15 @@
     ]
   },
   "files": [
-    "test.ts"
+    "test.ts",
+    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "exclude": [
+    "*/node_modules/"
+  ],
+  "resolveJsonModule": true
 }
