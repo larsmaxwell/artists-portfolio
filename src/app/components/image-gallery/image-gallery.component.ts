@@ -19,7 +19,7 @@ import { faArrowLeft, faArrowRight, faBullseye, faChevronCircleLeft, faChevronCi
   templateUrl: './image-gallery.component.html',
   styleUrls: ['./image-gallery.component.css'],
 })
-export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
+export class ImageGalleryComponent implements OnInit, OnDestroy {
 
   // visibilityStatus: {[key: number]: IntersectionStatus} = {};
   // intersectionStatus = IntersectionStatus;
@@ -31,8 +31,6 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() currentImgIndex: number;
   @Input() pagination: boolean;
   @Input() maxPagination: number;
-  @Input() illustrationIds: boolean;
-  @Input() illustrations: any;
 
   faArrowLeft = faArrowLeft;
   faArrowRight = faArrowRight;
@@ -62,38 +60,23 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private sanityService: SanityService,
-    private library: FaIconLibrary,
     public router: Router,
     public route: ActivatedRoute,
-    private cdRef : ChangeDetectorRef,
     @Inject(PLATFORM_ID) private platformId
-  ) { 
-    this.route = route;
+  ) {}
+
+  ngOnInit(): void {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
 
     this.route.paramMap.subscribe((params : ParamMap)=> {  
       this.indexChange$ = new Observable((observer) => {
         observer.next({isIntersecting: true});
         observer.complete();
       });
-    });  
-  }
+    });
 
-  ngOnInit(): void {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-
-    this.setActivePaginationItems();
-  }
-
-  determineParentRatio() {
-
-  }
-
-  ngAfterViewInit() {
+    // why was this inside of afterViewInit?
     if (this.isBrowser) {
       this.isMobile = this.isMobileSize();
 
@@ -102,8 +85,13 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
         this.isMobile = this.isMobileSize();
       });
 
-      this.cdRef.detectChanges();
+      // this.cdRef.detectChanges();
     }
+
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.setActivePaginationItems();
   }
 
   enterKeyListener() {
@@ -172,10 +160,7 @@ export class ImageGalleryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getRouterLink(index:number) {
-    if (this.illustrationIds) {
-      index = this.images[index]._id || null;
-    }
-    return index;
+      return this.images[index].asset.assetId || null;
   }
 
   ngOnDestroy() {

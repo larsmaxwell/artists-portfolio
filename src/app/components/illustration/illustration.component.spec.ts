@@ -2,8 +2,7 @@ import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { By, Meta, Title } from '@angular/platform-browser';
 
-import { ActivatedRoute, Data } from '@angular/router';
-import { Router } from 'express';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { of } from 'rxjs';
 import { subscribeOn } from 'rxjs/operators';
 import { Illustration } from '../../models/illustration.model';
@@ -22,15 +21,13 @@ class FakeImageGalleryComponent {
   @Input() currentImgIndex: number;
   @Input() pagination: boolean;
   @Input() maxPagination: number;
-  @Input() illustrationIds: boolean;
-  @Input() illustrations: any;
 }  
 
 describe('IllustrationComponent', () => {
-    let component: IllustrationComponent;
+  let component: IllustrationComponent;
   let fixture: ComponentFixture<IllustrationComponent>;
   let mockActivatedRoute, 
-      mockSanityService,
+      mockRouter,
       mockTitle,
       mockMeta,
       mockDataSubscribe;
@@ -39,6 +36,9 @@ describe('IllustrationComponent', () => {
   beforeEach(() => {
     ILLUSTRATIONS = illustrationData;
 
+    mockRouter = {
+      navigate: () => {}
+    };
     mockActivatedRoute = {
       params: {subscribe: () => of(ILLUSTRATIONS[0]._id)},
       data: {
@@ -48,9 +48,6 @@ describe('IllustrationComponent', () => {
       },
       snapshot: {paramMap: {get(): string {return ILLUSTRATIONS[0]._id}}}
     };
-    mockSanityService = jasmine.createSpyObj(
-      ['getImageUrlBuilder']
-    );
     mockMeta = jasmine.createSpyObj(['updateTag']);
     mockTitle = jasmine.createSpyObj(['setTitle']);
     mockDataSubscribe = jasmine.createSpyObj({
@@ -64,7 +61,7 @@ describe('IllustrationComponent', () => {
       ],
       providers: [
         {provide: ActivatedRoute, useValue: mockActivatedRoute},
-        {provide: SanityService, useValue: mockSanityService},
+        {provide: Router, useValue: mockRouter},
         {provide: Meta, useValue: mockMeta},
         {provide: Title, useValue: mockTitle}
       ]
@@ -88,5 +85,7 @@ describe('IllustrationComponent', () => {
 
     expect(mockActivatedRoute.data.subscribe).toHaveBeenCalled();
   });
+
+  // todo test router.navigate when id is incorrect
 
 });

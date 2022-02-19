@@ -34,9 +34,9 @@
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
-          <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
-            <strong>{{ illustrations[i].name }}</strong><br>
-            {{ illustrations[i].description }}
+          <p *ngIf="images[i].illustrationData && (images[i].illustrationData.name || images[i].illustrationData.description)">
+            <strong >{{ images[i].illustrationData.name }}</strong><br>
+            {{ images[i].illustrationData.description }}
           </p>
         </div>
       </div> 
@@ -59,9 +59,9 @@
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
 
-          <p *ngIf="illustrations && (illustrations[i].name || illustrations[i].description)">
-            <strong>{{ illustrations[i].name }}</strong><br>
-            {{ illustrations[i].description }}
+          <p *ngIf="images[i].illustrationData && (images[i].illustrationData.name || images[i].illustrationData.description)">
+            <strong >{{ images[i].illustrationData.name }}</strong><br>
+            {{ images[i].illustrationData.description }}
           </p>
         </div>
       </div> 

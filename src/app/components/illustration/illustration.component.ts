@@ -1,13 +1,12 @@
 import { Component, OnInit, Inject, ViewChild, OnChanges, SimpleChanges, PLATFORM_ID } from '@angular/core';
-import { ActivatedRoute, Data } from '@angular/router';
-import { Location, isPlatformBrowser } from '@angular/common';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, Meta,Title } from '@angular/platform-browser';
-// import { Masonry, MasonryGridItem } from 'ng-masonry-grid'; // import necessary datatypes
 
 // App Specific
 import { Illustration } from '../../models/illustration.model';
 import { SanityService } from '../../services/sanity.service';
 import { Subscription } from 'rxjs';
+import { faAudioDescription } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-illustration',
@@ -16,47 +15,40 @@ import { Subscription } from 'rxjs';
 })
 export class IllustrationComponent implements OnInit {
 
-  illustrations: any;
   images:any = [];
-
-  illustrationsImages: any;
-  sanityInstance: any;
-  sanityImgBuilder: any;
-  gridView: any;
-  desHeight: any;
-  desWidth: any;
-  isBrowser: boolean;
   imageID: string;
-  slideshowView: any;
   imgControls: any = {};
   currentIndex: number;
   currentIll: any;
   routeSubscription: Subscription;
   isHome:boolean;
+  routerLinkBase: string = "/illustration";
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private meta: Meta,
     private title: Title,
-    private sanityService: SanityService,
     @Inject(PLATFORM_ID) private platformId
   ) { 
-    this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  ngOnInit() {
-    this.sanityImgBuilder = this.sanityService.getImageUrlBuilder();
- 
+  ngOnInit() { 
     this.imageID = this.route.snapshot.paramMap.get('imgId');
-    this.slideshowView = !!this.route.snapshot.paramMap.get('imgId') || this.isMobileSize();
 
     // Get illustrations
     this.route.data.subscribe((data: Data) => {
       this.isHome = data.home;
 
-      this.illustrations = data.illustrations;
-
-      this.images = this.illustrations.map(illustration => illustration.featuredImage);
+      this.images = data.illustrations.map(illustration => { 
+          return {
+            ...illustration.featuredImage,
+            illustrationData: {
+              name: illustration.name,
+              description: illustration.description
+            }
+          }
+      });
 
       if (!this.imageID) {
         this.imageID = this.images[0].asset.assetId;
@@ -65,11 +57,19 @@ export class IllustrationComponent implements OnInit {
     });
 
     this.route.params.subscribe(routeParams => {
+
       if (routeParams.imgId) {
-        this.setImgControls(routeParams.imgId);
+        const checkIfMapped = this.checkRouteImgId(routeParams.imgId);
+
+        if (checkIfMapped) this.setImgControls(routeParams.imgId);
+        else this.router.navigate([this.routerLinkBase + '/']);
       }
     });
+  }
 
+  checkRouteImgId(id: string) {
+    const isMapped = this.images.find((image) => id === image.asset.assetId) || null;
+    return isMapped;
   }
 
   isActiveSlide(id:string) {
@@ -84,17 +84,15 @@ export class IllustrationComponent implements OnInit {
       return item.asset.assetId === imgId;
     }) : 0;
 
-    this.currentIll = this.illustrations[this.currentIndex];
+    this.currentIll = this.images[this.currentIndex];
 
     if (!this.isHome) {
-      const meta = { description: this.currentIll.description, name: this.currentIll.name, image: this.currentIll.featuredImage.asset.url };
+      const meta = { 
+        description: this.currentIll.illustrationData.description,
+        name: this.currentIll.illustrationData.name,
+        image: this.currentIll.asset.url
+      };
       this.setMeta(meta);
-    }
-  }
-
-  isMobileSize() {
-    if (this.isBrowser) {
-      return window.innerWidth <= 600;
     }
   }
 
