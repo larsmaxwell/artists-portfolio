@@ -64,30 +64,38 @@ export class SanityService {
     );
   }
 
-  getMenu(id: string): Observable<any> {
+  getSiteSettingsAndMenu(): Observable<any> {
     // string to nest internalLink reference to object
     const internalLinkQueryString =
-    `"internalLinkContent": {
-      "permalink": internalLink->slug,
-      "_type": internalLink->_type,
+    `navigationItemUrl{
+      ...,
+      "internalLink": {
+        "permalink": internalLink->slug,
+        "_type": internalLink->_type,
+      }
     }`;
     // nested menu
     // internal links can be fetched
     // instead of referenced using -> operator
-    const query = `[_id == "${id}"]{
+    const query = `[_id == "siteSettings"]{
       ...,
-      items[]{
+      mainNav->{
         ...,
-        navigationItemUrl{
+        items[]{
+          ...,
+          ${internalLinkQueryString},
+          childrenItems[]{
+            ...,
+            ${internalLinkQueryString},
+          }
+        }
+      },
+      socialNav->,
+      footerNav->{
+        ...,
+        items[]{
           ...,
           ${internalLinkQueryString}
-        },
-        childrenItems[]{
-          ...,
-          navigationItemUrl{
-            ...,
-            ${internalLinkQueryString}
-          }
         }
       }
     }`;

@@ -17,27 +17,25 @@ export class SiteInfoResolverService implements Resolve<{}> {
     state: RouterStateSnapshot): 
     Observable<{}> | Promise<{}> | any {
 
-      const siteData = this.sanityService.getSiteSettings();
-      const conditionalLogic = siteData.pipe(
-        last(),
-        switchMap(data => {
-          return forkJoin(
-            { 
-              siteData, // 183.68ms
-              mainNav: this.sanityService.getMenu(data.mainNav._ref), // 211.92ms
-              socialNav: this.sanityService.getItemById(data.socialNav._ref) // 175.89
-            }
-          )
-        }),
-        map(
-          (detailsOrNull) => {
-            console.log(detailsOrNull);
-            return detailsOrNull
-          }
-        )
-      ) 
-      return conditionalLogic;
-
-
+      const siteData = this.sanityService.getSiteSettingsAndMenu();
+      // const conditionalLogic = siteData.pipe(
+      //   last(),
+      //   switchMap(data => {
+      //     return forkJoin(
+      //       { 
+      //         siteData, // 183.68ms
+      //         mainNav: this.sanityService.getMenu(data.mainNav._ref), // 211.92ms
+      //         socialNav: this.sanityService.getItemById(data.socialNav._ref) // 175.89
+      //       }
+      //     )
+      //   }),
+      //   map(
+      //     (detailsOrNull) => {
+      //       console.log(detailsOrNull);
+      //       return detailsOrNull
+      //     }
+      //   )
+      // );
+      return siteData; // 253.13
     }
 }
