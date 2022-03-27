@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
@@ -11,16 +11,24 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  @Input() mainMenuData: {};
+  @Input() socialMenuData: {};
+
   public isCollapsed: boolean;
   faEnvelope = faEnvelope;
   faInstagram = faInstagram;
   faBars = faBars;
 
-  constructor(private route: ActivatedRoute, router: Router, library: FaIconLibrary) { 
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    library: FaIconLibrary) {
     this.isCollapsed = false;
-
-    router.events.subscribe((val) => this.isCollapsed = false)
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.router.events.subscribe((val) => this.isCollapsed = false)
+
+  }
 }

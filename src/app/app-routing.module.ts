@@ -14,9 +14,8 @@ import { SiteInfoResolverService } from './services/site-info-resolver.service.s
 
 const routes: Routes = [
   { path: '', 
-    resolve: {
-      siteInfo: SiteInfoResolverService
-    },
+    resolve: { siteInfo: SiteInfoResolverService },
+    component: IndexComponent,
     children: [
       { path: '', pathMatch: 'full', 
       redirectTo: 'illustration/' },

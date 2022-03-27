@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faBed } from '@fortawesome/free-solid-svg-icons';
-
 
 @Component({
   selector: 'app-index',
@@ -10,19 +10,32 @@ import { faBed } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-
+  date = new Date();
+  mainNav: {};
+  socialNav: {};
   faBed = faBed;
+  siteTitle = "Lauren Maxwell";
 
   constructor(
     private library: FaIconLibrary,
     private meta: Meta,
     private title: Title,
+    private route: ActivatedRoute,
+    private router: Router,
   ) {
 
   }
 
   ngOnInit() {
     this.setMeta();
+    
+    // Get menu items from the route data
+    this.route.data.subscribe((data: Data) => {
+      const thisData = data.siteInfo;
+
+      this.mainNav = data.siteInfo.mainNav;
+      this.socialNav = data.siteInfo.socialNav;
+    });
   }
 
   setMeta() {

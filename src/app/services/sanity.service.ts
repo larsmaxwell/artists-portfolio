@@ -51,19 +51,6 @@ export class SanityService {
     );
   }
 
-  getSiteSettings(): Observable<any> {
-    const query = `[_id == "siteSettings"]`;
-    const encodeStr = encodeURIComponent(query);
-
-    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
-      tap(_ => this.log(`fetched site document`)),
-      map(data => {
-        return data.result[0];
-      }),
-      catchError(this.handleError<any>(`Error fetching Site Document`))
-    );
-  }
-
   getSiteSettingsAndMenu(): Observable<any> {
     // string to nest internalLink reference to object
     const internalLinkQueryString =
