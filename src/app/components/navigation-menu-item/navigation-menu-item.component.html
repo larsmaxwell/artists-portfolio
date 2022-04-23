@@ -1,0 +1,22 @@
+<ng-container *ngIf="item.isLink; else nonLink">
+  <a 
+    *ngIf="
+    (!!item?.navigationItemUrl?.internalLink 
+    || !!item?.navigationItemUrl?.relativeUrl) 
+    && item?.linkData?.routerInfo?.length"
+    [routerLink]="item?.linkData?.routerInfo"
+    [href]=""
+    >
+    {{item.text}}
+  </a>
+  <a *ngIf="!!item?.navigationItemUrl?.externalUrl"
+  [href]="item?.navigationItemUrl?.externalUrl"
+  >
+    {{item.text}}
+  </a>
+</ng-container>
+<ng-template #nonLink>
+  <a [title]="item.text" tabindex="0">
+    {{item.text}}
+  </a>
+</ng-template>

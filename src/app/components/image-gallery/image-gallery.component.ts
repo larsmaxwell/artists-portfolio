@@ -62,7 +62,7 @@ export class ImageGalleryComponent implements OnInit, OnDestroy {
     private sanityService: SanityService,
     public router: Router,
     public route: ActivatedRoute,
-    @Inject(PLATFORM_ID) private platformId
+    @Inject(PLATFORM_ID) private platformId,
   ) {}
 
   ngOnInit(): void {

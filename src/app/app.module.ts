@@ -41,11 +41,15 @@ import { GetByCategoryPipe } from './pipes/get-by-category.pipe';
 // Directive
 import { ImgObserverDirective } from './directives/img-observer/img-observer.directive';
 import { IllustrationResolverService } from './services/illustration-resolver.service';
+import { NavigationMenuBlockComponent } from './components/navigation-menu-block/navigation-menu-block.component';
+import { NavigationMenuItem } from './components/navigation-menu-item/navigation-menu-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    NavigationMenuBlockComponent,
+    NavigationMenuItem,
     IndexComponent,
     AlbumComponent,
     GetByTypePipe,

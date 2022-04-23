@@ -1,0 +1,8 @@
+<ul *ngIf="items">
+  <li *ngFor="let item of items">
+    <app-navigation-menu-item [item]="item"></app-navigation-menu-item>
+    <app-navigation-menu-block 
+      *ngIf="item.childrenItems?.length" 
+      [items]="item.childrenItems"></app-navigation-menu-block>
+  </li>
+</ul> 
