@@ -11,8 +11,15 @@
   </a>
   <a *ngIf="!!item?.navigationItemUrl?.externalUrl"
   [href]="item?.navigationItemUrl?.externalUrl"
+  target="_blank"
   >
-    {{item.text}}
+    <ng-container *ngIf="item.socialIcon; else nonIcon">
+      <fa-icon [icon]="mapToIcons(item.socialIcon)" size="2x"></fa-icon>
+      <span class="sr-only">{{item.text}}</span>
+    </ng-container>
+    <ng-template #nonIcon>
+      {{item.text}}
+    </ng-template>
   </a>
 </ng-container>
 <ng-template #nonLink>

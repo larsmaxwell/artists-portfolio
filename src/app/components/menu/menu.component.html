@@ -8,7 +8,7 @@
       </div>
       <div class="col-2 d-block d-sm-none">
         <button type="button" class="navbar-toggler btn btn-primary  float-right" (click)="isCollapsed = !isCollapsed" id="navbar-trigger">
-          <fa-icon [icon]="faBars"></fa-icon> <span class="sr-only">Mobile Menu</span>
+          <fa-icon [icon]="icons.faBars"></fa-icon> <span class="sr-only">Mobile Menu</span>
         </button>
       </div>
     </div>
@@ -23,12 +23,27 @@
     <nav aria-labelledby="main-menu" class="primary-menu mt-3">
       <h2 id="main-menu" class="sr-only">Main Menu</h2>
 
-      <app-navigation-menu-block [items]="menuItems">
+      <app-navigation-menu-block 
+        [items]="menuItems"
+        [classNames]="[
+          {
+            ul: ['list-unstyled']
+          }
+        ]">
       </app-navigation-menu-block>
     </nav>
     <div class="navbar-extra col-12">
       <div class="row">
-        <ul class="list-inline list-unstyled">
+
+        <app-navigation-menu-block [items]="socialMenuItems" 
+          [classNames]="[
+            {
+              ul: ['list-inline', 'list-unstyled'], 
+              li: ['list-inline-item']
+            }
+          ]" >
+        </app-navigation-menu-block>
+        <!-- <ul class="list-inline list-unstyled">
           <li class="list-inline-item">
             <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
               <fa-icon [icon]="faInstagram" size="2x"></fa-icon> <span class="sr-only">Instagram</span>
@@ -39,7 +54,7 @@
               <fa-icon [icon]="faEnvelope" size="2x"></fa-icon><span class="sr-only">Email</span>
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </div>

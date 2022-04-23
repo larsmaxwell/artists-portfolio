@@ -7,9 +7,19 @@ import { Component, Input, OnInit } from '@angular/core';
 export class NavigationMenuBlockComponent implements OnInit {
 
   @Input() items: any;
+  @Input() iteration: number = 0;
+  @Input() classNames: [] = [];
 
-  constructor() { }
+  ulClassNames: string[];
+  liClassNames: string[];
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    this.ulClassNames = 
+      [...(this?.classNames?.[this.iteration]?.ul || []), `navigation-level-${this.iteration}`];
+    this.liClassNames = [...(this?.classNames?.[this.iteration]?.li || []), `navigation-level-${this.iteration}--item`];
   }
+
 }

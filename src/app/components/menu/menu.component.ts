@@ -17,14 +17,17 @@ export class MenuComponent implements OnInit {
   @Input() socialMenuData: any;
 
   public menuItems: [];
+  public socialMenuItems: [];
   isBrowser: boolean;
   public isCollapsed: boolean;
   resizeObservable$: Observable<any>;
   resizeSubscription$: Subscription;
 
-  faEnvelope = faEnvelope;
-  faInstagram = faInstagram;
-  faBars = faBars;
+  icons = {
+    'faEnvelope': faEnvelope,
+    'faInstagram': faInstagram,
+    'faBars': faBars
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -50,6 +53,7 @@ export class MenuComponent implements OnInit {
       });
     }
 
+    this.socialMenuItems = this.socialMenuData.items.map((item) => this.transformMenuItems(item));
     this.menuItems = this.mainMenuData.items.map((item) => this.transformMenuItems(item));
   }
 
@@ -95,5 +99,4 @@ export class MenuComponent implements OnInit {
       return window.innerWidth <= 576;
     }
   }
-
 }
