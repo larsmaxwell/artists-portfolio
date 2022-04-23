@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faBed } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIconsService } from '../../services/font-awesome-icons.service';
 
 @Component({
   selector: 'app-index',
@@ -12,6 +13,7 @@ import { faBed } from '@fortawesome/free-solid-svg-icons';
 export class IndexComponent implements OnInit {
   date = new Date();
   mainNav: {};
+  footerNav: {items:[]};
   socialNav: {};
   faBed = faBed;
   siteTitle = "Lauren Maxwell";
@@ -23,7 +25,6 @@ export class IndexComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-
   }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class IndexComponent implements OnInit {
     this.route.data.subscribe((data: Data) => {
       const thisData = data.siteInfo;
 
+      this.footerNav = data.siteInfo.footerNav;
       this.mainNav = data.siteInfo.mainNav;
       this.socialNav = data.siteInfo.socialNav;
     });

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-navigation-menu-block',
@@ -13,7 +14,8 @@ export class NavigationMenuBlockComponent implements OnInit {
   ulClassNames: string[];
   liClassNames: string[];
 
-  constructor() {
+  constructor(
+  ) {
   }
 
   ngOnInit(): void {

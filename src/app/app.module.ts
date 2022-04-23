@@ -43,6 +43,7 @@ import { ImgObserverDirective } from './directives/img-observer/img-observer.dir
 import { IllustrationResolverService } from './services/illustration-resolver.service';
 import { NavigationMenuBlockComponent } from './components/navigation-menu-block/navigation-menu-block.component';
 import { NavigationMenuItem } from './components/navigation-menu-item/navigation-menu-item.component';
+import { FontAwesomeIconsService } from './services/font-awesome-icons.service';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { NavigationMenuItem } from './components/navigation-menu-item/navigation
   ],
   providers: [
     MessageService,
+    FontAwesomeIconsService,
     OrderModule,
     SanityService,
     AlbumSharedService,

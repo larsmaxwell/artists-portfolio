@@ -10,7 +10,7 @@ import { AlbumComponent } from './components/album/album.component';
 import { WorkComponent } from './components/work/work.component';
 import { PageComponent } from './components/page/page.component';
 import { IllustrationResolverService } from './services/illustration-resolver.service';
-import { SiteInfoResolverService } from './services/site-info-resolver.service.spec';
+import { SiteInfoResolverService } from './services/site-info-resolver.service';
 
 const routes: Routes = [
   { path: '', 

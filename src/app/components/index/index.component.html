@@ -12,22 +12,15 @@
 
 <footer class="text-center" ng-controller="copyController">
   <p>© {{ siteTitle }} {{ date | date: "y"}} </p>
-  <ul class="items list-inline">
-    <li class="list-inline-item">
-      <a routerLink="/about">
-        About
-      </a>
-    </li>
-    <li class="list-inline-item">
-      <a target="_blank" href="https://www.instagram.com/lurnmaxwell/">
-        <i class="fa fa-instagram"></i> <span class="sr-only">Instagram</span>
-      </a>
-    </li>
-    <li class="list-inline-item">
-      <a href="mailto:mlmxwell@gmail.com">
-        <i class="fa fa-envelope" aria-hidden="true"></i> <span class="sr-only">Email</span>
-      </a>
-    </li>
-  </ul>
+  
+  <app-navigation-menu-block
+    [items]="footerNav.items"
+    [classNames]="[
+      {
+        ul: ['list-inline', 'items'], 
+        li: ['list-inline-item']
+      }
+    ]">
+  </app-navigation-menu-block>
 </footer>
 

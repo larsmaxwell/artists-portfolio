@@ -2,10 +2,8 @@ import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Data, Router } from '@angular/router';
 import { isPlatformBrowser, PlatformLocation } from '@angular/common';
 
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faEnvelope, faBars } from '@fortawesome/free-solid-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { fromEvent, Observable, Subscription } from 'rxjs';
+import { FontAwesomeIconsService } from '../../services/font-awesome-icons.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,16 +21,10 @@ export class MenuComponent implements OnInit {
   resizeObservable$: Observable<any>;
   resizeSubscription$: Subscription;
 
-  icons = {
-    'faEnvelope': faEnvelope,
-    'faInstagram': faInstagram,
-    'faBars': faBars
-  }
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    library: FaIconLibrary,
+    public fontAwesomeIcons: FontAwesomeIconsService,
     @Inject(PLATFORM_ID) private platformId
     ) {
     this.isCollapsed = false;
@@ -53,45 +45,8 @@ export class MenuComponent implements OnInit {
       });
     }
 
-    this.socialMenuItems = this.socialMenuData.items.map((item) => this.transformMenuItems(item));
-    this.menuItems = this.mainMenuData.items.map((item) => this.transformMenuItems(item));
-  }
-
-  transformMenuItems = (item:any) => {
-
-    let linkData:{};
-    const isInternalLink =
-      (item?.navigationItemUrl?.internalLink && Object.keys(item?.navigationItemUrl?.internalLink).length > 0) || 0;
-    const isRelative = item?.navigationItemUrl?.relativeUrl || 0;
-
-    if (!!isInternalLink) {
-      linkData = {
-        routerInfo: [
-          '/',
-          this.getTypeSlug(item.navigationItemUrl.internalLink._type),
-          item.navigationItemUrl.internalLink.permalink.current
-        ]
-      }
-    } else if (!!isRelative) {
-      linkData = {
-        routerInfo: [
-          '/',
-          item.navigationItemUrl.relativeUrl
-        ]
-      }
-    }
-
-    if (item.childrenItems) {
-      item.childrenItems = item.childrenItems.map(item => this.transformMenuItems(item))
-    }
-    return {...item, linkData}
-  }
-
-  getTypeSlug(type: string) {
-    if (type === 'artwork' ) {
-      return 'works'
-    }
-    return type;
+    this.socialMenuItems = this.socialMenuData.items;
+    this.menuItems = this.mainMenuData.items;
   }
 
   isMobileSize() {

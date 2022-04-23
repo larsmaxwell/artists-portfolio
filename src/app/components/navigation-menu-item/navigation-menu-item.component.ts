@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIconsService } from '../../services/font-awesome-icons.service';
 
 @Component({
   selector: 'app-navigation-menu-item',
@@ -9,25 +10,12 @@ import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 export class NavigationMenuItem implements OnInit {
 
   @Input() item: any;
-
-  icons = {
-    'faEnvelope': faEnvelope,
-    'faInstagram': faInstagram
-  }
   
-  constructor() { }
+  constructor(
+    public fontAwesomeIcons: FontAwesomeIconsService
+  ) { }
 
   ngOnInit(): void {
-  }
-
-  mapToIcons(matchKey) {
-    const keys = Object.keys(this.icons);
-    const getKey = keys.find(key => key === matchKey);
-
-    if (getKey) {
-      return this.icons[getKey];
-    }
-    return null;
   }
 
 }

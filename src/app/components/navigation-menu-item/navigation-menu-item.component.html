@@ -14,7 +14,7 @@
   target="_blank"
   >
     <ng-container *ngIf="item.socialIcon; else nonIcon">
-      <fa-icon [icon]="mapToIcons(item.socialIcon)" size="2x"></fa-icon>
+      <fa-icon [icon]="fontAwesomeIcons.getIcon(item.socialIcon)" size="2x"></fa-icon>
       <span class="sr-only">{{item.text}}</span>
     </ng-container>
     <ng-template #nonIcon>
