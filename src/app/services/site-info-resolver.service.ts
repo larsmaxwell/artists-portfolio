@@ -69,6 +69,9 @@ export class SiteInfoResolverService implements Resolve<{}> {
     if (type === 'artwork' ) {
       return 'works'
     }
+    if (type === 'page') {
+      return 'pages'
+    }
     return type;
   }
 }
