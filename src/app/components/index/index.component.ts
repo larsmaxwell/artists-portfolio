@@ -19,11 +19,9 @@ export class IndexComponent implements OnInit {
   siteTitle = "Lauren Maxwell";
 
   constructor(
-    private library: FaIconLibrary,
     private meta: Meta,
     private title: Title,
     private route: ActivatedRoute,
-    private router: Router,
   ) {
   }
 
@@ -32,8 +30,6 @@ export class IndexComponent implements OnInit {
     
     // Get menu items from the route data
     this.route.data.subscribe((data: Data) => {
-      const thisData = data.siteInfo;
-
       this.footerNav = data.siteInfo.footerNav;
       this.mainNav = data.siteInfo.mainNav;
       this.socialNav = data.siteInfo.socialNav;
