@@ -82,7 +82,13 @@
                     "internalLink": {},
                     "relativeUrl": "illustration"
                 },
-                "text": "Illustration"
+                "text": "Illustration",
+                "linkData": {
+                    "routerInfo": [
+                        "/",
+                        "illustration"
+                    ]
+                }
             },
             {
                 "_key": "33fb23312402",
@@ -102,7 +108,14 @@
                                 }
                             }
                         },
-                        "text": "The Meddlers"
+                        "text": "The Meddlers",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "the-meddlers"
+                            ]
+                        }
                     },
                     {
                         "_key": "cb36d30480b4",
@@ -118,103 +131,14 @@
                                 }
                             }
                         },
-                        "text": "Dreamwalker"
-                    },
-                    {
-                        "_key": "7190b77573fa",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "obstacle-is-the-way"
-                                }
-                            }
-                        },
-                        "text": "Obstacle is the Way"
-                    },
-                    {
-                        "_key": "071683090dda",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "double-soft"
-                                }
-                            }
-                        },
-                        "text": "Double Soft"
-                    },
-                    {
-                        "_key": "a7a1cf280cb1",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "underground"
-                                }
-                            }
-                        },
-                        "text": "Underground"
-                    },
-                    {
-                        "_key": "bdf31372d266",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "ufime"
-                                }
-                            }
-                        },
-                        "text": "Ufime"
-                    },
-                    {
-                        "_key": "3bf04ff68158",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "the-rabid-prince"
-                                }
-                            }
-                        },
-                        "text": "The Rabid Prince"
-                    },
-                    {
-                        "_key": "fdd00fd35a6c",
-                        "_type": "navigationItem",
-                        "isLink": true,
-                        "navigationItemUrl": {
-                            "_type": "link",
-                            "internalLink": {
-                                "_type": "artwork",
-                                "permalink": {
-                                    "_type": "slug",
-                                    "current": "terry-house-calls"
-                                }
-                            }
-                        },
-                        "text": "Terry House Calls"
+                        "text": "Dreamwalker",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "dreamwalker-thpa"
+                            ]
+                        }
                     }
                 ],
                 "isLink": false,
@@ -238,7 +162,14 @@
                                 }
                             }
                         },
-                        "text": "Princess Simon"
+                        "text": "Princess Simon",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "princess-simon"
+                            ]
+                        }
                     },
                     {
                         "_key": "25f7971585fa",
@@ -254,7 +185,14 @@
                                 }
                             }
                         },
-                        "text": "Corridors"
+                        "text": "Corridors",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "corridors"
+                            ]
+                        }
                     },
                     {
                         "_key": "1490feca0bfe",
@@ -270,7 +208,14 @@
                                 }
                             }
                         },
-                        "text": "Passing"
+                        "text": "Passing",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "passing"
+                            ]
+                        }
                     },
                     {
                         "_key": "34931ea65230",
@@ -286,7 +231,14 @@
                                 }
                             }
                         },
-                        "text": "You are Alone"
+                        "text": "You are Alone",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "you-are-alone"
+                            ]
+                        }
                     }
                 ],
                 "isLink": false,
@@ -317,7 +269,14 @@
                         }
                     }
                 },
-                "text": "About/Contact"
+                "text": "About/Contact",
+                "linkData": {
+                    "routerInfo": [
+                        "/",
+                        "pages",
+                        "about"
+                    ]
+                }
             }
         ],
         "navId": {

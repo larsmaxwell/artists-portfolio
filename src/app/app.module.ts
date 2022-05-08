@@ -23,7 +23,6 @@ import { WorkListComponent } from './components/work-list/work-list.component';
 import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationComponent } from './components/illustration/illustration.component';
-import { IllustrationListComponent } from './components/illustration-list/illustration-list.component';
 import { ImageGalleryComponent } from './components/image-gallery/image-gallery.component';
 import { GalleryImageComponent } from './components/gallery-image/gallery-image.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
@@ -61,7 +60,6 @@ import { FontAwesomeIconsService } from './services/font-awesome-icons.service';
     PageComponent,
     PageListComponent,
     IllustrationComponent,
-    IllustrationListComponent,
     ImageGalleryComponent,
     LoadingIndicatorComponent,
     GalleryImageComponent,

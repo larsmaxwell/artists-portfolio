@@ -9,7 +9,7 @@ export class NavigationMenuBlockComponent implements OnInit {
 
   @Input() items: any;
   @Input() iteration: number = 0;
-  @Input() classNames: [] = [];
+  @Input() classNames: [{[key:string]: string[]}];
 
   ulClassNames: string[];
   liClassNames: string[];
