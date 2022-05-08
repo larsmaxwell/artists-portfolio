@@ -19,7 +19,6 @@ import { MenuComponent } from './components/menu/menu.component';
 import { IndexComponent } from './components/index/index.component';
 import { WorkComponent } from './components/work/work.component';
 import { AlbumComponent } from './components/album/album.component';
-import { WorkListComponent } from './components/work-list/work-list.component';
 import { PageComponent } from './components/page/page.component';
 import { PageListComponent } from './components/page-list/page-list.component';
 import { IllustrationComponent } from './components/illustration/illustration.component';
@@ -53,7 +52,6 @@ import { FontAwesomeIconsService } from './services/font-awesome-icons.service';
     IndexComponent,
     AlbumComponent,
     GetByTypePipe,
-    WorkListComponent,
     WorkComponent,
     GetImgUrlPipe,
     GetByCategoryPipe,
