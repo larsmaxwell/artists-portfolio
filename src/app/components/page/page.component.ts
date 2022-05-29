@@ -44,16 +44,16 @@ export class PageComponent implements OnInit {
     this.getPage(permalink);
   }
 
-  setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
-    this.title.setTitle( 'Lauren (Lurn) Maxwell - ' + newItems.title );
-    this.meta.updateTag({name: 'description', content: newItems.description});
-    this.meta.updateTag({name: 'keywords', content: newItems.keywords});
-    this.meta.updateTag({property: 'og:title', content: 'Lauren (Lurn) Maxwell - ' + newItems.title});
-    this.meta.updateTag({property: 'og:description', content: newItems.description});
-    this.meta.updateTag({name: 'twitter:description', content: newItems.description});
-    this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
-    this.meta.updateTag({name: 'image', content: newItems.featuredImage});
-    this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
+  setMeta(metaInfo: {metaDescription: string, metaImage: string, metaKeywords: string, title: string}) {
+    const {metaDescription, metaImage, metaKeywords, title} = metaInfo;
+    this.title.setTitle( `Lauren (Lurn) Maxwell- ${title ? 'Current Illustration:' + title : ''}` );
+    this.meta.updateTag({property: 'og:title', content:  `Lauren (Lurn) Maxwell- ${title ? 'Current Illustration:' + title : ''}` });
+    this.meta.updateTag({name: 'keywords', content: metaKeywords? metaKeywords : ""  });
+    this.meta.updateTag({property: 'og:description', content: metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:image', content: metaImage? metaImage: ''});
+    this.meta.updateTag({property: 'og:image', content: metaImage? metaImage: ''});
   }
 
   getPage(permalink: string) {
@@ -64,8 +64,12 @@ export class PageComponent implements OnInit {
       const featuredImage = this.urlFor(data.featuredImage.asset._ref);
 
       this.page = data;
-      this.metaData = {title: data.name, description: data.metaDescription, keywords: data.metaKeywords, featuredImage: featuredImage }
-      this.setMeta(this.metaData);
+
+      this.setMeta({
+        ...data.metaInfo,
+        metaImage: featuredImage,
+        title: data.name
+      });
     })
 
     getPageData

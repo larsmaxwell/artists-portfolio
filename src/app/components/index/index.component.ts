@@ -27,7 +27,6 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setMeta();
     
     // Get menu items from the route data
     this.route.data.subscribe((data: Data) => {
@@ -36,17 +35,25 @@ export class IndexComponent implements OnInit {
       this.footerNav = data.siteInfo.footerNav;
       this.mainNav = data.siteInfo.mainNav;
       this.socialNav = data.siteInfo.socialNav;
+
+      this.setMeta({
+        ...data.siteInfo.metaInfo,
+        title: data.siteInfo.title,
+        metaImage: data.siteInfo.metaInfo?.metaImage?.asset?.url
+      });
+
     });
   }
 
-  setMeta() {
-    this.title.setTitle("Lauren (Lurn) Maxwell" );
-    this.meta.updateTag({name: 'description', content: "Lauren (Lurn) Maxwell is an artist, comics maker and illustrator living in Seattle"});
-    this.meta.updateTag({name: 'keywords', content: "comics, illustration horror comics, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
-    this.meta.updateTag({property: 'og:title', content: "Lauren (Lurn) Maxwell"  });
-    this.meta.updateTag({property: 'og:description', content: "Lauren (Lurn) Maxwell is a comics maker and illustrator in Seattle, Wa (Originally from Dallas, Tx)" });
-    this.meta.updateTag({name: 'twitter:description', content: "Lauren (Lurn) Maxwell is a comics maker and illustrator in Seattle, Wa (Originally from Dallas, Tx)" });
-    this.meta.updateTag({name: 'twitter:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
-    this.meta.updateTag({property: 'og:image', content:"http://www.mlauren.info/assets/images/home/tunnel.png" });
+  setMeta(metaInfo: {metaDescription: string, metaImage: string, metaKeywords: string, title: string}) {
+    const {metaDescription, metaImage, metaKeywords, title} = metaInfo;
+    this.title.setTitle(title);
+    this.meta.updateTag({property: 'og:title', content: title });
+    this.meta.updateTag({name: 'keywords', content: metaKeywords? metaKeywords : ""  });
+    this.meta.updateTag({property: 'og:description', content: metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:image', content: metaImage? metaImage: ''});
+    this.meta.updateTag({property: 'og:image', content: metaImage? metaImage: ''});
   }
 }

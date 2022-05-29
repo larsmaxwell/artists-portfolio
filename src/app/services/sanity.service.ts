@@ -66,6 +66,7 @@ export class SanityService {
     // instead of referenced using -> operator
     const query = `[_id == "siteSettings"]{
       ...,
+      metaInfo{..., metaImage{..., "asset": asset->}},
       mainNav->{
         ...,
         items[]{
@@ -132,7 +133,7 @@ export class SanityService {
   
   /** Get ArtWorks from the server */
   getIllustrationAssets():Observable<any> {
-    const query = `[_type == "illustration"]{_id, _createdAt, releaseDate, name, description, featuredImage{..., "asset": asset->}}[]`;
+    const query = `[_type == "illustration"]{..., featuredImage{..., "asset": asset->}}[]`;
     const encodeStr = encodeURIComponent(query);
 
     return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(

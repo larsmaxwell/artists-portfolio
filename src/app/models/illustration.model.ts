@@ -11,4 +11,9 @@ export class Illustration {
     releaseDate: Date;
     name: string;
     slug: {_type: string, curent: string};
+    metaInfo: {
+        metaDescription: string;
+        metaImage: Image,
+        metaKeywords: string
+    };
 }

@@ -7,6 +7,7 @@ import { Illustration } from '../../models/illustration.model';
 import { SanityService } from '../../services/sanity.service';
 import { Subscription } from 'rxjs';
 import { faAudioDescription } from '@fortawesome/free-solid-svg-icons';
+import { Image } from '../../models/image.model';
 
 @Component({
   selector: 'app-illustration',
@@ -43,17 +44,17 @@ export class IllustrationComponent implements OnInit {
       this.images = data.illustrations.map(illustration => { 
           return {
             ...illustration.featuredImage,
+            metaInfo: illustration.metaInfo,
             illustrationData: {
               name: illustration.name,
               description: illustration.description
-            }
+            },
           }
       });
 
       if (!this.imageID) {
         this.imageID = this.images[0].asset.assetId;
       }
-      this.setImgControls(this.imageID);
     });
 
     this.route.params.subscribe(routeParams => {
@@ -63,7 +64,20 @@ export class IllustrationComponent implements OnInit {
 
         if (checkIfMapped) this.setImgControls(routeParams.imgId);
         else this.router.navigate([this.routerLinkBase + '/']);
+      
+        if (this.currentIll) {
+          const meta = { 
+            ...this.currentIll.metaInfo,
+            metaImage: this.currentIll.asset.url,
+            title: this.currentIll.name
+          };
+          this.setMeta(meta);
+        }
+        
       }
+
+      this.setImgControls(this.imageID);
+
     });
   }
 
@@ -86,24 +100,17 @@ export class IllustrationComponent implements OnInit {
 
     this.currentIll = this.images[this.currentIndex];
 
-    if (!this.isHome) {
-      const meta = { 
-        description: this.currentIll.illustrationData.description,
-        name: this.currentIll.illustrationData.name,
-        image: this.currentIll.asset.url
-      };
-      this.setMeta(meta);
-    }
   }
 
-  setMeta(data) {
-    this.title.setTitle("Lauren (Lurn) Maxwell- Current Illustration: " + data.name);
-    this.meta.updateTag({name: 'description', content: data.name + " (" + data.description + ")"});
-    this.meta.updateTag({name: 'keywords', content: "comics, horror comics, illustration, non binary, comix, zines, risograph comics, riso comics, horror comics, sci fi comics"});
-    this.meta.updateTag({property: 'og:title', content: "Lauren (Lurn) Maxwell- Current Illustration: " + data.name });
-    this.meta.updateTag({property: 'og:description', content:  data.name + " (" + data.description + ")" });
-    this.meta.updateTag({name: 'twitter:description', content: data.name + " (" + data.description + ")" });
-    this.meta.updateTag({name: 'twitter:image', content: data.image });
-    this.meta.updateTag({property: 'og:image', content: data.image });
+  setMeta(metaInfo: {metaDescription: string, metaImage: string, metaKeywords: string, title: string}) {
+    const {metaDescription, metaImage, metaKeywords, title} = metaInfo;
+    this.title.setTitle( `Lauren (Lurn) Maxwell- ${title ? 'Current Illustration:' + title : ''}` );
+    this.meta.updateTag({property: 'og:title', content:  `Lauren (Lurn) Maxwell- ${title ? 'Current Illustration:' + title : ''}` });
+    this.meta.updateTag({name: 'keywords', content: metaKeywords? metaKeywords : ""  });
+    this.meta.updateTag({property: 'og:description', content: metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:image', content: metaImage? metaImage: ''});
+    this.meta.updateTag({property: 'og:image', content: metaImage? metaImage: ''});
   }
 }
