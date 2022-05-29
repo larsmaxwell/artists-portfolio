@@ -28,8 +28,6 @@
           <app-gallery-image 
           [image]="urlFor(image).width(30).blur(20)"
           [lazyLoadImg]="urlFor(image).width(imageDimensions.tabletUp.width)"
-          [height]="getWindowHeight()"
-          [width]=""
           [caption]="image.caption"></app-gallery-image>
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>
@@ -54,7 +52,6 @@
           <app-gallery-image 
           [image]="urlFor(image).width(4).blur(10)"
           [lazyLoadImg]="urlFor(image).width(imageDimensions.mobileUp.width)"
-          [width]="getWindowWidth()"
           [caption]="image.caption"></app-gallery-image>
 
           <span class="sr-only"> {{i+1}} of {{ images.length }} images. {{ image.caption }}</span>

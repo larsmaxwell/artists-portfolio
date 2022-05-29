@@ -9,8 +9,6 @@ import { Component, HostBinding, Inject, Input, OnInit, PLATFORM_ID } from '@ang
 export class GalleryImageComponent implements OnInit {
   @Input() image: string;
   @Input() lazyLoadImg: string;
-  @Input() width: number;
-  @Input() height: number;
   @Input() caption: string;
 
   srcAttr:string = '';
