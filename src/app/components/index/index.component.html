@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-3 col-xl-2 col-sm-5 navbar-container">
       <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
-      <app-menu [mainMenuData]="mainNav" [socialMenuData]="socialNav"></app-menu>
+      <app-menu [displayTitle]="displayTitle" [mainMenuData]="mainNav" [socialMenuData]="socialNav"></app-menu>
     </div>
     <div id="content" class="col-md-9 col-xl-10 col-sm-7">
       <router-outlet></router-outlet>

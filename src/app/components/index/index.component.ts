@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, Data } from '@angular/router';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faBed } from '@fortawesome/free-solid-svg-icons';
+import { faBed, faThList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIconsService } from '../../services/font-awesome-icons.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class IndexComponent implements OnInit {
   mainNav: {};
   footerNav: {items:[]};
   socialNav: {};
+  displayTitle: string;
   faBed = faBed;
   siteTitle = "Lauren Maxwell";
 
@@ -30,6 +31,8 @@ export class IndexComponent implements OnInit {
     
     // Get menu items from the route data
     this.route.data.subscribe((data: Data) => {
+      // this.siteTitle = data.siteInfo.
+      this.displayTitle = data.siteInfo.displayTitle;
       this.footerNav = data.siteInfo.footerNav;
       this.mainNav = data.siteInfo.mainNav;
       this.socialNav = data.siteInfo.socialNav;

@@ -13,6 +13,7 @@ import { FontAwesomeIconsService } from '../../services/font-awesome-icons.servi
 export class MenuComponent implements OnInit {
   @Input() mainMenuData: any; // add types for menu
   @Input() socialMenuData: any;
+  @Input() displayTitle: string;
 
   public menuItems: [];
   public socialMenuItems: [];
@@ -22,7 +23,6 @@ export class MenuComponent implements OnInit {
   resizeSubscription$: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     public fontAwesomeIcons: FontAwesomeIconsService,
     @Inject(PLATFORM_ID) private platformId
