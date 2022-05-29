@@ -1,3 +1,5 @@
+import { Image } from "./image.model";
+
 export class ArtWork {
     _createdAt: Date;
     _id: string;
@@ -33,5 +35,10 @@ export class ArtWork {
     galleryview: boolean;
     slug: {_type: string, curent: string};
     metaDescription: string;
+    metaInfo: {
+        metaDescription: string;
+        metaImage: Image,
+        metaKeywords: string
+    }
     keywords: string[];
 }

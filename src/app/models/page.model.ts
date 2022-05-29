@@ -1,3 +1,5 @@
+import { Image } from "./image.model";
+
 export class Page {
     _createdAt: Date;
     _id: string;
@@ -12,7 +14,10 @@ export class Page {
         children: [{marks:  [{}], text: string }], 
         markDefs: [{_key: string, _type: string, href: string, style: string}]
     }];
-    metaDescription: string;
-    metaKeywords: string;
+    metaInfo: {
+        metaDescription: string;
+        metaImage: Image,
+        metaKeywords: string
+    };
     featuredImage: {_type: string, asset: {_ref: string, _type: string}}
 }

@@ -12,6 +12,7 @@ import * as blocksToHtml from '@sanity/block-content-to-html';
 import { ArtWork } from '../../models/art-work.model';
 import { SanityService } from '../../services/sanity.service';
 import { AlbumSharedService } from '../../services/album-shared.service';
+import { Image } from '../../models/image.model';
 
 //  Directiives
 // import { ImgObserverDirective } from '../../directives/img-observer.directive'
@@ -48,15 +49,16 @@ export class WorkComponent implements OnInit {
     this.hideGallery = false;
   }
 
-  setMeta( newItems: {title:string, description: string, keywords: string, featuredImage: any}) {
-    this.title.setTitle( 'Lauren (Lurn) Maxwell - ' + newItems.title );
-    this.meta.updateTag({name: 'description', content: newItems.description});
-    this.meta.updateTag({name: 'keywords', content: newItems.keywords?newItems.keywords:''  });
-    this.meta.updateTag({property: 'og:title', content:  'Lauren (Lurn) Maxwell - ' + newItems.title});
-    this.meta.updateTag({property: 'og:description', content: newItems.description});
-    this.meta.updateTag({name: 'twitter:description', content: newItems.description});
-    this.meta.updateTag({name: 'twitter:image', content: newItems.featuredImage});
-    this.meta.updateTag({property: 'og:image', content: newItems.featuredImage});
+  setMeta(metaInfo: {metaDescription: string, metaImage: string, metaKeywords: string, title: string}) {
+    const {metaDescription, metaImage, metaKeywords, title} = metaInfo;
+    this.title.setTitle( `Lauren (Lurn) Maxwell- ${title ? ':' + title : ''}` );
+    this.meta.updateTag({property: 'og:title', content:  `Lauren (Lurn) Maxwell- ${title ? ':' + title : ''}` });
+    this.meta.updateTag({name: 'keywords', content: metaKeywords? metaKeywords : ""  });
+    this.meta.updateTag({property: 'og:description', content: metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'description', content:  metaDescription?metaDescription:''});
+    this.meta.updateTag({name: 'twitter:image', content: metaImage? metaImage: ''});
+    this.meta.updateTag({property: 'og:image', content: metaImage? metaImage: ''});
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -97,8 +99,10 @@ export class WorkComponent implements OnInit {
           });
         }
 
-        metaData = {title: data.name, description: data.metaDescription, keywords: data.keywords, featuredImage: data.featuredImage? this.urlFor(data.featuredImage.asset._ref): '' }
-        this.setMeta(metaData);
+        this.setMeta({
+          ...data.metaInfo,
+          metaImage: data?.metaInfo?.metaImage? this.urlFor(data.metaInfo.metaImage.asset._ref) : '',
+          title: data.name});
 
         this.albumSharedService.updateAlbumId(this.albumId);
 
