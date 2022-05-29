@@ -1,0 +1,9 @@
+<ul *ngIf="items" [ngClass]="ulClassNames">
+  <li *ngFor="let item of items" [ngClass]="liClassNames">
+    <app-navigation-menu-item [item]="item"></app-navigation-menu-item>
+    <app-navigation-menu-block 
+      *ngIf="item.childrenItems?.length" 
+      [items]="item.childrenItems"
+      [iteration]="iteration + 1"></app-navigation-menu-block>
+  </li>
+</ul> 

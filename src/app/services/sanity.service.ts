@@ -38,6 +38,65 @@ export class SanityService {
     return new imageUrlBuilder(this.client);
   }
 
+  getItemById(id: string): Observable<any> {
+    const query = `[_id == "${id}"]`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      tap(_ => this.log(`fetched item by ID`)),
+      map(data => {
+        return data.result[0];
+      }),
+      catchError(this.handleError<any>(`Error fetching Item by ID`))
+    );
+  }
+
+  getSiteSettingsAndMenu(): Observable<any> {
+    // string to nest internalLink reference to object
+    const internalLinkQueryString =
+    `navigationItemUrl{
+      ...,
+      "internalLink": {
+        "permalink": internalLink->slug,
+        "_type": internalLink->_type,
+      }
+    }`;
+    // nested menu
+    // internal links can be fetched
+    // instead of referenced using -> operator
+    const query = `[_id == "siteSettings"]{
+      ...,
+      mainNav->{
+        ...,
+        items[]{
+          ...,
+          ${internalLinkQueryString},
+          childrenItems[]{
+            ...,
+            ${internalLinkQueryString},
+          }
+        }
+      },
+      socialNav->,
+      footerNav->{
+        ...,
+        items[]{
+          ...,
+          ${internalLinkQueryString}
+        }
+      }
+    }`;
+    const encodeStr = encodeURIComponent(query);
+
+    return this.http.get<any>(`${this.worksUrl}${encodeStr}`).pipe(
+      tap(_ => this.log(`fetched navigation document`)),
+      map(data => {
+        return data.result[0];
+      }),
+      catchError(this.handleError<any>(`Error fetching Navigation Document`))
+    );
+  }
+
   getPage(permalink:string):Observable<Page> {
     const query = `[_type == "page" && slug.current == "${permalink}"]`;
     const encodeStr = encodeURIComponent(query);

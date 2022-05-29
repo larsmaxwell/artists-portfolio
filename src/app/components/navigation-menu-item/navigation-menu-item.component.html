@@ -1,0 +1,28 @@
+<ng-container *ngIf="item.isLink; else nonLink">
+  <a 
+    *ngIf="
+    (!!item?.navigationItemUrl?.internalLink 
+    || !!item?.navigationItemUrl?.relativeUrl) 
+    && item?.linkData?.routerInfo?.length"
+    [routerLink]="item?.linkData?.routerInfo"
+    >
+    {{item.text}}
+  </a>
+  <a *ngIf="!!item?.navigationItemUrl?.externalUrl"
+  [href]="item?.navigationItemUrl?.externalUrl"
+  target="_blank"
+  >
+    <ng-container *ngIf="item.socialIcon; else nonIcon">
+      <fa-icon [icon]="fontAwesomeIcons.getIcon(item.socialIcon)" size="2x"></fa-icon>
+      <span class="sr-only">{{item.text}}</span>
+    </ng-container>
+    <ng-template #nonIcon>
+      {{item.text}}
+    </ng-template>
+  </a>
+</ng-container>
+<ng-template #nonLink>
+  <a [title]="item.text" tabindex="0">
+    {{item.text}}
+  </a>
+</ng-template>

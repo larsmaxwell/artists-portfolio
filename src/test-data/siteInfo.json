@@ -1,0 +1,326 @@
+
+[
+  {
+    "_createdAt": "2022-03-20T05:58:40Z",
+    "_id": "siteSettings",
+    "_rev": "TW3cfMF2SbHipPti7SZ3In",
+    "_type": "siteSettings",
+    "_updatedAt": "2022-03-27T06:43:33Z",
+    "footerNav": {
+        "_createdAt": "2022-03-27T06:37:03Z",
+        "_id": "fb511a98-fa65-4fab-a654-8fa42eadad3e",
+        "_rev": "0fBzNNjq17sqvTbSez8w5U",
+        "_type": "navigation",
+        "_updatedAt": "2022-04-23T21:28:30Z",
+        "items": [
+            {
+                "_key": "88057c5f1e2e",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "internalLink": {
+                        "_type": "page",
+                        "permalink": {
+                            "_type": "slug",
+                            "current": "about"
+                        }
+                    }
+                },
+                "text": "About"
+            },
+            {
+                "_key": "219ca4d7f559",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "externalUrl": "https://www.instagram.com/lurnmaxwell/",
+                    "internalLink": {}
+                },
+                "socialIcon": "faInstagram",
+                "text": "Instagram"
+            },
+            {
+                "_key": "3f65fc671010",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "externalUrl": "mailto:mlmxwell@gmail.com",
+                    "internalLink": {}
+                },
+                "socialIcon": "faEnvelope",
+                "socialLink": {
+                    "_type": "socialMediaLink",
+                    "link": "mailto:mlmxwell@gmail.com",
+                    "socialIcon": "fa-envelope"
+                },
+                "text": "E-Mail"
+            }
+        ],
+        "navId": {
+            "_type": "slug",
+            "current": "footerMenu"
+        },
+        "title": "Footer Menu"
+    },
+    "frontpage": "/illustration",
+    "mainNav": {
+        "_createdAt": "2022-03-20T03:16:30Z",
+        "_id": "e17ddafa-c86d-4133-94fa-5f963f959f24",
+        "_rev": "0fBzNNjq17sqvTbSey5fB6",
+        "_type": "navigation",
+        "_updatedAt": "2022-04-23T04:32:12Z",
+        "items": [
+            {
+                "_key": "70a753f2ae11",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "internalLink": {},
+                    "relativeUrl": "illustration"
+                },
+                "text": "Illustration",
+                "linkData": {
+                    "routerInfo": [
+                        "/",
+                        "illustration"
+                    ]
+                }
+            },
+            {
+                "_key": "33fb23312402",
+                "_type": "navigationItem",
+                "childrenItems": [
+                    {
+                        "_key": "66999e08cb9e",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "the-meddlers"
+                                }
+                            }
+                        },
+                        "text": "The Meddlers",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "the-meddlers"
+                            ]
+                        }
+                    },
+                    {
+                        "_key": "cb36d30480b4",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "dreamwalker-thpa"
+                                }
+                            }
+                        },
+                        "text": "Dreamwalker",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "dreamwalker-thpa"
+                            ]
+                        }
+                    }
+                ],
+                "isLink": false,
+                "text": "Comics"
+            },
+            {
+                "_key": "a2662194f7fa",
+                "_type": "navigationItem",
+                "childrenItems": [
+                    {
+                        "_key": "6e1203144c04",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "princess-simon"
+                                }
+                            }
+                        },
+                        "text": "Princess Simon",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "princess-simon"
+                            ]
+                        }
+                    },
+                    {
+                        "_key": "25f7971585fa",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "corridors"
+                                }
+                            }
+                        },
+                        "text": "Corridors",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "corridors"
+                            ]
+                        }
+                    },
+                    {
+                        "_key": "1490feca0bfe",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "passing"
+                                }
+                            }
+                        },
+                        "text": "Passing",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "passing"
+                            ]
+                        }
+                    },
+                    {
+                        "_key": "34931ea65230",
+                        "_type": "navigationItem",
+                        "isLink": true,
+                        "navigationItemUrl": {
+                            "_type": "link",
+                            "internalLink": {
+                                "_type": "artwork",
+                                "permalink": {
+                                    "_type": "slug",
+                                    "current": "you-are-alone"
+                                }
+                            }
+                        },
+                        "text": "You are Alone",
+                        "linkData": {
+                            "routerInfo": [
+                                "/",
+                                "works",
+                                "you-are-alone"
+                            ]
+                        }
+                    }
+                ],
+                "isLink": false,
+                "text": "Other"
+            },
+            {
+                "_key": "d6e39365d77c",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "externalUrl": "https://mlaurenstore.square.site/",
+                    "internalLink": {}
+                },
+                "text": "Store"
+            },
+            {
+                "_key": "ff9cbf30be84",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "internalLink": {
+                        "_type": "page",
+                        "permalink": {
+                            "_type": "slug",
+                            "current": "about"
+                        }
+                    }
+                },
+                "text": "About/Contact",
+                "linkData": {
+                    "routerInfo": [
+                        "/",
+                        "pages",
+                        "about"
+                    ]
+                }
+            }
+        ],
+        "navId": {
+            "_type": "slug",
+            "current": "primary-nav"
+        },
+        "title": "Primary Nav"
+    },
+    "socialNav": {
+        "_createdAt": "2022-03-20T06:18:41Z",
+        "_id": "87a20c6d-e461-4706-9efe-7b9175384189",
+        "_rev": "19neLLLbGBjWfsfr374Jvt",
+        "_type": "navigation",
+        "_updatedAt": "2022-04-23T18:48:02Z",
+        "items": [
+            {
+                "_key": "d90a87eb71fd",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "externalUrl": "https://www.instagram.com/lurnmaxwell/"
+                },
+                "socialIcon": "faInstagram",
+                "text": "Instagram"
+            },
+            {
+                "_key": "8e6cc0d35081",
+                "_type": "navigationItem",
+                "isLink": true,
+                "navigationItemUrl": {
+                    "_type": "link",
+                    "externalUrl": "mailto:mlmxwell@gmail.com"
+                },
+                "socialIcon": "faEnvelope",
+                "text": "E-Mail"
+            }
+        ],
+        "navId": {
+            "_type": "slug",
+            "current": "social-media"
+        },
+        "title": "Social Media Navigation"
+    },
+    "title": "Lauren (Lurn) Maxwell"
+  }
+]
