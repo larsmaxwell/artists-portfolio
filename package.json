@@ -40,7 +40,7 @@
     "bootstrap": "^5.0.2",
     "core-js": "^2.4.1",
     "enhanced-resolve": "^3.3.0",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "ngx-google-analytics": "^11.2.1",
     "ngx-order-pipe": "^2.0.1",
